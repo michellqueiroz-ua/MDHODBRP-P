@@ -44,39 +44,41 @@ typedef double listTd[maxtypevehicles + 1];
 typedef int matrixVSS[maxvehicles + 1][maxstations + 1][maxstations + 1]; //to know which stations are visited after another (in case its necessary)
 typedef int matrixVPP[maxvehicles + 1][maxpassengers + 1][maxtotalcapacity + 1];
 
-int n;
-double comp_time;
+extern int n;
+extern double comp_time;
 
-listV vehicle_type;
-listD depot;
-listT number_vehicles;
-listD number_vehicles_at_depot;
-matrixDV vehicles_at_depot;
-int total_number_vehicles;
-listT maxcapacity;
-listV vehicle_located_at_depot;
-int total_served_passengers;
-int number_type_vehicles;
-int number_depots;
-int number_requests;
+extern listV vehicle_type;
+extern listD depot;
+extern listT number_vehicles;
+extern listD number_vehicles_at_depot;
+extern matrixDV vehicles_at_depot;
+extern int total_number_vehicles;
+extern listT maxcapacity;
+extern listV vehicle_located_at_depot;
+extern int total_served_passengers;
+extern int number_type_vehicles;
+extern int number_depots;
+extern int number_requests;
 
-matrixSS travel_time;
-listS stations_ids;
-listS q;
-map<int, int> station_id_map;
+extern matrixVSS M, W;
+extern matrixSS travel_time;
+extern listS stations_ids;
+extern listS q;
+extern map<int, int> station_id_map;
 
-map<int, int> nodes;
-map<int, int> type_node;
-int number_nodes;
+extern map<int, int> nodes;
+extern map<int, int> type_node;
+extern int number_nodes;
 
 //information about the requests
-listP time_stamp, earliest_departure, latest_departure, earliest_arrival, latest_arrival, direct_travel_time;
-listP delay;
-listP passengers_departure_time_from_home;
-matrixPS stops_origin, stops_destination;
-matrixPS walking_time_stops_origin, walking_time_stops_destination;
-listP number_stops_origin, number_stops_destination;
-int number_stations;
+extern listP time_stamp, earliest_departure, latest_departure, earliest_arrival, latest_arrival, direct_travel_time;
+extern listP delay;
+extern listP passengers_departure_time_from_home;
+extern matrixPS stops_origin, stops_destination;
+extern matrixPS walking_time_stops_origin, walking_time_stops_destination;
+extern listP number_stops_origin, number_stops_destination;
+extern int number_stations;
 
-int ts_min, ts_max;
+extern int ts_min, ts_max;
+
 

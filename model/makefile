@@ -1,8 +1,8 @@
 CC		= g++ -Wall -g -fPIC -fexceptions -DNDEBUG -DIL_STD -std=c++11 -O3 -fopenmp -Wl,--no-as-needed -ldl
-#CC		= g++ -Wall -g -fPIC -fexceptions -DNDEBUG -DIL_STD -std=c++11 -O3 -Wl
+#CC		= g++ -Wall -g -fPIC -fexceptions -DNDEBUG -DIL_STD -std=c++11 -O3 -W
 
 CFLAGS1 = -I/opt/ibm/ILOG/CPLEX_Studio128/cplex/include/ -I/opt/ibm/ILOG/CPLEX_Studio128/concert/include/
-CFLAGS2	= -L/opt/ibm/ILOG/CPLEX_Studio128/cplex/lib/x86-64_linux/static_pic/ -lilocplex -lcplex -L/opt/ibm/ILOG/CPLEX_Studio128/concert/lib/x86-64_linux/static_pic/ -lconcert -lm -lpthread
+CFLAGS2	= -L/opt/ibm/ILOG/CPLEX_Studio128/cplex/lib/x86-64_linux/static_pic/ -lilocplex -lcplex -L/opt/ibm/ILOG/CPLEX_Studio128/concert/lib/x86-64_linux/static_pic/ -lconcert -lm -lpthread -mcmodel=medium
 
 
 FILES_CC	= MDHODBRP_model.cpp Input.cpp

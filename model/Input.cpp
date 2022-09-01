@@ -1,5 +1,43 @@
 #include "Input.h"
 
+listD depot;
+map<int, int> station_id_map;
+matrixSS travel_time;
+listS stations_ids;
+int number_nodes;
+int n;
+
+double comp_time;
+
+listV vehicle_type;
+
+listT number_vehicles;
+listD number_vehicles_at_depot;
+matrixDV vehicles_at_depot;
+int total_number_vehicles;
+listT maxcapacity;
+listV vehicle_located_at_depot;
+int total_served_passengers;
+int number_type_vehicles;
+int number_depots;
+int number_requests;
+
+matrixVSS M, W;
+listP time_stamp, earliest_departure, latest_departure, earliest_arrival, latest_arrival, direct_travel_time;
+listS q;
+
+map<int, int> nodes;
+map<int, int> type_node;
+
+listP delay;
+listP passengers_departure_time_from_home;
+matrixPS stops_origin, stops_destination;
+matrixPS walking_time_stops_origin, walking_time_stops_destination;
+listP number_stops_origin, number_stops_destination;
+int number_stations;
+
+int ts_min, ts_max;
+
 void input_travel_time(char *filename) {
 
 	fstream file (filename, ios::in);
@@ -181,7 +219,7 @@ void input_requests(char *filename) {
 			latest_arrival[p] = stoi(data);
 
 			latest_departure[p] = latest_arrival[p] - direct_travel_time[p];
-			earliest_arrival[p] = earliest_departure + direct_travel_time[p];
+			earliest_arrival[p] = earliest_departure[p] + direct_travel_time[p];
 
 			//<<latest_arrival[p]<<endl;
 

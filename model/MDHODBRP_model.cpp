@@ -1,8 +1,10 @@
 #include <ilcplex/ilocplex.h>
 #include "Global.h"
-using namespace std;
 #include "Input.h"
 #include <iomanip>
+//using namespace std;
+
+
 
 string IntToString (int a)
 {
@@ -14,11 +16,9 @@ string IntToString (int a)
 void MDHODBRPFR_MODEL(){ 
 
 	double elapsed3;
-	int max_n = 2 * np + 1;
-	int M = 100000;
+	
 	int max_time = 86400;
-	int theta = 300;
-
+	
 	IloEnv env;
 
 	std::string varName;
@@ -121,7 +121,7 @@ void MDHODBRPFR_MODEL(){
 
 			IloExpr sum(env);
 			for (int j = 0; j < number_nodes; j++) {
-				sum += x[b][vehicle_located_at_depot[b]][j]
+				sum += x[b][vehicle_located_at_depot[b]][j];
 			}
 			model.add(sum == 1);
 			sum.end();
@@ -176,7 +176,7 @@ void MDHODBRPFR_MODEL(){
 
 			IloExpr sum(env);
 			for (int j = 0; j < number_nodes; j++) {
-				sum += x[b][j][vehicle_located_at_depot[b]]
+				sum += x[b][j][vehicle_located_at_depot[b]];
 			}
 			model.add(sum == 1);
 			sum.end();
@@ -328,7 +328,7 @@ void MDHODBRPFR_MODEL(){
 
 				IloExpr sum(env);
 				for (int j = 0; j < number_nodes; j++) {
-					sum += x[b][i1][j];
+					sum += x[b][i][j];
 				}
 				int max1 = std::max(0, q[i]);
 				model.add(Q[b][i] >= max1*sum);
@@ -343,7 +343,7 @@ void MDHODBRPFR_MODEL(){
 
 				IloExpr sum(env);
 				for (int j = 0; j < number_nodes; j++) {
-					sum += x[b][i1][j];
+					sum += x[b][i][j];
 				}
 				int min1 = std::min(maxcapacity[vehicle_type[b]], maxcapacity[vehicle_type[b]]+q[i]);
 				model.add(Q[b][i] <= min1*sum);
