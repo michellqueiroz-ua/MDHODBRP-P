@@ -19,7 +19,7 @@
 //using namespace Eigen;
 using namespace std;
 
-#define maxvehicles 300
+#define maxvehicles 900
 #define maxpassengers 3000
 #define maxstations 6000
 #define maxtotalcapacity 40
@@ -10808,17 +10808,18 @@ int main(int argc, char **argv) {
 
 	max_flex_delay = 0;
 
-	for (int k=0;k<total_requests;k++){
+	/*for (int k=0;k<total_requests;k++){
 		latest_arrival[k] = latest_arrival[k] + 3600;
-	}
+	}*/
 
 	k = 0;
 	//for (int k=0;k<total_requests;k++){
 	current_time = time_stamp[0];
 	//cout<<"hier"<<endl;
 	//change the current time part to a parameter given value
-	while((k < total_requests) or (current_time < 28800)) {
-		
+	//while((k < total_requests) or (current_time < 28800)) {
+	while(current_time < 28800) {
+
 		check_last_position_route();
 		if ((current_time >= time_stamp[k]) && (k < total_requests)) {
 
