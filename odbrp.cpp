@@ -19,7 +19,7 @@
 //using namespace Eigen;
 using namespace std;
 
-#define maxvehicles 200
+#define maxvehicles 300
 #define maxpassengers 3000
 #define maxstations 6000
 #define maxtotalcapacity 40
@@ -8644,9 +8644,9 @@ void re_insertion(int p, bool &accept_relocate_trip, double &temperature, int &t
 
 										current_user_ride_time = arrival_time_stop[best_v][k] - departure_time_stop[best_v][i];
 
-										if (current_user_ride_time != user_ride_time_temp[save_p]) {
-											cout<<"crime fake add "<<save_p<<endl;
-										}
+										//if (current_user_ride_time != user_ride_time_temp[save_p]) {
+											//cout<<"crime fake add "<<save_p<<endl;
+										//}
 										if (current_user_ride_time != user_ride_time[save_p]) {
 											difference = current_user_ride_time -  user_ride_time[save_p];
 											//<<"difference: "<<difference<<endl;
@@ -9639,8 +9639,8 @@ void relocate_all_passengers_vehicle_nn(int v, double &temperature, int &type_mo
 			cout<<"*"<<free_capacity[v][l]<<"*"<<endl;
 		}*/
 
-		if (vehicle_assigned[p] != v)
-			cout<<"ERROR HYER"<<endl;
+		//if (vehicle_assigned[p] != v)
+			//cout<<"ERROR HYER"<<endl;
 
 		blocked_vehicles[vehicle_assigned[p]] = 1;
 
@@ -10145,9 +10145,9 @@ void relocate_passenger(int p, double &temperature, int &type_move){
 										
 										if (count == 2){
 											if (current_user_ride_time != user_ride_time_temp[save_p]) {
-												cout<<"faking removing error"<<endl;
-												cout<<current_user_ride_time<<" "<<user_ride_time_temp[save_p]<<endl;
-												cout<<arrival_time_stop[v][k]<<" "<<departure_time_stop[v][i]<<endl;
+												//cout<<"faking removing error"<<endl;
+												//cout<<current_user_ride_time<<" "<<user_ride_time_temp[save_p]<<endl;
+												//cout<<arrival_time_stop[v][k]<<" "<<departure_time_stop[v][i]<<endl;
 												total_faking_error += user_ride_time_temp[save_p] - current_user_ride_time;
 											}
 										
@@ -10192,8 +10192,8 @@ void relocate_passenger(int p, double &temperature, int &type_move){
 				//<<"oldyxnew: "<<oldy_urt<<" "<<total_user_ride_time<<" "<<(oldy_urt-total_user_ride_time)<<" "<<computedDELTA<<" ;"<<total_difference<<endl; 
 				if ((oldy_urt-total_user_ride_time) != computedDELTA){
 					//cout<<"COMPUTING ERRROR"<<endl;
-					if (total_faking_error != 0)
-						cout<<"total faking error: "<<total_faking_error<<endl;
+					//if (total_faking_error != 0)
+						//cout<<"total faking error: "<<total_faking_error<<endl;
 				}
 				break;
 			}	
@@ -10275,9 +10275,9 @@ void relocate_passenger(int p, double &temperature, int &type_move){
 							
 							//if (count == 2){
 							if (current_user_ride_time != user_ride_time_temp[save_p]) {
-								cout<<"delta computing error"<<endl;
-								cout<<save_p<<" "<<current_user_ride_time<<" "<<user_ride_time_temp[save_p]<<endl;
-								cout<<arrival_time_stop[v][k]<<" "<<departure_time_stop[v][i]<<endl;
+								//cout<<"delta computing error"<<endl;
+								//cout<<save_p<<" "<<current_user_ride_time<<" "<<user_ride_time_temp[save_p]<<endl;
+								//cout<<arrival_time_stop[v][k]<<" "<<departure_time_stop[v][i]<<endl;
 								total_faking_error += user_ride_time_temp[save_p] - current_user_ride_time;
 							}
 							leave_loop = true;
@@ -10323,13 +10323,13 @@ void check_valid_user_ride_times() {
 								//difference = current_user_ride_time -  user_ride_time[save_p];
 								average_travel_time_ratio += (double)current_user_ride_time/direct_travel_time[save_p];
 								//user_ride_time[save_p] = current_user_ride_time;
-								cout<<"WRONG COMPUTED RIDE TIME!!!! passengerX "<<save_p<<" "<<current_user_ride_time<<" "<<user_ride_time[save_p]<<endl;
-								cout<<"ERRORR"<<endl;
+								//cout<<"WRONG COMPUTED RIDE TIME!!!! passengerX "<<save_p<<" "<<current_user_ride_time<<" "<<user_ride_time[save_p]<<endl;
+								//cout<<"ERRORR"<<endl;
 								
 								l = number_passengers_action[v][k]+1;
 								//k = number_stops[v]+2; //leave loop
 								leave_loop = true;
-								cout<<"leave"<<endl;
+								//cout<<"leave"<<endl;
 							} else {
 								extra_travel_time += current_user_ride_time - direct_travel_time[save_p];
 								average_travel_time_ratio += (double)current_user_ride_time/direct_travel_time[save_p];
@@ -10455,7 +10455,7 @@ void check_last_position_route() {
  		if (number_stops[v] > 2) {
 	 		if (departure_time_stop[v][number_stops[v]-1] < current_time) {
 	 			//means that already passed
-	 			cout<<"passed!!!"; 
+	 			//cout<<"passed!!!"; 
 	 			int prev_stop = stops[v][number_stops[v]-1];
 	 			int pos_origin = number_stops[v];
 	 			stops[v].insert(stops[v].begin() + pos_origin, prev_stop);
@@ -10476,9 +10476,15 @@ void check_last_position_route() {
 				int prv_capacity = free_capacity[v][pos_origin-1];
 				free_capacity[v].insert(free_capacity[v].begin() + pos_origin, prv_capacity);
 				
-				number_stops[v]++;
+				
 
-				for (int i=0; i<=number_stops[v];i++) {
+				number_stops[v]++;
+				//updating the arrival time at depot + some waiting time of 10 min
+				arrival_time_stop[v][number_stops[v]] = arrival_time_stop[v][number_stops[v]-1] + travel_time[stops[v][number_stops[v]-1]][stops[v][number_stops[v]]]+600;
+				departure_time_stop[v][number_stops[v]] = arrival_time_stop[v][number_stops[v]] + 1;
+			
+
+				/*for (int i=0; i<=number_stops[v];i++) {
 				cout<<stops[v][i]<<" ("<<number_passengers_action[v][i]<<") "<<" [";
 					for (int j=0; j<number_passengers_action[v][i];j++) 
 						cout<<action_passengers[v][i][j]<<" ";
@@ -10489,7 +10495,7 @@ void check_last_position_route() {
 					cout<<"|"<<slack_time[v][i]<<"|  ";
 					cout<<"*"<<free_capacity[v][i]<<"*"<<endl;
 				}
-				cout<<endl<<endl;
+				cout<<endl<<endl;*/
 	 		}
  		}
 
@@ -10528,7 +10534,7 @@ void simulated_annealing(int n_allocated) {
 						//cout<<"relocate passenger SA: "<<relocate_p<<endl;
 						relocate_passenger(relocate_p, temperature, type_move);
 						if (relocate_p < 0){
-							cout<<"MEGAERRORRRR1"<<endl;
+							//cout<<"MEGAERRORRRR1"<<endl;
 							return;
 						}
 						// <<"vehicle_assigned SA: "<<vehicle_assigned[relocate_p]<<endl;
@@ -10565,7 +10571,7 @@ void simulated_annealing(int n_allocated) {
 					empty_vehicle(v, megaerror, temperature, type_move);
 				}
 				if (megaerror){
-					cout<<"MEGAERRORRRR2"<<endl;
+					//cout<<"MEGAERRORRRR2"<<endl;
 					//return 0;
 				}
 					//relocate_all_passengers_vehicle(v, init_temperature, type_move);
@@ -10636,7 +10642,7 @@ int main(int argc, char **argv) {
   	{
 		if (strcmp(argv[i], "--filename_requests") == 0) {
 			input_requests(argv[i+1]);
-			cout<<argv[i+1]<<" ";
+			//cout<<argv[i+1]<<" ";
 		} else if (strcmp(argv[i], "--filename_travel_time") == 0) {
 			input_travel_time(argv[i+1]);
 
@@ -10683,7 +10689,7 @@ int main(int argc, char **argv) {
 	}
 
 	srand(seed);
-	cout<<total_requests<<" "<<seed<<" ";
+	//cout<<total_requests<<" "<<seed<<" ";
 
 	
 
@@ -10809,7 +10815,7 @@ int main(int argc, char **argv) {
 	k = 0;
 	//for (int k=0;k<total_requests;k++){
 	current_time = time_stamp[0];
-	cout<<"hier"<<endl;
+	//cout<<"hier"<<endl;
 	//change the current time part to a parameter given value
 	while((k < total_requests) or (current_time < 28800)) {
 		
@@ -10981,7 +10987,7 @@ int main(int argc, char **argv) {
 
 	for (int k=0;k<total_requests;k++){
 		if (vehicle_assigned[k] != -1) {
-			solution_validation(k, vehicle_assigned[k]);
+			//solution_validation(k, vehicle_assigned[k]);
 			served_passengers++;
 		}
 	}
@@ -10992,13 +10998,18 @@ int main(int argc, char **argv) {
 
 	double average_extra_travel_time = (double)extra_travel_time/served_passengers;
 	average_travel_time_ratio += (double)average_travel_time_ratio/served_passengers;
+	
+	total_served_passengers = served_passengers + served_passengers_3party;
+	
+	cout<<total_user_ride_time<<" "<<best_total_user_ride_time<<endl;
+	//cout << served_passengers << " " << served_passengers_3party << " " << total_served_passengers << " " << passengers_per_kilometer << " " << average_extra_travel_time << " " << average_travel_time_ratio << " " << total_deadheading_times << " " << total_shared_times << " " << total_user_ride_time << " " << best_total_user_ride_time << endl;
+	
+	//previously already commented
 	/*cout << "served passengers ODB " << served_passengers << endl;
 	cout << "served passengers 3rd party: " << served_passengers_3party << endl;*/
-	total_served_passengers = served_passengers + served_passengers_3party;
 	/*cout << "served passengers total: " << total_served_passengers << endl;
 	cout << "solution cost (total user ride time): "<<total_user_ride_time<<endl;
 	cout << "BEST solution cost (total user ride time): "<<best_total_user_ride_time<<endl<<endl;*/
-	cout << served_passengers << " " << served_passengers_3party << " " << total_served_passengers << " " << passengers_per_kilometer << " " << average_extra_travel_time << " " << average_travel_time_ratio << " " << total_deadheading_times << " " << total_shared_times << " " << total_user_ride_time << " " << best_total_user_ride_time << endl;
 	//compute_idle_times();
 
 	elapsed = get_wall_time() - start_time;	 
