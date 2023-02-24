@@ -673,9 +673,11 @@ void input_requests(char *filename) {
 		stringstream str(line);
 		while(getline(str, data, ',')); //reads the header
 		//<<data<<endl;
+		total_requests = 0;
 		while(getline(file, line))
 		{
 
+			total_requests++;
 			stringstream str(line);
 			getline(str, data, ',');
 			p = stoi(data);
@@ -10642,7 +10644,7 @@ int main(int argc, char **argv) {
   	{
 		if (strcmp(argv[i], "--filename_requests") == 0) {
 			input_requests(argv[i+1]);
-			//cout<<argv[i+1]<<" ";
+			//cout<<total_requests<<" ";
 		} else if (strcmp(argv[i], "--filename_travel_time") == 0) {
 			input_travel_time(argv[i+1]);
 
@@ -10679,7 +10681,7 @@ int main(int argc, char **argv) {
       		increase_rep = atoi(argv[i+1]);
     		i++;
     	} else if (strcmp(argv[i], "--total_requests") == 0) {
-      		total_requests = atoi(argv[i+1]);
+      		//total_requests = atoi(argv[i+1]);
     		i++;
     	} else if (strcmp(argv[i], "--seed") == 0) {
       		seed = atoi(argv[i+1]);
@@ -10691,6 +10693,26 @@ int main(int argc, char **argv) {
 	srand(seed);
 	//cout<<total_requests<<" "<<seed<<" ";
 
+	if (total_requests == 300) {
+		number_vehicles[0] = 50;
+		number_vehicles[1] = 50;
+		number_vehicles[2] = 50;
+		total_number_vehicles = 150;
+	}
+
+	if (total_requests == 600) {
+		number_vehicles[0] = 100;
+		number_vehicles[1] = 100;
+		number_vehicles[2] = 100;
+		total_number_vehicles = 300;
+	}
+
+	if (total_requests == 900) {
+		number_vehicles[0] = 150;
+		number_vehicles[1] = 150;
+		number_vehicles[2] = 150;
+		total_number_vehicles = 450;
+	}
 	
 
 	for (int i = 0; i <= maxvehicles; i++) {
@@ -10817,8 +10839,8 @@ int main(int argc, char **argv) {
 	current_time = time_stamp[0];
 	//cout<<"hier"<<endl;
 	//change the current time part to a parameter given value
-	//while((k < total_requests) or (current_time < 28800)) {
-	while(current_time < 28800) {
+	while((k < total_requests) or (current_time < 28800)) {
+	//while(current_time < 28800) {
 
 		check_last_position_route();
 		if ((current_time >= time_stamp[k]) && (k < total_requests)) {
@@ -11002,7 +11024,9 @@ int main(int argc, char **argv) {
 	
 	total_served_passengers = served_passengers + served_passengers_3party;
 	
-	cout<<total_user_ride_time<<" "<<best_total_user_ride_time<<endl;
+	//cout<<total_user_ride_time<<" "<<best_total_user_ride_time<<endl;
+	//cout<<served_passengers<<"  "<<total_user_ride_time<<endl;
+	cout<<total_user_ride_time<<endl;
 	//cout << served_passengers << " " << served_passengers_3party << " " << total_served_passengers << " " << passengers_per_kilometer << " " << average_extra_travel_time << " " << average_travel_time_ratio << " " << total_deadheading_times << " " << total_shared_times << " " << total_user_ride_time << " " << best_total_user_ride_time << endl;
 	
 	//previously already commented
