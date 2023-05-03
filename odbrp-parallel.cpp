@@ -15,6 +15,7 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <omp.h>
 //#include<Eigen/Dense>
 //using namespace Eigen;
 using namespace std;
@@ -156,6 +157,7 @@ int total_deadheading_times, total_shared_times;
 
 int current_time;
 clock_t start_time;
+clock_t begin_time;
 double elapsed;
 int max_flex_delay;
 
@@ -2243,6 +2245,7 @@ void remove_passenger_from_vehicle(int v, int p) {
 
 void see_if_arrival_departure_dont_match(int best_v) {
 
+	//cout<<number_stops[best_v]<<" "<<departure_time_stop[best_v].size()<<endl;
 	for (int i = 1; i <= number_stops[best_v]; i++) {
 
 		//if (arrival_time_stop[best_v][i] > current_time)
@@ -9010,7 +9013,8 @@ void re_insertion_nn(int p, bool &accept_relocate_trip, double &temperature, int
 	//if (filtered_vehicles.size() == 0)
 	
 	filter_vehicles2(p, cluster_id, filtered_vehicles_p);
-
+	//cout<<"here1"<<endl;
+	//cout<<filtered_vehicles_p.size()<<endl;
 	//<<"filtered_vehicles SIZE "<<filtered_vehicles.size()<<endl;
 	while ((not_feasible_insertion) && (iterations < filtered_vehicles_p.size())) {
 		
@@ -9022,28 +9026,36 @@ void re_insertion_nn(int p, bool &accept_relocate_trip, double &temperature, int
 		best_min_increase_length = INT_MAX;
 		best_v = -1;
 		curr_number_insertions_p = 0;
-		
+		//cout<<"here2"<<endl;
+
+		//cout<<"fps:"<<filtered_vehicles_p.size()<<" "<<p<<" "<<v<<" "<<endl;
 		for (int vf=0; vf<filtered_vehicles_p.size();vf++) {
 			int v = filtered_vehicles_p[vf];
+			//cout<<"here2.0"<<endl;
+
 			//<<v<<" "<<free_capacity[v]<<endl;
 			min_increase_length = INT_MAX;
 			repeated_station = false;
 			//(free_capacity[v] > 0) && 
+			//cout<<"here2.1"<<endl;
 			if (blocked_vehicles[p][v] == 0) {
 
 				if (tested_all_vehicles_once)
 					flexibilize_lat_departure_time = true;
 				else
 					flexibilize_lat_departure_time = false;
-				
+				//cout<<"here2.2"<<endl;
 				see_if_arrival_departure_dont_match(v);
+				//cout<<"here2.3"<<endl;
 				cheapest_origin2_p(p, v, min_increase_length, sel_origin, pos_origin, repeated_station, flexibilize_lat_departure_time, insertions_p, curr_number_insertions_p);
-				
+				//cout<<"here2.4"<<endl;		
 			}
+			//cout<<"here2.5"<<endl;
 		}
 		//<<endl;
 
 		//<<"curr insert3: " << curr_number_insertions<<endl;
+		//cout<<"here3"<<endl;
 		sort(insertions_p, insertions_p+curr_number_insertions_p, comparator);
 
 		//<<best_v<<endl;
@@ -9051,7 +9063,7 @@ void re_insertion_nn(int p, bool &accept_relocate_trip, double &temperature, int
 		bool no_feasible_insertion2 = true;
 		int iterations2 = 0;
 		if (curr_number_insertions_p > 0) {
-		
+			//cout<<"here4"<<endl;
 			while ((no_feasible_insertion2) && (iterations2 < curr_number_insertions_p)) {
 
 				//<<best_v<<"\n";
@@ -9062,7 +9074,7 @@ void re_insertion_nn(int p, bool &accept_relocate_trip, double &temperature, int
 				best_pos_origin = insertions_p[iterations2].pos_station;
 				best_v = insertions_p[iterations2].v;
 				best_repeated_station = insertions_p[iterations2].repeated_station;
-
+				//cout<<"here5"<<endl;
 				if (not best_repeated_station) {
 					stops[best_v].insert(stops[best_v].begin() + best_pos_origin, best_sel_origin);
 					number_stops[best_v]++;
@@ -9116,7 +9128,7 @@ void re_insertion_nn(int p, bool &accept_relocate_trip, double &temperature, int
 					prv_capacity = free_capacity[best_v][best_pos_origin];
 					free_capacity[best_v][best_pos_origin] = prv_capacity-1;
 				}
-
+				//cout<<"here6"<<endl;
 				//update further arrival, departure times and slack times
 				for (int i=best_pos_origin+1; i<=number_stops[best_v];i++) {
 					saved_arrival_time[best_v][i] = arrival_time_stop[best_v][i];
@@ -9178,9 +9190,9 @@ void re_insertion_nn(int p, bool &accept_relocate_trip, double &temperature, int
 					flexibilize_arrival_time = true;
 				else
 					flexibilize_arrival_time = false;
-				
+				//cout<<"here7"<<endl;
 				cheapest_destination(p, best_v, best_pos_origin, min_increase_length, sel_destination, pos_destination, repeated_station, flexibilize_arrival_time, infeasible_insertion);
-			
+				//cout<<"here8"<<endl;
 				//<<"pos origin: "<<best_pos_origin<<" "<<endl;
 				//<<"pos dest: "<<pos_destination<<" sd: "<<sel_destination<<" "<<endl;
 				
@@ -9261,7 +9273,7 @@ void re_insertion_nn(int p, bool &accept_relocate_trip, double &temperature, int
 					accept_relocate_trip = true; //first feasible is accepted?
 
 				//printf("DELTA:%d \n", DELTA);
-
+					//cout<<"here9"<<endl;
 				//totalcomputedDELTA += DELTA;
 				if ((sel_destination != -1) && (no_violation_capacity) && (accept_relocate_trip) && (not infeasible_insertion)) {
 
@@ -9328,7 +9340,7 @@ void re_insertion_nn(int p, bool &accept_relocate_trip, double &temperature, int
 
 					}
 
-
+					//cout<<"here10"<<endl;
 					//update further arrival, departure times, and slack times
 					for (int i=pos_destination; i<=number_stops[best_v];i++) {
 						old_arr_time = arrival_time_stop[best_v][i];
@@ -9425,6 +9437,7 @@ void re_insertion_nn(int p, bool &accept_relocate_trip, double &temperature, int
 					iterations2++;
 					//solution_cost -= saved_increase;
 					//vehicle_assigned[p] = -1;
+					//cout<<"here11"<<endl;
 					if (sel_destination != -1) {
 						for (int i=best_pos_origin+1;i<pos_destination;i++){
 
@@ -9476,7 +9489,7 @@ void re_insertion_nn(int p, bool &accept_relocate_trip, double &temperature, int
 						}
 					}
 				}
-
+				//cout<<"here12"<<endl;
 				update_URT(best_v);
 			
 				
@@ -9500,13 +9513,14 @@ void re_insertion_nn(int p, bool &accept_relocate_trip, double &temperature, int
 		} else {
 			iterations = filtered_vehicles_p.size()+1;
 		}
-
+		//cout<<"here13"<<endl;
 		if (no_feasible_insertion2) {
 
 			type_move = 3;
 			//iterations++;
 			iterations = filtered_vehicles_p.size()+1;
 		}
+		//cout<<"here14"<<endl;
 		if (iterations >= filtered_vehicles_p.size()) {
 			if (not tested_all_vehicles_once) {
 				tested_all_vehicles_once = true;
@@ -9522,11 +9536,12 @@ void re_insertion_nn(int p, bool &accept_relocate_trip, double &temperature, int
 			}
 		}
 	}
-
+	//cout<<"here15"<<endl;
 	//route_assigned[p] = 1;
 	//reset blocked vehicles structure
 	for (int i=0;i<total_number_vehicles;i++)
 		blocked_vehicles[p][i] = 0;
+	//cout<<"here16"<<endl;
 }
 
 void relocate_all_passengers_vehicle_nn(int v, double &temperature, int &type_move, int& counter, int& deltaURT, bool&megaerror, int cluster_id){
@@ -9556,10 +9571,10 @@ void relocate_all_passengers_vehicle_nn(int v, double &temperature, int &type_mo
 	}
 	cout<<endl;*/
 
-	
+	//cout<<"here1"<<endl;
 	for (int kk=0; kk<passengers_at_vehicle[v].size();kk++){
 		p = passengers_at_vehicle[v][kk]; //passenger that will try to relocate
-
+		//cout<<"here2"<<endl;
 		/*if ((p < 0) || (p > 300)){
 			cout<<"SUPERR ERROR"<<endl;
 			megaerror = true;
@@ -9586,15 +9601,16 @@ void relocate_all_passengers_vehicle_nn(int v, double &temperature, int &type_mo
 		blocked_vehicles[p][vehicle_assigned[p]] = 1;
 
 		accept_relocate_trip = false;
+		//cout<<"here3"<<endl;
 		re_insertion_nn(p, accept_relocate_trip, temperature, type_move, diffURT, cluster_id);
-
+		//cout<<"OUT1"<<endl;
 		int begin, end;
 		begin = 0;
 		end = 0;
 
 
 		if (accept_relocate_trip) {
-			
+			//cout<<"OUT2"<<endl;
 			counter++; //one passenger has been succesfully been removed
 			
 			count = 0;
@@ -9798,6 +9814,7 @@ int compute_cluster_URT(int cluster_id){
 
 	for (int j=0;j<clusters[cluster_id].size();j++){
 
+		//cout<<
 		int v = clusters[cluster_id][j];
 		
 		for (int p=0;p<total_requests;p++) {
@@ -9859,14 +9876,16 @@ void empty_vehicle(int v, bool& megaerror, double &temperature, int &type_move, 
 
 	//cout<<"C"<<endl;
 	relocate_all_passengers_vehicle_nn(v, init_temperature, type_move, counter, deltaURT, megaerror, cluster_id);
-	//cout<<"D"<<endl;
+	//cout<<"OUT3"<<endl;
 	//UPDATE USER RIDE TIMES TO SEE IF NOW I CAN COMPUTE DELTA CORRECTLY??????
 	
 	if (megaerror){
 		return;
 	}
 	bool accept_relocate_trip;
+	//cout<<passengers_at_vehicle[v].size()<<endl;
 	if (counter == passengers_at_vehicle[v].size()) {
+		//cout<<"OUT5"<<endl;
 		//improving move regarding URT
 		//necessary to remove the passengers from v
 
@@ -9880,7 +9899,8 @@ void empty_vehicle(int v, bool& megaerror, double &temperature, int &type_move, 
 		}
 		see_if_arrival_departure_dont_match(v);
 		update_URT(v);
-
+		//cout<<"OUT6"<<endl;
+		//cout<<"E"<<endl;
 		int new_URT = compute_cluster_URT(cluster_id);
 		//<<"oldyxnew: "<<oldy_urt<<" "<<total_user_ride_time<<" "<<(oldy_urt-total_user_ride_time)<<endl; 
 		//if ((oldy_urt-total_user_ride_time) > 0){
@@ -9898,7 +9918,7 @@ void empty_vehicle(int v, bool& megaerror, double &temperature, int &type_move, 
 			} else {
 				accept_relocate_trip = false;
 			}
-
+			//cout<<"F0"<<endl;
 			if (accept_relocate_trip) {
 				//cout<<"REMOVEALLACCEPT"<<endl;
 				type_move = 2;
@@ -9908,11 +9928,13 @@ void empty_vehicle(int v, bool& megaerror, double &temperature, int &type_move, 
 				return_intm_solution(cluster_id);
 			}
 		}
-		
+		//cout<<"F"<<endl;
 	} else {
 		type_move = 3;
 		//cout<<"revert changes2"<<endl;
+		//cout<<"G"<<endl;
 		return_intm_solution(cluster_id);
+		//cout<<"H"<<endl;
 		//revert changes
 		/*for (int i=0; i<new_insertions_v.size(); i++){
 			int p = new_insertions_p[i];
@@ -9926,6 +9948,7 @@ void empty_vehicle(int v, bool& megaerror, double &temperature, int &type_move, 
  		update_URT(v);*/
 
 	}
+	//cout<<"OUT_OUT"<<endl;
 }
 
 void relocate_passenger(int p, double &temperature, int &type_move, int cluster_id){
@@ -10270,6 +10293,7 @@ void relocate_passenger(int p, double &temperature, int &type_move, int cluster_
 			} 
 		}
 	}
+	//cout<<"H"<<endl;
 }
 
 void check_valid_user_ride_times() {
@@ -10484,8 +10508,10 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 	no_improvement = 0; 
 	count = 0;
 	start_time = get_wall_time();
+	
 	vector<int> vehicles_still_depot;
 
+	//cout<<"cid: "<<cluster_id<<endl;
 	//cout<<"X"<<endl;
 	save_best_solution(cluster_id);
 	//cout<<"Y"<<endl;
@@ -10493,7 +10519,7 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 	std::vector<int> passengers_in_cluster;
 	for (int i=0;i<clusters[cluster_id].size();i++){
 		int v = clusters[cluster_id][i];
-
+		//cout<<v<<" ";
 		for (int j=0;j<n_allocated;j++){
 
 			if (vehicle_assigned[j] == v) {
@@ -10502,6 +10528,8 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 
 		}
 	}
+	//cout<<endl;
+	//cout<<"size pic: "<<passengers_in_cluster.size()<<endl;
 
 	while(true){
 
@@ -10538,13 +10566,13 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 				}*/
 			} else {
 
-				/*
+				
 				//REDUCE
 				//cout<<"heere"<<endl;
 				select_vehicles_havent_that_can_be_turned_empty(vehicles_still_depot, cluster_id);
 				//cout<<"A"<<endl;
 				//cout<<"hieerx";
-				//<<"size vehicles at depot "<<vehicles_still_depot.size()<<endl;
+				//cout<<"size vehicles at depot "<<vehicles_still_depot.size()<<endl;
 				//for (int i=0; i<vehicles_still_depot.size();i++) {
 
 				bool megaerror = false;
@@ -10552,19 +10580,22 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 				if (vehicles_still_depot.size() > 0) {
 					int b = rand() % vehicles_still_depot.size();
 					v = vehicles_still_depot[b];
-				}
-				
-				if (passengers_at_vehicle[v].size() > 0) {
-					empty_vehicle(v, megaerror, temperature, type_move, cluster_id);
-				}
 
+					if (passengers_at_vehicle[v].size() > 0) {
+						empty_vehicle(v, megaerror, temperature, type_move, cluster_id);
+					}
+				}
+				//cout<<"heere1"<<endl;
+				
+				//cout<<"no idea1"<<endl;
+				//cout<<"heere2"<<endl;
 				if (megaerror){
 					//cout<<"MEGAERRORRRR2"<<endl;
 					//return 0;
 				}
 					//relocate_all_passengers_vehicle(v, init_temperature, type_move);
 				//}
-				*/
+				
 				
 
 			}
@@ -10577,10 +10608,16 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 				no_improvement++;
 			}
 
+			//cout<<"no idea2"<<endl;
 			int curr_cluster_URT = compute_cluster_URT(cluster_id);
+			//cout<<"no idea3"<<endl;
+			//cout<<cluster_id<<best_tot_cluster_ride_time.size()<<endl;
+			
 			if (curr_cluster_URT < best_tot_cluster_ride_time[cluster_id]) {
 				//cout<<"BEEST FOUND SO FAR"<<endl;
+				//cout<<"no idea4"<<endl;
 				save_best_solution(cluster_id);
+				//cout<<"no idea5"<<endl;
 				/*for (int kk=0;kk<total_requests;kk++){
 					if (vehicle_assigned[kk] != -1) {
 						solution_validation(kk, vehicle_assigned[kk]);
@@ -10589,6 +10626,7 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 				}*/
 				//<<"heerex"<<endl;
 			}
+			//cout<<"no idea6"<<endl;
 
 			
 			if (++count > 25) {
@@ -10878,12 +10916,13 @@ int main(int argc, char **argv) {
 
 	comp_time = 0.05;
 	start_time = get_wall_time();
+	begin_time = get_wall_time();
 	total_number_vehicles = 0;
 	for (int i=1; i<argc; i++)
   	{
 		if (strcmp(argv[i], "--filename_requests") == 0) {
 			input_requests(argv[i+1]);
-			cout<<total_requests<<" ";
+			cout<<"x"<<total_requests<<" ";
 		} else if (strcmp(argv[i], "--filename_travel_time") == 0) {
 			input_travel_time(argv[i+1]);
 
@@ -11151,6 +11190,9 @@ int main(int argc, char **argv) {
 	current_time = time_stamp[0];
 	//cout<<"hier"<<endl;
 	//change the current time part to a parameter given value
+	//MAIN ALGORITHM
+
+	
 	while((k < total_requests) or (current_time < 28800)) {
 	//while(current_time < 28800) {
 
@@ -11166,38 +11208,59 @@ int main(int argc, char **argv) {
 				k++;
 			}
 
-			int it_cl_inser = 0;
+			listP it_cl_inser;
 
+			int num_threads_for = passengers_to_be_inserted.size()-1;
+			if (num_threads_for > 4) {
+				num_threads_for = 4;
+			}
+			
+			while (passengers_to_be_inserted.size() > 0) {
 
-			for (int px = 0; px<passengers_to_be_inserted.size(); px++) {
-				int nxt_p = passengers_to_be_inserted[px];
-				compute_mean_distances_request_partitions(nxt_p);
+				#pragma omp parallel for num_threads(num_threads_for)
+				for (int px = 0; px<num_threads_for; px++) {
+					int nxt_p = passengers_to_be_inserted[px];
+					//cout<<"nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
+					it_cl_inser[nxt_p] = 0;
+					
+					//cout<<"nxp: "<<nxt_p<<endl;
+					compute_mean_distances_request_partitions(nxt_p);
+					
+					bool continue_this_passenger = true;
+					bool accept_infeasible_insertion = false;
+					while (continue_this_passenger) {
+						
+						//#pragma omp parallel for num_threads(num_threads_for)
+						for (int c=0;c<number_clusters;c++) {
 
-				bool continue_this_passenger = true;
-				bool accept_infeasible_insertion = false;
-				while (continue_this_passenger) {
-					#pragma omp parallel for
-					for (int c=0;c<number_clusters;c++) {
+							//if (vehicle_assigned[nxt_p] == -1) {
+							if (sort_clusters[nxt_p][it_cl_inser[nxt_p]].idx_cluster == c) {
+								cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, sort_clusters[nxt_p][it_cl_inser[nxt_p]].idx_cluster);
+								//cout<<"cir A"<<endl;
+							}
+							//}
 
-						if (sort_clusters[nxt_p][it_cl_inser].idx_cluster == c) {
-							cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, sort_clusters[nxt_p][it_cl_inser].idx_cluster);
+						}
+						//cout<<vehicle_assigned[nxt_p]<<" "<<it_cl_inser[nxt_p]<<endl;
+						if (vehicle_assigned[nxt_p] == -1) {
+							it_cl_inser[nxt_p]++;
+						} else {
+							continue_this_passenger = false;
 						}
 
-					}
-
-					if (vehicle_assigned[nxt_p] == -1) {
-						it_cl_inser++;
-					} else {
-						continue_this_passenger = false;
-					}
-
-					if (it_cl_inser == 2) {
-						if (vehicle_assigned[k] == -1) {
-							serve_passenger_third_party_vehicle(nxt_p);
+						//cout<<"cir B"<<endl;
+						if (continue_this_passenger) {
+							if (it_cl_inser[nxt_p] == 2) {
+								if (vehicle_assigned[nxt_p] == -1) {
+									serve_passenger_third_party_vehicle(nxt_p);
+								}
+								continue_this_passenger = false;
+							}
 						}
-						continue_this_passenger = false;
+						//cout<<"cir C"<<endl;
 					}
 				}
+
 			}
 
 				
@@ -11241,13 +11304,25 @@ int main(int argc, char **argv) {
 
 		//<<"xxxheeerexxxx1"<<endl;
 		//cout<<"actual passenger "<<k<<endl;
+		
 		if (k > total_number_vehicles + 10) {
-			
-			/*for (int c=0; c<number_clusters; c++) {
+		
+
+			//omp_set_num_threads(2);	
+			#pragma omp parallel for num_threads(4)
+			for (int c=0; c<number_clusters; c++) {
 				//cout<<k<<endl;
+				//cout<<"passenger: p"<<k<<endl;
+				//cout<<"cluster c"<<c<<endl;
 				simulated_annealing(k, c);
+				//cout<<"passenger: p"<<k<<endl;
+				//cout<<"cluster c"<<c<<endl;
 				return_best_solution(c);
-			}*/
+				//cout<<"out heere"<<endl;
+
+			}
+
+			//cout<<"out heere2"<<endl;
 
 			//try to insert infeasible
 			//cout<<"hieer"<<endl;
@@ -11288,6 +11363,7 @@ int main(int argc, char **argv) {
 		current_time++;
 		//cout<<current_time<<endl;
 		update_current_position();
+		//cout<<"out current pos"<<endl;
 		
 		//<<"xxxheeerexxxx2"<<endl;
 
@@ -11403,7 +11479,7 @@ int main(int argc, char **argv) {
 	//cout<<total_user_ride_time<<" "<<best_total_user_ride_time<<endl;
 	//cout<<served_passengers<<"  "<<total_user_ride_time<<endl;
 	//cout<<total_user_ride_time<<endl;
-	cout << served_passengers << " " << served_passengers_3party << " " << total_served_passengers << " " << passengers_per_kilometer << " " << average_extra_travel_time << " " << average_travel_time_ratio << " " << total_deadheading_times << " " << total_shared_times << " " << total_user_ride_time << " " << best_total_user_ride_time << endl;
+	cout << served_passengers << " " << served_passengers_3party << " " << total_served_passengers << " " << passengers_per_kilometer << " " << average_extra_travel_time << " " << average_travel_time_ratio << " " << total_deadheading_times << " " << total_shared_times << " " << total_user_ride_time << " " << best_total_user_ride_time << " ";
 	
 	//previously already commented
 	/*cout << "served passengers ODB " << served_passengers << endl;
@@ -11413,5 +11489,6 @@ int main(int argc, char **argv) {
 	cout << "BEST solution cost (total user ride time): "<<best_total_user_ride_time<<endl<<endl;*/
 	//compute_idle_times();
 
-	elapsed = get_wall_time() - start_time;	 
+	elapsed = get_wall_time() - begin_time;	 
+	cout << elapsed << endl;
 }
