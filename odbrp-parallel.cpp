@@ -11192,6 +11192,13 @@ int main(int argc, char **argv) {
 	//change the current time part to a parameter given value
 	//MAIN ALGORITHM
 
+	std::vector<int> avl_cluster;
+	std::vector<int> del_passenger;
+	for (int c=0;c<number_clusters;c++) {
+		avl_cluster.push_back(0);
+		del_passenger.push_back(0);
+	}
+
 	
 	while((k < total_requests) or (current_time < 28800)) {
 	//while(current_time < 28800) {
@@ -11210,55 +11217,108 @@ int main(int argc, char **argv) {
 
 			listP it_cl_inser;
 
-			int num_threads_for = passengers_to_be_inserted.size()-1;
-			if (num_threads_for > 4) {
-				num_threads_for = 4;
+			int num_threads_for = passengers_to_be_inserted.size();
+			if (num_threads_for > number_clusters) {
+				num_threads_for = number_clusters;
+			}
+
+			#pragma omp parallel for num_threads(num_threads_for)
+			for (int itx = 0; itx<num_threads_for; itx++) {
+				int nxt_p = passengers_to_be_inserted[itx];
+				compute_mean_distances_request_partitions(nxt_p);
+
 			}
 			
+
+			//maybe sort passengers_to_be_inserted in a way to avoid collision between clusters???
+
+
 			while (passengers_to_be_inserted.size() > 0) {
 
-				#pragma omp parallel for num_threads(num_threads_for)
-				for (int px = 0; px<num_threads_for; px++) {
-					int nxt_p = passengers_to_be_inserted[px];
-					//cout<<"nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
-					it_cl_inser[nxt_p] = 0;
-					
-					//cout<<"nxp: "<<nxt_p<<endl;
-					compute_mean_distances_request_partitions(nxt_p);
-					
-					bool continue_this_passenger = true;
-					bool accept_infeasible_insertion = false;
-					while (continue_this_passenger) {
-						
-						//#pragma omp parallel for num_threads(num_threads_for)
-						for (int c=0;c<number_clusters;c++) {
+				for (int c=0;c<number_clusters;c++) {
+					avl_cluster[c] = c;
 
-							//if (vehicle_assigned[nxt_p] == -1) {
-							if (sort_clusters[nxt_p][it_cl_inser[nxt_p]].idx_cluster == c) {
-								cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, sort_clusters[nxt_p][it_cl_inser[nxt_p]].idx_cluster);
-								//cout<<"cir A"<<endl;
-							}
-							//}
+				}
 
-						}
-						//cout<<vehicle_assigned[nxt_p]<<" "<<it_cl_inser[nxt_p]<<endl;
-						if (vehicle_assigned[nxt_p] == -1) {
-							it_cl_inser[nxt_p]++;
-						} else {
-							continue_this_passenger = false;
-						}
+				for (int itx = 0; itx<num_threads_for; itx++) {
 
-						//cout<<"cir B"<<endl;
-						if (continue_this_passenger) {
-							if (it_cl_inser[nxt_p] == 2) {
-								if (vehicle_assigned[nxt_p] == -1) {
-									serve_passenger_third_party_vehicle(nxt_p);
+					//each passengers will be inserted in one processor
+					//start parallelized for	
+					#pragma omp parallel for num_threads(num_threads_for)
+					for (int px = 0; px<num_threads_for; px++) {
+
+						if (px < passengers_to_be_inserted.size()) {
+							int nxt_p = passengers_to_be_inserted[px];
+							//cout<<"nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
+							it_cl_inser[nxt_p] = 0;
+							
+							//cout<<"nxp: "<<nxt_p<<endl;
+							//compute_mean_distances_request_partitions(nxt_p);
+							
+							bool continue_this_passenger = true;
+							bool accept_infeasible_insertion = false;
+							while (continue_this_passenger) {
+								
+								//#pragma omp parallel for num_threads(num_threads_for)
+								for (int c=0;c<number_clusters;c++) {
+
+									//if (vehicle_assigned[nxt_p] == -1) {
+									if (avl_cluster[px] == c) { //this way, each passenger has access only to one cluster at a time
+										if (sort_clusters[nxt_p][it_cl_inser[nxt_p]].idx_cluster == c) {
+											cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, sort_clusters[nxt_p][it_cl_inser[nxt_p]].idx_cluster);
+											//cout<<"cir A"<<endl;
+										}
+									}
+									//}
+
 								}
-								continue_this_passenger = false;
+								//cout<<vehicle_assigned[nxt_p]<<" "<<it_cl_inser[nxt_p]<<endl;
+								if (vehicle_assigned[nxt_p] == -1) {
+									it_cl_inser[nxt_p]++;
+								} else {
+									continue_this_passenger = false;
+									del_passenger[px] = 1;
+								}
+
+								//cout<<"cir B"<<endl;
+								if (continue_this_passenger) {
+									if (it_cl_inser[nxt_p] == 2) {
+										if (vehicle_assigned[nxt_p] == -1) {
+											serve_passenger_third_party_vehicle(nxt_p);
+										}
+										continue_this_passenger = false;
+										del_passenger[px] = 1;
+									}
+								}
+								//cout<<"cir C"<<endl;
 							}
+
 						}
-						//cout<<"cir C"<<endl;
 					}
+					//end parallelized for
+
+					for (int c=0;c<number_clusters;c++) {
+						avl_cluster[c] = avl_cluster[c]+1;
+						avl_cluster[c] = avl_cluster[c]%number_clusters;
+						cout<<avl_cluster[c]<<" ";
+
+					}
+
+					cout<<endl;
+
+					for (int c=number_clusters; c>=0;c--) {
+						if (del_passenger[c] == 1) {
+							passengers_to_be_inserted.erase(passengers_to_be_inserted.begin() + c);
+							del_passenger[c] = 0;	
+						}
+					}
+
+					num_threads_for = passengers_to_be_inserted.size();
+					if (num_threads_for > number_clusters) {
+						num_threads_for = number_clusters;
+					}
+
+					
 				}
 
 			}
