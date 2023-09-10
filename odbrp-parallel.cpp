@@ -8316,7 +8316,7 @@ void re_insertion(int p, bool &accept_relocate_trip, double &temperature, int &t
 
 		if (filtered_vehicles_p.size()>0)
 			filtered_vehicles_p.clear();
-
+		int vv;
 		for (int i = 0; i < clusters[cluster_id].size(); i++) {
 			vv = clusters[cluster_id][i];
 
@@ -8337,9 +8337,9 @@ void re_insertion(int p, bool &accept_relocate_trip, double &temperature, int &t
 
 	} else {
 
-		if (filtered_vehicles.size()>0)
-			filtered_vehicles.clear();
-
+		if (filtered_vehicles_p.size()>0)
+			filtered_vehicles_p.clear();
+		int vv;
 		for (int i = 0; i < clusters[cluster_id].size(); i++) {
 			vv = clusters[cluster_id][i];
 
@@ -9190,8 +9190,8 @@ void re_insertion_nn(int p, bool &accept_relocate_trip, double &temperature, int
 
 	} else {
 
-		if (filtered_vehicles.size()>0)
-			filtered_vehicles.clear();
+		if (filtered_vehicles_p.size()>0)
+			filtered_vehicles_p.clear();
 
 		int vv;
 		for (int i = 0; i < clusters[cluster_id].size(); i++) {
