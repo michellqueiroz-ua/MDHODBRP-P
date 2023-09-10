@@ -4232,6 +4232,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 	//v = best_empty_vehicle;
 	int selected_insertion, next_replace, remaining_insertions;
 	//inserting in an empty vehicle stays the same as before
+	bool not_feasible_insertion = true;
 	bool no_feasible_insertion_empty = false;
 	//bool emptyfirst = false;
 	if (filtered_vehicles_p.size() == 0) {
@@ -4353,6 +4354,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 				
 				if ((sel_destination != -1) && (not infeasible_insertion)) {
 					
+					not_feasible_insertion = false;
 					//cout<<"1hierxx"<<endl;
 					passengers_departure_time_from_home[p] = best_departure_time_from_home;
 					//<<"pos dest: "<<sel_destination<<endl;
@@ -4451,6 +4453,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 						accept_delay_trip = false;
 					if ((sel_destination != -1) && (accept_delay_trip) && (not infeasible_insertion)) {
 						
+						not_feasible_insertion = false;
 						//cout<<"2hierxx"<<endl;
 						passengers_departure_time_from_home[p] = best_departure_time_from_home;
 						//<<"pos dest: "<<sel_destination<<endl;
@@ -4650,6 +4653,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 					if ((sel_destination != -1) && (not infeasible_insertion)) {
 						//cout<<"4hierxx"<<endl;
 						
+						not_feasible_insertion = false;
 						//<<"pos dest: "<<sel_destination<<endl;
 						stops[v].insert(stops[v].begin() + pos_destination, sel_destination);
 						
@@ -4742,7 +4746,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 						if ((sel_destination != -1) && (accept_delay_trip) && (not infeasible_insertion)) {
 							//<<"pos dest: "<<sel_destination<<endl;
 							
-							
+							not_feasible_insertion = false;
 							stops[v].insert(stops[v].begin() + pos_destination, sel_destination);
 							
 							passengers_departure_time_from_home[p] = best_departure_time_from_home;
@@ -8202,7 +8206,7 @@ void times_validation(int v) {
 	}
 }*/
 
-void re_insertion(int p, bool &accept_relocate_trip, double &temperature, int &type_move, int cluster_id, int &addedAtV){
+void re_insertion(int p, bool &accept_relocate_trip, double &temperature, int &type_move, int cluster_id, int &addedAtV, int vp){
 
 	int odb_travel_time, odb_distance, v;
 	int pos_origin, pos_destination, sel_origin, sel_destination, min_increase_length, veh, ttcsd;
@@ -8313,10 +8317,11 @@ void re_insertion(int p, bool &accept_relocate_trip, double &temperature, int &t
 		if (filtered_vehicles_p.size()>0)
 			filtered_vehicles_p.clear();
 
-		for (int vv=0;vv<total_number_vehicles;vv++) {
+		for (int i = 0; i < clusters[cluster_id].size(); i++) {
+			vv = clusters[cluster_id][i];
 
 			if ((free_capacity[vv].size() == 2) && (free_capacity[vv][0] < free_capacity[vp][0])) { //means that vehicle is empty and still at the depot
-				filtered_vehicles.push_back(vv);
+				filtered_vehicles_p.push_back(vv);
 			}
 
 		}
@@ -8335,10 +8340,11 @@ void re_insertion(int p, bool &accept_relocate_trip, double &temperature, int &t
 		if (filtered_vehicles.size()>0)
 			filtered_vehicles.clear();
 
-		for (int vv=0;vv<total_number_vehicles;vv++) {
+		for (int i = 0; i < clusters[cluster_id].size(); i++) {
+			vv = clusters[cluster_id][i];
 
 			if (free_capacity[vv].size() == 2){ //means that vehicle is empty and still at the depot
-				filtered_vehicles.push_back(vv);
+				filtered_vehicles_p.push_back(vv);
 			}
 
 		}
@@ -9113,7 +9119,7 @@ void re_insertion(int p, bool &accept_relocate_trip, double &temperature, int &t
 std::vector<int> new_insertions_v;
 std::vector<int> new_insertions_p;
 
-void re_insertion_nn(int p, bool &accept_relocate_trip, double &temperature, int &type_move, int &diffURT, int cluster_id){
+void re_insertion_nn(int p, bool &accept_relocate_trip, double &temperature, int &type_move, int &diffURT, int cluster_id, int vp){
 
 	int odb_travel_time, odb_distance, v;
 	int pos_origin, pos_destination, sel_origin, sel_destination, min_increase_length, veh, ttcsd;
@@ -9168,7 +9174,7 @@ void re_insertion_nn(int p, bool &accept_relocate_trip, double &temperature, int
 			vv = clusters[cluster_id][i];
 
 			if ((free_capacity[vv].size() == 2) && (free_capacity[vv][0] < free_capacity[vp][0])) { //means that vehicle is empty and still at the depot
-				filtered_vehicles.push_back(vv);
+				filtered_vehicles_p.push_back(vv);
 			}
 
 		}
@@ -9192,7 +9198,7 @@ void re_insertion_nn(int p, bool &accept_relocate_trip, double &temperature, int
 			vv = clusters[cluster_id][i];
 
 			if (free_capacity[vv].size() == 2){ //means that vehicle is empty and still at the depot
-				filtered_vehicles.push_back(vv);
+				filtered_vehicles_p.push_back(vv);
 			}
 
 		}
@@ -9790,7 +9796,7 @@ void relocate_all_passengers_vehicle_nn(int v, double &temperature, int &type_mo
 
 		accept_relocate_trip = false;
 		//cout<<"here3"<<endl;
-		re_insertion_nn(p, accept_relocate_trip, temperature, type_move, diffURT, cluster_id);
+		re_insertion_nn(p, accept_relocate_trip, temperature, type_move, diffURT, cluster_id, v);
 		//cout<<"OUT1"<<endl;
 		int begin, end;
 		begin = 0;
@@ -10184,7 +10190,7 @@ void relocate_passenger(int p, double &temperature, int &type_move, int cluster_
 
 	int addedAtV;
 	//cout<<"A"<<endl;
-	re_insertion(p, accept_relocate_trip, temperature, type_move, cluster_id, addedAtV);
+	re_insertion(p, accept_relocate_trip, temperature, type_move, cluster_id, addedAtV, v);
 	//cout<<"B"<<endl;
 	int begin, end;
 	begin = 0;
@@ -11328,7 +11334,7 @@ int main(int argc, char **argv) {
 			if (next_depot == number_depots) {
 				next_depot = 0;
 			}
-			
+
 			mindDist[k] = 999999;
 			cluster[k] = -1;
 
