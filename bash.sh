@@ -1,13 +1,21 @@
-j=500
-for i in instances/300_ni/*.csv
-do
-	#echo $i
-	#let j=j+47
-	./a.out --filename_requests $i --seed $j --filename_travel_time "travel_time_updated3.csv" --number_depots 4 --depot 5585 5586 5587 5588 --type_vehicles 3 --number_vehicles 90 90 90 --capacity_vehicles 4 8 20 --init_temperature 1.3 --lamba 0.9 --maxnrep 350 --increase_rep 800 --total_requests 900
-	#
-	#gdb -- a.out --filename_requests $i --seed $j --filename_travel_time "travel_time_updated3.csv" --number_depots 4 --depot 5585 5586 5587 5588 --type_vehicles 3 --number_vehicles 30 60 30 --capacity_vehicles 4 8 20 --init_temperature 1.3 --lamba 0.9 --maxnrep 350 --increase_rep 800 --total_requests 900
-done
+# Set the number of parallel processes
+num_parallel=1
+j=502
 
+# Define the function to execute your binary
+run_binary() {
+	input_file="$1"
+    file_name=$(basename "$input_file")
+    ./a.out --filename_requests $input_file --seed $j --filename_travel_time "travel_time_updated3.csv" --output_file "concert.txt" --number_depots 3 --depot 5825 5826 5827 --type_vehicles 3 --number_vehicles1 10 --number_vehicles2 10 --number_vehicles3 10 --capacity_vehicles 8 16 32 --init_temperature 1.3 --lamba 0.9 --maxnrep 350 --increase_rep 800 --total_requests 900  
+}
+
+export -f run_binary
+
+# Use find to generate a list of input files and pass them to parallel
+find ../../large-instances/concert -type f -name "*.csv" | parallel -j $num_parallel run_binary {}
+
+# Wait for all parallel processes to finish
+wait
 
 
 

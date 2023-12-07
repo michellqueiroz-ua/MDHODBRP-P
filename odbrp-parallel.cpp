@@ -11245,14 +11245,35 @@ int main(int argc, char **argv) {
     	} else if (strcmp(argv[i], "--seed") == 0) {
       		seed = atoi(argv[i+1]);
     		i++;
-    	}
+    	} else if (strcmp(argv[i], "--number_vehicles1") == 0) {
+			//for (int j = 0; j < number_type_vehicles; j++) {
+			i++;
+			float perc = (float)stoi(argv[i])/100;
+			number_vehicles[0] = perc*total_requests;
+			total_number_vehicles += number_vehicles[0];
+			//}
+		} else if (strcmp(argv[i], "--number_vehicles2") == 0) {
+			//for (int j = 0; j < number_type_vehicles; j++) {
+			i++;
+			float perc = (float)stoi(argv[i])/100;
+			number_vehicles[1] = perc*total_requests;
+			total_number_vehicles += number_vehicles[1];
+			//}
+		} else if (strcmp(argv[i], "--number_vehicles3") == 0) {
+			//for (int j = 0; j < number_type_vehicles; j++) {
+			i++;
+			float perc = (float)stoi(argv[i])/100;
+			number_vehicles[2] = perc*total_requests;
+			total_number_vehicles += number_vehicles[2];
+			//}
+		}
 
 	}
 
 	srand(seed);
 	//cout<<total_requests<<" "<<seed<<" ";
 
-	if (total_requests == 300) {
+	/*if (total_requests == 300) {
 		number_vehicles[0] = 50;
 		number_vehicles[1] = 50;
 		number_vehicles[2] = 50;
@@ -11271,7 +11292,7 @@ int main(int argc, char **argv) {
 		number_vehicles[1] = 150;
 		number_vehicles[2] = 150;
 		total_number_vehicles = 450;
-	}
+	}*/
 	
 
 	for (int i = 0; i <= maxvehicles; i++) {
