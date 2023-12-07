@@ -11486,6 +11486,7 @@ int main(int argc, char **argv) {
 	/*for (int i = 0; i < total_number_vehicles; i++){
 		stops[i][0] = rand() % 5588; 
 	}*/
+	cout<<"hier1"<<endl;
 	k_medoids(number_clusters, epochs);
 
 	/*cout<<"new centroids "<<endl;
@@ -11494,7 +11495,7 @@ int main(int argc, char **argv) {
 	}*/
 
 	build_clusters();
-
+	cout<<"hier2"<<endl;
 	/*for (int i=0;i<number_clusters;i++){
 
 		for (int j=0;j<clusters[i].size();j++){
@@ -11528,10 +11529,10 @@ int main(int argc, char **argv) {
 		del_passenger.push_back(0);
 	}
 
-	
+	cout<<"hier3"<<endl;
 	while((k < total_requests) or (current_time < 28800)) {
 	//while(current_time < 28800) {
-
+		cout<<"k: "<<k<<endl;
 		check_last_position_route();
 
 		//if (k > num_iterations_to_start_reassign)
