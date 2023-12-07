@@ -11150,16 +11150,17 @@ void compute_mean_distances_request_partitions(int p){
 	int expected_position, k;
 	int sum_dist_clusters;
 	for (int i=0;i<number_clusters;i++){
-		cout<<"i: "<<i<<endl;
+		//cout<<"i: "<<i<<endl;
 		sort_clusters[p][i].mean_dist = 0;
 		sort_clusters[p][i].idx_cluster = i;
 		sum_dist_clusters = 0;
 		for (int j=0;j<clusters[i].size();j++){ //for each vehicle
-			cout<<"j: "<<j<<endl;
+			
 			int v = clusters[i][j];
+			cout<<"v: "<<v<<endl;
 			//compute the expected position of vehicle at the earliest_departure time of passenger
 			for (k=0;k<=number_stops[v];k++){
-				cout<<"k: "<<k<<endl;
+				//cout<<"k: "<<k<<endl;
 				if (arrival_time_stop[v][k] > earliest_departure[p]) {
 					break;
 				} 
