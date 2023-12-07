@@ -10720,7 +10720,11 @@ void compute_deadheading_times(){
 	}
 }
 
-void check_last_position_route() {
+void 
+
+
+
+() {
 
  	//check if last position on route passed the time
  	//and make vehicle wait so new requests can be added afterwords
@@ -11556,6 +11560,7 @@ int main(int argc, char **argv) {
 				num_threads_for = number_clusters;
 			}
 
+			cout<<"hier4"<<endl;
 			#pragma omp parallel for num_threads(num_threads_for)
 			for (int itx = 0; itx<num_threads_for; itx++) {
 				int nxt_p = passengers_to_be_inserted[itx];
@@ -11566,7 +11571,7 @@ int main(int argc, char **argv) {
 
 			//maybe sort passengers_to_be_inserted in a way to avoid collision between clusters???
 
-
+			cout<<"hier5"<<endl;
 			while (passengers_to_be_inserted.size() > 0) {
 
 				for (int c=0;c<number_clusters;c++) {
@@ -11576,7 +11581,8 @@ int main(int argc, char **argv) {
 				for (int itx = 0; itx<num_threads_for; itx++) {
 
 					//each passengers will be inserted in one processor
-					//start parallelized for	
+					//start parallelized for
+					cout<<"hier6"<<endl;	
 					#pragma omp parallel for num_threads(num_threads_for)
 					for (int px = 0; px<num_threads_for; px++) {
 
@@ -11591,7 +11597,7 @@ int main(int argc, char **argv) {
 							bool continue_this_passenger = true;
 							bool accept_infeasible_insertion = false;
 							while (continue_this_passenger) {
-								
+								cout<<"hier7"<<endl;
 								//#pragma omp parallel for num_threads(num_threads_for)
 								for (int c=0;c<number_clusters;c++) {
 
@@ -11696,7 +11702,7 @@ int main(int argc, char **argv) {
 
 		//<<"xxxheeerexxxx1"<<endl;
 		//cout<<"actual passenger "<<k<<endl;
-		
+		cout<<"hier8"<<endl;
 		if (k > total_number_vehicles + 10) {
 		
 
