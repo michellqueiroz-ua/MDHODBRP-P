@@ -11212,12 +11212,6 @@ int main(int argc, char **argv) {
 				i++;
 				depot[j] = stoi(argv[i]);
 			}
-		} else if (strcmp(argv[i], "--number_vehicles") == 0) {
-			for (int j = 0; j < number_type_vehicles; j++) {
-				i++;
-				number_vehicles[j] = stoi(argv[i]);
-				total_number_vehicles += number_vehicles[j];
-			}
 		} else if (strcmp(argv[i], "--capacity_vehicles") == 0) {
 			for (int j = 0; j < number_type_vehicles; j++) {
 				i++;
