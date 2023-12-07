@@ -10726,7 +10726,7 @@ void check_last_position_route() {
  	//and make vehicle wait so new requests can be added afterwords
  	for (int v=0; v<total_number_vehicles; v++){
 
-
+ 		cout<<"v: "<<v<<endl;
  		if (number_stops[v] > 2) {
 	 		if (departure_time_stop[v][number_stops[v]-1] < current_time) {
 	 			//means that already passed
@@ -11530,9 +11530,9 @@ int main(int argc, char **argv) {
 	}
 
 	cout<<"hier3"<<endl;
-	while((k < total_requests) or (current_time < 28800)) {
+	while((k < total_requests) or (current_time < 41400)) {
 	//while(current_time < 28800) {
-		cout<<"k: "<<k<<endl;
+		cout<<"k2: "<<k<<endl;
 		check_last_position_route();
 		cout<<"hier3.1"<<endl;
 		//if (k > num_iterations_to_start_reassign)
