@@ -11534,7 +11534,7 @@ int main(int argc, char **argv) {
 	//while(current_time < 28800) {
 		cout<<"k: "<<k<<endl;
 		check_last_position_route();
-
+		cout<<"hier3.1"<<endl;
 		//if (k > num_iterations_to_start_reassign)
 		//	reassign_vehicles_to_another_depot();
 		
@@ -11555,7 +11555,7 @@ int main(int argc, char **argv) {
 			if (num_threads_for > number_clusters) {
 				num_threads_for = number_clusters;
 			}
-
+			cout<<"hier3.2"<<endl;
 			#pragma omp parallel for num_threads(num_threads_for)
 			for (int itx = 0; itx<num_threads_for; itx++) {
 				int nxt_p = passengers_to_be_inserted[itx];
