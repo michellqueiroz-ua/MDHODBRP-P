@@ -11181,6 +11181,7 @@ void compute_mean_distances_request_partitions(int p){
 
 		}
 
+		cout<<"cluster size: "<<clusters[i].size()<<endl;
 		sort_clusters[p][i].mean_dist = (int)sum_dist_clusters/clusters[i].size();
 
 	}
@@ -11556,7 +11557,6 @@ int main(int argc, char **argv) {
 			for (int itx = 0; itx<num_threads_for; itx++) {
 				int nxt_p = passengers_to_be_inserted[itx];
 				compute_mean_distances_request_partitions(nxt_p);
-
 			}
 			
 
