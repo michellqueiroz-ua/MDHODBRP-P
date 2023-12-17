@@ -11069,6 +11069,7 @@ void k_medoids(int k, int epochs){
 		for (int j=0; j<total_number_vehicles;j++){
 
 			int loc_vehicle = stops[j][current_position[j]];
+			cout<<"comp: "<<stops[centroids[i]][current_position[centroids[i]]]<<stops[j][current_position[j]]
 			dist = travel_time[loc_centroid][loc_vehicle];
 
 			if (dist < mindDist[j]) {
@@ -11476,9 +11477,9 @@ int main(int argc, char **argv) {
 
 
 	
-	for (int i=0; i<centroids.size(); i++){
+	/*for (int i=0; i<centroids.size(); i++){
 		cout<<centroids[i]<<" "<<vehicle_located_at_depot[centroids[i]]<<endl;
-	}
+	}*/
 
 	int epochs = 1000;
 	//randomly assign a new position to each vehicle
