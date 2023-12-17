@@ -26,7 +26,7 @@ using namespace std;
 #define maxtotalcapacity 40
 #define maxtypevehicles 40
 #define maxnumberdepots 10
-#define number_clusters 4
+#define number_clusters 1
 
 typedef int listP[maxpassengers + 1];
 typedef int matrixVP[maxvehicles + 1][maxpassengers + 1];
@@ -11157,7 +11157,7 @@ void compute_mean_distances_request_partitions(int p){
 		for (int j=0;j<clusters[i].size();j++){ //for each vehicle
 			
 			int v = clusters[i][j];
-			cout<<"v: "<<v<<endl;
+			cout<<"v: "<<v<<" "<<total_number_vehicles<<endl;
 			//compute the expected position of vehicle at the earliest_departure time of passenger
 			for (k=0;k<=number_stops[v];k++){
 				//cout<<"k: "<<k<<endl;
