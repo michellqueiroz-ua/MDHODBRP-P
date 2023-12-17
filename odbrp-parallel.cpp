@@ -11069,7 +11069,7 @@ void k_medoids(int k, int epochs){
 		for (int j=0; j<total_number_vehicles;j++){
 
 			int loc_vehicle = stops[j][current_position[j]];
-			cout<<"comp: "<<stops[centroids[i]][current_position[centroids[i]]]<<stops[j][current_position[j]];
+			//cout<<"comp: "<<stops[centroids[i]][current_position[centroids[i]]]<<" "<<stops[j][current_position[j]]<<endl;
 			dist = travel_time[loc_centroid][loc_vehicle];
 
 			if (dist < mindDist[j]) {
@@ -11082,8 +11082,6 @@ void k_medoids(int k, int epochs){
 	}
 
 
-		
-
 	while ((improvement) && (iterations < epochs)) {
 		iterations++;
 		//update centroid
@@ -11092,7 +11090,7 @@ void k_medoids(int k, int epochs){
 			sum_all_distances += mindDist[j];
 		}
 
-		cout<<sum_all_distances<<endl;
+		//cout<<"dist:"<<sum_all_distances<<endl;
 		int new_sum_all_distances;
 		int best_sum_all_distances = sum_all_distances;
 		int new_best_cluster = -1;
@@ -11147,7 +11145,7 @@ void build_clusters(){
 
 void compute_mean_distances_request_partitions(int p){
 
-	cout<<"p:"<<p<<endl;
+	//cout<<"p:"<<p<<endl;
 	int expected_position, k;
 	int sum_dist_clusters;
 	for (int i=0;i<number_clusters;i++){
@@ -11158,7 +11156,7 @@ void compute_mean_distances_request_partitions(int p){
 		for (int j=0;j<clusters[i].size();j++){ //for each vehicle
 			
 			int v = clusters[i][j];
-			cout<<"v: "<<v<<" "<<total_number_vehicles<<endl;
+			//cout<<"v: "<<v<<" "<<total_number_vehicles<<endl;
 			//compute the expected position of vehicle at the earliest_departure time of passenger
 			for (k=0;k<=number_stops[v];k++){
 				//cout<<"k: "<<k<<endl;
@@ -11182,7 +11180,7 @@ void compute_mean_distances_request_partitions(int p){
 
 		}
 
-		cout<<"cluster size: "<<clusters[i].size()<<endl;
+		//cout<<"cluster size: "<<clusters[i].size()<<endl;
 		sort_clusters[p][i].mean_dist = (int)sum_dist_clusters/clusters[i].size();
 
 	}
