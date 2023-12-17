@@ -26,7 +26,7 @@ using namespace std;
 #define maxtotalcapacity 40
 #define maxtypevehicles 40
 #define maxnumberdepots 10
-#define number_clusters 2
+#define number_clusters 4
 
 typedef int listP[maxpassengers + 1];
 typedef int matrixVP[maxvehicles + 1][maxpassengers + 1];
@@ -11473,10 +11473,12 @@ int main(int argc, char **argv) {
 			i--;
 	}
 
+
+
 	
-	/*for (int i=0; i<centroids.size(); i++){
+	for (int i=0; i<centroids.size(); i++){
 		cout<<centroids[i]<<" "<<vehicle_located_at_depot[centroids[i]]<<endl;
-	}*/
+	}
 
 	int epochs = 1000;
 	//randomly assign a new position to each vehicle
