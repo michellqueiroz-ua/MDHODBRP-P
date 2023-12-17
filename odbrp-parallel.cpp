@@ -11069,7 +11069,7 @@ void k_medoids(int k, int epochs){
 		for (int j=0; j<total_number_vehicles;j++){
 
 			int loc_vehicle = stops[j][current_position[j]];
-			cout<<"comp: "<<stops[centroids[i]][current_position[centroids[i]]]<<stops[j][current_position[j]]
+			cout<<"comp: "<<stops[centroids[i]][current_position[centroids[i]]]<<stops[j][current_position[j]];
 			dist = travel_time[loc_centroid][loc_vehicle];
 
 			if (dist < mindDist[j]) {
