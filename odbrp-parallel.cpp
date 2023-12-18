@@ -11661,15 +11661,19 @@ int main(int argc, char **argv) {
 							cout<<"del p: "<<del_passenger[c]<<endl;
 							passengers_to_be_inserted.erase(passengers_to_be_inserted.begin() + c);
 							cout<<c<<endl;
-							cout<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
+							cout<<"5size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 							del_passenger[c] = 0;	
 						}
 					}
 					cout<<"hier6.93"<<endl;
+					cout<<"6size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 					num_threads_for = passengers_to_be_inserted.size();
 					if (num_threads_for > number_clusters) {
+						cout<<"7size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 						num_threads_for = number_clusters;
+						cout<<"8size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 					}
+					cout<<"9size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 					cout<<"hier6.95"<<endl;
 
 					
