@@ -11627,9 +11627,11 @@ int main(int argc, char **argv) {
 								if (continue_this_passenger) {
 									if (it_cl_inser[nxt_p] == 2) {
 										if (vehicle_assigned[nxt_p] == -1) {
+											cout<<"hier6.5"<<endl;
 											serve_passenger_third_party_vehicle(nxt_p);
 											//passengers_on_hold.push_back(nxt_p);
 										}
+										cout<<"hier6.7"<<endl;
 										continue_this_passenger = false;
 										del_passenger[px] = 1;
 									}
@@ -11640,14 +11642,14 @@ int main(int argc, char **argv) {
 						}
 					}
 					//end parallelized for
-
+					cout<<"hier6.8"<<endl;
 					for (int c=0;c<number_clusters;c++) {
 						avl_cluster[c] = avl_cluster[c]+1;
 						avl_cluster[c] = avl_cluster[c]%number_clusters;
 						cout<<avl_cluster[c]<<" ";
 
 					}
-
+					cout<<"hier6.9"<<endl;
 					cout<<endl;
 
 					for (int c=number_clusters; c>=0;c--) {
