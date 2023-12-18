@@ -4005,7 +4005,7 @@ bool repair_solution(int v, int p, int cluster_id){
 	std::vector<int> to_vehicles;
 	listP blocked_passengers;
 
-	for (int j=0; j<maxpassengers;j++){
+	for (int j=0; j<total_requests;j++){
 		blocked_passengers[j] = 0;
 	}
 	int i = 1;
@@ -10540,7 +10540,7 @@ void check_valid_user_ride_times() {
 		}
 	}
 
-	for (int i=0; i<maxpassengers; i++){
+	for (int i=0; i<total_requests; i++){
 
 		if (assigned_to_3rd_party[i] == 1){
 			new_total_user_ride_time += user_ride_time[i];
@@ -11319,7 +11319,7 @@ int main(int argc, char **argv) {
 	//empty_vehicle = 0;
 
 
-	for (int i=0; i<maxpassengers; i++){
+	for (int i=0; i<total_requests; i++){
 		//route_assigned[i] = 0;
 		vehicle_assigned[i] = -1;
 		delay[i] = 0;
@@ -11380,7 +11380,7 @@ int main(int argc, char **argv) {
 
 		}
 	}
-	for (int i=0;i<maxpassengers;i++){
+	for (int i=0;i<total_requests;i++){
 		for (int j=0;j<maxvehicles;j++){
 			blocked_vehicles[i][j] = 0;
 		}
