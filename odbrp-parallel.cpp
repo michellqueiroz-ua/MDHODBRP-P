@@ -11576,10 +11576,11 @@ int main(int argc, char **argv) {
 			cout<<"hier4"<<endl;
 			while (passengers_to_be_inserted.size() > 0) {
 
+				cout<<"10size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 				for (int c=0;c<number_clusters;c++) {
 					avl_cluster[c] = c;
 				}
-
+				cout<<"11size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 				for (int itx = 0; itx<num_threads_for; itx++) {
 
 					//each passengers will be inserted in one processor
@@ -11588,9 +11589,11 @@ int main(int argc, char **argv) {
 					for (int px = 0; px<num_threads_for; px++) {
 
 						if (px < passengers_to_be_inserted.size()) {
+							cout<<"12size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 							int nxt_p = passengers_to_be_inserted[px];
 							//cout<<"nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 							it_cl_inser[nxt_p] = 0;
+							cout<<"13size: "<<passengers_to_be_inserted.size()<<" "<<nxt_p<<"ends"<<endl;
 							
 							//cout<<"nxp: "<<nxt_p<<endl;
 							//compute_mean_distances_request_partitions(nxt_p);
