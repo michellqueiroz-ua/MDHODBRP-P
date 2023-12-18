@@ -11207,6 +11207,7 @@ int main(int argc, char **argv) {
 			input_requests(argv[i+1]);
 			cout<<"x"<<total_requests<<" ";
 		} else if (strcmp(argv[i], "--filename_travel_time") == 0) {
+			cout<<"HIER"<<endl;
 			input_travel_time(argv[i+1]);
 		} else if (strcmp(argv[i], "--depot") == 0) {
 			for (int j = 0; j < number_depots; j++) {
