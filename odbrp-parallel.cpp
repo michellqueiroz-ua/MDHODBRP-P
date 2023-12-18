@@ -10788,6 +10788,7 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 	//type_move 2 - accepted and non improving
 	//type_move 3 - rejected or not feasible move
 
+	cout<<"hier8"<<endl;
 	temperature = init_temperature;
 	no_improvement = 0; 
 	count = 0;
@@ -10799,7 +10800,7 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 	//cout<<"X"<<endl;
 	save_best_solution(cluster_id);
 	//cout<<"Y"<<endl;
-
+	cout<<"hier9"<<endl;
 	std::vector<int> passengers_in_cluster;
 	for (int i=0;i<clusters[cluster_id].size();i++){
 		int v = clusters[cluster_id][i];
@@ -10812,6 +10813,7 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 
 		}
 	}
+	cout<<"hier10"<<endl;
 	//cout<<endl;
 	//cout<<"size pic: "<<passengers_in_cluster.size()<<endl;
 
@@ -10829,7 +10831,9 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 				if (vehicle_assigned[relocate_p] != -1) {
 					if (passengers_departure_time_from_home[relocate_p] >= current_time) {
 						//cout<<"relocate passenger SA: "<<relocate_p<<endl;
+						cout<<"hier11"<<endl;
 						relocate_passenger(relocate_p, temperature, type_move, cluster_id);
+						cout<<"hier12"<<endl;
 						if (relocate_p < 0){
 							//cout<<"MEGAERRORRRR1"<<endl;
 							return;
@@ -10891,12 +10895,12 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 			if (type_move == 2) {
 				no_improvement++;
 			}
-
+			cout<<"hier13"<<endl;
 			//cout<<"no idea2"<<endl;
 			int curr_cluster_URT = compute_cluster_URT(cluster_id);
 			//cout<<"no idea3"<<endl;
 			//cout<<cluster_id<<best_tot_cluster_ride_time.size()<<endl;
-			
+			cout<<"hier14"<<endl;
 			if (curr_cluster_URT < best_tot_cluster_ride_time[cluster_id]) {
 				//cout<<"BEEST FOUND SO FAR"<<endl;
 				//cout<<"no idea4"<<endl;
@@ -10911,7 +10915,7 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 				//<<"heerex"<<endl;
 			}
 			//cout<<"no idea6"<<endl;
-
+			cout<<"hier15"<<endl;
 			
 			if (++count > 25) {
 				elapsed = get_wall_time() - start_time;
