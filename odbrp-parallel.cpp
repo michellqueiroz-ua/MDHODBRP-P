@@ -641,7 +641,7 @@ void input_travel_time(char *filename) {
 	fstream file (filename, ios::in);
 	string line, data;
 	int s, stop1, stop2;
-	//cout<<filename<<endl;
+	cout<<filename<<endl;
 	if(file.is_open())
 	{
 		/*getline(file, line);
@@ -665,7 +665,7 @@ void input_travel_time(char *filename) {
 
 
 		stop1 = 0;
-		
+		int count;
 		while(getline(file, line))
 		{
 
@@ -679,10 +679,10 @@ void input_travel_time(char *filename) {
 				//cout<<data<<" ";
 				//if (count > 0) {
 				travel_time[stop1][stop2] = stoi(data);
-				//travel_time[stop2][stop1] = stoi(data);
+				travel_time[stop2][stop1] = stoi(data);
 				stop2 = stop2 + 1;
 				//} 
-				//count++;
+				count++;
 			}
 			//cout<<endl<<endl;
 			//break;
@@ -694,7 +694,7 @@ void input_travel_time(char *filename) {
 		for (int i=0;i<stop1;i++){
 			stations_ids[i] = i;
 		}
-
+		cout<<"count: "<<count<<endl;
 		int count2 =1;
 
 		//cout<<"xx: "<<travel_time[2950][214]<<" "<<travel_time[214][2716]<<" "<<travel_time[2950][2716]<<endl;
@@ -11208,7 +11208,6 @@ int main(int argc, char **argv) {
 			cout<<"x"<<total_requests<<" ";
 		} else if (strcmp(argv[i], "--filename_travel_time") == 0) {
 			input_travel_time(argv[i+1]);
-
 		} else if (strcmp(argv[i], "--depot") == 0) {
 			for (int j = 0; j < number_depots; j++) {
 				i++;
