@@ -11484,7 +11484,7 @@ int main(int argc, char **argv) {
 	/*for (int i = 0; i < total_number_vehicles; i++){
 		stops[i][0] = rand() % 5588; 
 	}*/
-	stops[i][3] = rand() % 5588; 	
+	stops[centroids[3]][0] = rand() % 5588; 	
 	cout<<"hier1"<<endl;
 	k_medoids(number_clusters, epochs);
 
