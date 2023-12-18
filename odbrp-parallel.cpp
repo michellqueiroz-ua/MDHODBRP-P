@@ -11613,6 +11613,7 @@ int main(int argc, char **argv) {
 								} else {
 									cout<<"2nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 									continue_this_passenger = false;
+									cout<<px<<" "<<del_passenger.size()<<endl;
 									del_passenger[px] = 1;
 									served_requests_so_far++;
 								}
