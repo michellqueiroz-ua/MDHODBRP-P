@@ -11071,7 +11071,7 @@ void k_medoids(int k, int epochs){
 			int loc_vehicle = stops[j][current_position[j]];
 			//cout<<"comp: "<<stops[centroids[i]][current_position[centroids[i]]]<<" "<<stops[j][current_position[j]]<<endl;
 			dist = travel_time[loc_centroid][loc_vehicle];
-
+			cout<<"dist:"<<dist<<endl;
 			if (dist < mindDist[j]) {
 				mindDist[j] = dist;
 				cluster[j] = clusterId;
