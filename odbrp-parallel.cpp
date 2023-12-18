@@ -11524,12 +11524,18 @@ int main(int argc, char **argv) {
 	//change the current time part to a parameter given value
 	//MAIN ALGORITHM
 
-	std::vector<int> avl_cluster;
-	std::vector<int> del_passenger;
+	//std::vector<int> avl_cluster;
+	//std::vector<int> del_passenger;
+	int del_passenger[number_clusters];
+	int avl_cluster[number_clusters];
 	for (int c=0;c<number_clusters;c++) {
-		avl_cluster.push_back(0);
-		del_passenger.push_back(0);
+		//avl_cluster.push_back(0);
+		avl_cluster[c] = 0;
+		//del_passenger.push_back(0);
+		del_passenger[c] = 0;
 	}
+
+
 
 	cout<<"hier3"<<endl;
 	while((k < total_requests) or (current_time < 41400)) {
