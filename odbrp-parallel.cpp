@@ -28,7 +28,7 @@ using namespace std;
 #define maxnumberdepots 10
 #define number_clusters 1
 
-typedef int listP[maxpassengers + 1];
+typedef int listP[20000 + 1];
 typedef int matrixVP[maxvehicles + 1][maxpassengers + 1];
 typedef int matrixPV[maxpassengers + 1][maxvehicles + 1];
 typedef int matrixVS[maxvehicles + 1][maxstations + 1];
@@ -11557,7 +11557,7 @@ int main(int argc, char **argv) {
 				k++;
 			}
 
-			listP it_cl_inser;
+			int it_cl_inser[20000];
 
 			int num_threads_for = passengers_to_be_inserted.size();
 			if (num_threads_for > number_clusters) {
