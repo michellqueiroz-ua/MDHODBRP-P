@@ -11616,9 +11616,13 @@ int main(int argc, char **argv) {
 								for (int c=0;c<number_clusters;c++) {
 
 									//if (vehicle_assigned[nxt_p] == -1) {
+									cout<<"hier5.75"<<endl;
+									cout<<nxt_p<<" "<<px<<endl;
 									if (avl_cluster[px] == c) { //this way, each passenger has access only to one cluster at a time
 										if (sort_clusters[nxt_p][it_cl_inser[nxt_p]].idx_cluster == c) {
+											cout<<"hier5.85"<<endl;
 											cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, sort_clusters[nxt_p][it_cl_inser[nxt_p]].idx_cluster);
+											cout<<"hier5.95"<<endl;
 											//cout<<"cir A"<<endl;
 										}
 									}
