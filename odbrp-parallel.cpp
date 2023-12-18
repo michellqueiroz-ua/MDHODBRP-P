@@ -1087,7 +1087,7 @@ void cheapest_origin2_p(int p, int v, int &min_increase_length, int &sel_origin,
 			 	//<<"capacity: "<<new_capacity<<endl;
 			 	
 			 	//cout<<"testX "<<endl;
-			 	cout<<"co: "<<new_slack_time<<" "<<pick_up_time<<" "<<latest_departure_passenger<<" "<<new_capacity<<" "<<departure_time_from_home<<" "<<current_time;
+			 	//cout<<"co: "<<new_slack_time<<" "<<pick_up_time<<" "<<latest_departure_passenger<<" "<<new_capacity<<" "<<departure_time_from_home<<" "<<current_time;
 			 	if ((new_slack_time >= 0) && (pick_up_time <= latest_departure_passenger) && (new_capacity >= 0) && (departure_time_from_home >= current_time)) {
 
 
@@ -1245,7 +1245,7 @@ void cheapest_origin(int p, int v, int &min_increase_length, int &sel_origin, in
 			 	}
 			 	//<<"ptl: "<<pick_up_time<<" "<<latest_departure_passenger<<endl;
 			 	//<<"capacity: "<<new_capacity<<endl;
-			 	cout<<"co: "<<" "<<increase<<" "<<min_increase_length<<" "<<new_slack_time<<" "<<pick_up_time<<" "<<latest_departure_passenger<<" "<<new_capacity<<" "<<departure_time_from_home<<" "<<current_time;
+			 	//cout<<"co: "<<" "<<increase<<" "<<min_increase_length<<" "<<new_slack_time<<" "<<pick_up_time<<" "<<latest_departure_passenger<<" "<<new_capacity<<" "<<departure_time_from_home<<" "<<current_time;
 				if ((increase < min_increase_length) && (new_slack_time >= 0) && (pick_up_time <= latest_departure_passenger) && (new_capacity >= 0) && (departure_time_from_home >= current_time)) {
 
 					//passengers_departure_time_from_home[p] = departure_time_from_home;
@@ -1361,7 +1361,7 @@ void cheapest_destination(int p, int v, int pos_origin, int &min_increase_length
 			}
 			//cout<<"dpt: "<<drop_off_time<<" "<<latest_arrival_passenger<<endl;
 			//cout<<new_slack_time<<endl;
-			cout<<"cd: "<<" "<<increase<<" "<<min_increase_length<<" "<<new_slack_time<<" "<<drop_off_time<<" "<<latest_arrival_passenger<<" "<<new_capacity<<" ";
+			//cout<<"cd: "<<" "<<increase<<" "<<min_increase_length<<" "<<new_slack_time<<" "<<drop_off_time<<" "<<latest_arrival_passenger<<" "<<new_capacity<<" ";
 			if ((increase < min_increase_length) && (new_slack_time >= 0) && (drop_off_time <= latest_arrival_passenger) && (new_capacity >= 0)) {
 				feasible_insertion_found = true;
 				infeasible_insertion = false;
@@ -10791,7 +10791,7 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 	//type_move 2 - accepted and non improving
 	//type_move 3 - rejected or not feasible move
 
-	cout<<"hier8"<<endl;
+	//cout<<"hier8"<<endl;
 	temperature = init_temperature;
 	no_improvement = 0; 
 	count = 0;
@@ -10803,7 +10803,7 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 	//cout<<"X"<<endl;
 	save_best_solution(cluster_id);
 	//cout<<"Y"<<endl;
-	cout<<"hier9"<<endl;
+	//cout<<"hier9"<<endl;
 	std::vector<int> passengers_in_cluster;
 	for (int i=0;i<clusters[cluster_id].size();i++){
 		int v = clusters[cluster_id][i];
@@ -10816,7 +10816,7 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 
 		}
 	}
-	cout<<"hier10"<<endl;
+	//cout<<"hier10"<<endl;
 	//cout<<endl;
 	//cout<<"size pic: "<<passengers_in_cluster.size()<<endl;
 
@@ -10832,7 +10832,7 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 				//SWITCH
 				cout<<passengers_in_cluster.size()<<endl;
 				relocate_p = passengers_in_cluster[rand() % passengers_in_cluster.size()];
-				cout<<"rel p: "<<relocate_p<<endl;
+				//cout<<"rel p: "<<relocate_p<<endl;
 				if (vehicle_assigned[relocate_p] != -1) {
 					if (passengers_departure_time_from_home[relocate_p] >= current_time) {
 						//cout<<"relocate passenger SA: "<<relocate_p<<endl;
@@ -10900,12 +10900,12 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 			if (type_move == 2) {
 				no_improvement++;
 			}
-			cout<<"hier13"<<endl;
+			//cout<<"hier13"<<endl;
 			//cout<<"no idea2"<<endl;
 			int curr_cluster_URT = compute_cluster_URT(cluster_id);
 			//cout<<"no idea3"<<endl;
 			//cout<<cluster_id<<best_tot_cluster_ride_time.size()<<endl;
-			cout<<"hier14"<<endl;
+			//cout<<"hier14"<<endl;
 			if (curr_cluster_URT < best_tot_cluster_ride_time[cluster_id]) {
 				//cout<<"BEEST FOUND SO FAR"<<endl;
 				//cout<<"no idea4"<<endl;
@@ -10920,7 +10920,7 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 				//<<"heerex"<<endl;
 			}
 			//cout<<"no idea6"<<endl;
-			cout<<"hier15"<<endl;
+			//cout<<"hier15"<<endl;
 			
 			if (++count > 25) {
 				elapsed = get_wall_time() - start_time;
@@ -11582,7 +11582,7 @@ int main(int argc, char **argv) {
 
 			//maybe sort passengers_to_be_inserted in a way to avoid collision between clusters???
 
-			//cout<<"hier4"<<endl;
+			cout<<"hier4"<<endl;
 			while (passengers_to_be_inserted.size() > 0) {
 
 				//cout<<"10size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
@@ -11625,7 +11625,7 @@ int main(int argc, char **argv) {
 									//}
 
 								}
-								//cout<<"hier5.9"<<endl;
+								cout<<"hier5.9"<<endl;
 								if (vehicle_assigned[nxt_p] == -1) {
 									//cout<<"1nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 									it_cl_inser[nxt_p]++;
@@ -11732,7 +11732,7 @@ int main(int argc, char **argv) {
 
 		//<<"xxxheeerexxxx1"<<endl;
 		//cout<<"actual passenger "<<k<<endl;
-		//cout<<"hier7"<<endl;
+		cout<<"hier7"<<endl;
 		if (k > total_number_vehicles + 10) {
 		
 
