@@ -755,11 +755,11 @@ void input_requests(char *filename) {
 			stringstream str(line);
 			getline(str, data, ',');
 			p = stoi(data);
-			//<<p<<endl;
+			cout<<p<<" ";
 			
 			getline(str, data, ',');
 			time_stamp[p] = stoi(data);
-			//<<time_stamp[p]<<endl;
+			cout<<time_stamp[p]<<" ";
 
 			getline(str, data, ',');
 			getline(str, data, ',');
@@ -774,10 +774,12 @@ void input_requests(char *filename) {
 
 			earliest_departure[p] = stoi(data);
 			//printf("%d\n", earliest_departure[p]);
+			cout<<earliest_departure[p]<<" ";
 			
 			getline(str, data, ',');
 			latest_departure[p] = stoi(data);
 			//printf("%d\n", latest_departure[p]);
+			cout<<latest_departure[p]<<" ";
 
 			getline(str, data, ','); //direct travel time
 			direct_travel_time[p] = stoi(data);
@@ -797,6 +799,7 @@ void input_requests(char *filename) {
 			//<<data.end()<<endl;
 			s = 0;
 			stops_origin[p][s] = stoi(data);
+			cout<<stops_origin[p][s]<<" ";
 			//printf("%d ", stops_origin[p][s]);
 			s = s + 1;
 			//stringstream str2(data);
@@ -809,6 +812,7 @@ void input_requests(char *filename) {
 					data.erase(remove(data.begin(), data.end(), '"'), data.end());
 					data.erase(remove(data.begin(), data.end(), ']'), data.end());
 					stops_origin[p][s] = stoi(stop);
+					cout<<stops_origin[p][s]<<" ";
 					//printf("%d ", stops_origin[p][s]);
 					s = s + 1;
 					if (leave_loop)
@@ -830,6 +834,7 @@ void input_requests(char *filename) {
 			//<<data.end()<<endl;
 			s = 0;
 			walking_time_stops_origin[p][s] = stoi(data);
+			cout<<walking_time_stops_origin[p][s]<<" ";
 			//printf("%d ", stops_origin[p][s]);
 			s = s + 1;
 			//stringstream str2(data);
@@ -842,6 +847,7 @@ void input_requests(char *filename) {
 					data.erase(remove(data.begin(), data.end(), '"'), data.end());
 					data.erase(remove(data.begin(), data.end(), ']'), data.end());
 					walking_time_stops_origin[p][s] = stoi(stop);
+					cout<<walking_time_stops_origin[p][s]<<" ";
 					//printf("%d ", stops_origin[p][s]);
 					s = s + 1;
 					if (leave_loop)
@@ -852,6 +858,7 @@ void input_requests(char *filename) {
 			
 			getline(str, data, ',');
 			latest_arrival[p] = stoi(data);
+			cout<<latest_arrival[p]<<" ";
 
 
 			//<<latest_arrival[p]<<endl;
@@ -880,6 +887,7 @@ void input_requests(char *filename) {
 			//<<data.end()<<endl;
 			s = 0;
 			stops_destination[p][s] = stoi(data);
+			cout<<stops_destination[p][s]<<" ";
 			//printf("%d ", stops_destination[p][s]);
 			s = s + 1;
 			//stringstream str2(data);
@@ -892,6 +900,7 @@ void input_requests(char *filename) {
 					data.erase(remove(data.begin(), data.end(), '"'), data.end());
 					data.erase(remove(data.begin(), data.end(), ']'), data.end());
 					stops_destination[p][s] = stoi(stop);
+					cout<<stops_destination[p][s]<<" ";
 					//printf("%d ", stops_destination[p][s]);
 					s = s + 1;
 					if (leave_loop)
@@ -913,6 +922,7 @@ void input_requests(char *filename) {
 			//<<data.end()<<endl;
 			s = 0;
 			walking_time_stops_destination[p][s] = stoi(data);
+			cout<<walking_time_stops_destination[p][s]<<" ";
 			//printf("%d ", stops_destination[p][s]);
 			s = s + 1;
 			//stringstream str2(data);
@@ -925,6 +935,7 @@ void input_requests(char *filename) {
 					data.erase(remove(data.begin(), data.end(), '"'), data.end());
 					data.erase(remove(data.begin(), data.end(), ']'), data.end());
 					walking_time_stops_destination[p][s] = stoi(stop);
+					cout<<walking_time_stops_destination[p][s]<<" ";
 					//printf("%d ", stops_destination[p][s]);
 					s = s + 1;
 					if (leave_loop)
