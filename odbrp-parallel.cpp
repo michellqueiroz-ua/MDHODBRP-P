@@ -11605,7 +11605,7 @@ int main(int argc, char **argv) {
 							//cout<<"13size: "<<passengers_to_be_inserted.size()<<" "<<nxt_p<<"ends"<<endl;
 							
 							//cout<<"nxp: "<<nxt_p<<endl;
-							//compute_mean_distances_request_partitions(nxt_p);
+							compute_mean_distances_request_partitions(nxt_p);
 							
 							bool continue_this_passenger = true;
 							bool accept_infeasible_insertion = false;
