@@ -11600,6 +11600,7 @@ int main(int argc, char **argv) {
 							while (continue_this_passenger) {
 								cout<<"hier5"<<endl;
 								//#pragma omp parallel for num_threads(num_threads_for)
+								cout<<"0nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 								for (int c=0;c<number_clusters;c++) {
 
 									//if (vehicle_assigned[nxt_p] == -1) {
@@ -11612,7 +11613,7 @@ int main(int argc, char **argv) {
 									//}
 
 								}
-								cout<<"hier5.9"<<endl;
+								//cout<<"hier5.9"<<endl;
 								if (vehicle_assigned[nxt_p] == -1) {
 									cout<<"1nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 									it_cl_inser[nxt_p]++;
@@ -11623,7 +11624,8 @@ int main(int argc, char **argv) {
 									del_passenger[px] = 1;
 									served_requests_so_far++;
 								}
-								cout<<"hier6"<<endl;
+								//cout<<"hier6"<<endl;
+								cout<<"3nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 								if (continue_this_passenger) {
 									if (it_cl_inser[nxt_p] == 2) {
 										if (vehicle_assigned[nxt_p] == -1) {
@@ -11636,6 +11638,7 @@ int main(int argc, char **argv) {
 										del_passenger[px] = 1;
 									}
 								}
+								cout<<"4nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 								
 							}
 
