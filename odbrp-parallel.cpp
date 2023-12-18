@@ -11180,7 +11180,7 @@ void compute_mean_distances_request_partitions(int p){
 
 		}
 
-		//cout<<"cluster size: "<<clusters[i].size()<<endl;
+		cout<<"cluster size: "<<clusters[i].size()<<endl;
 		sort_clusters[p][i].mean_dist = (int)sum_dist_clusters/clusters[i].size();
 
 	}
@@ -11484,6 +11484,7 @@ int main(int argc, char **argv) {
 	/*for (int i = 0; i < total_number_vehicles; i++){
 		stops[i][0] = rand() % 5588; 
 	}*/
+	stops[i][3] = rand() % 5588; 	
 	cout<<"hier1"<<endl;
 	k_medoids(number_clusters, epochs);
 
