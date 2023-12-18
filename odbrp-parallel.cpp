@@ -11655,11 +11655,13 @@ int main(int argc, char **argv) {
 					cout<<"hier6.9"<<endl;
 					cout<<endl;
 
-					for (int c=number_clusters; c>=0;c--) {
+					for (int c=number_clusters-1; c>=0;c--) {
 						if (del_passenger[c] == 1) {
 							cout<<"size ptbi: "<<passengers_to_be_inserted.size()<<endl;
 							cout<<"del p: "<<del_passenger[c]<<endl;
 							passengers_to_be_inserted.erase(passengers_to_be_inserted.begin() + c);
+							cout<<c<<endl;
+							cout<<"5nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 							del_passenger[c] = 0;	
 						}
 					}
