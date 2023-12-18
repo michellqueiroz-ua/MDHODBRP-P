@@ -11654,15 +11654,18 @@ int main(int argc, char **argv) {
 
 					for (int c=number_clusters; c>=0;c--) {
 						if (del_passenger[c] == 1) {
+							cout<<"size ptbi: "<<passengers_to_be_inserted.size()<<endl;
+							cout<<"del p: "<<del_passenger[c]<<endl;
 							passengers_to_be_inserted.erase(passengers_to_be_inserted.begin() + c);
 							del_passenger[c] = 0;	
 						}
 					}
-
+					cout<<"hier6.93"<<endl;
 					num_threads_for = passengers_to_be_inserted.size();
 					if (num_threads_for > number_clusters) {
 						num_threads_for = number_clusters;
 					}
+					cout<<"hier6.95"<<endl;
 
 					
 				}
