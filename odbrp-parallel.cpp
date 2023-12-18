@@ -11661,7 +11661,7 @@ int main(int argc, char **argv) {
 							cout<<"del p: "<<del_passenger[c]<<endl;
 							passengers_to_be_inserted.erase(passengers_to_be_inserted.begin() + c);
 							cout<<c<<endl;
-							cout<<"5nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
+							cout<<"5nxt p: "<<nxt_p<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 							del_passenger[c] = 0;	
 						}
 					}
