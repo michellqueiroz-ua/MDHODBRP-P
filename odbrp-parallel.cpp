@@ -10827,7 +10827,9 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 
 			if (y <= 1.0) {
 				//SWITCH
+				cout<<passengers_in_cluster.size()<<endl;
 				relocate_p = passengers_in_cluster[rand() % passengers_in_cluster.size()];
+				cout<<"rel p: "<<relocate_p<<endl;
 				if (vehicle_assigned[relocate_p] != -1) {
 					if (passengers_departure_time_from_home[relocate_p] >= current_time) {
 						//cout<<"relocate passenger SA: "<<relocate_p<<endl;
