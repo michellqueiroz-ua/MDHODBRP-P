@@ -1087,7 +1087,7 @@ void cheapest_origin2_p(int p, int v, int &min_increase_length, int &sel_origin,
 			 	//<<"capacity: "<<new_capacity<<endl;
 			 	
 			 	//cout<<"testX "<<endl;
-			 	//cout<<"co: "<<new_slack_time<<" "<<pick_up_time<<" "<<latest_departure_passenger<<" "<<new_capacity<<" "<<departure_time_from_home<<" "<<current_time;
+			 	cout<<"co: "<<new_slack_time<<" "<<pick_up_time<<" "<<latest_departure_passenger<<" "<<new_capacity<<" "<<departure_time_from_home<<" "<<current_time;
 			 	if ((new_slack_time >= 0) && (pick_up_time <= latest_departure_passenger) && (new_capacity >= 0) && (departure_time_from_home >= current_time)) {
 
 
@@ -1245,7 +1245,7 @@ void cheapest_origin(int p, int v, int &min_increase_length, int &sel_origin, in
 			 	}
 			 	//<<"ptl: "<<pick_up_time<<" "<<latest_departure_passenger<<endl;
 			 	//<<"capacity: "<<new_capacity<<endl;
-			 	//cout<<"co: "<<" "<<increase<<" "<<min_increase_length<<" "<<new_slack_time<<" "<<pick_up_time<<" "<<latest_departure_passenger<<" "<<new_capacity<<" "<<departure_time_from_home<<" "<<current_time;
+			 	cout<<"co: "<<" "<<increase<<" "<<min_increase_length<<" "<<new_slack_time<<" "<<pick_up_time<<" "<<latest_departure_passenger<<" "<<new_capacity<<" "<<departure_time_from_home<<" "<<current_time;
 				if ((increase < min_increase_length) && (new_slack_time >= 0) && (pick_up_time <= latest_departure_passenger) && (new_capacity >= 0) && (departure_time_from_home >= current_time)) {
 
 					//passengers_departure_time_from_home[p] = departure_time_from_home;
@@ -1361,7 +1361,7 @@ void cheapest_destination(int p, int v, int pos_origin, int &min_increase_length
 			}
 			//cout<<"dpt: "<<drop_off_time<<" "<<latest_arrival_passenger<<endl;
 			//cout<<new_slack_time<<endl;
-			//cout<<"cd: "<<" "<<increase<<" "<<min_increase_length<<" "<<new_slack_time<<" "<<drop_off_time<<" "<<latest_arrival_passenger<<" "<<new_capacity<<" ";
+			cout<<"cd: "<<" "<<increase<<" "<<min_increase_length<<" "<<new_slack_time<<" "<<drop_off_time<<" "<<latest_arrival_passenger<<" "<<new_capacity<<" ";
 			if ((increase < min_increase_length) && (new_slack_time >= 0) && (drop_off_time <= latest_arrival_passenger) && (new_capacity >= 0)) {
 				feasible_insertion_found = true;
 				infeasible_insertion = false;
