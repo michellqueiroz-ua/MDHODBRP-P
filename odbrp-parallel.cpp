@@ -5393,7 +5393,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 
 							}
 
-							cout<<"outxhier"<<endl;
+							cout<<"outxhier "<<number_stops[best_v]<<endl;
 							//update further arrival, departure times, and slack times
 							for (int i=pos_destination+1; i<=number_stops[best_v];i++) {
 								old_arr_time = arrival_time_stop[best_v][i];
@@ -5404,6 +5404,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 								}
 								slack_time[best_v][i] -= arrival_time_stop[best_v][i] - old_arr_time;
 							}
+							cout<<"outxhier1"<<endl;
 
 							//for (int i=1; i<pos_destination;i++){
 							//	int min_slack_time = INT_MAX;
@@ -5423,7 +5424,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 								}
 							}
 							//updates solution cost
-							
+							cout<<"outxhier2"<<endl;
 							//<<"heere5"<<endl;
 							//cout<<"stations "<<best_pos_origin<<" "<<sel_destination<<endl;
 							user_ride_time[p] = 0;
@@ -5457,6 +5458,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 									//}
 								} 
 							}
+							cout<<"outxhier3"<<endl;
 
 
 							
@@ -5726,7 +5728,9 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 						}
 
 						//cout<<"hieer"<<endl;
+						cout<<"outxhier4"<<endl;
 						update_URT(best_v);
+						cout<<"outxhier5"<<endl;
 
 						/*cout<<"URT UPDATED "<<endl;
 						for (int i=0; i<=number_stops[best_v];i++) {
