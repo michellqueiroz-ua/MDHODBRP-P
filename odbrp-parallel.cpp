@@ -755,11 +755,11 @@ void input_requests(char *filename) {
 			stringstream str(line);
 			getline(str, data, ',');
 			p = stoi(data);
-			cout<<p<<" ";
+			//cout<<p<<" ";
 			
 			getline(str, data, ',');
 			time_stamp[p] = stoi(data);
-			cout<<time_stamp[p]<<" ";
+			//cout<<time_stamp[p]<<" ";
 
 			getline(str, data, ',');
 			getline(str, data, ',');
@@ -943,7 +943,7 @@ void input_requests(char *filename) {
 				}
 			}
 			//printf("\n");
-			
+			cout<<endl;
 			getline(str, data, ',');
 			getline(str, data, ',');
 
@@ -1164,6 +1164,7 @@ void cheapest_origin(int p, int v, int &min_increase_length, int &sel_origin, in
 	/*if (empty_running_vehicle){
 		bi = number_stops[v] - 1;
 	}*/
+	cout<<number_stops_origin[p]<<" "<<number_stops[v]<<endl;
 	for (int j=0;j<number_stops_origin[p];j++) {
 		s_origin = stops_origin[p][j];
 		
@@ -1181,7 +1182,7 @@ void cheapest_origin(int p, int v, int &min_increase_length, int &sel_origin, in
 					curr_dpt_time = current_time;
 				}
 			}
-			//<<curr_dpt_time<<" "<<current_time<<endl;
+			cout<<curr_dpt_time<<" "<<current_time<<endl;
 			if (curr_dpt_time >= current_time) {
 
 				//<<"i:"<<i<<endl;
