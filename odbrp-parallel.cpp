@@ -5806,8 +5806,10 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 
 	//route_assigned[p] = 1;
 	//reset blocked vehicles structure
+	cout<<"almost exiting"<<endl;
 	for (int i=0;i<total_number_vehicles;i++)
 		blocked_vehicles[p][i] = 0;
+	cout<<"exiting"<<endl;
 }
 
 //this cheapest insertion considers to insert passengers at positions that are not the min increase in length traveled
