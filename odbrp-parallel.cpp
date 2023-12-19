@@ -2838,7 +2838,7 @@ void re_insertion_to_repair(int p, bool &accept_relocate_trip, int cluster_id){
 		
 		best_min_increase_length = INT_MAX;
 		best_v = -1;
-		Insertions insertions_p[55000];
+		Insertions insertions_p[95000];
 		int curr_number_insertions_p = 0;
 		
 		for (int vf=0; vf<filtered_vehicles_p.size();vf++) {
@@ -4147,7 +4147,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 
 	bool infeasible_insertion = false;
 	
-	Insertions insertions_p[55000];
+	Insertions insertions_p[95000];
 	int curr_number_insertions_p = 0;
 
 	vector<int> filtered_vehicles_p;
@@ -8329,7 +8329,7 @@ void re_insertion(int p, bool &accept_relocate_trip, double &temperature, int &t
 		}
 	}*/
 
-	Insertions insertions_p[55000];
+	Insertions insertions_p[95000];
 	int curr_number_insertions_p = 0; 
 
 	vector<int> filtered_vehicles_p;
@@ -9181,7 +9181,7 @@ void re_insertion_nn(int p, bool &accept_relocate_trip, double &temperature, int
 	//	filtered_vehicles.clear();
 	bool infeasible_insertion = false;
 	
-	Insertions insertions_p[55000];
+	Insertions insertions_p[95000];
 	int curr_number_insertions_p = 0;
 	vector<int> filtered_vehicles_p;
 	//if (best_empty_vehicle != -1)
