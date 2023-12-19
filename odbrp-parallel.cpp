@@ -943,7 +943,7 @@ void input_requests(char *filename) {
 				}
 			}
 			//printf("\n");
-			cout<<endl;
+			//cout<<endl;
 			getline(str, data, ',');
 			getline(str, data, ',');
 
@@ -5303,9 +5303,9 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 
 						cout<<"5.872"<<endl;
 						cheapest_destination(p, best_v, best_pos_origin, min_increase_length, sel_destination, pos_destination, repeated_station, flexibilize_arrival_time, infeasible_insertion);
-					
-						//cout<<"pos origin: "<<best_pos_origin<<" "<<endl;
-						//cout<<"pos dest: "<<pos_destination<<" sd: "<<sel_destination<<" "<<endl;
+						//cout<<"out 5.872"<<endl;
+						cout<<"pos origin: "<<best_pos_origin<<" "<<endl;
+						cout<<"pos dest: "<<pos_destination<<" sd: "<<sel_destination<<" "<<endl;
 						
 						if ((sel_destination != -1)) { 
 
@@ -5333,7 +5333,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 						if ((sel_destination != -1) && (no_violation_capacity) && (accept_delay_trip) && (not infeasible_insertion)) {
 							
 							
-							//cout<<"7hierxx"<<endl;
+							cout<<"7hierxx"<<endl;
 							no_feasible_insertion2 = false;
 							not_feasible_insertion = false;
 
@@ -5393,7 +5393,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 
 							}
 
-
+							cout<<"outxhier"<<endl;
 							//update further arrival, departure times, and slack times
 							for (int i=pos_destination+1; i<=number_stops[best_v];i++) {
 								old_arr_time = arrival_time_stop[best_v][i];
@@ -5425,7 +5425,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 							//updates solution cost
 							
 							//<<"heere5"<<endl;
-							//<<"stations "<<best_pos_origin<<" "<<sel_destination<<endl;
+							//cout<<"stations "<<best_pos_origin<<" "<<sel_destination<<endl;
 							user_ride_time[p] = 0;
 							//total_user_ride_time += user_ride_time[p];
 							//<<"total_user_ride_time: "<<total_user_ride_time<<endl;
@@ -5485,7 +5485,8 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 									}
 								}*/
 							if ((infeasible_insertion) && (accept_infeasible_insertion)) {
-
+								
+								cout<<"72hierxx"<<endl;	
 								/*cout<<"7hierxx"<<endl;
 								cout<<"vehicle infinsertion "<<best_v<<endl;
 								for (int i=0; i<=number_stops[best_v];i++) {
