@@ -799,7 +799,7 @@ void input_requests(char *filename) {
 			//<<data.end()<<endl;
 			s = 0;
 			stops_origin[p][s] = stoi(data);
-			cout<<stops_origin[p][s]<<" ";
+			//cout<<stops_origin[p][s]<<" ";
 			//printf("%d ", stops_origin[p][s]);
 			s = s + 1;
 			//stringstream str2(data);
@@ -812,7 +812,7 @@ void input_requests(char *filename) {
 					data.erase(remove(data.begin(), data.end(), '"'), data.end());
 					data.erase(remove(data.begin(), data.end(), ']'), data.end());
 					stops_origin[p][s] = stoi(stop);
-					cout<<stops_origin[p][s]<<" ";
+					//cout<<stops_origin[p][s]<<" ";
 					//printf("%d ", stops_origin[p][s]);
 					s = s + 1;
 					if (leave_loop)
@@ -834,7 +834,7 @@ void input_requests(char *filename) {
 			//<<data.end()<<endl;
 			s = 0;
 			walking_time_stops_origin[p][s] = stoi(data);
-			cout<<walking_time_stops_origin[p][s]<<" ";
+			//cout<<walking_time_stops_origin[p][s]<<" ";
 			//printf("%d ", stops_origin[p][s]);
 			s = s + 1;
 			//stringstream str2(data);
@@ -847,7 +847,7 @@ void input_requests(char *filename) {
 					data.erase(remove(data.begin(), data.end(), '"'), data.end());
 					data.erase(remove(data.begin(), data.end(), ']'), data.end());
 					walking_time_stops_origin[p][s] = stoi(stop);
-					cout<<walking_time_stops_origin[p][s]<<" ";
+					//cout<<walking_time_stops_origin[p][s]<<" ";
 					//printf("%d ", stops_origin[p][s]);
 					s = s + 1;
 					if (leave_loop)
@@ -858,7 +858,7 @@ void input_requests(char *filename) {
 			
 			getline(str, data, ',');
 			latest_arrival[p] = stoi(data);
-			cout<<latest_arrival[p]<<" ";
+			//cout<<latest_arrival[p]<<" ";
 
 
 			//<<latest_arrival[p]<<endl;
@@ -887,7 +887,7 @@ void input_requests(char *filename) {
 			//<<data.end()<<endl;
 			s = 0;
 			stops_destination[p][s] = stoi(data);
-			cout<<stops_destination[p][s]<<" ";
+			//cout<<stops_destination[p][s]<<" ";
 			//printf("%d ", stops_destination[p][s]);
 			s = s + 1;
 			//stringstream str2(data);
@@ -900,7 +900,7 @@ void input_requests(char *filename) {
 					data.erase(remove(data.begin(), data.end(), '"'), data.end());
 					data.erase(remove(data.begin(), data.end(), ']'), data.end());
 					stops_destination[p][s] = stoi(stop);
-					cout<<stops_destination[p][s]<<" ";
+					//cout<<stops_destination[p][s]<<" ";
 					//printf("%d ", stops_destination[p][s]);
 					s = s + 1;
 					if (leave_loop)
@@ -922,7 +922,7 @@ void input_requests(char *filename) {
 			//<<data.end()<<endl;
 			s = 0;
 			walking_time_stops_destination[p][s] = stoi(data);
-			cout<<walking_time_stops_destination[p][s]<<" ";
+			//cout<<walking_time_stops_destination[p][s]<<" ";
 			//printf("%d ", stops_destination[p][s]);
 			s = s + 1;
 			//stringstream str2(data);
@@ -935,7 +935,7 @@ void input_requests(char *filename) {
 					data.erase(remove(data.begin(), data.end(), '"'), data.end());
 					data.erase(remove(data.begin(), data.end(), ']'), data.end());
 					walking_time_stops_destination[p][s] = stoi(stop);
-					cout<<walking_time_stops_destination[p][s]<<" ";
+					//cout<<walking_time_stops_destination[p][s]<<" ";
 					//printf("%d ", stops_destination[p][s]);
 					s = s + 1;
 					if (leave_loop)
@@ -1098,7 +1098,7 @@ void cheapest_origin2_p(int p, int v, int &min_increase_length, int &sel_origin,
 			 	//<<"capacity: "<<new_capacity<<endl;
 			 	
 			 	//cout<<"testX "<<endl;
-			 	cout<<"co: "<<new_slack_time<<" "<<pick_up_time<<" "<<latest_departure_passenger<<" "<<new_capacity<<" "<<departure_time_from_home<<" "<<current_time;
+			 	//cout<<"co: "<<new_slack_time<<" "<<pick_up_time<<" "<<latest_departure_passenger<<" "<<new_capacity<<" "<<departure_time_from_home<<" "<<current_time;
 			 	if ((new_slack_time >= 0) && (pick_up_time <= latest_departure_passenger) && (new_capacity >= 0) && (departure_time_from_home >= current_time)) {
 
 
@@ -4258,9 +4258,10 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 		v = -1;
 	}
 	//cout<<"hier 5.2"<<endl;
-	cout<<"filtered size: "<<filtered_vehicles_p.size()<<endl;
+	//cout<<"filtered size: "<<filtered_vehicles_p.size()<<endl;
 	for (int itv = 0; itv < filtered_vehicles_p.size(); itv++) {
 
+		v = filtered_vehicles_p[itv];
 		if (not_feasible_insertion) {
 			//cout<<"yhiery";
 			//emptyfirst = true;
@@ -4279,6 +4280,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 			repeated_station = false;
 			flexibilize_lat_departure_time = false;
 			sel_origin = -1;
+			cout<<"veh: "<<v<<endl;
 			cheapest_origin(p, v, min_increase_length, sel_origin, pos_origin, repeated_station, flexibilize_lat_departure_time, best_departure_time_from_home);
 			cout<<"insidere here"<<endl;
 			if (sel_origin != -1) {
@@ -4929,7 +4931,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 				filtered_vehicles.clear();*/
 			vector<int> filtered_vehicles_p;
 			filter_vehicles2(p, cluster_id, filtered_vehicles_p);
-			cout<<"filtered size: "<<filtered_vehicles_p.size()<<endl;
+			//cout<<"filtered size: "<<filtered_vehicles_p.size()<<endl;
 			//cout<<"filtered_vehicles SIZE "<<filtered_vehicles_p.size()<<" "<<served_passengers<<endl;
 			bool not_feasible_insertion = true;
 			int iterations = 0;
@@ -11597,7 +11599,7 @@ int main(int argc, char **argv) {
 
 			//maybe sort passengers_to_be_inserted in a way to avoid collision between clusters???
 
-			cout<<"hier4"<<endl;
+			//cout<<"hier4"<<endl;
 			while (passengers_to_be_inserted.size() > 0) {
 
 				//cout<<"10size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
@@ -11631,20 +11633,20 @@ int main(int argc, char **argv) {
 								for (int c=0;c<number_clusters;c++) {
 
 									//if (vehicle_assigned[nxt_p] == -1) {
-									cout<<"hier5.75"<<endl;
-									cout<<nxt_p<<" "<<px<<endl;
+									//cout<<"hier5.75"<<endl;
+									//cout<<nxt_p<<" "<<px<<endl;
 									if (avl_cluster[px] == c) { //this way, each passenger has access only to one cluster at a time
 										if (sort_clusters[nxt_p][it_cl_inser[nxt_p]].idx_cluster == c) {
-											cout<<"hier5.85"<<endl;
+											//cout<<"hier5.85"<<endl;
 											cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, sort_clusters[nxt_p][it_cl_inser[nxt_p]].idx_cluster);
-											cout<<"hier5.95"<<endl;
+											//cout<<"hier5.95"<<endl;
 											//cout<<"cir A"<<endl;
 										}
 									}
 									//}
 
 								}
-								cout<<"hier5.9"<<endl;
+								//cout<<"hier5.9"<<endl;
 								if (vehicle_assigned[nxt_p] == -1) {
 									//cout<<"1nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 									it_cl_inser[nxt_p]++;
@@ -11751,7 +11753,7 @@ int main(int argc, char **argv) {
 
 		//<<"xxxheeerexxxx1"<<endl;
 		//cout<<"actual passenger "<<k<<endl;
-		cout<<"hier7"<<endl;
+		//cout<<"hier7"<<endl;
 		if (k > total_number_vehicles + 10) {
 		
 
