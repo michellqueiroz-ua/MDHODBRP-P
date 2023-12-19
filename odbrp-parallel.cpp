@@ -11355,10 +11355,11 @@ int main(int argc, char **argv) {
 	int next_depot = 0;
 
 	//initialize route of vehicles at the depot
+	cout<<"staart "<<number_type_vehicles<<" "<<endl;
 	for (int j=0; j<number_type_vehicles; j++) {
 		next_depot = 0;
 		for (int i=0; i<number_vehicles[j];i++) {
-			
+			cout<<number_vehicles[j]<<endl;
 			//total_capacity[i] = maxcapacity;
 			//max_capacity[i] = maxcapacity;
 
