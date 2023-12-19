@@ -988,7 +988,7 @@ void serve_passenger_third_party_vehicle(int p){
 	//considering that the average to arrive at selected location is around 5 minutes, compute possible arrival time
 }
 
-void cheapest_origin2_p(int p, int v, int &min_increase_length, int &sel_origin, int &pos_origin, bool &repeated_station, bool &flexibilize_lat_departure_time, Insertions (&insertions_p) [55000], int& curr_number_insertions_p){
+void cheapest_origin2_p(int p, int v, int &min_increase_length, int &sel_origin, int &pos_origin, bool &repeated_station, bool &flexibilize_lat_departure_time, Insertions (&insertions_p) [95000], int& curr_number_insertions_p){
 
 	int remove_edge;
 	int s_origin, increase;
