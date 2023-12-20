@@ -264,6 +264,24 @@ void update_URT(int v){
 	}
 }
 
+void print_v_vehicle(int v){
+
+	//for (int v = 0; v<total_number_vehicles;v++) {
+		for (int i=0; i<=number_stops[v];i++) {
+			cout<<stops[v][i]<<" ("<<number_passengers_action[v][i]<<") "<<" [";
+			for (int j=0; j<number_passengers_action[v][i];j++) 
+				cout<<action_passengers[v][i][j]<<" ";
+			cout<<"]  ";
+
+			cout<<"{"<<arrival_time_stop[v][i]<<"} ";
+			cout<<"{"<<departure_time_stop[v][i]<<"} ";
+			cout<<"|"<<slack_time[v][i]<<"|  ";
+			cout<<"*"<<free_capacity[v][i]<<"*"<<endl;
+		}
+		cout<<endl<<endl;
+	//}
+}
+
 bool solution_validation(int p, int v){
 
 
@@ -10534,23 +10552,7 @@ void relocate_passenger(int p, double &temperature, int &type_move, int cluster_
 	//cout<<"H"<<endl;
 }
 
-void print_v_vehicle(int v){
 
-	//for (int v = 0; v<total_number_vehicles;v++) {
-		for (int i=0; i<=number_stops[v];i++) {
-			cout<<stops[v][i]<<" ("<<number_passengers_action[v][i]<<") "<<" [";
-			for (int j=0; j<number_passengers_action[v][i];j++) 
-				cout<<action_passengers[v][i][j]<<" ";
-			cout<<"]  ";
-
-			cout<<"{"<<arrival_time_stop[v][i]<<"} ";
-			cout<<"{"<<departure_time_stop[v][i]<<"} ";
-			cout<<"|"<<slack_time[v][i]<<"|  ";
-			cout<<"*"<<free_capacity[v][i]<<"*"<<endl;
-		}
-		cout<<endl<<endl;
-	//}
-}
 
 void check_valid_user_ride_times() {
 	extra_travel_time = 0;
