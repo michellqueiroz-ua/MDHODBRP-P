@@ -1128,6 +1128,9 @@ void cheapest_origin2_p(int p, int v, int &min_increase_length, int &sel_origin,
 					}
 
 					curr_number_insertions_p++;
+					if (curr_number_insertions_p > 94995) {
+						return;
+					}
 					//cout<<"inset: "<<curr_number_insertions_p<<endl;
 
 					//<<s_origin<<" "<<stops[v][i]<<" "<<stops[v][i+1]<<" "<<new_arrival_nxt_stop<<" "<<old_arrival_nxt_stop<<" "<<new_slack_time<<endl;
