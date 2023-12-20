@@ -5337,12 +5337,14 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 							
 							
 							cout<<"7hierxx"<<endl;
+							print_v_vehicle(best_v);
 							no_feasible_insertion2 = false;
 							not_feasible_insertion = false;
 
 							passengers_departure_time_from_home[p] = insertions_p[next_replace].passengers_departure_time_from_home;
 							
 							if (not repeated_station) {
+								cout<<"hier NR"<<endl;
 								//oneoftwo++;
 								stops[best_v].insert(stops[best_v].begin() + pos_destination, sel_destination);
 								number_stops[best_v]++;
@@ -5363,8 +5365,8 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 
 								prv_capacity = free_capacity[best_v][pos_destination-1];
 								free_capacity[best_v].insert(free_capacity[best_v].begin() + pos_destination, prv_capacity+1);
-							} else {
-
+							} else {	
+								cout<<"hier REP"<<endl;
 								//update passenger performing actions on the stops
 								//action_passengers[best_v][pos_destination].insert(action_passengers[best_v][pos_destination].begin(), p);
 								if (number_passengers_action[best_v][pos_destination] < action_passengers[best_v][pos_destination].size()) {
