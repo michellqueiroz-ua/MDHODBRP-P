@@ -163,7 +163,7 @@ int total_deadheading_times, total_shared_times;
 int current_time;
 clock_t start_time;
 clock_t begin_time;
-double elapsed;
+double elapsedf;
 int max_flex_delay;
 
 /*listS saved_arrival_time, saved_departure_time, saved_slack_time;
@@ -10825,7 +10825,8 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 	temperature = init_temperature;
 	no_improvement = 0; 
 	count = 0;
-	start_time = get_wall_time();
+	//start_time = get_wall_time();
+	start_time = std::clock();
 	
 	vector<int> vehicles_still_depot;
 
@@ -10953,7 +10954,8 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 			//cout<<"hier15"<<endl;
 			
 			if (++count > 25) {
-				elapsed = get_wall_time() - start_time;
+				//elapsed = get_wall_time() - start_time;
+				elapsed = (double)(std::clock() - start_time)/(double)(CLOCKS_PER_SEC);
 				//cout<<"ELAPSED TIME "<<elapsed<<endl;
 				if (elapsed > comp_time) {
 					return;
@@ -11238,15 +11240,16 @@ void compute_mean_distances_request_partitions(int p){
 
 int main(int argc, char **argv) {
 
-
+	string requests_filename;
 	comp_time = 0.05;
-	start_time = get_wall_time();
-	begin_time = get_wall_time();
+	start_time = std::clock();
+	//begin_time = get_wall_time();
 	total_number_vehicles = 0;
 	for (int i=1; i<argc; i++)
   	{
 		if (strcmp(argv[i], "--filename_requests") == 0) {
 			input_requests(argv[i+1]);
+			requests_filename = argv[i+1];;
 			cout<<"x"<<total_requests<<" ";
 		} else if (strcmp(argv[i], "--filename_travel_time") == 0) {
 			//cout<<"HIER"<<endl;
@@ -11653,6 +11656,7 @@ int main(int argc, char **argv) {
 										if (sort_clusters[nxt_p][it_cl_inser[nxt_p]].idx_cluster == c) {
 											cout<<"hier5.85"<<endl;
 											cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, sort_clusters[nxt_p][it_cl_inser[nxt_p]].idx_cluster);
+											check_valid_user_ride_times();
 											cout<<"hier5.95"<<endl;
 											//cout<<"cir A"<<endl;
 										}
@@ -11778,6 +11782,7 @@ int main(int argc, char **argv) {
 				//cout<<"passenger: p"<<k<<endl;
 				//cout<<"cluster c"<<c<<endl;
 				simulated_annealing(k, c);
+				check_valid_user_ride_times();
 				//cout<<"passenger: p"<<k<<endl;
 				//cout<<"cluster c"<<c<<endl;
 				return_best_solution(c);
@@ -11914,8 +11919,8 @@ int main(int argc, char **argv) {
 	//cout<<total_user_ride_time<<" "<<best_total_user_ride_time<<endl;
 	//cout<<served_passengers<<"  "<<total_user_ride_time<<endl;
 	//cout<<total_user_ride_time<<endl;
-	cout << served_passengers << " " << served_passengers_3party << " " << total_served_passengers << " " << passengers_per_kilometer << " " << average_extra_travel_time << " " << average_travel_time_ratio << " " << total_deadheading_times << " " << total_shared_times << " " << total_user_ride_time << " " << best_total_user_ride_time << " ";
-	
+	cout << requests_filename << " " << served_passengers << " " << served_passengers_3party << " " << total_served_passengers << " " << passengers_per_kilometer << " " << average_extra_travel_time << " " << average_travel_time_ratio << " " << total_deadheading_times << " " << total_shared_times << " " << total_user_ride_time << " " << best_total_user_ride_time << " ";
+	cout<<" ";
 	//previously already commented
 	/*cout << "served passengers ODB " << served_passengers << endl;
 	cout << "served passengers 3rd party: " << served_passengers_3party << endl;*/
@@ -11924,6 +11929,7 @@ int main(int argc, char **argv) {
 	cout << "BEST solution cost (total user ride time): "<<best_total_user_ride_time<<endl<<endl;*/
 	//compute_idle_times();
 
-	elapsed = get_wall_time() - begin_time;	 
-	cout << elapsed << endl;
+	//elapsed = get_wall_time() - begin_time;
+	elapsedf = (double)(std::clock() - start_time)/(double)(CLOCKS_PER_SEC);		 
+	cout << elapsedf << endl;
 }
