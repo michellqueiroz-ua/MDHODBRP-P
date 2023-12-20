@@ -5044,6 +5044,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 					while ((no_feasible_insertion2) && (iterations2 < curr_number_insertions_p)) {
 
 						cout<<"5.87"<<endl;
+						print_v_vehicle(best_v);
 						cout<<"remain inser"<<remaining_insertions<<endl;
 						//<<best_v<<"\n";
 						int prv_arr_time_at_origin, prv_dpt_time_at_origin;
@@ -5753,6 +5754,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 						//cout<<"hieer"<<endl;
 						cout<<"outxhier4"<<endl;
 						update_URT(best_v);
+						print_v_vehicle(best_v);
 						cout<<"outxhier5"<<endl;
 
 						/*cout<<"URT UPDATED "<<endl;
