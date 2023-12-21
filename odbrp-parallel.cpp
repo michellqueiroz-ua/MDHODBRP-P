@@ -142,7 +142,7 @@ listV cluster;
 int number_type_vehicles;
 int number_depots;
 
-matrixSS travel_time;
+static matrixSS travel_time;
 listS stations_ids;
 //map<int, int> station_id_map;
 
@@ -11304,7 +11304,7 @@ int main(int argc, char **argv) {
 		} else if (strcmp(argv[i], "--filename_travel_time") == 0) {
 			//cout<<"HIER"<<endl;
 			input_travel_time(argv[i+1]);
-			for(int i=0;i<5828;i++) {
+			/*for(int i=0;i<5828;i++) {
 			for (int j=0;j<5828;j++) {
 				if (travel_time[i][j] == 0) {
 					cout<<i<<" "<<j<<endl;
@@ -11312,7 +11312,7 @@ int main(int argc, char **argv) {
 		  		}
 		  	}
 		  }
-		   cout <<endl;
+		   cout <<endl;*/
 		} else if (strcmp(argv[i], "--output_file") == 0) {
 			//cout<<"ttm"<<endl;
 			//input_travel_time(argv[i+1]);
@@ -11375,7 +11375,7 @@ int main(int argc, char **argv) {
 
 	}
 
-	cout<<"AFTER"<<endl;
+	/*cout<<"AFTER"<<endl;
 	for(int i=0;i<5828;i++) {
 	for (int j=0;j<5828;j++) {
 		if (travel_time[i][j] == 0) {
@@ -11384,7 +11384,7 @@ int main(int argc, char **argv) {
   		}
   	}
   }
-   cout <<endl;
+   cout <<endl;*/
 	srand(seed);
 	//cout<<total_requests<<" "<<seed<<" ";
 
