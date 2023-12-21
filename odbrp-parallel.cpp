@@ -22,7 +22,7 @@ using namespace std;
 
 #define maxvehicles 3000
 #define maxpassengers 3000
-#define maxstations 8000
+#define maxstations 6000
 #define maxtotalcapacity 40
 #define maxtypevehicles 40
 #define maxnumberdepots 10
@@ -659,7 +659,7 @@ void input_travel_time(char *filename) {
 	fstream file (filename, ios::in);
 	string line, data;
 	int s, stop1, stop2;
-	cout<<filename<<endl;
+	//cout<<filename<<endl;
 	if(file.is_open())
 	{
 		/*getline(file, line);
@@ -11289,6 +11289,7 @@ void compute_mean_distances_request_partitions(int p){
 
 int main(int argc, char **argv) {
 
+	string output_filename;
 	string requests_filename;
 	comp_time = 0.05;
 	start_time = std::clock();
@@ -11303,6 +11304,20 @@ int main(int argc, char **argv) {
 		} else if (strcmp(argv[i], "--filename_travel_time") == 0) {
 			//cout<<"HIER"<<endl;
 			input_travel_time(argv[i+1]);
+			for(int i=0;i<5828;i++) {
+			for (int j=0;j<5828;j++) {
+				if (travel_time[i][j] == 0) {
+					cout<<i<<" "<<j<<endl;
+		  			//cout << travel_time[i][j] <<',';
+		  		}
+		  	}
+		  }
+		   cout <<endl;
+		} else if (strcmp(argv[i], "--output_file") == 0) {
+			//cout<<"ttm"<<endl;
+			//input_travel_time(argv[i+1]);
+			output_filename = argv[i+1];
+			//cout<<"leave ttm"<<endl;
 		} else if (strcmp(argv[i], "--depot") == 0) {
 			for (int j = 0; j < number_depots; j++) {
 				i++;
@@ -11360,6 +11375,16 @@ int main(int argc, char **argv) {
 
 	}
 
+	cout<<"AFTER"<<endl;
+	for(int i=0;i<5828;i++) {
+	for (int j=0;j<5828;j++) {
+		if (travel_time[i][j] == 0) {
+			cout<<i<<" "<<j<<endl;
+  			//cout << travel_time[i][j] <<',';
+  		}
+  	}
+  }
+   cout <<endl;
 	srand(seed);
 	//cout<<total_requests<<" "<<seed<<" ";
 
@@ -11598,7 +11623,7 @@ int main(int argc, char **argv) {
 		cout<<endl;
 	}*/
 
-	for(int i=0;i<5828;i++) {
+	/*for(int i=0;i<5828;i++) {
 	for (int j=0;j<5828;j++) {
 		if (travel_time[i][j] == 0) {
 			cout<<i<<" "<<j<<endl;
@@ -11606,7 +11631,7 @@ int main(int argc, char **argv) {
   		}
   	}
   }
-   cout <<endl;
+   cout <<endl;*/
 
 	int test_total_distance = 0;
 	for (int j=0; j<total_number_vehicles; j++) {
