@@ -10906,9 +10906,9 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 				if (vehicle_assigned[relocate_p] != -1) {
 					if (passengers_departure_time_from_home[relocate_p] >= current_time) {
 						//cout<<"relocate passenger SA: "<<relocate_p<<endl;
-						cout<<"hier11"<<endl;
+						//cout<<"hier11"<<endl;
 						relocate_passenger(relocate_p, temperature, type_move, cluster_id);
-						cout<<"hier12"<<endl;
+						//cout<<"hier12"<<endl;
 						if (relocate_p < 0){
 							//cout<<"MEGAERRORRRR1"<<endl;
 							return;
