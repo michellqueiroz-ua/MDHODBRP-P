@@ -11684,7 +11684,7 @@ int main(int argc, char **argv) {
 				k++;
 			}
 
-			int it_cl_inser[20000];
+			int it_cl_inser[22000];
 
 			int num_threads_for = passengers_to_be_inserted.size();
 			if (num_threads_for > number_clusters) {
@@ -11855,10 +11855,10 @@ int main(int argc, char **argv) {
 
 		//<<"xxxheeerexxxx1"<<endl;
 		//cout<<"actual passenger "<<k<<endl;
-		cout<<"hier7"<<endl;
+		//cout<<"hier7"<<endl;
 		if (k > total_number_vehicles + 10) {
 		
-
+			/*
 			//omp_set_num_threads(2);	
 			#pragma omp parallel for num_threads(number_clusters)
 			for (int c=0; c<number_clusters; c++) {
@@ -11872,7 +11872,7 @@ int main(int argc, char **argv) {
 				return_best_solution(c);
 				//cout<<"out heere"<<endl;
 
-			}
+			}*/
 
 
 			
