@@ -712,7 +712,7 @@ void input_travel_time(char *filename) {
 		for (int i=0;i<stop1;i++){
 			stations_ids[i] = i;
 		}
-		cout<<"count: "<<count<<endl;
+		//cout<<"count: "<<count<<endl;
 		int count2 =1;
 
 		//cout<<"xx: "<<travel_time[2950][214]<<" "<<travel_time[214][2716]<<" "<<travel_time[2950][2716]<<endl;
@@ -4732,6 +4732,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 						//updates solution cost
 						//<<"heere3"<<endl;
 						user_ride_time[p] = travel_time[sel_origin][sel_destination];
+						cout<<"user ride time: "<<travel_time[sel_origin][sel_destination]<<" "<<sel_origin<<" "<<sel_destination<<endl;
 						//total_user_ride_time += user_ride_time[p];
 						//<<"total_user_ride_time: "<<total_user_ride_time<<endl;
 
