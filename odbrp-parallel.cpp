@@ -717,7 +717,7 @@ void input_travel_time(char *filename) {
 		//cout<<"count: "<<count<<endl;
 		int count2 =1;
 
-		for(int i=0;i<stop1;i++) {
+		/*for(int i=0;i<stop1;i++) {
 			for (int j=0;j<stop1;j++) {
 				if (travel_time[i][j] == 0) {
 					cout<<i<<" "<<j<<endl;
@@ -725,7 +725,7 @@ void input_travel_time(char *filename) {
 		  		}
 		  	}
 		   cout <<endl;
-		}
+		}*/
 
 		//cout<<"xx: "<<travel_time[2950][214]<<" "<<travel_time[214][2716]<<" "<<travel_time[2950][2716]<<endl;
 
@@ -11597,6 +11597,15 @@ int main(int argc, char **argv) {
 		}
 		cout<<endl;
 	}*/
+
+	for(int i=0;i<5828;i++) {
+	for (int j=0;j<5828;j++) {
+		if (travel_time[i][j] == 0) {
+			cout<<i<<" "<<j<<endl;
+  			//cout << travel_time[i][j] <<',';
+  		}
+  	}
+   cout <<endl;
 
 	int test_total_distance = 0;
 	for (int j=0; j<total_number_vehicles; j++) {
