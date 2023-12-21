@@ -683,6 +683,7 @@ void input_travel_time(char *filename) {
 
 
 		stop1 = 0;
+		getline(file, line);
 		
 		while(getline(file, line))
 		{
