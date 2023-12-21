@@ -10572,7 +10572,7 @@ void check_valid_user_ride_times() {
 						if (action_passengers[v][k][l] == save_p){
 							current_user_ride_time = arrival_time_stop[v][k] - departure_time_stop[v][i];
 							new_total_user_ride_time += current_user_ride_time;
-							if (current_user_ride_time != user_ride_time[save_p]) {
+							if ((current_user_ride_time != user_ride_time[save_p]) or (current_user_ride_time == 0)) {
 								
 								extra_travel_time += current_user_ride_time - direct_travel_time[save_p];
 								//difference = current_user_ride_time -  user_ride_time[save_p];
