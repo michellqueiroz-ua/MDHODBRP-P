@@ -10792,49 +10792,58 @@ void check_last_position_route() {
 
  		//cout<<"v: "<<v<<endl;
  		if (number_stops[v] > 2) {
-	 		if (departure_time_stop[v][number_stops[v]-1] < current_time) {
-	 			//means that already passed
-	 			//cout<<"passed!!!"; 
-	 			int prev_stop = stops[v][number_stops[v]-1];
-	 			int pos_origin = number_stops[v];
-	 			stops[v].insert(stops[v].begin() + pos_origin, prev_stop);
-					
-				//update passenger performing actions on the stops
-				action_passengers[v].insert(action_passengers[v].begin() + pos_origin, vector<int>());
-				action_passengers[v][pos_origin].resize(10);
-				action_passengers[v][pos_origin][0] = -1;
-
-				//action_passengers[v][pos_origin].insert(action_passengers[v][pos_origin].begin(), -1);
-				number_passengers_action[v].insert(number_passengers_action[v].begin() + pos_origin, 0);
-
-				int prev_time = departure_time_stop[v][number_stops[v]-1];
-				arrival_time_stop[v].insert(arrival_time_stop[v].begin() + pos_origin, prev_time);
-				departure_time_stop[v].insert(departure_time_stop[v].begin() + pos_origin, current_time+1);
-				slack_time[v].insert(slack_time[v].begin() + pos_origin, 86400);
-
-				int prv_capacity = free_capacity[v][pos_origin-1];
-				free_capacity[v].insert(free_capacity[v].begin() + pos_origin, prv_capacity);
-				
-				
-
-				number_stops[v]++;
-				//updating the arrival time at depot + some waiting time of 10 min
-				arrival_time_stop[v][number_stops[v]] = arrival_time_stop[v][number_stops[v]-1] + travel_time[stops[v][number_stops[v]-1]][stops[v][number_stops[v]]]+600;
-				departure_time_stop[v][number_stops[v]] = arrival_time_stop[v][number_stops[v]] + 1;
-			
-
-				/*for (int i=0; i<=number_stops[v];i++) {
-				cout<<stops[v][i]<<" ("<<number_passengers_action[v][i]<<") "<<" [";
-					for (int j=0; j<number_passengers_action[v][i];j++) 
-						cout<<action_passengers[v][i][j]<<" ";
-					cout<<"]  ";
-
-					cout<<"{"<<arrival_time_stop[v][i]<<"} ";
-					cout<<"{"<<departure_time_stop[v][i]<<"} ";
-					cout<<"|"<<slack_time[v][i]<<"|  ";
-					cout<<"*"<<free_capacity[v][i]<<"*"<<endl;
+ 			
+ 			if (free_capacity[v][number_stops[v]-1] == free_capacity[v][0]) {
+ 				if (departure_time_stop[v][number_stops[v]-1] < current_time) {
+ 					//arrival_time_stop[v][number_stops[v]] = arrival_time_stop[v][number_stops[v]-1] + travel_time[stops[v][number_stops[v]-1]][stops[v][number_stops[v]]]+600;
+					departure_time_stop[v][number_stops[v]-1] = current_time+10;
 				}
-				cout<<endl<<endl;*/
+
+ 			} else {
+		 		if (departure_time_stop[v][number_stops[v]-1] < current_time) {
+		 			//means that already passed
+		 			//cout<<"passed!!!"; 
+		 			int prev_stop = stops[v][number_stops[v]-1];
+		 			int pos_origin = number_stops[v];
+		 			stops[v].insert(stops[v].begin() + pos_origin, prev_stop);
+						
+					//update passenger performing actions on the stops
+					action_passengers[v].insert(action_passengers[v].begin() + pos_origin, vector<int>());
+					action_passengers[v][pos_origin].resize(10);
+					action_passengers[v][pos_origin][0] = -1;
+
+					//action_passengers[v][pos_origin].insert(action_passengers[v][pos_origin].begin(), -1);
+					number_passengers_action[v].insert(number_passengers_action[v].begin() + pos_origin, 0);
+
+					int prev_time = departure_time_stop[v][number_stops[v]-1];
+					arrival_time_stop[v].insert(arrival_time_stop[v].begin() + pos_origin, prev_time);
+					departure_time_stop[v].insert(departure_time_stop[v].begin() + pos_origin, current_time+1);
+					slack_time[v].insert(slack_time[v].begin() + pos_origin, 86400);
+
+					int prv_capacity = free_capacity[v][pos_origin-1];
+					free_capacity[v].insert(free_capacity[v].begin() + pos_origin, prv_capacity);
+					
+					
+
+					number_stops[v]++;
+					//updating the arrival time at depot + some waiting time of 10 min
+					arrival_time_stop[v][number_stops[v]] = arrival_time_stop[v][number_stops[v]-1] + travel_time[stops[v][number_stops[v]-1]][stops[v][number_stops[v]]]+600;
+					departure_time_stop[v][number_stops[v]] = arrival_time_stop[v][number_stops[v]] + 1;
+				
+
+					/*for (int i=0; i<=number_stops[v];i++) {
+					cout<<stops[v][i]<<" ("<<number_passengers_action[v][i]<<") "<<" [";
+						for (int j=0; j<number_passengers_action[v][i];j++) 
+							cout<<action_passengers[v][i][j]<<" ";
+						cout<<"]  ";
+
+						cout<<"{"<<arrival_time_stop[v][i]<<"} ";
+						cout<<"{"<<departure_time_stop[v][i]<<"} ";
+						cout<<"|"<<slack_time[v][i]<<"|  ";
+						cout<<"*"<<free_capacity[v][i]<<"*"<<endl;
+					}
+					cout<<endl<<endl;*/
+		 		}
 	 		}
  		}
 
