@@ -717,6 +717,11 @@ void input_travel_time(char *filename) {
 		//cout<<"count: "<<count<<endl;
 		int count2 =1;
 
+		for(int i=0;i<stop1;i++) {
+			for (int j=0;j<stop1;j++)
+		  		cout << travel_time[i][j] <<',';
+		    cout << '\n';
+
 		//cout<<"xx: "<<travel_time[2950][214]<<" "<<travel_time[214][2716]<<" "<<travel_time[2950][2716]<<endl;
 
 		/*while (count2 > 0) {
@@ -11263,7 +11268,7 @@ void compute_mean_distances_request_partitions(int p){
 
 		}
 
-		cout<<"cluster size: "<<clusters[i].size()<<endl;
+		//cout<<"cluster size: "<<clusters[i].size()<<endl;
 		sort_clusters[p][i].mean_dist = (int)sum_dist_clusters/clusters[i].size();
 
 	}
@@ -11413,11 +11418,11 @@ int main(int argc, char **argv) {
 	int next_depot = 0;
 
 	//initialize route of vehicles at the depot
-	cout<<"staart "<<number_type_vehicles<<" "<<endl;
+	//cout<<"staart "<<number_type_vehicles<<" "<<endl;
 	for (int j=0; j<number_type_vehicles; j++) {
 		next_depot = 0;
 		for (int i=0; i<number_vehicles[j];i++) {
-			cout<<number_vehicles[j]<<endl;
+			//cout<<number_vehicles[j]<<endl;
 			//total_capacity[i] = maxcapacity;
 			//max_capacity[i] = maxcapacity;
 
@@ -11569,7 +11574,7 @@ int main(int argc, char **argv) {
 	/*for (int i = 0; i < total_number_vehicles; i++){
 		stops[i][0] = rand() % 5588; 
 	}*/
-	stops[centroids[3]][0] = rand() % 5588; 	
+	//stops[centroids[3]][0] = rand() % 5588; 	
 	//cout<<"hier1"<<endl;
 	k_medoids(number_clusters, epochs);
 
