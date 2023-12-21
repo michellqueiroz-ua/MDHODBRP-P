@@ -717,10 +717,10 @@ void input_travel_time(char *filename) {
 		//cout<<"count: "<<count<<endl;
 		int count2 =1;
 
-		for(int i=0;i<stop1;i++) {
+		for(int i=0;i<stop1;i++) 
 			for (int j=0;j<stop1;j++)
 		  		cout << travel_time[i][j] <<',';
-		    cout << '\n';
+		   cout << '\n';
 
 		//cout<<"xx: "<<travel_time[2950][214]<<" "<<travel_time[214][2716]<<" "<<travel_time[2950][2716]<<endl;
 
