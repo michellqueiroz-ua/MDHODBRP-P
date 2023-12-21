@@ -684,7 +684,7 @@ void input_travel_time(char *filename) {
 
 		stop1 = 0;
 		getline(file, line);
-		
+
 		while(getline(file, line))
 		{
 
@@ -4734,7 +4734,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 						//updates solution cost
 						//<<"heere3"<<endl;
 						user_ride_time[p] = travel_time[sel_origin][sel_destination];
-						cout<<"user ride time: "<<travel_time[sel_origin][sel_destination]<<" "<<sel_origin<<" "<<sel_destination<<endl;
+						//cout<<"user ride time: "<<travel_time[sel_origin][sel_destination]<<" "<<sel_origin<<" "<<sel_destination<<endl;
 						//total_user_ride_time += user_ride_time[p];
 						//<<"total_user_ride_time: "<<total_user_ride_time<<endl;
 
@@ -5124,7 +5124,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 						//cout<<"passed saved"<<endl;
 						//cout<<best_pos_origin<<" "<<number_stops[best_v]<<" "<<arrival_time_stop[best_v].size()<<" "<<departure_time_stop[best_v].size()<<" "<<slack_time[best_v].size()<<" "<<number_passengers_action[best_v].size()<<" "<<free_capacity[best_v].size()<<endl<<endl;
 						if (not best_repeated_station) {
-							cout<<"heere5.8.2.2.2"<<endl;
+							//cout<<"heere5.8.2.2.2"<<endl;
 							//cout<<"non rep"<<endl;
 							//oneoftwo++;
 							//<<best_sel_origin<<" "<<best_min_increase_length<<endl;
@@ -5137,7 +5137,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 								cout<<endl;
 							}
 							cout<<endl<<endl;*/
-							cout<<"best v"<<best_v<<endl;
+							//cout<<"best v"<<best_v<<endl;
 							stops[best_v].insert(stops[best_v].begin() + best_pos_origin, best_sel_origin);
 							number_stops[best_v]++;
 
@@ -11154,7 +11154,7 @@ void k_medoids(int k, int epochs){
 			int loc_vehicle = stops[j][current_position[j]];
 			//cout<<"comp: "<<stops[centroids[i]][current_position[centroids[i]]]<<" "<<stops[j][current_position[j]]<<endl;
 			dist = travel_time[loc_centroid][loc_vehicle];
-			cout<<"dist:"<<dist<<endl;
+			//cout<<"dist:"<<dist<<endl;
 			if (dist < mindDist[j]) {
 				mindDist[j] = dist;
 				cluster[j] = clusterId;
