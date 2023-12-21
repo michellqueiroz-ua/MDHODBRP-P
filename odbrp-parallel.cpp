@@ -695,11 +695,11 @@ void input_travel_time(char *filename) {
 			//count = 0;
 			while(getline(str, data, ',')) {
 				//cout<<data<<" ";
-				//if (count > 0) {
-				travel_time[stop1][stop2] = stoi(data);
-				travel_time[stop2][stop1] = stoi(data);
-				stop2 = stop2 + 1;
-				//} 
+				if (count > 0) {
+					travel_time[stop1][stop2] = stoi(data);
+					travel_time[stop2][stop1] = stoi(data);
+					stop2 = stop2 + 1;
+				} 
 				count++;
 			}
 			//cout<<endl<<endl;
