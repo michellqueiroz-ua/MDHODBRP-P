@@ -683,7 +683,7 @@ void input_travel_time(char *filename) {
 
 
 		stop1 = 0;
-		int count;
+		
 		while(getline(file, line))
 		{
 
@@ -693,6 +693,7 @@ void input_travel_time(char *filename) {
 			//<<data<<endl;
 			
 			//count = 0;
+			int count = 0;
 			while(getline(str, data, ',')) {
 				//cout<<data<<" ";
 				if (count > 0) {
@@ -10792,7 +10793,7 @@ void check_last_position_route() {
 
  		//cout<<"v: "<<v<<endl;
  		if (number_stops[v] > 2) {
- 			
+
  			if (free_capacity[v][number_stops[v]-1] == free_capacity[v][0]) {
  				if (departure_time_stop[v][number_stops[v]-1] < current_time) {
  					//arrival_time_stop[v][number_stops[v]] = arrival_time_stop[v][number_stops[v]-1] + travel_time[stops[v][number_stops[v]-1]][stops[v][number_stops[v]]]+600;
