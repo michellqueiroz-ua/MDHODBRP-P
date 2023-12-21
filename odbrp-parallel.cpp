@@ -11605,6 +11605,7 @@ int main(int argc, char **argv) {
   			//cout << travel_time[i][j] <<',';
   		}
   	}
+  }
    cout <<endl;
 
 	int test_total_distance = 0;
