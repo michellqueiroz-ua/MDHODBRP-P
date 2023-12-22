@@ -209,7 +209,7 @@ struct SortClusters {
 
 };
 
-static SortClusters sort_clusters[maxpassengers + 1][number_clusters + 1];
+static SortClusters sort_clusters[20000 + 1][number_clusters + 1];
 
 bool comparator( Insertions a, Insertions b){
 	if(a.increase_length < b.increase_length)
@@ -11240,7 +11240,7 @@ void build_clusters(){
 
 void compute_mean_distances_request_partitions(int p){
 
-	//cout<<"p:"<<p<<endl;
+	cout<<"p:"<<p<<endl;
 	int expected_position, k;
 	int sum_dist_clusters;
 	for (int i=0;i<number_clusters;i++){
