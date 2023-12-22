@@ -11505,7 +11505,7 @@ int main(int argc, char **argv) {
 
 	cout<<"x4 "<<total_requests<<" ";
 
-	for (int i=0;i<total_requests;i++){
+	for (int i=0;i<maxpassengers;i++){
 		for (int j=0;j<maxvehicles;j++){
 			blocked_vehicles[i][j] = 0;
 		}
