@@ -4267,7 +4267,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 
 	if (filtered_vehicles_p.size()>0)
 		filtered_vehicles_p.clear();
-	//cout<<"hier 5.1"<<endl;
+	cout<<"hier 5.1"<<endl;
 	int vv;
 	for (int i = 0; i < clusters[cluster_id].size(); i++) {
 		vv = clusters[cluster_id][i];
@@ -4623,9 +4623,9 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 				repeated_station = false;
 				flexibilize_lat_departure_time = true;
 				sel_origin = -1;
-				//cout<<"hier 5.55"<<endl;
+				cout<<"hier 5.55"<<endl;
 				cheapest_origin(p, v, min_increase_length, sel_origin, pos_origin, repeated_station, flexibilize_lat_departure_time, best_departure_time_from_home);
-				//cout<<"hier 5.57"<<endl;
+				cout<<"hier 5.57"<<endl;
 				if (sel_origin != -1) {
 
 					if (not repeated_station) {
@@ -4774,6 +4774,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 								}
 							}
 
+						cout<<"hierx56"<<endl;
 						//checks for next empty vehicle
 						/*while (free_capacity[empty_vehicle].size() > 2) { 
 							empty_vehicle++;
@@ -11750,10 +11751,10 @@ int main(int argc, char **argv) {
 									//cout<<nxt_p<<" "<<px<<endl;
 									if (avl_cluster[px] == c) { //this way, each passenger has access only to one cluster at a time
 										if (sort_clusters[nxt_p][it_cl_inser[nxt_p]].idx_cluster == c) {
-											//cout<<"hier5.85"<<endl;
+											cout<<"hier5.85"<<endl;
 											cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, sort_clusters[nxt_p][it_cl_inser[nxt_p]].idx_cluster);
 											//check_valid_user_ride_times();
-											//cout<<"hier5.95"<<endl;
+											cout<<"hier5.95"<<endl;
 											//cout<<"cir A"<<endl;
 										}
 									}
@@ -11800,7 +11801,7 @@ int main(int argc, char **argv) {
 
 					}
 					//cout<<"hier6.9"<<endl;
-					cout<<endl;
+					//cout<<endl;
 
 					for (int c=number_clusters-1; c>=0;c--) {
 						if (del_passenger[c] == 1) {
