@@ -11430,6 +11430,8 @@ int main(int argc, char **argv) {
    	for (int i = 0; i < number_depots; i++) {
    		number_vehicles_at_depot[i] = 0;
    	}
+
+   	cout<<"x2 "<<total_requests<<" ";
    	
 	current_time = time_stamp[0]; //time stamp of the first passenger is the current time on the system
 	int current_passenger;
@@ -11443,6 +11445,8 @@ int main(int argc, char **argv) {
 		assigned_to_3rd_party[i] = 0;
 		//already_opened_vehicle_for_it[i] = 0;
 	}
+
+	cout<<"x3 "<<total_requests<<" ";
 
 	int k = 0;
 
@@ -11498,12 +11502,15 @@ int main(int argc, char **argv) {
 
 		}
 	}
+
+	cout<<"x4 "<<total_requests<<" ";
+
 	for (int i=0;i<total_requests;i++){
 		for (int j=0;j<maxvehicles;j++){
 			blocked_vehicles[i][j] = 0;
 		}
 	}
-	cout<<"x2"<<total_requests<<" ";
+	cout<<"x5 "<<total_requests<<endl;
 	//total_capacity[number_vehicles] = maxcapacity;
 	//max_capacity[number_vehicles] = maxcapacity;
 
