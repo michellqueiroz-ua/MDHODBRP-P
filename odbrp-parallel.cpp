@@ -11667,7 +11667,7 @@ int main(int argc, char **argv) {
 	//cout<<"hier3"<<endl;'
 	//41400
 	//k = total_requests+1;
-	cout<<k<<" "<<current_time<<endl;
+	cout<<k<<" "<<total_requests<<" "<<current_time<<endl;
 	while((k < total_requests) or (current_time < 41400)) {
 	//while(current_time < 28800) {
 		//cout<<"k2: "<<k<<endl;
