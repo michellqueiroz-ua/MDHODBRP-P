@@ -11673,6 +11673,21 @@ int main(int argc, char **argv) {
 	}
 
 
+	for (int p = 0; p < total_requests; p++) {
+		for (int j=0;j<number_stops_origin[p];j++) {
+			int s_origin = stops_origin[p][j];
+			for (int k=0;k<number_stops_destination[p];k++) {
+				int s_destination = stops_destination[p][k];
+
+				if (s_origin == s_destination) {
+					cout<<"error "<<endl;
+					cout<<p<<" "<<s_origin<<" "<<s_destination<<endl;
+				}
+
+			}
+
+		}
+	}
 
 	//cout<<"hier3"<<endl;'
 	//41400
@@ -11732,10 +11747,12 @@ int main(int argc, char **argv) {
 							//cout<<"12size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 							int nxt_p = passengers_to_be_inserted[px];
 							//cout<<"nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
+							
+							cout<<"nxp: "<<nxt_p<<endl;
 							it_cl_inser[nxt_p] = 0;
 							//cout<<"13size: "<<passengers_to_be_inserted.size()<<" "<<nxt_p<<"ends"<<endl;
 							
-							//cout<<"nxp: "<<nxt_p<<endl;
+							
 							compute_mean_distances_request_partitions(nxt_p);
 							
 							bool continue_this_passenger = true;
