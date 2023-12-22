@@ -11640,7 +11640,7 @@ int main(int argc, char **argv) {
 		int loc_vehicle = stops[j][current_position[j]];
 		test_total_distance += travel_time[loc_centroid][loc_vehicle];
 	}
-	cout<<test_total_distance<<endl;
+	cout<<"total dist: "<<test_total_distance<<endl;
 
 	vector<int> passengers_to_be_inserted;
 
@@ -11667,6 +11667,7 @@ int main(int argc, char **argv) {
 	//cout<<"hier3"<<endl;'
 	//41400
 	//k = total_requests+1;
+	cout<<k<<" "<<current_time<<endl;
 	while((k < total_requests) or (current_time < 41400)) {
 	//while(current_time < 28800) {
 		//cout<<"k2: "<<k<<endl;
