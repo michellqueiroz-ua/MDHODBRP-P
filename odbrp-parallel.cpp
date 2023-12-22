@@ -113,7 +113,8 @@ vector<vector<int> > free_capacity(maxvehicles + 1);
 vector<vector<vector<int> > > action_passengers(maxvehicles + 1); //store which passengers are performing an action at given vehicle and given stop
 vector<vector<int> > passengers_at_vehicle(maxvehicles + 1);
 
-static int total_requests, seed;
+static int total_requests;
+static int seed;
 
 vector<int> centroids;
 map<int, int> centroids_keys;
@@ -11374,7 +11375,7 @@ int main(int argc, char **argv) {
 		}
 
 	}
-
+	cout<<"x1"<<total_requests<<" ";
 	/*cout<<"AFTER"<<endl;
 	for(int i=0;i<5828;i++) {
 	for (int j=0;j<5828;j++) {
@@ -11502,6 +11503,7 @@ int main(int argc, char **argv) {
 			blocked_vehicles[i][j] = 0;
 		}
 	}
+	cout<<"x2"<<total_requests<<" ";
 	//total_capacity[number_vehicles] = maxcapacity;
 	//max_capacity[number_vehicles] = maxcapacity;
 
