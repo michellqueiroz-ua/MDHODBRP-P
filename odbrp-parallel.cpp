@@ -49,10 +49,10 @@ typedef int matrixVRC[maxvehicles + 1][25000][80];
 
 //int n;
 
-double comp_time;
+static double comp_time;
 
-double rejected_request_rate;
-int served_requests_so_far, rejected_requests_so_far;
+static double rejected_request_rate;
+static int served_requests_so_far, rejected_requests_so_far;
 
 //intermidate solution saving
 vector<vector<int> > intm_stops(maxvehicles + 1);
@@ -62,10 +62,10 @@ vector<vector<int> > intm_arrival_time_stop(maxvehicles + 1);
 vector<vector<int> > intm_departure_time_stop(maxvehicles + 1);
 vector<vector<int> > intm_slack_time(maxvehicles + 1); 
 vector<vector<int> > intm_free_capacity(maxvehicles + 1);
-listP intm_user_ride_time;
-listV intm_number_stops;
-listP intm_vehicle_assigned, intm_assigned_to_3rd_party;
-listP intm_passengers_departure_time_from_home;
+static listP intm_user_ride_time;
+static listV intm_number_stops;
+static listP intm_vehicle_assigned, intm_assigned_to_3rd_party;
+static listP intm_passengers_departure_time_from_home;
 //int intm_served_passengers;
 //int intm_served_passengers_3party;
 //int intm_total_served_passengers;
@@ -79,32 +79,32 @@ vector<vector<int> > best_arrival_time_stop(maxvehicles + 1);
 vector<vector<int> > best_departure_time_stop(maxvehicles + 1);
 vector<vector<int> > best_slack_time(maxvehicles + 1); 
 vector<vector<int> > best_free_capacity(maxvehicles + 1);
-listP best_user_ride_time;
-listV best_number_stops;
-listV next_free_position_passenger;
-listP best_vehicle_assigned, best_assigned_to_3rd_party;
-listP best_passengers_departure_time_from_home;
+static listP best_user_ride_time;
+static listV best_number_stops;
+static listV next_free_position_passenger;
+static listP best_vehicle_assigned, best_assigned_to_3rd_party;
+static listP best_passengers_departure_time_from_home;
 
 //int best_total_served_passengers;
 //int best_served_passengers_3party;
 //int best_served_passengers;
 
-listP vehicle_assigned;
-listP user_ride_time, assigned_to_3rd_party;
+static listP vehicle_assigned;
+static listP user_ride_time, assigned_to_3rd_party;
 
 
-int served_passengers;
-int served_passengers_3party;
-int total_served_passengers;
-int total_user_ride_time;
+static int served_passengers;
+static int served_passengers_3party;
+static int total_served_passengers;
+static int total_user_ride_time;
 //int oldy_urt;
-int best_total_user_ride_time;
+static int best_total_user_ride_time;
 
-matrixPV blocked_vehicles;
+static matrixPV blocked_vehicles;
 
 //matrixVP stopi, stopj; //route of the bus: stopj is visited after stopi)
 vector<vector<int> > stops(maxvehicles + 1);
-listV number_stops; //number of stops vehicle v is performing for each route
+static listV number_stops; //number of stops vehicle v is performing for each route
 vector<vector<int> > number_passengers_action(maxvehicles + 1); //store number of passengers performing an action at given vehicle and given stop
 vector<vector<int> > arrival_time_stop(maxvehicles + 1); //stores which time the stop was/will be visited by the bus
 vector<vector<int> > departure_time_stop(maxvehicles + 1);
@@ -113,58 +113,58 @@ vector<vector<int> > free_capacity(maxvehicles + 1);
 vector<vector<vector<int> > > action_passengers(maxvehicles + 1); //store which passengers are performing an action at given vehicle and given stop
 vector<vector<int> > passengers_at_vehicle(maxvehicles + 1);
 
-int total_requests, seed;
+static int total_requests, seed;
 
 vector<int> centroids;
-map<int, int> centroids_keys;
+static map<int, int> centroids_keys;
 vector<vector<int> > clusters(number_clusters);
 vector<int> best_tot_cluster_ride_time(number_clusters);
 
 vector<int> passengers_on_hold;
 
-matrixVC arrival_time_stop_temp, departure_time_stop_temp;
-listP user_ride_time_temp, user_ride_time_start, affected_passengers;
+static matrixVC arrival_time_stop_temp, departure_time_stop_temp;
+static listP user_ride_time_temp, user_ride_time_start, affected_passengers;
 
-listV vehicle_type;
-listV current_position;
-listD depot;
-listT number_vehicles;
-listD number_vehicles_at_depot;
-listD number_empty_vehicles_at_depot;
-matrixDV vehicles_at_depot;
-int total_number_vehicles;
-listT maxcapacity;
-listV vehicle_located_at_depot;
+static listV vehicle_type;
+static listV current_position;
+static listD depot;
+static listT number_vehicles;
+static listD number_vehicles_at_depot;
+static listD number_empty_vehicles_at_depot;
+static matrixDV vehicles_at_depot;
+static int total_number_vehicles;
+static listT maxcapacity;
+static listV vehicle_located_at_depot;
 
-listV mindDist;
-listV cluster;
+static listV mindDist;
+static listV cluster;
 
-int number_type_vehicles;
-int number_depots;
+static int number_type_vehicles;
+static int number_depots;
 
 static matrixSS travel_time;
-listS stations_ids;
+static listS stations_ids;
 //map<int, int> station_id_map;
 
 //information about the requests
-listP time_stamp, earliest_departure, latest_departure, latest_arrival, direct_travel_time;
-listP delay;
-listP passengers_departure_time_from_home;
-matrixPS stops_origin, stops_destination;
-matrixPS walking_time_stops_origin, walking_time_stops_destination;
-listP number_stops_origin, number_stops_destination;
-listP already_opened_vehicle_for_it;
-int number_stations;
+static listP time_stamp, earliest_departure, latest_departure, latest_arrival, direct_travel_time;
+static listP delay;
+static listP passengers_departure_time_from_home;
+static matrixPS stops_origin, stops_destination;
+static matrixPS walking_time_stops_origin, walking_time_stops_destination;
+static listP number_stops_origin, number_stops_destination;
+static listP already_opened_vehicle_for_it;
+static int number_stations;
 
-int extra_travel_time;
-double passengers_per_kilometer, average_travel_time_ratio;
-int total_deadheading_times, total_shared_times;
+static int extra_travel_time;
+static double passengers_per_kilometer, average_travel_time_ratio;
+static int total_deadheading_times, total_shared_times;
 
-int current_time;
-clock_t start_time;
-clock_t begin_time;
-double elapsedf;
-int max_flex_delay;
+static int current_time;
+static clock_t start_time;
+static clock_t begin_time;
+static double elapsedf;
+static int max_flex_delay;
 
 /*listS saved_arrival_time, saved_departure_time, saved_slack_time;
 int saved_number_stops_v;
@@ -173,18 +173,18 @@ vector<int> saved_number_passengers_action2;
 vector<std::vector<int> > saved_action_passengers2;
 std::vector<int> saved_arrival_time2, saved_departure_time2, saved_slack_time2, saved_free_capacity2;*/
 
-matrixVS saved_arrival_time, saved_departure_time, saved_slack_time;
-listV saved_number_stops_v;
-matrixVR saved_stops2, saved_number_passengers_action2;
-matrixVR saved_arrival_time2, saved_departure_time2, saved_slack_time2, saved_free_capacity2;
-matrixVRC saved_action_passengers2;
+static matrixVS saved_arrival_time, saved_departure_time, saved_slack_time;
+static listV saved_number_stops_v;
+static matrixVR saved_stops2, saved_number_passengers_action2;
+static matrixVR saved_arrival_time2, saved_departure_time2, saved_slack_time2, saved_free_capacity2;
+static matrixVRC saved_action_passengers2;
 
-listTd ODB_booking_fee, ODB_base_fare, ODB_per_minute_charge, ODB_km_charge, ODB_surge_multiplier, ODB_minimum_fare;
-double tp_booking_fee, tp_base_fare, tp_per_minute_charge, tp_km_charge, tp_surge_multiplier, tp_minimum_fare;
+static listTd ODB_booking_fee, ODB_base_fare, ODB_per_minute_charge, ODB_km_charge, ODB_surge_multiplier, ODB_minimum_fare;
+static double tp_booking_fee, tp_base_fare, tp_per_minute_charge, tp_km_charge, tp_surge_multiplier, tp_minimum_fare;
 
 //SA parameters
-double init_temperature, lambda;
-int maxnrep, ntrials, increase_rep;
+static double init_temperature, lambda;
+static int maxnrep, ntrials, increase_rep;
 
 struct Insertions {
 
@@ -208,7 +208,7 @@ struct SortClusters {
 
 };
 
-SortClusters sort_clusters[maxpassengers + 1][number_clusters + 1];
+static SortClusters sort_clusters[maxpassengers + 1][number_clusters + 1];
 
 bool comparator( Insertions a, Insertions b){
 	if(a.increase_length < b.increase_length)
@@ -4744,7 +4744,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 						//updates solution cost
 						//<<"heere3"<<endl;
 						user_ride_time[p] = travel_time[sel_origin][sel_destination];
-						//cout<<"user ride time: "<<travel_time[sel_origin][sel_destination]<<" "<<sel_origin<<" "<<sel_destination<<endl;
+						cout<<"user ride time: "<<travel_time[sel_origin][sel_destination]<<" "<<sel_origin<<" "<<sel_destination<<endl;
 						//total_user_ride_time += user_ride_time[p];
 						//<<"total_user_ride_time: "<<total_user_ride_time<<endl;
 
@@ -11304,7 +11304,7 @@ int main(int argc, char **argv) {
 		} else if (strcmp(argv[i], "--filename_travel_time") == 0) {
 			//cout<<"HIER"<<endl;
 			input_travel_time(argv[i+1]);
-			for(int i=0;i<5828;i++) {
+			/*for(int i=0;i<5828;i++) {
 			for (int j=0;j<5828;j++) {
 				if (travel_time[i][j] == 0) {
 					cout<<i<<" "<<j<<endl;
@@ -11312,7 +11312,7 @@ int main(int argc, char **argv) {
 		  		}
 		  	}
 		  }
-		   cout <<endl;
+		   cout <<endl;*/
 		} else if (strcmp(argv[i], "--output_file") == 0) {
 			//cout<<"ttm"<<endl;
 			//input_travel_time(argv[i+1]);
@@ -11664,7 +11664,9 @@ int main(int argc, char **argv) {
 
 
 
-	//cout<<"hier3"<<endl;
+	//cout<<"hier3"<<endl;'
+	//41400
+	//k = total_requests+1;
 	while((k < total_requests) or (current_time < 41400)) {
 	//while(current_time < 28800) {
 		//cout<<"k2: "<<k<<endl;
