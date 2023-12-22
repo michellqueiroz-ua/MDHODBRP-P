@@ -4267,7 +4267,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 
 	if (filtered_vehicles_p.size()>0)
 		filtered_vehicles_p.clear();
-	cout<<"hier 5.1"<<endl;
+	//cout<<"hier 5.1"<<endl;
 	int vv;
 	for (int i = 0; i < clusters[cluster_id].size(); i++) {
 		vv = clusters[cluster_id][i];
@@ -4623,9 +4623,9 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 				repeated_station = false;
 				flexibilize_lat_departure_time = true;
 				sel_origin = -1;
-				cout<<"hier 5.55"<<endl;
+				//cout<<"hier 5.55"<<endl;
 				cheapest_origin(p, v, min_increase_length, sel_origin, pos_origin, repeated_station, flexibilize_lat_departure_time, best_departure_time_from_home);
-				cout<<"hier 5.57"<<endl;
+				//cout<<"hier 5.57"<<endl;
 				if (sel_origin != -1) {
 
 					if (not repeated_station) {
@@ -4745,7 +4745,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 						//updates solution cost
 						//<<"heere3"<<endl;
 						user_ride_time[p] = travel_time[sel_origin][sel_destination];
-						cout<<"user ride time: "<<travel_time[sel_origin][sel_destination]<<" "<<sel_origin<<" "<<sel_destination<<endl;
+						//cout<<"user ride time: "<<travel_time[sel_origin][sel_destination]<<" "<<sel_origin<<" "<<sel_destination<<endl;
 						//total_user_ride_time += user_ride_time[p];
 						//<<"total_user_ride_time: "<<total_user_ride_time<<endl;
 
@@ -4774,7 +4774,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 								}
 							}
 
-						cout<<"hierx56"<<endl;
+						//cout<<"hierx56"<<endl;
 						//checks for next empty vehicle
 						/*while (free_capacity[empty_vehicle].size() > 2) { 
 							empty_vehicle++;
@@ -11772,7 +11772,7 @@ int main(int argc, char **argv) {
 									del_passenger[px] = 1;
 									served_requests_so_far++;
 								}
-								//cout<<"hier6"<<endl;
+								cout<<"hier6"<<endl;
 								//cout<<"3nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 								if (continue_this_passenger) {
 									if (it_cl_inser[nxt_p] == 2) {
@@ -11786,21 +11786,21 @@ int main(int argc, char **argv) {
 										del_passenger[px] = 1;
 									}
 								}
-								//cout<<"4nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
+								cout<<"4nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 								
 							}
 
 						}
 					}
 					//end parallelized for
-					//cout<<"hier6.8"<<endl;
+					cout<<"hier6.8"<<endl;
 					for (int c=0;c<number_clusters;c++) {
 						avl_cluster[c] = avl_cluster[c]+1;
 						avl_cluster[c] = avl_cluster[c]%number_clusters;
 						//cout<<avl_cluster[c]<<" ";
 
 					}
-					//cout<<"hier6.9"<<endl;
+					cout<<"hier6.9"<<endl;
 					//cout<<endl;
 
 					for (int c=number_clusters-1; c>=0;c--) {
@@ -11814,15 +11814,15 @@ int main(int argc, char **argv) {
 						}
 					}
 					//cout<<"hier6.93"<<endl;
-					//cout<<"6size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
+					cout<<"6size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 					num_threads_for = passengers_to_be_inserted.size();
 					if (num_threads_for > number_clusters) {
 						//cout<<"7size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 						num_threads_for = number_clusters;
 						//cout<<"8size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 					}
-					//cout<<"9size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
-					//cout<<"hier6.95"<<endl;
+					cout<<"9size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
+					cout<<"hier6.95"<<endl;
 
 					
 				}
@@ -11898,7 +11898,7 @@ int main(int argc, char **argv) {
 
 
 		current_time++;
-		//cout<<current_time<<endl;
+		cout<<"cct: "<<current_time<<endl;
 		update_current_position();
 		//cout<<"out current pos"<<endl;
 		
