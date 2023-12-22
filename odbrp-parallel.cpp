@@ -116,7 +116,7 @@ vector<vector<int> > passengers_at_vehicle(maxvehicles + 1);
 static int total_requests, seed;
 
 vector<int> centroids;
-static map<int, int> centroids_keys;
+map<int, int> centroids_keys;
 vector<vector<int> > clusters(number_clusters);
 vector<int> best_tot_cluster_ride_time(number_clusters);
 
