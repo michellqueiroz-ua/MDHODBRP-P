@@ -11680,9 +11680,9 @@ int main(int argc, char **argv) {
 	cout<<k<<" "<<total_requests<<" "<<current_time<<endl;
 	while((k < total_requests) or (current_time < 41400)) {
 	//while(current_time < 28800) {
-		//cout<<"k2: "<<k<<endl;
+		cout<<"k2: "<<k<<endl;
 		check_last_position_route();
-		//cout<<"hier3.1"<<endl;
+		cout<<"hier3.1"<<endl;
 		//if (k > num_iterations_to_start_reassign)
 		//	reassign_vehicles_to_another_depot();
 		
@@ -11753,7 +11753,7 @@ int main(int argc, char **argv) {
 										if (sort_clusters[nxt_p][it_cl_inser[nxt_p]].idx_cluster == c) {
 											cout<<"hier5.85"<<endl;
 											cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, sort_clusters[nxt_p][it_cl_inser[nxt_p]].idx_cluster);
-											//check_valid_user_ride_times();
+											check_valid_user_ride_times();
 											cout<<"hier5.95"<<endl;
 											//cout<<"cir A"<<endl;
 										}
