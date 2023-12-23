@@ -5007,7 +5007,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 					}
 					cout<<endl;*/
 
-					//cout<<v<<" "<<free_capacity[v]<<endl;
+					cout<<"veh: "<<v<<" "<<filtered_vehicles_p.size()<<endl;
 					min_increase_length = INT_MAX;
 					repeated_station = false;
 					//(free_capacity[v] > 0) && 
