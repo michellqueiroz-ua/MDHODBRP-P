@@ -5060,7 +5060,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 
 						cout<<"5.87"<<endl;
 							
-						//cout<<"remain inser"<<remaining_insertions<<" "<<iterations2<<" "<<curr_number_insertions_p<<endl;
+						cout<<"remain inser "<<remaining_insertions<<" "<<iterations2<<" "<<curr_number_insertions_p<<endl;
 						//<<best_v<<"\n";
 						int prv_arr_time_at_origin, prv_dpt_time_at_origin;
 
@@ -5068,6 +5068,8 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 						//	selected_insertion = rand() % rclsize;
 						//else
 						selected_insertion = rand() % remaining_insertions;
+
+						cout<<"sel inser "<<selected_insertion<<" "<<next_replaceendl;
 
 						//cout<<"selec inser"<<selected_insertion<<endl;
 						//print_v_vehicle(insertions_p[selected_insertion].v);
@@ -5139,7 +5141,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 						//cout<<"passed saved"<<endl;
 						//cout<<best_pos_origin<<" "<<number_stops[best_v]<<" "<<arrival_time_stop[best_v].size()<<" "<<departure_time_stop[best_v].size()<<" "<<slack_time[best_v].size()<<" "<<number_passengers_action[best_v].size()<<" "<<free_capacity[best_v].size()<<endl<<endl;
 						if (not best_repeated_station) {
-							//cout<<"heere5.8.2.2.2"<<endl;
+							cout<<"heere5.8.2.2.2"<<endl;
 							//cout<<"non rep"<<endl;
 							//oneoftwo++;
 							//<<best_sel_origin<<" "<<best_min_increase_length<<endl;
@@ -5152,7 +5154,8 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 								cout<<endl;
 							}
 							cout<<endl<<endl;*/
-							//cout<<"best v"<<best_v<<endl;
+							cout<<"best v "<<best_v<<endl;
+							cout<<best_pos_origin<<" "<<best_sel_origin<<endl;
 							stops[best_v].insert(stops[best_v].begin() + best_pos_origin, best_sel_origin);
 							number_stops[best_v]++;
 
