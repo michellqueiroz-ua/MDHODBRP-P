@@ -29,11 +29,11 @@ using namespace std;
 #define number_clusters 1
 
 typedef int listP[20000 + 1];
-typedef int matrixVP[maxvehicles + 1][maxpassengers + 1];
-typedef int matrixPV[maxpassengers + 1][maxvehicles + 1];
+//typedef int matrixVP[maxvehicles + 1][maxpassengers + 1];
+typedef int matrixPV[20000 + 1][maxvehicles + 1];
 typedef int matrixVS[maxvehicles + 1][maxstations + 1];
 typedef int matrixVC[maxvehicles + 1][maxtotalcapacity*2];
-typedef int matrixPS[maxpassengers + 1][maxstations + 1];
+typedef int matrixPS[20000 + 1][maxstations + 1];
 typedef int matrixSS[maxstations + 1][maxstations + 1];
 typedef int matrixDV[maxnumberdepots + 1][maxvehicles + 1];
 typedef int listS[maxstations + 1];
@@ -42,8 +42,8 @@ typedef int listD[maxnumberdepots + 1];
 typedef int listT[maxtypevehicles + 1];
 typedef double listTd[maxtypevehicles + 1];
 typedef int matrixVSS[maxvehicles + 1][maxstations + 1][maxstations + 1]; //to know which stations are visited after another (in case its necessary)
-typedef int matrixVPP[maxvehicles + 1][maxpassengers + 1][maxtotalcapacity + 1];
-typedef int matrixPW[maxpassengers + 1][number_clusters + 1];
+//typedef int matrixVPP[maxvehicles + 1][maxpassengers + 1][maxtotalcapacity + 1];
+//typedef int matrixPW[maxpassengers + 1][number_clusters + 1];
 typedef int matrixVR[maxvehicles + 1][25000];
 typedef int matrixVRC[maxvehicles + 1][25000][80];
 
@@ -11536,7 +11536,7 @@ int main(int argc, char **argv) {
 
 	cout<<"x4 "<<total_requests<<" ";
 
-	for (int i=0;i<maxpassengers;i++){
+	for (int i=0;i<total_requests;i++){
 		for (int j=0;j<maxvehicles;j++){
 			blocked_vehicles[i][j] = 0;
 		}
