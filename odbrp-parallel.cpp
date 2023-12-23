@@ -11798,7 +11798,7 @@ int main(int argc, char **argv) {
 									//cout<<nxt_p<<" "<<px<<endl;
 									if (avl_cluster[px] == c) { //this way, each passenger has access only to one cluster at a time
 										if (sort_clusters[nxt_p][it_cl_inser[nxt_p]].idx_cluster == c) {
-											//cout<<"hier5.85"<<endl;
+											cout<<"hier5.85"<<endl;
 											/*if (total_number_vehicles == 0){
 												cout<<"megra error hier before"<<endl;
 											}*/
@@ -11806,7 +11806,7 @@ int main(int argc, char **argv) {
 											/*if (total_number_vehicles == 0){
 												cout<<"megra error hier after"<<endl;
 											}*/
-											//cout<<"hier5.852"<<endl;
+											cout<<"hier5.852"<<endl;
 											check_valid_user_ride_times();
 											//cout<<"hier5.95"<<endl;
 											//cout<<"cir A"<<endl;
@@ -11922,7 +11922,7 @@ int main(int argc, char **argv) {
 
 		//<<"xxxheeerexxxx1"<<endl;
 		//cout<<"actual passenger "<<k<<endl;
-		//cout<<"hier7"<<endl;
+		cout<<"hier7"<<endl;
 		if (k > total_number_vehicles + 10) {
 		
 			
