@@ -11769,7 +11769,13 @@ int main(int argc, char **argv) {
 									if (avl_cluster[px] == c) { //this way, each passenger has access only to one cluster at a time
 										if (sort_clusters[nxt_p][it_cl_inser[nxt_p]].idx_cluster == c) {
 											cout<<"hier5.85"<<endl;
+											if (total_number_vehicles == 0){
+												cout<<"megra error hier before"<<endl;
+											}
 											cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, sort_clusters[nxt_p][it_cl_inser[nxt_p]].idx_cluster);
+											if (total_number_vehicles == 0){
+												cout<<"megra error hier after"<<endl;
+											}
 											cout<<"hier5.852"<<endl;
 											check_valid_user_ride_times();
 											cout<<"hier5.95"<<endl;
