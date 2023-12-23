@@ -5059,7 +5059,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 					while ((no_feasible_insertion2) && (iterations2 < curr_number_insertions_p)) {
 
 						//cout<<"5.87"<<endl;
-						
+							
 						cout<<"remain inser"<<remaining_insertions<<" "<<iterations2<<" "<<curr_number_insertions_p<<endl;
 						//<<best_v<<"\n";
 						int prv_arr_time_at_origin, prv_dpt_time_at_origin;
@@ -5087,6 +5087,9 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 						insertions_p[selected_insertion].v = insertions_p[next_replace].v;
 						insertions_p[selected_insertion].repeated_station = insertions_p[next_replace].repeated_station;
 						next_replace--;
+						if (total_number_vehicles == 0){
+							cout<<"megra error hier 1"<<endl;
+						}
 
 						/*for (int i=0; i<=number_stops[best_v];i++) {
 							cout<<stops[best_v][i]<<" ("<<number_passengers_action[best_v][i]<<") "<<" [";
@@ -5261,6 +5264,9 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 								//served_passengers++;
 								}
 							}*/
+							if (total_number_vehicles == 0){
+								cout<<"megra error hier 2"<<endl;
+							}	
 							
 						} else {
 							//cout<<"heere5.88888"<<endl;
@@ -5296,6 +5302,10 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 							saved_slack_time[best_v][i] = slack_time[best_v][i];
 							slack_time[best_v][i] -= arrival_time_stop[best_v][i] - saved_arrival_time[best_v][i];
 							//<<slack_time[best_v][i]<<endl<<arrival_time_stop[best_v][i]<<endl<<saved_arrival_time[i]<<endl<<endl;
+						}
+
+						if (total_number_vehicles == 0){
+							cout<<"megra error hier 3"<<endl;
 						}
 						
 						
@@ -5368,6 +5378,10 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 						//	cout<<"delay "<<delay[p]<<endl;
 						cout<<"xxx :"<<sel_destination<<" "<<no_violation_capacity<<" "<<accept_delay_trip<<" "<<infeasible_insertion<<" "<<endl;
 						//}
+
+						if (total_number_vehicles == 0){
+							cout<<"megra error hier 4"<<endl;
+						}
 						if ((sel_destination != -1) && (no_violation_capacity) && (accept_delay_trip) && (not infeasible_insertion)) {
 							
 							
@@ -5721,6 +5735,10 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 									}
 								}
 
+								if (total_number_vehicles == 0){
+									cout<<"megra error hier 5"<<endl;
+								}
+
 								if (number_passengers_action[best_v][best_pos_origin] == 1) {
 									
 									stops[best_v].erase(stops[best_v].begin() + best_pos_origin);
@@ -5742,6 +5760,10 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 
 									free_capacity[best_v].erase(free_capacity[best_v].begin() + best_pos_origin);
 
+									if (total_number_vehicles == 0){
+										cout<<"megra error hier 6"<<endl;
+									}
+
 
 								} else {
 
@@ -5762,6 +5784,10 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 										slack_time[best_v][i] = saved_slack_time[best_v][i];
 									}
 
+									if (total_number_vehicles == 0){
+										cout<<"megra error hier 7"<<endl;
+									}
+
 								}
 							}
 
@@ -5770,6 +5796,10 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 						//cout<<"hieer"<<endl;
 						//cout<<"outxhier4"<<endl;
 						update_URT(best_v);
+
+						if (total_number_vehicles == 0){
+							cout<<"megra error hier 8"<<endl;
+						}
 						//print_v_vehicle(best_v);
 						//cout<<"outxhier5"<<endl;
 
