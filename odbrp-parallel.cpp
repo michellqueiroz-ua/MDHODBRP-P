@@ -5007,7 +5007,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 					}
 					cout<<endl;*/
 
-					cout<<"veh: "<<v<<"iterations: "<<iterations<<" "<<filtered_vehicles_p.size()<<endl;
+					cout<<"veh: "<<v<<"iterations: "<<iterations<<" "<<filtered_vehicles_p.size()<<" "<<total_number_vehicles<<endl;
 					min_increase_length = INT_MAX;
 					repeated_station = false;
 					//(free_capacity[v] > 0) && 
@@ -5805,14 +5805,14 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 						//cout<<endl;
 					} //end while
 				} else {
-					iterations = total_number_vehicles;
+					iterations = filtered_vehicles_p.size()+1;
 				}
 				//cout<<"hier 5.85"<<endl;
 				///cout<<"heereFF";
 				if (no_feasible_insertion2) {
 
 					//iterations++;
-					iterations = total_number_vehicles;
+					iterations = filtered_vehicles_p.size()+1;
 				}
 				if (iterations >= total_number_vehicles) {
 					if (not tested_all_vehicles_once) {
