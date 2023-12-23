@@ -5060,7 +5060,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 
 						//cout<<"5.87"<<endl;
 						
-						//cout<<"remain inser"<<remaining_insertions<<endl;
+						cout<<"remain inser"<<remaining_insertions<<" "<<iterations2<<" "<<curr_number_insertions_p<<endl;
 						//<<best_v<<"\n";
 						int prv_arr_time_at_origin, prv_dpt_time_at_origin;
 
