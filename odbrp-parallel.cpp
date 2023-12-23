@@ -5069,7 +5069,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 						//else
 						selected_insertion = rand() % remaining_insertions;
 
-						cout<<"sel inser "<<selected_insertion<<" "<<next_replaceendl;
+						cout<<"sel inser "<<selected_insertion<<" "<<next_replace<<endl;
 
 						//cout<<"selec inser"<<selected_insertion<<endl;
 						//print_v_vehicle(insertions_p[selected_insertion].v);
