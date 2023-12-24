@@ -1231,6 +1231,288 @@ void input_requests_commuting(char *filename) {
 	} else cout<<"Could not open the file\n";
 }
 
+void input_requests_festival(char *filename) {
+
+	fstream file (filename, ios::in);
+	string line, data, stop;
+	int p, s;
+
+	int temp_time_stamp;
+	int temp_earliest_departure;
+	int temp_latest_departure;
+	int temp_latest_arrival;
+
+	int temp_time_stamp2;
+	int temp_earliest_departure2;
+	int temp_latest_departure2;
+	int temp_latest_arrival2;
+
+	if(file.is_open())
+	{
+		getline(file, line);
+		stringstream str(line);
+		while(getline(str, data, ',')); //reads the header
+		//<<data<<endl;
+		total_requests = 0;
+		while(getline(file, line))
+		{
+
+			total_requests++;
+			stringstream str(line);
+			getline(str, data, ',');
+			p = stoi(data);
+			//cout<<p<<" ";
+			
+			getline(str, data, ',');
+			time_stamp[p] = stoi(data);
+			//cout<<time_stamp[p]<<" ";
+
+			getline(str, data, ',');
+			getline(str, data, ',');
+			temp_time_stamp = stoi(data);
+			getline(str, data, ',');
+			getline(str, data, ',');
+			temp_time_stamp2 = stoi(data);
+			getline(str, data, ',');
+			getline(str, data, ',');
+			getline(str, data, ',');
+			getline(str, data, ',');
+			getline(str, data, ',');
+			getline(str, data, ',');
+			getline(str, data, ',');
+			getline(str, data, ',');
+			getline(str, data, ',');
+
+			getline(str, data, ',');
+			earliest_departure[p] = stoi(data);
+			//printf("%d\n", earliest_departure[p]);
+			//cout<<earliest_departure[p]<<" ";
+			
+			getline(str, data, ',');
+			latest_departure[p] = stoi(data);
+
+
+			getline(str, data, ',');
+			temp_earliest_departure = stoi(data);
+			//printf("%d\n", earliest_departure[p]);
+			//cout<<earliest_departure[p]<<" ";
+			
+			getline(str, data, ',');
+			temp_latest_departure = stoi(data);
+			//printf("%d\n", latest_departure[p]);
+			//cout<<latest_departure[p]<<" ";
+
+			getline(str, data, ',');
+			temp_earliest_departure2 = stoi(data);
+			//printf("%d\n", earliest_departure[p]);
+			//cout<<earliest_departure[p]<<" ";
+			
+			getline(str, data, ',');
+			temp_latest_departure2 = stoi(data);
+			//printf("%d\n", latest_departure[p]);
+			//cout<<latest_departure[p]<<" ";
+
+			getline(str, data, ','); //direct travel time
+			direct_travel_time[p] = stoi(data);
+			getline(str, data, ',');
+			//getline(str, data, ',');
+
+
+			getline(str, data, ',');
+			bool leave_loop = false;
+			if (data.find(']') != std::string::npos)
+					leave_loop = true; 
+			data.erase(remove(data.begin(), data.end(), '['), data.end());
+			data.erase(remove(data.begin(), data.end(), '"'), data.end());
+			data.erase(remove(data.begin(), data.end(), ']'), data.end());
+			
+			//<<data<<endl;
+			//<<data.end()<<endl;
+			s = 0;
+			stops_origin[p][s] = stoi(data);
+			//cout<<stops_origin[p][s]<<" ";
+			//printf("%d ", stops_origin[p][s]);
+			s = s + 1;
+			//stringstream str2(data);
+			
+			if (not (leave_loop)) {
+				while(getline(str, stop, ',')) {
+					
+					if (stop.find(']') != std::string::npos)
+						leave_loop = true; 
+					data.erase(remove(data.begin(), data.end(), '"'), data.end());
+					data.erase(remove(data.begin(), data.end(), ']'), data.end());
+					stops_origin[p][s] = stoi(stop);
+					//cout<<stops_origin[p][s]<<" ";
+					//printf("%d ", stops_origin[p][s]);
+					s = s + 1;
+					if (leave_loop)
+						break;
+				}
+			}
+			//printf("\n");
+			number_stops_origin[p] = s;
+
+			getline(str, data, ',');
+			leave_loop = false;
+			if (data.find(']') != std::string::npos)
+					leave_loop = true; 
+			data.erase(remove(data.begin(), data.end(), '['), data.end());
+			data.erase(remove(data.begin(), data.end(), '"'), data.end());
+			data.erase(remove(data.begin(), data.end(), ']'), data.end());
+			
+			//<<data<<endl;
+			//<<data.end()<<endl;
+			s = 0;
+			walking_time_stops_origin[p][s] = stoi(data);
+			//cout<<walking_time_stops_origin[p][s]<<" ";
+			//printf("%d ", stops_origin[p][s]);
+			s = s + 1;
+			//stringstream str2(data);
+			
+			if (not (leave_loop)) {
+				while(getline(str, stop, ',')) {
+					
+					if (stop.find(']') != std::string::npos)
+						leave_loop = true; 
+					data.erase(remove(data.begin(), data.end(), '"'), data.end());
+					data.erase(remove(data.begin(), data.end(), ']'), data.end());
+					walking_time_stops_origin[p][s] = stoi(stop);
+					//cout<<walking_time_stops_origin[p][s]<<" ";
+					//printf("%d ", stops_origin[p][s]);
+					s = s + 1;
+					if (leave_loop)
+						break;
+				}
+			}
+			
+			
+			getline(str, data, ',');
+			latest_arrival[p] = stoi(data);
+
+			getline(str, data, ',');
+			temp_latest_arrival = stoi(data);
+
+			getline(str, data, ',');
+			temp_latest_arrival2 = stoi(data);
+			//cout<<latest_arrival[p]<<" ";
+
+
+			//<<latest_arrival[p]<<endl;
+
+			/*
+			getline(str, data, ',');
+			data.erase(remove(data.begin(), data.end(), '['), data.end());
+			data.erase(remove(data.begin(), data.end(), ']'), data.end());
+			s = 0;
+			stringstream str3(data);
+			while(getline(str3, stop, ',')) {
+				stops_destination[p][s] = stoi(stop);
+				s = s + 1;
+			}
+			number_stops_destination = s;*/
+
+			getline(str, data, ',');
+			leave_loop = false;
+			if (data.find(']') != std::string::npos)
+					leave_loop = true; 
+			data.erase(remove(data.begin(), data.end(), '['), data.end());
+			data.erase(remove(data.begin(), data.end(), '"'), data.end());
+			data.erase(remove(data.begin(), data.end(), ']'), data.end());
+			
+			//<<data<<endl;
+			//<<data.end()<<endl;
+			s = 0;
+			stops_destination[p][s] = stoi(data);
+			//cout<<stops_destination[p][s]<<" ";
+			//printf("%d ", stops_destination[p][s]);
+			s = s + 1;
+			//stringstream str2(data);
+			
+			if (not (leave_loop)) {
+				while(getline(str, stop, ',')) {
+					
+					if (stop.find(']') != std::string::npos)
+						leave_loop = true; 
+					data.erase(remove(data.begin(), data.end(), '"'), data.end());
+					data.erase(remove(data.begin(), data.end(), ']'), data.end());
+					stops_destination[p][s] = stoi(stop);
+					//cout<<stops_destination[p][s]<<" ";
+					//printf("%d ", stops_destination[p][s]);
+					s = s + 1;
+					if (leave_loop)
+						break;
+				}
+			}
+			//printf("\n");
+			number_stops_destination[p] = s;
+
+			getline(str, data, ',');
+			leave_loop = false;
+			if (data.find(']') != std::string::npos)
+					leave_loop = true; 
+			data.erase(remove(data.begin(), data.end(), '['), data.end());
+			data.erase(remove(data.begin(), data.end(), '"'), data.end());
+			data.erase(remove(data.begin(), data.end(), ']'), data.end());
+			
+			//<<data<<endl;
+			//<<data.end()<<endl;
+			s = 0;
+			walking_time_stops_destination[p][s] = stoi(data);
+			//cout<<walking_time_stops_destination[p][s]<<" ";
+			//printf("%d ", stops_destination[p][s]);
+			s = s + 1;
+			//stringstream str2(data);
+			
+			if (not (leave_loop)) {
+				while(getline(str, stop, ',')) {
+					
+					if (stop.find(']') != std::string::npos)
+						leave_loop = true; 
+					data.erase(remove(data.begin(), data.end(), '"'), data.end());
+					data.erase(remove(data.begin(), data.end(), ']'), data.end());
+					walking_time_stops_destination[p][s] = stoi(stop);
+					//cout<<walking_time_stops_destination[p][s]<<" ";
+					//printf("%d ", stops_destination[p][s]);
+					s = s + 1;
+					if (leave_loop)
+						break;
+				}
+			}
+			//printf("\n");
+			//cout<<endl;
+			getline(str, data, ',');
+			getline(str, data, ',');
+
+			double y = (double)rand() / (double)RAND_MAX;
+
+			if ((y >= 0.2) && (y <= 0.6)) {
+
+				time_stamp[p] = temp_time_stamp;
+				earliest_departure[p] = temp_earliest_departure;
+				latest_departure[p] = temp_latest_departure;
+				latest_arrival[p] = temp_latest_arrival;
+
+			} else {
+
+				if (y > 0.6) {
+
+					time_stamp[p] = temp_time_stamp2;
+					earliest_departure[p] = temp_earliest_departure2;
+					latest_departure[p] = temp_latest_departure2;
+					latest_arrival[p] = temp_latest_arrival2;
+
+
+				}
+
+
+			}
+
+		}
+
+	} else cout<<"Could not open the file\n";
+}
+
 
 
 
@@ -11591,7 +11873,7 @@ int main(int argc, char **argv) {
 	for (int i=1; i<argc; i++)
   	{
 		if (strcmp(argv[i], "--filename_requests") == 0) {
-			input_requests(argv[i+1]);
+			input_requests_festival(argv[i+1]);
 			requests_filename = argv[i+1];;
 			cout<<"x"<<total_requests<<" ";
 		} else if (strcmp(argv[i], "--filename_travel_time") == 0) {
@@ -11984,7 +12266,7 @@ int main(int argc, char **argv) {
 	//41400
 	//k = total_requests+1;
 	//cout<<k<<" "<<total_requests<<" "<<current_time<<endl;
-	while((k < total_requests) or (current_time < 30600)) {
+	while((k < total_requests) or (current_time < 64800)) {
 	//while(current_time < 28800) {
 		//cout<<"k2: "<<k<<endl;
 		check_last_position_route();
