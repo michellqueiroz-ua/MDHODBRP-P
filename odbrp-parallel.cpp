@@ -2889,7 +2889,8 @@ void re_insertion_to_repair(int p, bool &accept_relocate_trip, int cluster_id){
 					flexibilize_lat_departure_time = false;
 				
 				see_if_arrival_departure_dont_match(v);
-				cheapest_origin2_p(p, v, min_increase_length, sel_origin, pos_origin, repeated_station, flexibilize_lat_departure_time, insertions_p, curr_number_insertions_p);
+				if (curr_number_insertions_p < 94955)
+					cheapest_origin2_p(p, v, min_increase_length, sel_origin, pos_origin, repeated_station, flexibilize_lat_departure_time, insertions_p, curr_number_insertions_p);
 				
 			}
 		}
@@ -5032,7 +5033,8 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 						//cout<<"heereBB"<<endl;
 						//cout<<v<<endl;
 						//cout<<"insidere here"<<endl;
-						cheapest_origin2_p(p, v, min_increase_length, sel_origin, pos_origin, repeated_station, flexibilize_lat_departure_time, insertions_p, curr_number_insertions_p);
+						if (curr_number_insertions_p < 94995)
+							cheapest_origin2_p(p, v, min_increase_length, sel_origin, pos_origin, repeated_station, flexibilize_lat_departure_time, insertions_p, curr_number_insertions_p);
 						
 					}
 				}
@@ -5072,7 +5074,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 						cout<<"sel inser "<<selected_insertion<<" "<<next_replace<<endl;
 
 						//cout<<"selec inser"<<selected_insertion<<endl;
-						//print_v_vehicle(insertions_p[selected_insertion].v);
+						print_v_vehicle(insertions_p[selected_insertion].v);
 						best_min_increase_length = insertions_p[selected_insertion].increase_length;
 						best_sel_origin = insertions_p[selected_insertion].sel_station;
 						best_pos_origin = insertions_p[selected_insertion].pos_station;
@@ -8495,7 +8497,8 @@ void re_insertion(int p, bool &accept_relocate_trip, double &temperature, int &t
 					flexibilize_lat_departure_time = false;
 				
 				see_if_arrival_departure_dont_match(v);
-				cheapest_origin2_p(p, v, min_increase_length, sel_origin, pos_origin, repeated_station, flexibilize_lat_departure_time, insertions_p, curr_number_insertions_p);
+				if (curr_number_insertions_p < 94955)
+					cheapest_origin2_p(p, v, min_increase_length, sel_origin, pos_origin, repeated_station, flexibilize_lat_departure_time, insertions_p, curr_number_insertions_p);
 				
 			}
 		}
@@ -9356,7 +9359,8 @@ void re_insertion_nn(int p, bool &accept_relocate_trip, double &temperature, int
 				//cout<<"here2.2"<<endl;
 				see_if_arrival_departure_dont_match(v);
 				//cout<<"here2.3"<<endl;
-				cheapest_origin2_p(p, v, min_increase_length, sel_origin, pos_origin, repeated_station, flexibilize_lat_departure_time, insertions_p, curr_number_insertions_p);
+				if (curr_number_insertions_p < 94955)
+					cheapest_origin2_p(p, v, min_increase_length, sel_origin, pos_origin, repeated_station, flexibilize_lat_departure_time, insertions_p, curr_number_insertions_p);
 				//cout<<"here2.4"<<endl;		
 			}
 			//cout<<"here2.5"<<endl;
