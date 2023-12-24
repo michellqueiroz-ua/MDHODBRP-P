@@ -11732,7 +11732,7 @@ int main(int argc, char **argv) {
 	//41400
 	//k = total_requests+1;
 	//cout<<k<<" "<<total_requests<<" "<<current_time<<endl;
-	while((k < total_requests) or (current_time < 41400)) {
+	while((k < total_requests) or (current_time < 30600)) {
 	//while(current_time < 28800) {
 		//cout<<"k2: "<<k<<endl;
 		check_last_position_route();
