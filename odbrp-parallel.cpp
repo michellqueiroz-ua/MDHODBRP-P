@@ -20,7 +20,7 @@
 //using namespace Eigen;
 using namespace std;
 
-#define maxvehicles 3000
+#define maxvehicles 4000
 #define maxpassengers 3000
 #define maxstations 6000
 #define maxtotalcapacity 40
@@ -5326,7 +5326,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 						//cout<<"sel inser "<<selected_insertion<<" "<<next_replace<<endl;
 
 						//cout<<"selec inser"<<selected_insertion<<endl;
-						print_v_vehicle(insertions_p[selected_insertion].v);
+						//print_v_vehicle(insertions_p[selected_insertion].v);
 						best_min_increase_length = insertions_p[selected_insertion].increase_length;
 						best_sel_origin = insertions_p[selected_insertion].sel_station;
 						best_pos_origin = insertions_p[selected_insertion].pos_station;
@@ -11591,7 +11591,7 @@ int main(int argc, char **argv) {
 	for (int i=1; i<argc; i++)
   	{
 		if (strcmp(argv[i], "--filename_requests") == 0) {
-			input_requests_commuting(argv[i+1]);
+			input_requests(argv[i+1]);
 			requests_filename = argv[i+1];;
 			cout<<"x"<<total_requests<<" ";
 		} else if (strcmp(argv[i], "--filename_travel_time") == 0) {
@@ -12068,7 +12068,7 @@ int main(int argc, char **argv) {
 												cout<<"megra error hier after"<<endl;
 											}*/
 											//cout<<"hier5.852"<<endl;
-											check_valid_user_ride_times();
+											//check_valid_user_ride_times();
 											//cout<<"hier5.95"<<endl;
 											//cout<<"cir A"<<endl;
 										}
