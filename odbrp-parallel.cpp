@@ -12079,7 +12079,9 @@ int main(int argc, char **argv) {
 	//cout<<total_user_ride_time<<" "<<best_total_user_ride_time<<endl;
 	//cout<<served_passengers<<"  "<<total_user_ride_time<<endl;
 	//cout<<total_user_ride_time<<endl;
-	cout << requests_filename << " " << served_passengers << " " << served_passengers_3party << " " << total_served_passengers << " " << passengers_per_kilometer << " " << average_extra_travel_time << " " << average_travel_time_ratio << " " << total_deadheading_times << " " << total_shared_times << " " << total_user_ride_time << " " << best_total_user_ride_time;
+	std::ofstream output_file;
+	output_file.open(output_filename, std::ios::app);
+	output_file << requests_filename << " " << served_passengers << " " << served_passengers_3party << " " << total_served_passengers << " " << passengers_per_kilometer << " " << average_extra_travel_time << " " << average_travel_time_ratio << " " << total_deadheading_times << " " << total_shared_times << " " << total_user_ride_time << " " << best_total_user_ride_time;
 	cout<<" ";
 	//previously already commented
 	/*cout << "served passengers ODB " << served_passengers << endl;
@@ -12091,5 +12093,5 @@ int main(int argc, char **argv) {
 
 	//elapsed = get_wall_time() - begin_time;
 	elapsedf = (double)(std::clock() - start_time)/(double)(CLOCKS_PER_SEC);		 
-	cout << elapsedf << endl;
+	output_file << elapsedf << endl;
 }
