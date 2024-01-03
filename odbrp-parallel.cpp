@@ -4802,8 +4802,9 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 
 	if (filtered_vehicles_p.size()>0)
 		filtered_vehicles_p.clear();
-	cout<<"hier 5.1"<<endl;
+	//cout<<"hier 5.1"<<endl;
 	int vv;
+	cout<<"cluster: "<<cluster_id<<" "<<clusters[cluster_id].size()<<endl;
 	for (int i = 0; i < clusters[cluster_id].size(); i++) {
 		vv = clusters[cluster_id][i];
 	
@@ -12198,13 +12199,13 @@ int main(int argc, char **argv) {
 
 	build_clusters();
 	//cout<<"hier2"<<endl;
-	/*for (int i=0;i<number_clusters;i++){
+	for (int i=0;i<number_clusters;i++){
 
 		for (int j=0;j<clusters[i].size();j++){
 			cout<<clusters[i][j]<<" ";
 		}
 		cout<<endl;
-	}*/
+	}
 
 	/*for(int i=0;i<5828;i++) {
 	for (int j=0;j<5828;j++) {
