@@ -12337,20 +12337,20 @@ int main(int argc, char **argv) {
 								for (int c=0;c<number_clusters;c++) {
 
 									//if (vehicle_assigned[nxt_p] == -1) {
-									cout<<"hier5.75"<<endl;
+									//cout<<"hier5.75"<<endl;
 									//cout<<nxt_p<<" "<<px<<endl;
 									if (avl_cluster[px] == c) { //this way, each passenger has access only to one cluster at a time
 										if (sort_clusters[nxt_p][it_cl_inser[nxt_p]].idx_cluster == c) {
-											cout<<"hier5.85"<<endl;
+											//cout<<"hier5.85"<<endl;
 											/*if (total_number_vehicles == 0){
 												cout<<"megra error hier before"<<endl;
 											}*/
-											cout<<nxt_p<<" "<<sort_clusters[nxt_p][it_cl_inser[nxt_p]].idx_cluster<<endl;
+											cout<<nxt_p<<" cluster: "<<sort_clusters[nxt_p][it_cl_inser[nxt_p]].idx_cluster<<endl;
 											cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, sort_clusters[nxt_p][it_cl_inser[nxt_p]].idx_cluster);
 											/*if (total_number_vehicles == 0){
 												cout<<"megra error hier after"<<endl;
 											}*/
-											cout<<"hier5.852"<<endl;
+											cout<<"hier5.852 "<<c<<endl;
 											//check_valid_user_ride_times();
 											//cout<<"hier5.95"<<endl;
 											//cout<<"cir A"<<endl;
@@ -12361,10 +12361,10 @@ int main(int argc, char **argv) {
 								}
 								//cout<<"hier5.9"<<endl;
 								if (vehicle_assigned[nxt_p] == -1) {
-									cout<<"1nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
+									//cout<<"1nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 									it_cl_inser[nxt_p]++;
 								} else {
-									cout<<"2nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
+									//cout<<"2nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 									continue_this_passenger = false;
 									//cout<<px<<" "<<del_passenger.size()<<endl;
 									del_passenger[px] = 1;
@@ -12375,7 +12375,7 @@ int main(int argc, char **argv) {
 								if (continue_this_passenger) {
 									if (it_cl_inser[nxt_p] == 2) {
 										if (vehicle_assigned[nxt_p] == -1) {
-											//cout<<"hier6.5"<<endl;
+											cout<<"hier6.5"<<endl;
 											serve_passenger_third_party_vehicle(nxt_p);
 											//passengers_on_hold.push_back(nxt_p);
 										}
