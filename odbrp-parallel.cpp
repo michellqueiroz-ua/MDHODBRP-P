@@ -4802,7 +4802,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 
 	if (filtered_vehicles_p.size()>0)
 		filtered_vehicles_p.clear();
-	//cout<<"hier 5.1"<<endl;
+	cout<<"hier 5.1"<<endl;
 	int vv;
 	for (int i = 0; i < clusters[cluster_id].size(); i++) {
 		vv = clusters[cluster_id][i];
@@ -4826,8 +4826,8 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 	if (filtered_vehicles_p.size() == 0) {
 		v = -1;
 	}
-	//cout<<"hier 5.2"<<endl;
-	//cout<<"filtered size: "<<filtered_vehicles_p.size()<<endl;
+	cout<<"hier 5.2"<<endl;
+	cout<<"filtered size: "<<filtered_vehicles_p.size()<<endl;
 	for (int itv = 0; itv < filtered_vehicles_p.size(); itv++) {
 
 		v = filtered_vehicles_p[itv];
@@ -4849,9 +4849,9 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 			repeated_station = false;
 			flexibilize_lat_departure_time = false;
 			sel_origin = -1;
-			//cout<<"veh: "<<v<<endl;
+			cout<<"veh: "<<v<<endl;
 			cheapest_origin(p, v, min_increase_length, sel_origin, pos_origin, repeated_station, flexibilize_lat_departure_time, best_departure_time_from_home);
-			//cout<<"outside here"<<endl;
+			cout<<"outside here"<<endl;
 			if (sel_origin != -1) {
 
 				//printf("1234");
@@ -4919,7 +4919,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 				}
 
 
-				//cout<<"hier 5.4"<<endl;
+				cout<<"hier 5.4"<<endl;
 				vehicle_assigned[p] = v;
 
 				/*for (int i=0; i<=number_stops[v];i++) {
@@ -4943,7 +4943,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 				see_if_arrival_departure_dont_match(v);
 				cheapest_destination(p, v, pos_origin, min_increase_length, sel_destination, pos_destination, repeated_station, flexibilize_arrival_time, infeasible_insertion);
 				//<<min_increase_length<<" "<<pos_destination<<endl;
-				//cout<<"hier 5.5"<<endl;
+				cout<<"hier 5.5"<<endl;
 				if ((sel_destination != -1) && (not infeasible_insertion)) {
 					
 					not_feasible_insertion = false;
@@ -5158,9 +5158,9 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 				repeated_station = false;
 				flexibilize_lat_departure_time = true;
 				sel_origin = -1;
-				//cout<<"hier 5.55"<<endl;
+				cout<<"hier 5.55"<<endl;
 				cheapest_origin(p, v, min_increase_length, sel_origin, pos_origin, repeated_station, flexibilize_lat_departure_time, best_departure_time_from_home);
-				//cout<<"hier 5.57"<<endl;
+				cout<<"hier 5.57"<<endl;
 				if (sel_origin != -1) {
 
 					if (not repeated_station) {
@@ -5244,10 +5244,10 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 					//<<min_increase_length<<" "<<pos_destination<<endl;
 					
 					if ((sel_destination != -1) && (not infeasible_insertion)) {
-						//cout<<"4hierxx"<<endl;
+						cout<<"4hierxx"<<endl;
 						
 						not_feasible_insertion = false;
-						//<<"pos dest: "<<sel_destination<<endl;
+						cout<<"pos dest: "<<sel_destination<<endl;
 						stops[v].insert(stops[v].begin() + pos_destination, sel_destination);
 						
 						passengers_departure_time_from_home[p] = best_departure_time_from_home;
@@ -12345,6 +12345,7 @@ int main(int argc, char **argv) {
 											/*if (total_number_vehicles == 0){
 												cout<<"megra error hier before"<<endl;
 											}*/
+											cout<<nxt_p<<" "<<sort_clusters[nxt_p][it_cl_inser[nxt_p]].idx_cluster<<endl;
 											cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, sort_clusters[nxt_p][it_cl_inser[nxt_p]].idx_cluster);
 											/*if (total_number_vehicles == 0){
 												cout<<"megra error hier after"<<endl;
