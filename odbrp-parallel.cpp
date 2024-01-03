@@ -26,7 +26,7 @@ using namespace std;
 #define maxtotalcapacity 40
 #define maxtypevehicles 40
 #define maxnumberdepots 10
-#define number_clusters 1
+#define number_clusters 3
 
 typedef int listP[20000 + 1];
 //typedef int matrixVP[maxvehicles + 1][maxpassengers + 1];
@@ -12268,9 +12268,9 @@ int main(int argc, char **argv) {
 	//cout<<k<<" "<<total_requests<<" "<<current_time<<endl;
 	while((k < total_requests) or (current_time < 64800)) {
 	//while(current_time < 28800) {
-		//cout<<"k2: "<<k<<endl;
+		cout<<"k2: "<<k<<endl;
 		check_last_position_route();
-		//cout<<"hier3.1"<<endl;
+		cout<<"hier3.1"<<endl;
 		//if (k > num_iterations_to_start_reassign)
 		//	reassign_vehicles_to_another_depot();
 		
@@ -12291,7 +12291,7 @@ int main(int argc, char **argv) {
 			if (num_threads_for > number_clusters) {
 				num_threads_for = number_clusters;
 			}
-			//cout<<"hier3.2"<<endl;
+			cout<<"hier3.2"<<endl;
 			#pragma omp parallel for num_threads(num_threads_for)
 			for (int itx = 0; itx<num_threads_for; itx++) {
 				int nxt_p = passengers_to_be_inserted[itx];
@@ -12301,14 +12301,14 @@ int main(int argc, char **argv) {
 
 			//maybe sort passengers_to_be_inserted in a way to avoid collision between clusters???
 
-			//cout<<"hier4"<<endl;
+			cout<<"hier4"<<endl;
 			while (passengers_to_be_inserted.size() > 0) {
 
-				//cout<<"10size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
+				cout<<"10size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 				for (int c=0;c<number_clusters;c++) {
 					avl_cluster[c] = c;
 				}
-				//cout<<"11size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
+				cout<<"11size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 				for (int itx = 0; itx<num_threads_for; itx++) {
 
 					//each passengers will be inserted in one processor
@@ -12317,13 +12317,13 @@ int main(int argc, char **argv) {
 					for (int px = 0; px<num_threads_for; px++) {
 
 						if (px < passengers_to_be_inserted.size()) {
-							//cout<<"12size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
+							cout<<"12size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 							int nxt_p = passengers_to_be_inserted[px];
 							//cout<<"nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 							
 							//cout<<"nxp: "<<nxt_p<<endl;
 							it_cl_inser[nxt_p] = 0;
-							//cout<<"13size: "<<passengers_to_be_inserted.size()<<" "<<nxt_p<<"ends"<<endl;
+							cout<<"13size: "<<passengers_to_be_inserted.size()<<" "<<nxt_p<<"ends"<<endl;
 							
 							
 							compute_mean_distances_request_partitions(nxt_p);
@@ -12337,11 +12337,11 @@ int main(int argc, char **argv) {
 								for (int c=0;c<number_clusters;c++) {
 
 									//if (vehicle_assigned[nxt_p] == -1) {
-									//cout<<"hier5.75"<<endl;
+									cout<<"hier5.75"<<endl;
 									//cout<<nxt_p<<" "<<px<<endl;
 									if (avl_cluster[px] == c) { //this way, each passenger has access only to one cluster at a time
 										if (sort_clusters[nxt_p][it_cl_inser[nxt_p]].idx_cluster == c) {
-											//cout<<"hier5.85"<<endl;
+											cout<<"hier5.85"<<endl;
 											/*if (total_number_vehicles == 0){
 												cout<<"megra error hier before"<<endl;
 											}*/
@@ -12349,7 +12349,7 @@ int main(int argc, char **argv) {
 											/*if (total_number_vehicles == 0){
 												cout<<"megra error hier after"<<endl;
 											}*/
-											//cout<<"hier5.852"<<endl;
+											cout<<"hier5.852"<<endl;
 											//check_valid_user_ride_times();
 											//cout<<"hier5.95"<<endl;
 											//cout<<"cir A"<<endl;
@@ -12360,17 +12360,17 @@ int main(int argc, char **argv) {
 								}
 								//cout<<"hier5.9"<<endl;
 								if (vehicle_assigned[nxt_p] == -1) {
-									//cout<<"1nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
+									cout<<"1nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 									it_cl_inser[nxt_p]++;
 								} else {
-									//cout<<"2nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
+									cout<<"2nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 									continue_this_passenger = false;
 									//cout<<px<<" "<<del_passenger.size()<<endl;
 									del_passenger[px] = 1;
 									served_requests_so_far++;
 								}
 								//cout<<"hier6"<<endl;
-								//cout<<"3nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
+								cout<<"3nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 								if (continue_this_passenger) {
 									if (it_cl_inser[nxt_p] == 2) {
 										if (vehicle_assigned[nxt_p] == -1) {
@@ -12390,14 +12390,14 @@ int main(int argc, char **argv) {
 						}
 					}
 					//end parallelized for
-					//cout<<"hier6.8"<<endl;
+					cout<<"hier6.8"<<endl;
 					for (int c=0;c<number_clusters;c++) {
 						avl_cluster[c] = avl_cluster[c]+1;
 						avl_cluster[c] = avl_cluster[c]%number_clusters;
 						//cout<<avl_cluster[c]<<" ";
 
 					}
-					//cout<<"hier6.9"<<endl;
+					cout<<"hier6.9"<<endl;
 					//cout<<endl;
 
 					for (int c=number_clusters-1; c>=0;c--) {
@@ -12410,7 +12410,7 @@ int main(int argc, char **argv) {
 							del_passenger[c] = 0;	
 						}
 					}
-					//cout<<"hier6.93"<<endl;
+					cout<<"hier6.93"<<endl;
 					//cout<<"6size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 					num_threads_for = passengers_to_be_inserted.size();
 					if (num_threads_for > number_clusters) {
@@ -12418,7 +12418,7 @@ int main(int argc, char **argv) {
 						num_threads_for = number_clusters;
 						//cout<<"8size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 					}
-					//cout<<"9size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
+					cout<<"9size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 					//cout<<"hier6.95"<<endl;
 
 					
@@ -12465,7 +12465,7 @@ int main(int argc, char **argv) {
 
 		//<<"xxxheeerexxxx1"<<endl;
 		//cout<<"actual passenger "<<k<<endl;
-		//cout<<"hier7"<<endl;
+		cout<<"hier7sa"<<endl;
 		if (k > total_number_vehicles + 10) {
 		
 			
