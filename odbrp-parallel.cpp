@@ -11887,7 +11887,7 @@ int main(int argc, char **argv) {
 		  		}
 		  	}
 		  }*/
-		   cout <<endl;
+		   //cout <<endl;
 		} else if (strcmp(argv[i], "--output_file") == 0) {
 			//cout<<"ttm"<<endl;
 			//input_travel_time(argv[i+1]);
