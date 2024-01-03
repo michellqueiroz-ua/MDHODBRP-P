@@ -12340,6 +12340,7 @@ int main(int argc, char **argv) {
 									//if (vehicle_assigned[nxt_p] == -1) {
 									//cout<<"hier5.75"<<endl;
 									//cout<<nxt_p<<" "<<px<<endl;
+									cout<<"it nxt cluster: "<<it_cl_inser[nxt_p]].idx_cluster<<endl;
 									if (avl_cluster[px] == c) { //this way, each passenger has access only to one cluster at a time
 										if (sort_clusters[nxt_p][it_cl_inser[nxt_p]].idx_cluster == c) {
 											//cout<<"hier5.85"<<endl;
@@ -12372,7 +12373,7 @@ int main(int argc, char **argv) {
 									served_requests_so_far++;
 								}
 								//cout<<"hier6"<<endl;
-								cout<<"3nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<" cid: "<<c<<endl;
+								cout<<"3nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<" cid: "<<sort_clusters[nxt_p][it_cl_inser[nxt_p]].idx_cluster<<endl;
 								cout<<"continue: "<<vehicle_assigned[nxt_p]<<endl;
 								if (continue_this_passenger) {
 									if (it_cl_inser[nxt_p] == 2) {
