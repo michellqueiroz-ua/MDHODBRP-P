@@ -12351,7 +12351,8 @@ int main(int argc, char **argv) {
 											cout<<nxt_p<<"p cluster: "<<sort_clusters[nxt_p][it_cl_inser[nxt_p]].idx_cluster<<endl;
 											cout<<endl<<endl;
 											for (int j=0;j<clusters[c].size();j++){
-												cout<<clusters[c][j]<<" ";
+												if (clusters[c][j] > total_number_vehicles)
+													cout<<"PROBLM: "<<clusters[c][j]<<" ";
 											}
 											cout<<endl<<endl;
 											cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, sort_clusters[nxt_p][it_cl_inser[nxt_p]].idx_cluster);
