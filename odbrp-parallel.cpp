@@ -4858,6 +4858,30 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 				//printf("1234");
 				//bool not_repeated_origin;
 				if (not repeated_station) {
+
+					if ((v > total_number_vehicles) or (v < 0)) {
+						cout<<v<<endl;
+						cout<<"exiting here PROBLM"<<endl;
+						return;
+					}
+					if (pos_origin-1 < 0){
+						cout<<pos_origin<<endl;
+						cout<<"exiting here2 PROBLM"<<endl;
+						return;
+					}
+					if ((sel_origin > maxstations) or (sel_origin < 0)){
+						cout<<sel_origin<<endl;
+						cout<<"exiting here3 PROBLM"<<endl;
+						return;
+					}
+
+					if ((p > 20000) or (p < 0)){
+						cout<<p<<endl;
+						cout<<"exiting here4 PROBLM"<<endl;
+						return;
+					}
+
+
 					same_station = false;
 					//<<"sel o"<<sel_origin;
 					stops[v].insert(stops[v].begin() + pos_origin, sel_origin);
@@ -12488,7 +12512,7 @@ int main(int argc, char **argv) {
 
 		//<<"xxxheeerexxxx1"<<endl;
 		//cout<<"actual passenger "<<k<<endl;
-		cout<<"hier7sa"<<endl;
+		//cout<<"hier7sa"<<endl;
 		/*if (k > total_number_vehicles + 10) {
 		
 			
