@@ -4804,10 +4804,19 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 		filtered_vehicles_p.clear();
 	//cout<<"hier 5.1"<<endl;
 	int vv;
+	if ((cluster_id < 0) or (cluster_id >= number_clusters)) {
+		cout<<cluster_id<<endl;
+		cout<<"exiting here CID PROBLM"<<endl;
+		return;
+	}
 	cout<<"clusterSIZ: "<<cluster_id<<" "<<clusters[cluster_id].size()<<endl;
 	for (int i = 0; i < clusters[cluster_id].size(); i++) {
 		vv = clusters[cluster_id][i];
-	
+		if ((vv > total_number_vehicles) or (vv < 0)) {
+			cout<<vv<<endl;
+			cout<<"exiting here VV PROBLM"<<endl;
+			return;
+		}
 		if (free_capacity[vv].size() == 2){ //means that vehicle is empty and still at the depot
 			filtered_vehicles_p.push_back(vv);
 		}
@@ -4858,6 +4867,9 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 				//printf("1234");
 				//bool not_repeated_origin;
 				if (not repeated_station) {
+
+					//cout<<v<<" "<<pos_origin<<" "<<sel_origin<<" "<<p<<endl;
+					//return;
 
 					if ((v > total_number_vehicles) or (v < 0)) {
 						cout<<v<<endl;
@@ -6519,6 +6531,8 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 				}
 			}
 		}
+	} else {
+		cout<<"ITS IN THIS IF ELSE"<<endl;
 	}
 
 	//cout<<"hieer2"<<endl;
