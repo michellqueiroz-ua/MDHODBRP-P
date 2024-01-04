@@ -12199,13 +12199,13 @@ int main(int argc, char **argv) {
 
 	build_clusters();
 	//cout<<"hier2"<<endl;
-	for (int i=0;i<number_clusters;i++){
+	/*for (int i=0;i<number_clusters;i++){
 
 		for (int j=0;j<clusters[i].size();j++){
 			cout<<clusters[i][j]<<" ";
 		}
 		cout<<endl;
-	}
+	}*/
 
 	/*for(int i=0;i<5828;i++) {
 	for (int j=0;j<5828;j++) {
@@ -12349,6 +12349,11 @@ int main(int argc, char **argv) {
 												cout<<"megra error hier before"<<endl;
 											}*/
 											cout<<nxt_p<<"p cluster: "<<sort_clusters[nxt_p][it_cl_inser[nxt_p]].idx_cluster<<endl;
+											cout<<endl<<endl;
+											for (int j=0;j<clusters[c].size();j++){
+												cout<<clusters[c][j]<<" ";
+											}
+											cout<<endl<<endl;
 											cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, sort_clusters[nxt_p][it_cl_inser[nxt_p]].idx_cluster);
 											/*if (total_number_vehicles == 0){
 												cout<<"megra error hier after"<<endl;
