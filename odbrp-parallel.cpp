@@ -12349,12 +12349,24 @@ int main(int argc, char **argv) {
 												cout<<"megra error hier before"<<endl;
 											}*/
 											cout<<nxt_p<<"p cluster: "<<sort_clusters[nxt_p][it_cl_inser[nxt_p]].idx_cluster<<endl;
-											cout<<endl<<endl;
+											/*cout<<endl<<endl;
 											for (int j=0;j<clusters[c].size();j++){
 												if (clusters[c][j] > total_number_vehicles)
 													cout<<"PROBLM: "<<clusters[c][j]<<" ";
 											}
-											cout<<endl<<endl;
+											cout<<endl<<endl;*/
+											for (int j=0;j<number_stops_origin[nxt_p];j++) {
+												//s_origin = stops_origin[p][j];
+												if (stops_origin[nxt_p][j] > maxstations) {
+													cout<<"PROBLM: "<<stops_origin[nxt_p][j]<<" ";
+												}
+											}
+											for (int j=0;j<number_stops_destination[nxt_p];j++) {
+												//s_origin = stops_origin[p][j];
+												if (stops_destination[nxt_p][j] > maxstations) {
+													cout<<"PROBLM: "<<stops_destination[nxt_p][j]<<" ";
+												}
+											}
 											cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, sort_clusters[nxt_p][it_cl_inser[nxt_p]].idx_cluster);
 											/*if (total_number_vehicles == 0){
 												cout<<"megra error hier after"<<endl;
@@ -12477,7 +12489,7 @@ int main(int argc, char **argv) {
 		//<<"xxxheeerexxxx1"<<endl;
 		//cout<<"actual passenger "<<k<<endl;
 		cout<<"hier7sa"<<endl;
-		if (k > total_number_vehicles + 10) {
+		/*if (k > total_number_vehicles + 10) {
 		
 			
 			//omp_set_num_threads(2);	
@@ -12499,7 +12511,7 @@ int main(int argc, char **argv) {
 			
 
 
-		}
+		}*/
 
 		
 
