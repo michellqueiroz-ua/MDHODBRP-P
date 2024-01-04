@@ -4970,6 +4970,28 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 				//<<min_increase_length<<" "<<pos_destination<<endl;
 				cout<<"hier 5.5"<<endl;
 				if ((sel_destination != -1) && (not infeasible_insertion)) {
+
+					if ((v > total_number_vehicles) or (v < 0)) {
+						cout<<v<<endl;
+						cout<<"exiting here PROBLM"<<endl;
+						return;
+					}
+					if (pos_destination-1 < 0){
+						cout<<pos_destination<<endl;
+						cout<<"exiting here2 PROBLM"<<endl;
+						return;
+					}
+					if ((sel_destination > maxstations) or (sel_destination < 0)){
+						cout<<sel_destination<<endl;
+						cout<<"exiting here3 PROBLM"<<endl;
+						return;
+					}
+
+					if ((p > 20000) or (p < 0)){
+						cout<<p<<endl;
+						cout<<"exiting here4 PROBLM"<<endl;
+						return;
+					}
 					
 					not_feasible_insertion = false;
 					//cout<<"1hierxx"<<endl;
@@ -5189,6 +5211,29 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 				if (sel_origin != -1) {
 
 					if (not repeated_station) {
+
+						if ((v > total_number_vehicles) or (v < 0)) {
+							cout<<v<<endl;
+							cout<<"exiting here PROBLM"<<endl;
+							return;
+						}
+						if (pos_origin-1 < 0){
+							cout<<pos_origin<<endl;
+							cout<<"exiting here2 PROBLM"<<endl;
+							return;
+						}
+						if ((sel_origin > maxstations) or (sel_origin < 0)){
+							cout<<sel_origin<<endl;
+							cout<<"exiting here3 PROBLM"<<endl;
+							return;
+						}
+
+						if ((p > 20000) or (p < 0)){
+							cout<<p<<endl;
+							cout<<"exiting here4 PROBLM"<<endl;
+							return;
+						}
+
 						same_station = false;
 						//<<"sel o"<<sel_origin;
 						stops[v].insert(stops[v].begin() + pos_origin, sel_origin);
@@ -5269,6 +5314,29 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 					//<<min_increase_length<<" "<<pos_destination<<endl;
 					
 					if ((sel_destination != -1) && (not infeasible_insertion)) {
+
+						if ((v > total_number_vehicles) or (v < 0)) {
+							cout<<v<<endl;
+							cout<<"exiting here PROBLM"<<endl;
+							return;
+						}
+						if (pos_destination-1 < 0){
+							cout<<pos_destination<<endl;
+							cout<<"exiting here2 PROBLM"<<endl;
+							return;
+						}
+						if ((sel_destination > maxstations) or (sel_destination < 0)){
+							cout<<sel_destination<<endl;
+							cout<<"exiting here3 PROBLM"<<endl;
+							return;
+						}
+
+						if ((p > 20000) or (p < 0)){
+							cout<<p<<endl;
+							cout<<"exiting here4 PROBLM"<<endl;
+							return;
+						}
+
 						cout<<"4hierxx"<<endl;
 						
 						not_feasible_insertion = false;
@@ -5365,7 +5433,28 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 							accept_delay_trip = false;
 						if ((sel_destination != -1) && (accept_delay_trip) && (not infeasible_insertion)) {
 							//<<"pos dest: "<<sel_destination<<endl;
-							
+							if ((v > total_number_vehicles) or (v < 0)) {
+								cout<<v<<endl;
+								cout<<"exiting here PROBLM"<<endl;
+								return;
+							}
+							if (pos_destination-1 < 0){
+								cout<<pos_destination<<endl;
+								cout<<"exiting here2 PROBLM"<<endl;
+								return;
+							}
+							if ((sel_destination > maxstations) or (sel_destination < 0)){
+								cout<<sel_destination<<endl;
+								cout<<"exiting here3 PROBLM"<<endl;
+								return;
+							}
+
+							if ((p > 20000) or (p < 0)){
+								cout<<p<<endl;
+								cout<<"exiting here4 PROBLM"<<endl;
+								return;
+							}
+
 							not_feasible_insertion = false;
 							stops[v].insert(stops[v].begin() + pos_destination, sel_destination);
 							
@@ -5515,7 +5604,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 	} 
 
 	//cout<<"hier 5.6"<<endl;
-	if (vehicle_assigned[p] == -1) {
+	if (vehicle_assigned[p] == -2) {
 		if ((no_feasible_insertion_empty) or (v == -1)) {
 
 			//if (not emptyfirst) {
