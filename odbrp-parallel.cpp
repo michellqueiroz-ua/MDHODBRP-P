@@ -6532,7 +6532,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 			}
 		}
 	} else {
-		cout<<"ITS IN THIS IF ELSE"<<endl;
+		cout<<"ITS IN THIS IF ELSE "<<cluster_id<<endl;
 	}
 
 	//cout<<"hieer2"<<endl;
