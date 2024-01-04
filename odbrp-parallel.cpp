@@ -4697,6 +4697,10 @@ bool repair_solution(int v, int p, int cluster_id){
 
 void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insertion, int cluster_id){
 
+	if (p == 5) {
+		cout<<p<<"PROBLM"<<endl;
+		return;
+	}
 	int odb_fare, odb_travel_time, odb_distance;
 	int v;
 	int pos_origin, pos_destination;
