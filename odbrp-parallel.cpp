@@ -12513,7 +12513,7 @@ int main(int argc, char **argv) {
 											/*if (total_number_vehicles == 0){
 												cout<<"megra error hier after"<<endl;
 											}*/
-											cout<<"hier5.852 "<<c<<endl;
+											//cout<<"hier5.852 "<<c<<endl;
 											//check_valid_user_ride_times();
 											//cout<<"hier5.95"<<endl;
 											//cout<<"cir A"<<endl;
@@ -12537,7 +12537,7 @@ int main(int argc, char **argv) {
 								//cout<<"3nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<" cid: "<<sort_clusters[nxt_p][it_cl_inser[nxt_p]].idx_cluster<<endl;
 								//cout<<"continue: "<<vehicle_assigned[nxt_p]<<endl;
 								if (continue_this_passenger) {
-									if (it_cl_inser[nxt_p] == 2) {
+									if (it_cl_inser[nxt_p] == number_clusters) {
 										if (vehicle_assigned[nxt_p] == -1) {
 											//cout<<"hier6.5"<<endl;
 											int response_time = current_time - time_stamp[nxt_p];
