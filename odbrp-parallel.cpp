@@ -4699,10 +4699,10 @@ bool repair_solution(int v, int p, int cluster_id){
 
 void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insertion, int cluster_id){
 
-	if (p == 5) {
+	/*if (p == 5) {
 		cout<<p<<"GOT HERE"<<endl;
 		return;
-	}
+	}*/
 	int odb_fare, odb_travel_time, odb_distance;
 	int v;
 	int pos_origin, pos_destination;
@@ -4810,19 +4810,19 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 		filtered_vehicles_p.clear();
 	//cout<<"hier 5.1"<<endl;
 	int vv;
-	if ((cluster_id < 0) or (cluster_id >= number_clusters)) {
+	/*if ((cluster_id < 0) or (cluster_id >= number_clusters)) {
 		cout<<cluster_id<<endl;
 		cout<<"exiting here CID PROBLM"<<endl;
 		return;
-	}
+	}*/
 	cout<<"clusterSIZ: "<<cluster_id<<" "<<clusters[cluster_id].size()<<endl;
 	for (int i = 0; i < clusters[cluster_id].size(); i++) {
 		vv = clusters[cluster_id][i];
-		if ((vv > total_number_vehicles) or (vv < 0)) {
+		/*if ((vv > total_number_vehicles) or (vv < 0)) {
 			cout<<vv<<endl;
 			cout<<"exiting here VV PROBLM"<<endl;
 			return;
-		}
+		}*/
 		if (free_capacity[vv].size() == 2){ //means that vehicle is empty and still at the depot
 			filtered_vehicles_p.push_back(vv);
 		}
@@ -4877,7 +4877,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 					//cout<<v<<" "<<pos_origin<<" "<<sel_origin<<" "<<p<<endl;
 					//return;
 
-					if ((v > total_number_vehicles) or (v < 0)) {
+					/*if ((v > total_number_vehicles) or (v < 0)) {
 						cout<<v<<endl;
 						cout<<"exiting here PROBLM"<<endl;
 						return;
@@ -4897,7 +4897,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 						cout<<p<<endl;
 						cout<<"exiting here4 PROBLM"<<endl;
 						return;
-					}
+					}*/
 
 
 					same_station = false;
@@ -4989,7 +4989,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 				cout<<"hier 5.5"<<endl;
 				if ((sel_destination != -1) && (not infeasible_insertion)) {
 
-					if ((v > total_number_vehicles) or (v < 0)) {
+					/*if ((v > total_number_vehicles) or (v < 0)) {
 						cout<<v<<endl;
 						cout<<"exiting here PROBLM"<<endl;
 						return;
@@ -5009,7 +5009,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 						cout<<p<<endl;
 						cout<<"exiting here4 PROBLM"<<endl;
 						return;
-					}
+					}*/
 					
 					not_feasible_insertion = false;
 					//cout<<"1hierxx"<<endl;
@@ -5230,7 +5230,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 
 					if (not repeated_station) {
 
-						if ((v > total_number_vehicles) or (v < 0)) {
+						/*if ((v > total_number_vehicles) or (v < 0)) {
 							cout<<v<<endl;
 							cout<<"exiting here PROBLM"<<endl;
 							return;
@@ -5250,7 +5250,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 							cout<<p<<endl;
 							cout<<"exiting here4 PROBLM"<<endl;
 							return;
-						}
+						}*/
 
 						same_station = false;
 						//<<"sel o"<<sel_origin;
@@ -5333,7 +5333,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 					
 					if ((sel_destination != -1) && (not infeasible_insertion)) {
 
-						if ((v > total_number_vehicles) or (v < 0)) {
+						/*if ((v > total_number_vehicles) or (v < 0)) {
 							cout<<v<<endl;
 							cout<<"exiting here PROBLM"<<endl;
 							return;
@@ -5353,7 +5353,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 							cout<<p<<endl;
 							cout<<"exiting here4 PROBLM"<<endl;
 							return;
-						}
+						}*/
 
 						cout<<"4hierxx"<<endl;
 						
@@ -12358,6 +12358,7 @@ int main(int argc, char **argv) {
 	cout<<"total dist: "<<test_total_distance<<endl;
 
 	vector<int> passengers_to_be_inserted;
+	vector<int> passengers_to_be_insertedOLD;
 
 	k = 0;
 	//for (int k=0;k<total_requests;k++){
@@ -12413,6 +12414,11 @@ int main(int argc, char **argv) {
 				passengers_to_be_inserted.clear();
 			}
 
+			for (int ol=0;ol<passengers_to_be_insertedOLD.size();ol++){
+				passengers_to_be_inserted.push_back(passengers_to_be_insertedOLD[ol]);
+			}
+			passengers_to_be_insertedOLD.clear();
+
 			while((current_time >= time_stamp[k]) && (k < total_requests)) { 
 				passengers_to_be_inserted.push_back(k);
 				k++;
@@ -12434,14 +12440,14 @@ int main(int argc, char **argv) {
 
 			//maybe sort passengers_to_be_inserted in a way to avoid collision between clusters???
 
-			cout<<"hier4"<<endl;
+			//cout<<"hier4"<<endl;
 			while (passengers_to_be_inserted.size() > 0) {
 
-				cout<<"10size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
+				//cout<<"10size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 				for (int c=0;c<number_clusters;c++) {
 					avl_cluster[c] = c;
 				}
-				cout<<"11size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
+				//cout<<"11size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 				for (int itx = 0; itx<num_threads_for; itx++) {
 
 					//each passengers will be inserted in one processor
@@ -12500,9 +12506,9 @@ int main(int argc, char **argv) {
 												}
 											}*/
 											//if (nxt_p != 5)
-											struct rlimit limit;
+											/*struct rlimit limit;
 											getrlimit (RLIMIT_STACK, &limit);
-  											printf ("\nStack Limit = %ld and %ld max\n", limit.rlim_cur, limit.rlim_max);
+  											printf ("\nStack Limit = %ld and %ld max\n", limit.rlim_cur, limit.rlim_max);*/
 											cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, c);
 											/*if (total_number_vehicles == 0){
 												cout<<"megra error hier after"<<endl;
@@ -12528,13 +12534,17 @@ int main(int argc, char **argv) {
 									served_requests_so_far++;
 								}
 								//cout<<"hier6"<<endl;
-								cout<<"3nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<" cid: "<<sort_clusters[nxt_p][it_cl_inser[nxt_p]].idx_cluster<<endl;
-								cout<<"continue: "<<vehicle_assigned[nxt_p]<<endl;
+								//cout<<"3nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<" cid: "<<sort_clusters[nxt_p][it_cl_inser[nxt_p]].idx_cluster<<endl;
+								//cout<<"continue: "<<vehicle_assigned[nxt_p]<<endl;
 								if (continue_this_passenger) {
 									if (it_cl_inser[nxt_p] == 2) {
 										if (vehicle_assigned[nxt_p] == -1) {
-											cout<<"hier6.5"<<endl;
-											serve_passenger_third_party_vehicle(nxt_p);
+											//cout<<"hier6.5"<<endl;
+											int response_time = current_time - time_stamp[pp];
+											if (response_time < 500) {
+												passengers_to_be_insertedOLD.push_back(nxt_p);
+											}
+											//serve_passenger_third_party_vehicle(nxt_p);
 											//passengers_on_hold.push_back(nxt_p);
 										}
 										//cout<<"hier6.7"<<endl;
@@ -12549,14 +12559,14 @@ int main(int argc, char **argv) {
 						}
 					}
 					//end parallelized for
-					cout<<"hier6.8"<<endl;
+					//cout<<"hier6.8"<<endl;
 					for (int c=0;c<number_clusters;c++) {
 						avl_cluster[c] = avl_cluster[c]+1;
 						avl_cluster[c] = avl_cluster[c]%number_clusters;
 						//cout<<avl_cluster[c]<<" ";
 
 					}
-					cout<<"hier6.9"<<endl;
+					//cout<<"hier6.9"<<endl;
 					//cout<<endl;
 
 					for (int c=number_clusters-1; c>=0;c--) {
