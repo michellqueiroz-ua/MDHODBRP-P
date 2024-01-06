@@ -16,6 +16,7 @@
 #include <vector>
 #include <iostream>
 #include <omp.h>
+#include <sys/resource.h>
 //#include<Eigen/Dense>
 //using namespace Eigen;
 using namespace std;
@@ -12397,6 +12398,7 @@ int main(int argc, char **argv) {
 	//41400
 	//k = total_requests+1;
 	//cout<<k<<" "<<total_requests<<" "<<current_time<<endl;
+	struct rlimit limit;
 	while((k < total_requests) or (current_time < 64800)) {
 	//while(current_time < 28800) {
 		cout<<"k2: "<<k<<endl;
@@ -12485,7 +12487,7 @@ int main(int argc, char **argv) {
 													cout<<"PROBLM: "<<clusters[c][j]<<" ";
 											}
 											cout<<endl<<endl;*/
-											for (int j=0;j<number_stops_origin[nxt_p];j++) {
+											/*for (int j=0;j<number_stops_origin[nxt_p];j++) {
 												//s_origin = stops_origin[p][j];
 												if (stops_origin[nxt_p][j] > maxstations) {
 													cout<<"PROBLM: "<<stops_origin[nxt_p][j]<<" ";
@@ -12496,8 +12498,10 @@ int main(int argc, char **argv) {
 												if (stops_destination[nxt_p][j] > maxstations) {
 													cout<<"PROBLM: "<<stops_destination[nxt_p][j]<<" ";
 												}
-											}
+											}*/
 											//if (nxt_p != 5)
+											getrlimit (RLIMIT_STACK, &limit);
+  											printf ("\nStack Limit = %ld and %ld max\n", limit.rlim_cur, limit.rlim_max);
 											cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, c);
 											/*if (total_number_vehicles == 0){
 												cout<<"megra error hier after"<<endl;
