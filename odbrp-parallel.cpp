@@ -27,7 +27,7 @@ using namespace std;
 #define maxtotalcapacity 40
 #define maxtypevehicles 40
 #define maxnumberdepots 10
-#define number_clusters 1
+#define number_clusters 3
 
 typedef int listP[20000 + 1];
 //typedef int matrixVP[maxvehicles + 1][maxpassengers + 1];
@@ -12537,7 +12537,7 @@ int main(int argc, char **argv) {
 								//cout<<"3nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<" cid: "<<sort_clusters[nxt_p][it_cl_inser[nxt_p]].idx_cluster<<endl;
 								//cout<<"continue: "<<vehicle_assigned[nxt_p]<<endl;
 								if (continue_this_passenger) {
-									if (it_cl_inser[nxt_p] == number_clusters) {
+									if (it_cl_inser[nxt_p] == 2) {
 										if (vehicle_assigned[nxt_p] == -1) {
 											//cout<<"hier6.5"<<endl;
 											int response_time = current_time - time_stamp[nxt_p];
