@@ -1695,7 +1695,7 @@ void cheapest_origin2_p(int p, int v, int &min_increase_length, int &sel_origin,
 					}
 
 					curr_number_insertions_p++;
-					if (curr_number_insertions_p > 94995) {
+					if (curr_number_insertions_p > 44995) {
 						return;
 					}
 					//cout<<"inset: "<<curr_number_insertions_p<<endl;
@@ -3408,7 +3408,7 @@ void re_insertion_to_repair(int p, bool &accept_relocate_trip, int cluster_id){
 		
 		best_min_increase_length = INT_MAX;
 		best_v = -1;
-		Insertions insertions_p[95000];
+		Insertions insertions_p[45000];
 		int curr_number_insertions_p = 0;
 		
 		for (int vf=0; vf<filtered_vehicles_p.size();vf++) {
@@ -3425,7 +3425,7 @@ void re_insertion_to_repair(int p, bool &accept_relocate_trip, int cluster_id){
 					flexibilize_lat_departure_time = false;
 				
 				see_if_arrival_departure_dont_match(v);
-				if (curr_number_insertions_p < 94955)
+				if (curr_number_insertions_p < 44955)
 					cheapest_origin2_p(p, v, min_increase_length, sel_origin, pos_origin, repeated_station, flexibilize_lat_departure_time, insertions_p, curr_number_insertions_p);
 				
 			}
@@ -4722,7 +4722,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 
 	bool infeasible_insertion = false;
 	
-	Insertions insertions_p[95000];
+	Insertions insertions_p[45000];
 	int curr_number_insertions_p = 0;
 
 	vector<int> filtered_vehicles_p;
@@ -5699,7 +5699,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 						//cout<<"heereBB"<<endl;
 						//cout<<v<<endl;
 						//cout<<"insidere here"<<endl;
-						if (curr_number_insertions_p < 94995)
+						if (curr_number_insertions_p < 44995)
 							cheapest_origin2_p(p, v, min_increase_length, sel_origin, pos_origin, repeated_station, flexibilize_lat_departure_time, insertions_p, curr_number_insertions_p);
 						
 					}
@@ -9073,7 +9073,7 @@ void re_insertion(int p, bool &accept_relocate_trip, double &temperature, int &t
 		}
 	}*/
 
-	Insertions insertions_p[95000];
+	Insertions insertions_p[45000];
 	int curr_number_insertions_p = 0; 
 
 	vector<int> filtered_vehicles_p;
@@ -9163,7 +9163,7 @@ void re_insertion(int p, bool &accept_relocate_trip, double &temperature, int &t
 					flexibilize_lat_departure_time = false;
 				
 				see_if_arrival_departure_dont_match(v);
-				if (curr_number_insertions_p < 94955)
+				if (curr_number_insertions_p < 44955)
 					cheapest_origin2_p(p, v, min_increase_length, sel_origin, pos_origin, repeated_station, flexibilize_lat_departure_time, insertions_p, curr_number_insertions_p);
 				
 			}
@@ -9926,7 +9926,7 @@ void re_insertion_nn(int p, bool &accept_relocate_trip, double &temperature, int
 	//	filtered_vehicles.clear();
 	bool infeasible_insertion = false;
 	
-	Insertions insertions_p[95000];
+	Insertions insertions_p[45000];
 	int curr_number_insertions_p = 0;
 	vector<int> filtered_vehicles_p;
 	//if (best_empty_vehicle != -1)
@@ -10025,7 +10025,7 @@ void re_insertion_nn(int p, bool &accept_relocate_trip, double &temperature, int
 				//cout<<"here2.2"<<endl;
 				see_if_arrival_departure_dont_match(v);
 				//cout<<"here2.3"<<endl;
-				if (curr_number_insertions_p < 94955)
+				if (curr_number_insertions_p < 44955)
 					cheapest_origin2_p(p, v, min_increase_length, sel_origin, pos_origin, repeated_station, flexibilize_lat_departure_time, insertions_p, curr_number_insertions_p);
 				//cout<<"here2.4"<<endl;		
 			}
@@ -12398,7 +12398,7 @@ int main(int argc, char **argv) {
 	//41400
 	//k = total_requests+1;
 	//cout<<k<<" "<<total_requests<<" "<<current_time<<endl;
-	struct rlimit limit;
+	
 	while((k < total_requests) or (current_time < 64800)) {
 	//while(current_time < 28800) {
 		cout<<"k2: "<<k<<endl;
@@ -12500,6 +12500,7 @@ int main(int argc, char **argv) {
 												}
 											}*/
 											//if (nxt_p != 5)
+											struct rlimit limit;
 											getrlimit (RLIMIT_STACK, &limit);
   											printf ("\nStack Limit = %ld and %ld max\n", limit.rlim_cur, limit.rlim_max);
 											cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, c);
