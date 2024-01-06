@@ -5620,7 +5620,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 	} 
 
 	//cout<<"hier 5.6"<<endl;
-	if (vehicle_assigned[p] == -2) {
+	if (vehicle_assigned[p] == -1) {
 		if ((no_feasible_insertion_empty) or (v == -1)) {
 
 			//if (not emptyfirst) {
@@ -6535,8 +6535,6 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 				}
 			}
 		}
-	} else {
-		cout<<"ITS IN THIS IF ELSE "<<cluster_id<<endl;
 	}
 
 	//cout<<"hieer2"<<endl;
@@ -12498,7 +12496,8 @@ int main(int argc, char **argv) {
 													cout<<"PROBLM: "<<stops_destination[nxt_p][j]<<" ";
 												}
 											}
-											cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, sort_clusters[nxt_p][it_cl_inser[nxt_p]].idx_cluster);
+											if (nxt_p != 5)
+												cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, sort_clusters[nxt_p][it_cl_inser[nxt_p]].idx_cluster);
 											/*if (total_number_vehicles == 0){
 												cout<<"megra error hier after"<<endl;
 											}*/
