@@ -27,7 +27,7 @@ using namespace std;
 #define maxtotalcapacity 40
 #define maxtypevehicles 40
 #define maxnumberdepots 10
-#define number_clusters 1
+#define number_clusters 3
 
 typedef int listP[20000 + 1];
 //typedef int matrixVP[maxvehicles + 1][maxpassengers + 1];
@@ -1584,7 +1584,7 @@ void cheapest_origin2_p(int p, int v, int &min_increase_length, int &sel_origin,
 				}
 			}
 			//cout<<"testY "<<endl;
-			//<<curr_dpt_time<<" "<<current_time<<endl;
+			cout<<"dptstimes "<<curr_dpt_time<<" "<<current_time<<endl;
 			if (curr_dpt_time >= current_time) {
 
 				//<<"i:"<<i<<endl;
@@ -5637,6 +5637,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 			filter_vehicles2(p, cluster_id, filtered_vehicles_p2);
 			//cout<<"filtered size: "<<filtered_vehicles_p.size()<<endl;
 			cout<<"filtered_vehicles SIZE "<<filtered_vehicles_p2.size()<<" "<<served_passengers<<" "<<cluster_id<<endl;
+			cout<<"clsize "<<clusters[cluster_id].size()<<"p "<<p<<endl;
 			bool not_feasible_insertion = true;
 			int iterations = 0;
 			bool tested_all_vehicles_once = false;
@@ -5705,7 +5706,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 					}
 				}
 				//<<endl;
-				//cout<<"hier 5.8 "<<curr_number_insertions_p<<endl;
+				cout<<"hier num insers "<<curr_number_insertions_p<<endl;
 				//cout<<"heereCC";
 				//cout<<"curr insert5: " << curr_number_insertions_p<<" "<<flexibilize_lat_departure_time<<endl;
 				sort(insertions_p, insertions_p+curr_number_insertions_p, comparator);
@@ -12414,15 +12415,17 @@ int main(int argc, char **argv) {
 				passengers_to_be_inserted.clear();
 			}
 
-			for (int ol=0;ol<passengers_to_be_insertedOLD.size();ol++){
-				passengers_to_be_inserted.push_back(passengers_to_be_insertedOLD[ol]);
-			}
-			passengers_to_be_insertedOLD.clear();
+			
 
 			while((current_time >= time_stamp[k]) && (k < total_requests)) { 
 				passengers_to_be_inserted.push_back(k);
 				k++;
 			}
+
+			for (int ol=0;ol<passengers_to_be_insertedOLD.size();ol++){
+				passengers_to_be_inserted.push_back(passengers_to_be_insertedOLD[ol]);
+			}
+			passengers_to_be_insertedOLD.clear();
 
 			
 
