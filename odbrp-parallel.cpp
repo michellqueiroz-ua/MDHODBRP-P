@@ -210,6 +210,7 @@ struct SortClusters {
 };
 
 static SortClusters sort_clusters[20000 + 1][number_clusters + 1];
+static int it_cl_inser[22000];
 
 bool comparator( Insertions a, Insertions b){
 	if(a.increase_length < b.increase_length)
@@ -4698,7 +4699,7 @@ bool repair_solution(int v, int p, int cluster_id){
 void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insertion, int cluster_id){
 
 	if (p == 5) {
-		cout<<p<<"PROBLM"<<endl;
+		cout<<p<<"GOT HERE"<<endl;
 		return;
 	}
 	int odb_fare, odb_travel_time, odb_distance;
@@ -12415,7 +12416,7 @@ int main(int argc, char **argv) {
 				k++;
 			}
 
-			int it_cl_inser[22000];
+			
 
 			int num_threads_for = passengers_to_be_inserted.size();
 			if (num_threads_for > number_clusters) {
@@ -12496,8 +12497,8 @@ int main(int argc, char **argv) {
 													cout<<"PROBLM: "<<stops_destination[nxt_p][j]<<" ";
 												}
 											}
-											if (nxt_p != 5)
-												cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, sort_clusters[nxt_p][it_cl_inser[nxt_p]].idx_cluster);
+											//if (nxt_p != 5)
+											cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, c);
 											/*if (total_number_vehicles == 0){
 												cout<<"megra error hier after"<<endl;
 											}*/
