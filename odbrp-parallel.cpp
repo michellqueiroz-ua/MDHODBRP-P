@@ -12540,7 +12540,7 @@ int main(int argc, char **argv) {
 									if (it_cl_inser[nxt_p] == 2) {
 										if (vehicle_assigned[nxt_p] == -1) {
 											//cout<<"hier6.5"<<endl;
-											int response_time = current_time - time_stamp[pp];
+											int response_time = current_time - time_stamp[nxt_p];
 											if (response_time < 500) {
 												passengers_to_be_insertedOLD.push_back(nxt_p);
 											}
