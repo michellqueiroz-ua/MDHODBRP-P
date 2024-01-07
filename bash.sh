@@ -12,7 +12,7 @@ run_binary() {
 export -f run_binary
 
 # Use find to generate a list of input files and pass them to parallel
-find ../../large-instances/commuting -type f -name "*.csv" | parallel -j $num_parallel run_binary {}
+find ../../large-instances/commutingT -type f -name "*.csv" | parallel -j $num_parallel run_binary {}
 
 # Wait for all parallel processes to finish
 wait

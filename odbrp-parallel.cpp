@@ -12404,7 +12404,7 @@ int main(int argc, char **argv) {
 	start_algorithm_time = std::clock();
 	double p_elapsed_algo_time, l_elapsed_algo_time, difference_elapsed;
 	p_elapsed_algo_time = 0;
-	while((k < total_requests) or (current_time < 64800)) {
+	while((k < total_requests) or (current_time < 30600)) {
 	//while(current_time < 28800) {
 		//cout<<"k2: "<<k<<endl;
 		check_last_position_route();
@@ -12480,54 +12480,11 @@ int main(int argc, char **argv) {
 								//#pragma omp parallel for num_threads(num_threads_for)
 								//cout<<"0nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 								//cout<<"cluster av: "<<avl_cluster[px]<<endl;
-								for (int c=0;c<number_clusters;c++) {
-
-									//if (vehicle_assigned[nxt_p] == -1) {
-									//cout<<"hier5.75"<<endl;
-									//cout<<nxt_p<<" "<<px<<endl;
-									//cout<<"it nxt cluster: "<<it_cl_inser[nxt_p]<<" "<<sort_clusters[nxt_p][it_cl_inser[nxt_p]].idx_cluster<<" av "<<avl_cluster[px]<<endl;
-									if (avl_cluster[px] == c) { //this way, each passenger has access only to one cluster at a time
-										if (sort_clusters[nxt_p][it_cl_inser[nxt_p]].idx_cluster == c) {
-											//cout<<"hier5.85"<<endl;
-											/*if (total_number_vehicles == 0){
-												cout<<"megra error hier before"<<endl;
-											}*/
-											//cout<<nxt_p<<"p cluster: "<<sort_clusters[nxt_p][it_cl_inser[nxt_p]].idx_cluster<<endl;
-											/*cout<<endl<<endl;
-											for (int j=0;j<clusters[c].size();j++){
-												if (clusters[c][j] > total_number_vehicles)
-													cout<<"PROBLM: "<<clusters[c][j]<<" ";
-											}
-											cout<<endl<<endl;*/
-											/*for (int j=0;j<number_stops_origin[nxt_p];j++) {
-												//s_origin = stops_origin[p][j];
-												if (stops_origin[nxt_p][j] > maxstations) {
-													cout<<"PROBLM: "<<stops_origin[nxt_p][j]<<" ";
-												}
-											}
-											for (int j=0;j<number_stops_destination[nxt_p];j++) {
-												//s_origin = stops_origin[p][j];
-												if (stops_destination[nxt_p][j] > maxstations) {
-													cout<<"PROBLM: "<<stops_destination[nxt_p][j]<<" ";
-												}
-											}*/
-											//if (nxt_p != 5)
-											/*struct rlimit limit;
-											getrlimit (RLIMIT_STACK, &limit);
-  											printf ("\nStack Limit = %ld and %ld max\n", limit.rlim_cur, limit.rlim_max);*/
-											cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, c);
-											/*if (total_number_vehicles == 0){
-												cout<<"megra error hier after"<<endl;
-											}*/
-											//cout<<"hier5.852 "<<c<<endl;
-											//check_valid_user_ride_times();
-											//cout<<"hier5.95"<<endl;
-											//cout<<"cir A"<<endl;
-										}
-									}
-									//}
-
+								
+								if (avl_cluster[px] == sort_clusters[nxt_p][it_cl_inser[nxt_p]].idx_cluster){
+									cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, avl_cluster[px]);
 								}
+
 								//cout<<"hier5.9"<<endl;
 								if (vehicle_assigned[nxt_p] == -1) {
 									//cout<<"1nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
