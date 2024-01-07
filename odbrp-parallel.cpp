@@ -1584,7 +1584,7 @@ void cheapest_origin2_p(int p, int v, int &min_increase_length, int &sel_origin,
 				}
 			}
 			//cout<<"testY "<<endl;
-			cout<<"dptstimes "<<curr_dpt_time<<" "<<current_time<<endl;
+			//cout<<"dptstimes "<<curr_dpt_time<<" "<<current_time<<endl;
 			if (curr_dpt_time >= current_time) {
 
 				//<<"i:"<<i<<endl;
@@ -1665,7 +1665,7 @@ void cheapest_origin2_p(int p, int v, int &min_increase_length, int &sel_origin,
 			 	//<<"capacity: "<<new_capacity<<endl;
 			 	
 			 	//cout<<"testX "<<endl;
-			 	//cout<<"co: "<<new_slack_time<<" "<<pick_up_time<<" "<<latest_departure_passenger<<" "<<new_capacity<<" "<<departure_time_from_home<<" "<<current_time;
+			 	cout<<"co: "<<new_slack_time<<" "<<pick_up_time<<" "<<latest_departure_passenger<<" "<<new_capacity<<" "<<departure_time_from_home<<" "<<current_time;
 			 	if ((new_slack_time >= 0) && (pick_up_time <= latest_departure_passenger) && (new_capacity >= 0) && (departure_time_from_home >= current_time)) {
 
 
@@ -12501,11 +12501,13 @@ int main(int argc, char **argv) {
 								//cout<<"continue: "<<vehicle_assigned[nxt_p]<<endl;
 								if (continue_this_passenger) {
 									if (it_cl_inser[nxt_p] >= number_clusters) {
+										cout<<"pass1 "<<nxt_p<<vehicle_assigned[nxt_p]<<endl;
 										if (vehicle_assigned[nxt_p] == -1) {
 											//cout<<"hier6.5"<<endl;
 											int response_time = current_time - time_stamp[nxt_p];
+											cout<<"pass2 "<<nxt_p<<response_time<<endl;
 											if (response_time < 500) {
-												cout<<"pass "<<nxt_p<<endl;
+												
 												passengers_to_be_insertedOLD.push_back(nxt_p);
 											}
 											//serve_passenger_third_party_vehicle(nxt_p);
