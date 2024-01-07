@@ -12400,7 +12400,10 @@ int main(int argc, char **argv) {
 	//41400
 	//k = total_requests+1;
 	//cout<<k<<" "<<total_requests<<" "<<current_time<<endl;
-	
+	clock_t start_algorithm_time;
+	start_algorithm_time = std::clock();
+	double p_elapsed_algo_time, l_elapsed_algo_time, difference_elapsed;
+	p_elapsed_algo_time = 0;
 	while((k < total_requests) or (current_time < 64800)) {
 	//while(current_time < 28800) {
 		//cout<<"k2: "<<k<<endl;
@@ -12667,7 +12670,18 @@ int main(int argc, char **argv) {
 
 
 
-		current_time++;
+		l_elapsed_algo_time = (double)(std::clock() - start_algorithm_time)/(double)(CLOCKS_PER_SEC);
+		//l_elapsed_algo_time = l_elapsed_algo_time*10000;
+		//cout<<"lelapsed: "<<l_elapsed_algo_time<<endl;
+		difference_elapsed = l_elapsed_algo_time - p_elapsed_algo_time;
+		
+		difference_elapsed = difference_elapsed*4;
+		if (difference_elapsed < 1)
+			current_time += 1;
+		else
+			current_time += difference_elapsed;
+
+		p_elapsed_algo_time = l_elapsed_algo_time;
 		//cout<<"cct: "<<current_time<<endl;
 		update_current_position();
 		//cout<<"out current pos"<<endl;
