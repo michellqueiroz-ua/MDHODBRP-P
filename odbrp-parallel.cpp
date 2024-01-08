@@ -11855,7 +11855,7 @@ void update_current_position() {
 	}
 }
 
-/*void randomly_assign_clusters() {
+void randomly_assign_clusters() {
 
 	for (int j=0; j<total_number_vehicles;j++){
 		cluster[j] = -1;
@@ -11871,22 +11871,24 @@ void update_current_position() {
     // Shuffle the vector to randomize the order
     std::random_shuffle(groupNumbers.begin(), groupNumbers.end());
 
-
-    size_t subVectorSize = groupNumbers.size() / number_clusters;
+    int subVectorSize = (int)(groupNumbers.size() / number_clusters);
     
     // Initialize iterators for the original vector
-    auto begin = groupNumbers.begin();
-    auto end = groupNumbers.begin() + subVectorSize;
+    int begin = 0;
+    int end = subVectorSize;
 
     // Split the vector into x sub-vectors
     for (int i = 0; i < number_clusters; i++) {
         // Handle the last sub-vector which may be smaller
         if (i == number_clusters - 1) {
-            end = groupNumbers.end();
+            end = groupNumbers.size();
         }
 
         // Create a sub-vector and add it to the result
-        clusters[i].push_back(std::vector<int>(begin, end));
+        //clusters[i].push_back(std::vector<int>(begin, end));
+        for (int itx=begin;itx<end;itx++){
+        	clusters[i].push_back(groupNumbers[itx]);
+        }
 
         // Move iterators to the next sub-vector
         begin = end;
@@ -11900,7 +11902,7 @@ void update_current_position() {
     }
 
 
-}*/
+}
 
 void k_medoids(int k, int epochs){
 
@@ -12460,8 +12462,9 @@ int main(int argc, char **argv) {
 	//cout<<k<<" "<<total_requests<<" "<<current_time<<endl;
 	clock_t start_algorithm_time;
 	start_algorithm_time = std::clock();
-	double p_elapsed_algo_time, l_elapsed_algo_time, difference_elapsed;
+	double p_elapsed_algo_time, l_elapsed_algo_time, difference_elapsed, difference_updated, p_updated_cluster;
 	p_elapsed_algo_time = 0;
+	p_updated_cluster = 0;
 	while((k < total_requests) or (current_time < 30600)) {
 	//while(current_time < 28800) {
 		//cout<<"k2: "<<k<<endl;
@@ -12659,37 +12662,47 @@ int main(int argc, char **argv) {
 			
 		} 
 
-		//decide new centroids
-		centroids.clear();
-		for (int ix=0; ix<number_clusters;ix++){
-			clusters[ix].clear();
-		}
-		for (int ix=0; ix<number_clusters;ix++){
+		l_elapsed_algo_time = (double)(std::clock() - start_algorithm_time)/(double)(CLOCKS_PER_SEC);
 
-			int cent = rand() % total_number_vehicles; 
-			bool already_centroid = false;
-			//i need also to verify if the vehicle is not already a "centroid"
-			for (int jx=0;jx<centroids.size();jx++){
-				if (centroids[jx] == cent)
-					already_centroid = true;
+		difference_updated = l_elapsed_algo_time - p_updated_cluster;
+
+		if (difference_updated > 200) {
+			p_updated_cluster = l_elapsed_algo_time;
+			/*//decide new centroids
+			centroids.clear();
+			for (int ix=0; ix<number_clusters;ix++){
+				clusters[ix].clear();
+			}
+			for (int ix=0; ix<number_clusters;ix++){
+
+				int cent = rand() % total_number_vehicles; 
+				bool already_centroid = false;
+				//i need also to verify if the vehicle is not already a "centroid"
+				for (int jx=0;jx<centroids.size();jx++){
+					if (centroids[jx] == cent)
+						already_centroid = true;
+				}
+
+				if (not already_centroid)
+					centroids.push_back(cent);
+				else
+					ix--;
 			}
 
-			if (not already_centroid)
-				centroids.push_back(cent);
-			else
-				ix--;
+			int epochs = 1000;
+			
+			k_medoids(number_clusters, epochs);
+
+			build_clusters();*/
+
+
+			randomly_assign_clusters();
+
+			for (int ix=0; ix<number_clusters;ix++){
+				cout<<clusters[ix].size()<<" ";
+			}
+			cout<<endl;
 		}
-
-		int epochs = 1000;
-		
-		k_medoids(number_clusters, epochs);
-
-		build_clusters();
-
-		for (int ix=0; ix<number_clusters;ix++){
-			cout<<clusters[ix].size()<<" ";
-		}
-		cout<<endl;
 		//decide new centroids
 
 		//<<"xxxheeerexxxx1"<<endl;
@@ -12712,11 +12725,6 @@ int main(int argc, char **argv) {
 				//cout<<"out heere"<<endl;
 
 			}
-
-
-			
-
-
 		}*/
 
 		
@@ -12737,6 +12745,10 @@ int main(int argc, char **argv) {
 		p_elapsed_algo_time = l_elapsed_algo_time;
 		//cout<<"cct: "<<current_time<<endl;
 		update_current_position();
+		
+
+
+
 		//cout<<"out current pos"<<endl;
 		
 		//<<"xxxheeerexxxx2"<<endl;
