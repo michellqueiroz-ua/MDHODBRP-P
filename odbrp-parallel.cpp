@@ -11855,7 +11855,7 @@ void update_current_position() {
 	}
 }
 
-void randomly_assign_clusters() {
+/*void randomly_assign_clusters() {
 
 	for (int j=0; j<total_number_vehicles;j++){
 		cluster[j] = -1;
@@ -11882,7 +11882,7 @@ void randomly_assign_clusters() {
     for (int i = 0; i < number_clusters; i++) {
         // Handle the last sub-vector which may be smaller
         if (i == number_clusters - 1) {
-            end = originalVector.end();
+            end = groupNumbers.end();
         }
 
         // Create a sub-vector and add it to the result
@@ -11900,7 +11900,7 @@ void randomly_assign_clusters() {
     }
 
 
-}
+}*/
 
 void k_medoids(int k, int epochs){
 
