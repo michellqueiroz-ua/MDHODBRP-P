@@ -12508,7 +12508,7 @@ int main(int argc, char **argv) {
 										//cout<<"pass1 "<<nxt_p<<vehicle_assigned[nxt_p]<<endl;
 
 
-										if (att_inser[nxt_p] >= 2){
+										if (att_inser[nxt_p] >= number_clusters){
 											if (vehicle_assigned[nxt_p] == -1) {
 												//cout<<"hier6.5"<<endl;
 												int response_time = current_time - time_stamp[nxt_p];
