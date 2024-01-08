@@ -11947,7 +11947,7 @@ void build_clusters(){
 
 void compute_mean_distances_request_partitions(int p){
 
-	cout<<"p:"<<p<<endl;
+	//cout<<"p:"<<p<<endl;
 	int expected_position, k;
 	int sum_dist_clusters;
 	for (int i=0;i<number_clusters;i++){
@@ -12508,7 +12508,7 @@ int main(int argc, char **argv) {
 										//cout<<"pass1 "<<nxt_p<<vehicle_assigned[nxt_p]<<endl;
 
 
-										if (att_inser[nxt_p] >= number_clusters){
+										if (att_inser[nxt_p] >= 2){
 											if (vehicle_assigned[nxt_p] == -1) {
 												//cout<<"hier6.5"<<endl;
 												int response_time = current_time - time_stamp[nxt_p];
@@ -12603,7 +12603,35 @@ int main(int argc, char **argv) {
 			
 		} 
 
+		//decide new centroids
+		centroids.clear();
+		for (int ix=0; ix<number_clusters;ix++){
+
+			int cent = rand() % total_number_vehicles; 
+			bool already_centroid = false;
+			//i need also to verify if the vehicle is not already a "centroid"
+			for (int jx=0;jx<centroids.size();jx++){
+				if (centroids[jx] == cent)
+					already_centroid = true;
+			}
+
+			if (not already_centroid)
+				centroids.push_back(cent);
+			else
+				ix--;
+		}
+
+		int epochs = 1000;
 		
+		k_medoids(number_clusters, epochs);
+
+		build_clusters();
+
+		for (int ix=0; ix<number_clusters;ix++){
+			cout<<clusters[ix].size()<<" ";
+		}
+		cout<<endl;
+		//decide new centroids
 
 		//<<"xxxheeerexxxx1"<<endl;
 		//cout<<"actual passenger "<<k<<endl;
