@@ -11913,6 +11913,11 @@ void k_medoids(int k, int epochs){
 		cluster[j] = -1;
 	}
 
+	for (int i=0; i<centroids.size();i++){
+		mindDist[centroids[i]] = 0;
+		cluster[centroids[i]] = centroids[i];
+	}
+
 	//assign each vehicle to its nearest centroids
 	for (int i=0; i<centroids.size();i++){
 
