@@ -11855,13 +11855,64 @@ void update_current_position() {
 	}
 }
 
+void randomly_assign_clusters() {
+
+	for (int j=0; j<total_number_vehicles;j++){
+		cluster[j] = -1;
+	}
+
+	std::vector<int> groupNumbers;
+        
+    // Generate unique random numbers within the specified range
+    for (int i = 0; i < total_number_vehicles; i++) {
+        groupNumbers.push_back(i);
+    }
+
+    // Shuffle the vector to randomize the order
+    std::random_shuffle(groupNumbers.begin(), groupNumbers.end());
+
+
+    size_t subVectorSize = groupNumbers.size() / number_clusters;
+    
+    // Initialize iterators for the original vector
+    auto begin = groupNumbers.begin();
+    auto end = groupNumbers.begin() + subVectorSize;
+
+    // Split the vector into x sub-vectors
+    for (int i = 0; i < number_clusters; i++) {
+        // Handle the last sub-vector which may be smaller
+        if (i == number_clusters - 1) {
+            end = originalVector.end();
+        }
+
+        // Create a sub-vector and add it to the result
+        clusters[i].push_back(std::vector<int>(begin, end));
+
+        // Move iterators to the next sub-vector
+        begin = end;
+        end += subVectorSize;
+    }
+
+    for (int i = 0; i < number_clusters; i++) {
+    	for (int j=0; j<clusters[i].size();j++){
+    		cluster[clusters[j]] = i;
+    	}
+    }
+
+
+}
+
 void k_medoids(int k, int epochs){
 
 	bool improvement = true;
 	int iterations = 0;
 
 	int dist;
-	
+	for (int j=0; j<total_number_vehicles;j++){
+		mindDist[j] = 999999;
+		cluster[j] = -1;
+	}
+
 	//assign each vehicle to its nearest centroids
 	for (int i=0; i<centroids.size();i++){
 
@@ -12605,6 +12656,9 @@ int main(int argc, char **argv) {
 
 		//decide new centroids
 		centroids.clear();
+		for (int ix=0; ix<number_clusters;ix++){
+			clusters[ix].clear();
+		}
 		for (int ix=0; ix<number_clusters;ix++){
 
 			int cent = rand() % total_number_vehicles; 
