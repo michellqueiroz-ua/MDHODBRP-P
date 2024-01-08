@@ -1665,7 +1665,7 @@ void cheapest_origin2_p(int p, int v, int &min_increase_length, int &sel_origin,
 			 	//<<"capacity: "<<new_capacity<<endl;
 			 	
 			 	//cout<<"testX "<<endl;
-			 	cout<<"co: "<<new_slack_time<<" "<<pick_up_time<<" "<<latest_departure_passenger<<" "<<new_capacity<<" "<<departure_time_from_home<<" "<<current_time;
+			 	//cout<<"co: "<<new_slack_time<<" "<<pick_up_time<<" "<<latest_departure_passenger<<" "<<new_capacity<<" "<<departure_time_from_home<<" "<<current_time<<endl;
 			 	if ((new_slack_time >= 0) && (pick_up_time <= latest_departure_passenger) && (new_capacity >= 0) && (departure_time_from_home >= current_time)) {
 
 
@@ -6518,7 +6518,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 					//iterations++;
 					iterations = filtered_vehicles_p2.size()+1;
 				}
-				if (iterations >= total_number_vehicles) {
+				if (iterations >= filtered_vehicles_p2.size()) {
 					if (not tested_all_vehicles_once) {
 						tested_all_vehicles_once = true;
 						//usually this is restarted flexibilizing the latest departure time, but we dont want that anymore
