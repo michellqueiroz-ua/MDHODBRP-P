@@ -212,6 +212,7 @@ struct SortClusters {
 
 static SortClusters sort_clusters[20000 + 1][number_clusters + 1];
 static int it_cl_inser[22000];
+static int att_inser[22000];
 
 bool comparator( Insertions a, Insertions b){
 	if(a.increase_length < b.increase_length)
@@ -5706,7 +5707,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 					}
 				}
 				//<<endl;
-				cout<<"hier num insers "<<curr_number_insertions_p<<endl;
+				//cout<<"hier num insers "<<curr_number_insertions_p<<endl;
 				//cout<<"heereCC";
 				//cout<<"curr insert5: " << curr_number_insertions_p<<" "<<flexibilize_lat_departure_time<<endl;
 				sort(insertions_p, insertions_p+curr_number_insertions_p, comparator);
@@ -12150,6 +12151,7 @@ int main(int argc, char **argv) {
 		vehicle_assigned[i] = -1;
 		delay[i] = 0;
 		assigned_to_3rd_party[i] = 0;
+		att_inser[i] = 0;
 		//already_opened_vehicle_for_it[i] = 0;
 	}
 
@@ -12447,12 +12449,13 @@ int main(int argc, char **argv) {
 			//maybe sort passengers_to_be_inserted in a way to avoid collision between clusters???
 
 			//cout<<"hier4"<<endl;
+			for (int c=0;c<number_clusters;c++) {
+				avl_cluster[c] = c;
+			}
 			while (passengers_to_be_inserted.size() > 0) {
 
 				//cout<<"10size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
-				for (int c=0;c<number_clusters;c++) {
-					avl_cluster[c] = c;
-				}
+				
 				//cout<<"11size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 				for (int itx = 0; itx<num_threads_for; itx++) {
 
@@ -12501,21 +12504,25 @@ int main(int argc, char **argv) {
 								//cout<<"continue: "<<vehicle_assigned[nxt_p]<<endl;
 								if (continue_this_passenger) {
 									if (it_cl_inser[nxt_p] >= number_clusters) {
-										cout<<"pass1 "<<nxt_p<<vehicle_assigned[nxt_p]<<endl;
-										if (vehicle_assigned[nxt_p] == -1) {
-											//cout<<"hier6.5"<<endl;
-											int response_time = current_time - time_stamp[nxt_p];
-											cout<<"pass2 "<<nxt_p<<response_time<<endl;
-											if (response_time < 500) {
-												
-												passengers_to_be_insertedOLD.push_back(nxt_p);
+										att_inser[nxt_p]++;
+										//cout<<"pass1 "<<nxt_p<<vehicle_assigned[nxt_p]<<endl;
+
+
+										if (att_inser[nxt_p] >= 2){
+											if (vehicle_assigned[nxt_p] == -1) {
+												//cout<<"hier6.5"<<endl;
+												int response_time = current_time - time_stamp[nxt_p];
+												//cout<<"pass2 "<<nxt_p<<response_time<<endl;
+												if (response_time < 500) {
+													passengers_to_be_insertedOLD.push_back(nxt_p);
+												}
+												//serve_passenger_third_party_vehicle(nxt_p);
+												//passengers_on_hold.push_back(nxt_p);
 											}
-											//serve_passenger_third_party_vehicle(nxt_p);
-											//passengers_on_hold.push_back(nxt_p);
+											//cout<<"hier6.7"<<endl;
+											continue_this_passenger = false;
+											del_passenger[px] = 1;
 										}
-										//cout<<"hier6.7"<<endl;
-										continue_this_passenger = false;
-										del_passenger[px] = 1;
 									}
 								}
 								//cout<<"4nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
@@ -12530,7 +12537,6 @@ int main(int argc, char **argv) {
 						avl_cluster[c] = avl_cluster[c]+1;
 						avl_cluster[c] = avl_cluster[c]%number_clusters;
 						//cout<<avl_cluster[c]<<" ";
-
 					}
 					//cout<<"hier6.9"<<endl;
 					//cout<<endl;
@@ -12542,7 +12548,8 @@ int main(int argc, char **argv) {
 							passengers_to_be_inserted.erase(passengers_to_be_inserted.begin() + c);
 							//cout<<c<<endl;
 							//cout<<"5size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
-							del_passenger[c] = 0;	
+							del_passenger[c] = 0;
+							att_inser[passengers_to_be_inserted[c]] = 0;	
 						}
 					}
 					//cout<<"hier6.93"<<endl;
