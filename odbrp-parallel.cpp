@@ -11897,7 +11897,7 @@ void randomly_assign_clusters() {
 
     for (int i = 0; i < number_clusters; i++) {
     	for (int j=0; j<clusters[i].size();j++){
-    		cluster[clusters[j]] = i;
+    		cluster[clusters[i][j]] = i;
     	}
     }
 
