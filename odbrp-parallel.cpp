@@ -11879,7 +11879,7 @@ void randomly_assign_clusters() {
     // Initialize iterators for the original vector
     int begin = 0;
     int end = subVectorSize;
-    cout<<"subsize: "<<subVectorSize<<endl;
+    //cout<<"subsize: "<<subVectorSize<<endl;
 
     // Split the vector into x sub-vectors
     for (int i = 0; i < number_clusters; i++) {
@@ -11939,6 +11939,14 @@ void k_medoids(int k, int epochs){
 			if (dist < mindDist[j]) {
 				mindDist[j] = dist;
 				cluster[j] = clusterId;
+			} else {
+				if (dist == mindDist[j]) {
+					double y = (double)rand() / (double)RAND_MAX;
+					if (y <= 0.5) {
+						mindDist[j] = dist;
+						cluster[j] = clusterId;
+					}
+				}
 			}
 
 		}
@@ -12677,43 +12685,49 @@ int main(int argc, char **argv) {
 			for (int ix=0; ix<number_clusters;ix++){
 				clusters[ix].clear();
 			}
-			/*//decide new centroids
-			
-			for (int ix=0; ix<number_clusters;ix++){
 
-				int cent = rand() % total_number_vehicles; 
-				bool already_centroid = false;
-				//i need also to verify if the vehicle is not already a "centroid"
-				for (int jx=0;jx<centroids.size();jx++){
-					if (centroids[jx] == cent)
-						already_centroid = true;
+			double y = (double)rand() / (double)RAND_MAX;
+
+			if (y <= 0.5) {
+
+				//decide new centroids
+				
+				for (int ix=0; ix<number_clusters;ix++){
+
+					int cent = rand() % total_number_vehicles; 
+					bool already_centroid = false;
+					//i need also to verify if the vehicle is not already a "centroid"
+					for (int jx=0;jx<centroids.size();jx++){
+						if (centroids[jx] == cent)
+							already_centroid = true;
+					}
+
+					if (not already_centroid)
+						centroids.push_back(cent);
+					else
+						ix--;
 				}
 
-				if (not already_centroid)
-					centroids.push_back(cent);
-				else
-					ix--;
+				int epochs = 1000;
+				
+				k_medoids(number_clusters, epochs);
+
+				build_clusters();
+
+			} else {
+				randomly_assign_clusters();
 			}
-
-			int epochs = 1000;
-			
-			k_medoids(number_clusters, epochs);
-
-			build_clusters();*/
-
-
-			randomly_assign_clusters();
 
 			for (int ix=0; ix<number_clusters;ix++){
 				cout<<clusters[ix].size()<<" ";
 			}
 			cout<<endl;
-			for (int i = 0; i < number_clusters; i++) {
+			/*for (int i = 0; i < number_clusters; i++) {
 		    	for (int j=0; j<clusters[i].size();j++){
 		    		cout<<clusters[i][j]<<" ";
 		    	}
 		    	cout<<endl;
-		    }
+		    }*/
 		}
 		//decide new centroids
 
