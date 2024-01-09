@@ -11869,10 +11869,10 @@ void randomly_assign_clusters() {
         groupNumbers.push_back(i);
     }
 
-    unsigned xseedx = 0;
+    //unsigned xseedx = 0;
 
     // Shuffle the vector to randomize the order
-    std::shuffle(groupNumbers.begin(), groupNumbers.end(), default_random_engine(xseedx));
+    std::shuffle(groupNumbers.begin(), groupNumbers.end(), default_random_engine(current_time));
 
     int subVectorSize = (int)(total_number_vehicles / number_clusters);
     
