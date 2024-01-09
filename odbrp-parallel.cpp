@@ -12637,6 +12637,9 @@ int main(int argc, char **argv) {
 					
 				}
 
+				//shuffle passengers to add some variety
+				std::shuffle(passengers_to_be_inserted.begin(), passengers_to_be_inserted.end(), default_random_engine(current_time));
+
 			}
 
 				/*bool accept_infeasible_insertion = false;
