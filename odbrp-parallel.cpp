@@ -12737,7 +12737,7 @@ int main(int argc, char **argv) {
 		//<<"xxxheeerexxxx1"<<endl;
 		//cout<<"actual passenger "<<k<<endl;
 		//cout<<"hier7sa"<<endl;
-		/*if (k > total_number_vehicles + 10) {
+		if (k > total_number_vehicles + 10) {
 		
 			
 			//omp_set_num_threads(2);	
@@ -12754,7 +12754,7 @@ int main(int argc, char **argv) {
 				//cout<<"out heere"<<endl;
 
 			}
-		}*/
+		}
 
 		
 
