@@ -15,6 +15,7 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <random>
 #include <omp.h>
 #include <sys/resource.h>
 //#include<Eigen/Dense>
@@ -11879,7 +11880,7 @@ void randomly_assign_clusters() {
     int begin = 0;
     int end = subVectorSize;
     cout<<"subsize: "<<subVectorSize<<endl;
-    
+
     // Split the vector into x sub-vectors
     for (int i = 0; i < number_clusters; i++) {
         // Handle the last sub-vector which may be smaller
