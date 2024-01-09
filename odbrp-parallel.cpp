@@ -11874,7 +11874,7 @@ void randomly_assign_clusters() {
     // Shuffle the vector to randomize the order
     std::shuffle(groupNumbers.begin(), groupNumbers.end(), default_random_engine(xseedx));
 
-    int subVectorSize = (int)(groupNumbers.size() / number_clusters);
+    int subVectorSize = (int)(total_number_vehicles / number_clusters);
     
     // Initialize iterators for the original vector
     int begin = 0;
@@ -12673,11 +12673,12 @@ int main(int argc, char **argv) {
 		cout<<"els:"<<difference_updated<<endl;
 		if (difference_updated > 200) {
 			p_updated_cluster = current_time;
-			/*//decide new centroids
 			centroids.clear();
 			for (int ix=0; ix<number_clusters;ix++){
 				clusters[ix].clear();
 			}
+			/*//decide new centroids
+			
 			for (int ix=0; ix<number_clusters;ix++){
 
 				int cent = rand() % total_number_vehicles; 
