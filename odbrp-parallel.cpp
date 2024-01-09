@@ -12464,7 +12464,7 @@ int main(int argc, char **argv) {
 	start_algorithm_time = std::clock();
 	double p_elapsed_algo_time, l_elapsed_algo_time, difference_elapsed, difference_updated, p_updated_cluster;
 	p_elapsed_algo_time = 0;
-	p_updated_cluster = 0;
+	p_updated_cluster = current_time;
 	while((k < total_requests) or (current_time < 30600)) {
 	//while(current_time < 28800) {
 		//cout<<"k2: "<<k<<endl;
@@ -12662,12 +12662,13 @@ int main(int argc, char **argv) {
 			
 		} 
 
-		l_elapsed_algo_time = (double)(std::clock() - start_algorithm_time)/(double)(CLOCKS_PER_SEC);
+		//l_elapsed_algo_time = (double)(std::clock() - start_algorithm_time)/(double)(CLOCKS_PER_SEC);
 
-		difference_updated = l_elapsed_algo_time - p_updated_cluster;
+		difference_updated = current_time - p_updated_cluster;
 
+		cout<<difference_updated<<endl;
 		if (difference_updated > 200) {
-			p_updated_cluster = l_elapsed_algo_time;
+			p_updated_cluster = current_time;
 			/*//decide new centroids
 			centroids.clear();
 			for (int ix=0; ix<number_clusters;ix++){
@@ -12702,6 +12703,12 @@ int main(int argc, char **argv) {
 				cout<<clusters[ix].size()<<" ";
 			}
 			cout<<endl;
+			for (int i = 0; i < number_clusters; i++) {
+		    	for (int j=0; j<clusters[i].size();j++){
+		    		cout<<cluster[clusters[i][j]]<<" ";
+		    	}
+		    	cout<<endl;
+		    }
 		}
 		//decide new centroids
 
