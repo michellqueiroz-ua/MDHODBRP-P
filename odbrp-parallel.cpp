@@ -5648,6 +5648,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 				serve_passenger_third_party_vehicle(p);
 			}*/
 			//cout<<"hier 5.7"<<endl;
+			std::shuffle(filtered_vehicles_p2.begin(), filtered_vehicles_p2.end(), default_random_engine(current_time));
 			while ((not_feasible_insertion) && (iterations < filtered_vehicles_p2.size())) {
 				
 				int best_pos_origin, best_pos_destination;
