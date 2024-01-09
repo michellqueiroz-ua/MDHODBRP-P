@@ -12678,7 +12678,7 @@ int main(int argc, char **argv) {
 
 		difference_updated = current_time - p_updated_cluster;
 
-		cout<<"els:"<<difference_updated<<endl;
+		//cout<<"els:"<<difference_updated<<endl;
 		if (difference_updated > 200) {
 			p_updated_cluster = current_time;
 			centroids.clear();
@@ -12688,7 +12688,7 @@ int main(int argc, char **argv) {
 
 			double y = (double)rand() / (double)RAND_MAX;
 
-			if (y <= 0.5) {
+			if (y <= 0.3) {
 
 				//decide new centroids
 				
