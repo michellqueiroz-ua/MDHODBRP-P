@@ -11868,15 +11868,18 @@ void randomly_assign_clusters() {
         groupNumbers.push_back(i);
     }
 
+    unsigned xseedx = 0;
+
     // Shuffle the vector to randomize the order
-    std::random_shuffle(groupNumbers.begin(), groupNumbers.end());
+    std::shuffle(groupNumbers.begin(), groupNumbers.end(), default_random_engine(xseedx));
 
     int subVectorSize = (int)(groupNumbers.size() / number_clusters);
     
     // Initialize iterators for the original vector
     int begin = 0;
     int end = subVectorSize;
-
+    cout<<"subsize: "<<subVectorSize<<endl;
+    
     // Split the vector into x sub-vectors
     for (int i = 0; i < number_clusters; i++) {
         // Handle the last sub-vector which may be smaller
