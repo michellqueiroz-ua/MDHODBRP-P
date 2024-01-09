@@ -12666,7 +12666,7 @@ int main(int argc, char **argv) {
 
 		difference_updated = current_time - p_updated_cluster;
 
-		cout<<difference_updated<<endl;
+		cout<<"els:"<<difference_updated<<endl;
 		if (difference_updated > 200) {
 			p_updated_cluster = current_time;
 			/*//decide new centroids
@@ -12705,7 +12705,7 @@ int main(int argc, char **argv) {
 			cout<<endl;
 			for (int i = 0; i < number_clusters; i++) {
 		    	for (int j=0; j<clusters[i].size();j++){
-		    		cout<<cluster[clusters[i][j]]<<" ";
+		    		cout<<clusters[i][j]<<" ";
 		    	}
 		    	cout<<endl;
 		    }
