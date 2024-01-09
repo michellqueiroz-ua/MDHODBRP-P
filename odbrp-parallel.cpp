@@ -12679,7 +12679,7 @@ int main(int argc, char **argv) {
 		difference_updated = current_time - p_updated_cluster;
 
 		//cout<<"els:"<<difference_updated<<endl;
-		if (difference_updated > 100) {
+		if (difference_updated > 50) {
 			p_updated_cluster = current_time;
 			centroids.clear();
 			for (int ix=0; ix<number_clusters;ix++){
@@ -12688,7 +12688,7 @@ int main(int argc, char **argv) {
 
 			double y = (double)rand() / (double)RAND_MAX;
 
-			if (y <= 0.3) {
+			if (y <= 0.5) {
 
 				//decide new centroids
 				
