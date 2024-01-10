@@ -12480,7 +12480,7 @@ int main(int argc, char **argv) {
 	p_updated_cluster = current_time;
 	while((k < total_requests) or (current_time < 64800)) {
 	//while(current_time < 28800) {
-		cout<<"k2: "<<k<<endl;
+		
 		check_last_position_route();
 		//<<"hier3.1"<<endl;
 		//if (k > num_iterations_to_start_reassign)
@@ -12493,7 +12493,7 @@ int main(int argc, char **argv) {
 			}
 
 			
-
+			cout<<"ct ts: "<<current_time<<" "<<time_stamp[k]<<endl;
 			while((current_time >= time_stamp[k]) && (k < total_requests)) { 
 				passengers_to_be_inserted.push_back(k);
 				k++;
