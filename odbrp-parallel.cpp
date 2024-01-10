@@ -389,10 +389,10 @@ bool solution_validation(int p, int v){
 		}
 
 	} 
-	//cout<<"passed1 "<<endl;
+	//<<"passed1 "<<endl;
 	if (not valid_solution) {
 		
-		//cout<<travel_time[1174][3081]<<" "<<travel_time[3081][2142]<<" "<<travel_time[1174][2142]<<" "<<endl;
+		//<<travel_time[1174][3081]<<" "<<travel_time[3081][2142]<<" "<<travel_time[1174][2142]<<" "<<endl;
 		cout <<"not valid for passenger: "<<p<<" "<<earliest_departure[p]<<" "<<latest_arrival[p]<<endl;
 		
 		for (int l=0; l<=number_stops[v];l++) {
@@ -414,7 +414,7 @@ bool solution_validation(int p, int v){
 		cout<<count<<" not valid for passenger (not picking up or dropping off): "<<p<<endl;
 		return false;
 	}
-	//cout<<"passed2 "<<endl;
+	//<<"passed2 "<<endl;
 
 	return true;
 }
@@ -422,19 +422,19 @@ bool solution_validation(int p, int v){
 void save_best_solution(int cluster_id){
 
 	best_tot_cluster_ride_time[cluster_id] = 0;
-	//cout<<"A"<<endl;
+	//<<"A"<<endl;
 	for (int j=0;j<clusters[cluster_id].size();j++){
 
 		int v = clusters[cluster_id][j];
-		//cout<<"B"<<endl;
+		//<<"B"<<endl;
 		best_stops[v] = stops[v];
-		//cout<<"C"<<endl;
+		//<<"C"<<endl;
 		//std::copy(std::begin(action_passengers[v]), std::end(action_passengers[v]), std::begin(best_action_passengers[v]));
 		best_action_passengers[v] = action_passengers[v];
-		//cout<<"D"<<endl;
+		//<<"D"<<endl;
 		best_number_passengers_action[v] = number_passengers_action[v];
 		best_arrival_time_stop[v] = arrival_time_stop[v];
-		//cout<<"E"<<endl;
+		//<<"E"<<endl;
 		best_departure_time_stop[v] = departure_time_stop[v];
 		best_slack_time[v] = slack_time[v];
 		//xxcout<<"F"<<endl;
@@ -585,12 +585,12 @@ void save_vehicle_p(int v){
 
 	saved_number_stops_v[v] = number_stops[v];
 
-	//cout<<number_stops[v]<<" "<<endl;
+	//<<number_stops[v]<<" "<<endl;
 	for (int i=0; i<=number_stops[v];i++) {
 		saved_stops2[v][i] = stops[v][i];
 		saved_number_passengers_action2[v][i] = number_passengers_action[v][i];
 		
-		//cout<<number_passengers_action[v][i]<<endl;
+		//<<number_passengers_action[v][i]<<endl;
 		for (int j=0; j<number_passengers_action[v][i];j++) {
 			 saved_action_passengers2[v][i][j] = action_passengers[v][i][j];
 		}
@@ -664,7 +664,7 @@ void input_travel_time(char *filename) {
 	fstream file (filename, ios::in);
 	string line, data;
 	int s, stop1, stop2;
-	//cout<<filename<<endl;
+	//<<filename<<endl;
 	if(file.is_open())
 	{
 		/*getline(file, line);
@@ -677,7 +677,7 @@ void input_travel_time(char *filename) {
 
 			//if (count > 0) {
 				stations_ids[s] = stoi(data);
-				//cout<<stations_ids[s]<<" "<<endl;
+				//<<stations_ids[s]<<" "<<endl;
 				//station_map.insert(pair<int, int>(stations_ids[s], s));
 				station_id_map[stations_ids[s]] = s;
 				s = s + 1;
@@ -701,7 +701,7 @@ void input_travel_time(char *filename) {
 			//count = 0;
 			int count = 0;
 			while(getline(str, data, ',')) {
-				//cout<<data<<" ";
+				//<<data<<" ";
 				if (count > 0) {
 					travel_time[stop1][stop2] = stoi(data);
 					travel_time[stop2][stop1] = stoi(data);
@@ -709,9 +709,9 @@ void input_travel_time(char *filename) {
 				} 
 				count++;
 			}
-			//cout<<endl<<endl;
+			//<<endl<<endl;
 			//break;
-			//cout<<stop1<<" "<<stop2<<endl;
+			//<<stop1<<" "<<stop2<<endl;
 			stop1 = stop1 + 1;
 
 		}
@@ -719,34 +719,34 @@ void input_travel_time(char *filename) {
 		for (int i=0;i<stop1;i++){
 			stations_ids[i] = i;
 		}
-		//cout<<"count: "<<count<<endl;
+		//<<"count: "<<count<<endl;
 		int count2 =1;
 
 		/*for(int i=0;i<stop1;i++) {
 			for (int j=0;j<stop1;j++) {
 				if (travel_time[i][j] == 0) {
 					cout<<i<<" "<<j<<endl;
-		  			//cout << travel_time[i][j] <<',';
+		  			// << travel_time[i][j] <<',';
 		  		}
 		  	}
 		   cout <<endl;
 		}*/
 
-		//cout<<"xx: "<<travel_time[2950][214]<<" "<<travel_time[214][2716]<<" "<<travel_time[2950][2716]<<endl;
+		//<<"xx: "<<travel_time[2950][214]<<" "<<travel_time[214][2716]<<" "<<travel_time[2950][2716]<<endl;
 
 		/*while (count2 > 0) {
 		
 			count2 = 0;
 
 			for (int i=0;i<stop1;i++){
-				//cout<<i<<endl;
+				//<<i<<endl;
 				for (int j=0;j<stop1;j++){
 					for(int k=0;k<stop1;k++){
 						if (travel_time[i][j] > travel_time[i][k] + travel_time[k][j]){
 							travel_time[i][j] = travel_time[i][k] + travel_time[k][j];
 							travel_time[j][i] = travel_time[i][j];
 							count2++;
-							//cout<<"err "<<i<<" "<<j<<" "<<k<<endl;
+							//<<"err "<<i<<" "<<j<<" "<<k<<endl;
 						}
 					}
 				}
@@ -765,7 +765,7 @@ void input_travel_time(char *filename) {
 		  out << '\n';
 		}*/
 		//saveData("travel_time_matrix.csv", travel_time);
-		//cout<<"out"<<endl;
+		//<<"out"<<endl;
 
 	}
 }
@@ -790,11 +790,11 @@ void input_requests(char *filename) {
 			stringstream str(line);
 			getline(str, data, ',');
 			p = stoi(data);
-			//cout<<p<<" ";
+			//<<p<<" ";
 			
 			getline(str, data, ',');
 			time_stamp[p] = stoi(data);
-			//cout<<time_stamp[p]<<" ";
+			//<<time_stamp[p]<<" ";
 
 			getline(str, data, ',');
 			getline(str, data, ',');
@@ -809,12 +809,12 @@ void input_requests(char *filename) {
 
 			earliest_departure[p] = stoi(data);
 			//printf("%d\n", earliest_departure[p]);
-			//cout<<earliest_departure[p]<<" ";
+			//<<earliest_departure[p]<<" ";
 			
 			getline(str, data, ',');
 			latest_departure[p] = stoi(data);
 			//printf("%d\n", latest_departure[p]);
-			//cout<<latest_departure[p]<<" ";
+			//<<latest_departure[p]<<" ";
 
 			getline(str, data, ','); //direct travel time
 			direct_travel_time[p] = stoi(data);
@@ -834,7 +834,7 @@ void input_requests(char *filename) {
 			//<<data.end()<<endl;
 			s = 0;
 			stops_origin[p][s] = stoi(data);
-			//cout<<stops_origin[p][s]<<" ";
+			//<<stops_origin[p][s]<<" ";
 			//printf("%d ", stops_origin[p][s]);
 			s = s + 1;
 			//stringstream str2(data);
@@ -847,7 +847,7 @@ void input_requests(char *filename) {
 					data.erase(remove(data.begin(), data.end(), '"'), data.end());
 					data.erase(remove(data.begin(), data.end(), ']'), data.end());
 					stops_origin[p][s] = stoi(stop);
-					//cout<<stops_origin[p][s]<<" ";
+					//<<stops_origin[p][s]<<" ";
 					//printf("%d ", stops_origin[p][s]);
 					s = s + 1;
 					if (leave_loop)
@@ -869,7 +869,7 @@ void input_requests(char *filename) {
 			//<<data.end()<<endl;
 			s = 0;
 			walking_time_stops_origin[p][s] = stoi(data);
-			//cout<<walking_time_stops_origin[p][s]<<" ";
+			//<<walking_time_stops_origin[p][s]<<" ";
 			//printf("%d ", stops_origin[p][s]);
 			s = s + 1;
 			//stringstream str2(data);
@@ -882,7 +882,7 @@ void input_requests(char *filename) {
 					data.erase(remove(data.begin(), data.end(), '"'), data.end());
 					data.erase(remove(data.begin(), data.end(), ']'), data.end());
 					walking_time_stops_origin[p][s] = stoi(stop);
-					//cout<<walking_time_stops_origin[p][s]<<" ";
+					//<<walking_time_stops_origin[p][s]<<" ";
 					//printf("%d ", stops_origin[p][s]);
 					s = s + 1;
 					if (leave_loop)
@@ -893,7 +893,7 @@ void input_requests(char *filename) {
 			
 			getline(str, data, ',');
 			latest_arrival[p] = stoi(data);
-			//cout<<latest_arrival[p]<<" ";
+			//<<latest_arrival[p]<<" ";
 
 
 			//<<latest_arrival[p]<<endl;
@@ -922,7 +922,7 @@ void input_requests(char *filename) {
 			//<<data.end()<<endl;
 			s = 0;
 			stops_destination[p][s] = stoi(data);
-			//cout<<stops_destination[p][s]<<" ";
+			//<<stops_destination[p][s]<<" ";
 			//printf("%d ", stops_destination[p][s]);
 			s = s + 1;
 			//stringstream str2(data);
@@ -935,7 +935,7 @@ void input_requests(char *filename) {
 					data.erase(remove(data.begin(), data.end(), '"'), data.end());
 					data.erase(remove(data.begin(), data.end(), ']'), data.end());
 					stops_destination[p][s] = stoi(stop);
-					//cout<<stops_destination[p][s]<<" ";
+					//<<stops_destination[p][s]<<" ";
 					//printf("%d ", stops_destination[p][s]);
 					s = s + 1;
 					if (leave_loop)
@@ -957,7 +957,7 @@ void input_requests(char *filename) {
 			//<<data.end()<<endl;
 			s = 0;
 			walking_time_stops_destination[p][s] = stoi(data);
-			//cout<<walking_time_stops_destination[p][s]<<" ";
+			//<<walking_time_stops_destination[p][s]<<" ";
 			//printf("%d ", stops_destination[p][s]);
 			s = s + 1;
 			//stringstream str2(data);
@@ -970,7 +970,7 @@ void input_requests(char *filename) {
 					data.erase(remove(data.begin(), data.end(), '"'), data.end());
 					data.erase(remove(data.begin(), data.end(), ']'), data.end());
 					walking_time_stops_destination[p][s] = stoi(stop);
-					//cout<<walking_time_stops_destination[p][s]<<" ";
+					//<<walking_time_stops_destination[p][s]<<" ";
 					//printf("%d ", stops_destination[p][s]);
 					s = s + 1;
 					if (leave_loop)
@@ -978,7 +978,7 @@ void input_requests(char *filename) {
 				}
 			}
 			//printf("\n");
-			//cout<<endl;
+			//<<endl;
 			getline(str, data, ',');
 			getline(str, data, ',');
 
@@ -1012,11 +1012,11 @@ void input_requests_commuting(char *filename) {
 			stringstream str(line);
 			getline(str, data, ',');
 			p = stoi(data);
-			//cout<<p<<" ";
+			//<<p<<" ";
 			
 			getline(str, data, ',');
 			time_stamp[p] = stoi(data);
-			//cout<<time_stamp[p]<<" ";
+			//<<time_stamp[p]<<" ";
 
 			getline(str, data, ',');
 			getline(str, data, ',');
@@ -1034,7 +1034,7 @@ void input_requests_commuting(char *filename) {
 			getline(str, data, ',');
 			earliest_departure[p] = stoi(data);
 			//printf("%d\n", earliest_departure[p]);
-			//cout<<earliest_departure[p]<<" ";
+			//<<earliest_departure[p]<<" ";
 			
 			getline(str, data, ',');
 			latest_departure[p] = stoi(data);
@@ -1043,12 +1043,12 @@ void input_requests_commuting(char *filename) {
 			getline(str, data, ',');
 			temp_earliest_departure = stoi(data);
 			//printf("%d\n", earliest_departure[p]);
-			//cout<<earliest_departure[p]<<" ";
+			//<<earliest_departure[p]<<" ";
 			
 			getline(str, data, ',');
 			temp_latest_departure = stoi(data);
 			//printf("%d\n", latest_departure[p]);
-			//cout<<latest_departure[p]<<" ";
+			//<<latest_departure[p]<<" ";
 
 			getline(str, data, ','); //direct travel time
 			direct_travel_time[p] = stoi(data);
@@ -1068,7 +1068,7 @@ void input_requests_commuting(char *filename) {
 			//<<data.end()<<endl;
 			s = 0;
 			stops_origin[p][s] = stoi(data);
-			//cout<<stops_origin[p][s]<<" ";
+			//<<stops_origin[p][s]<<" ";
 			//printf("%d ", stops_origin[p][s]);
 			s = s + 1;
 			//stringstream str2(data);
@@ -1081,7 +1081,7 @@ void input_requests_commuting(char *filename) {
 					data.erase(remove(data.begin(), data.end(), '"'), data.end());
 					data.erase(remove(data.begin(), data.end(), ']'), data.end());
 					stops_origin[p][s] = stoi(stop);
-					//cout<<stops_origin[p][s]<<" ";
+					//<<stops_origin[p][s]<<" ";
 					//printf("%d ", stops_origin[p][s]);
 					s = s + 1;
 					if (leave_loop)
@@ -1103,7 +1103,7 @@ void input_requests_commuting(char *filename) {
 			//<<data.end()<<endl;
 			s = 0;
 			walking_time_stops_origin[p][s] = stoi(data);
-			//cout<<walking_time_stops_origin[p][s]<<" ";
+			//<<walking_time_stops_origin[p][s]<<" ";
 			//printf("%d ", stops_origin[p][s]);
 			s = s + 1;
 			//stringstream str2(data);
@@ -1116,7 +1116,7 @@ void input_requests_commuting(char *filename) {
 					data.erase(remove(data.begin(), data.end(), '"'), data.end());
 					data.erase(remove(data.begin(), data.end(), ']'), data.end());
 					walking_time_stops_origin[p][s] = stoi(stop);
-					//cout<<walking_time_stops_origin[p][s]<<" ";
+					//<<walking_time_stops_origin[p][s]<<" ";
 					//printf("%d ", stops_origin[p][s]);
 					s = s + 1;
 					if (leave_loop)
@@ -1130,7 +1130,7 @@ void input_requests_commuting(char *filename) {
 
 			getline(str, data, ',');
 			temp_latest_arrival = stoi(data);
-			//cout<<latest_arrival[p]<<" ";
+			//<<latest_arrival[p]<<" ";
 
 
 			//<<latest_arrival[p]<<endl;
@@ -1159,7 +1159,7 @@ void input_requests_commuting(char *filename) {
 			//<<data.end()<<endl;
 			s = 0;
 			stops_destination[p][s] = stoi(data);
-			//cout<<stops_destination[p][s]<<" ";
+			//<<stops_destination[p][s]<<" ";
 			//printf("%d ", stops_destination[p][s]);
 			s = s + 1;
 			//stringstream str2(data);
@@ -1172,7 +1172,7 @@ void input_requests_commuting(char *filename) {
 					data.erase(remove(data.begin(), data.end(), '"'), data.end());
 					data.erase(remove(data.begin(), data.end(), ']'), data.end());
 					stops_destination[p][s] = stoi(stop);
-					//cout<<stops_destination[p][s]<<" ";
+					//<<stops_destination[p][s]<<" ";
 					//printf("%d ", stops_destination[p][s]);
 					s = s + 1;
 					if (leave_loop)
@@ -1194,7 +1194,7 @@ void input_requests_commuting(char *filename) {
 			//<<data.end()<<endl;
 			s = 0;
 			walking_time_stops_destination[p][s] = stoi(data);
-			//cout<<walking_time_stops_destination[p][s]<<" ";
+			//<<walking_time_stops_destination[p][s]<<" ";
 			//printf("%d ", stops_destination[p][s]);
 			s = s + 1;
 			//stringstream str2(data);
@@ -1207,7 +1207,7 @@ void input_requests_commuting(char *filename) {
 					data.erase(remove(data.begin(), data.end(), '"'), data.end());
 					data.erase(remove(data.begin(), data.end(), ']'), data.end());
 					walking_time_stops_destination[p][s] = stoi(stop);
-					//cout<<walking_time_stops_destination[p][s]<<" ";
+					//<<walking_time_stops_destination[p][s]<<" ";
 					//printf("%d ", stops_destination[p][s]);
 					s = s + 1;
 					if (leave_loop)
@@ -1215,7 +1215,7 @@ void input_requests_commuting(char *filename) {
 				}
 			}
 			//printf("\n");
-			//cout<<endl;
+			//<<endl;
 			getline(str, data, ',');
 			getline(str, data, ',');
 
@@ -1265,11 +1265,11 @@ void input_requests_festival(char *filename) {
 			stringstream str(line);
 			getline(str, data, ',');
 			p = stoi(data);
-			//cout<<p<<" ";
+			//<<p<<" ";
 			
 			getline(str, data, ',');
 			time_stamp[p] = stoi(data);
-			//cout<<time_stamp[p]<<" ";
+			//<<time_stamp[p]<<" ";
 
 			getline(str, data, ',');
 			getline(str, data, ',');
@@ -1290,7 +1290,7 @@ void input_requests_festival(char *filename) {
 			getline(str, data, ',');
 			earliest_departure[p] = stoi(data);
 			//printf("%d\n", earliest_departure[p]);
-			//cout<<earliest_departure[p]<<" ";
+			//<<earliest_departure[p]<<" ";
 			
 			getline(str, data, ',');
 			latest_departure[p] = stoi(data);
@@ -1299,22 +1299,22 @@ void input_requests_festival(char *filename) {
 			getline(str, data, ',');
 			temp_earliest_departure = stoi(data);
 			//printf("%d\n", earliest_departure[p]);
-			//cout<<earliest_departure[p]<<" ";
+			//<<earliest_departure[p]<<" ";
 			
 			getline(str, data, ',');
 			temp_latest_departure = stoi(data);
 			//printf("%d\n", latest_departure[p]);
-			//cout<<latest_departure[p]<<" ";
+			//<<latest_departure[p]<<" ";
 
 			getline(str, data, ',');
 			temp_earliest_departure2 = stoi(data);
 			//printf("%d\n", earliest_departure[p]);
-			//cout<<earliest_departure[p]<<" ";
+			//<<earliest_departure[p]<<" ";
 			
 			getline(str, data, ',');
 			temp_latest_departure2 = stoi(data);
 			//printf("%d\n", latest_departure[p]);
-			//cout<<latest_departure[p]<<" ";
+			//<<latest_departure[p]<<" ";
 
 			getline(str, data, ','); //direct travel time
 			direct_travel_time[p] = stoi(data);
@@ -1334,7 +1334,7 @@ void input_requests_festival(char *filename) {
 			//<<data.end()<<endl;
 			s = 0;
 			stops_origin[p][s] = stoi(data);
-			//cout<<stops_origin[p][s]<<" ";
+			//<<stops_origin[p][s]<<" ";
 			//printf("%d ", stops_origin[p][s]);
 			s = s + 1;
 			//stringstream str2(data);
@@ -1347,7 +1347,7 @@ void input_requests_festival(char *filename) {
 					data.erase(remove(data.begin(), data.end(), '"'), data.end());
 					data.erase(remove(data.begin(), data.end(), ']'), data.end());
 					stops_origin[p][s] = stoi(stop);
-					//cout<<stops_origin[p][s]<<" ";
+					//<<stops_origin[p][s]<<" ";
 					//printf("%d ", stops_origin[p][s]);
 					s = s + 1;
 					if (leave_loop)
@@ -1369,7 +1369,7 @@ void input_requests_festival(char *filename) {
 			//<<data.end()<<endl;
 			s = 0;
 			walking_time_stops_origin[p][s] = stoi(data);
-			//cout<<walking_time_stops_origin[p][s]<<" ";
+			//<<walking_time_stops_origin[p][s]<<" ";
 			//printf("%d ", stops_origin[p][s]);
 			s = s + 1;
 			//stringstream str2(data);
@@ -1382,7 +1382,7 @@ void input_requests_festival(char *filename) {
 					data.erase(remove(data.begin(), data.end(), '"'), data.end());
 					data.erase(remove(data.begin(), data.end(), ']'), data.end());
 					walking_time_stops_origin[p][s] = stoi(stop);
-					//cout<<walking_time_stops_origin[p][s]<<" ";
+					//<<walking_time_stops_origin[p][s]<<" ";
 					//printf("%d ", stops_origin[p][s]);
 					s = s + 1;
 					if (leave_loop)
@@ -1399,7 +1399,7 @@ void input_requests_festival(char *filename) {
 
 			getline(str, data, ',');
 			temp_latest_arrival2 = stoi(data);
-			//cout<<latest_arrival[p]<<" ";
+			//<<latest_arrival[p]<<" ";
 
 
 			//<<latest_arrival[p]<<endl;
@@ -1428,7 +1428,7 @@ void input_requests_festival(char *filename) {
 			//<<data.end()<<endl;
 			s = 0;
 			stops_destination[p][s] = stoi(data);
-			//cout<<stops_destination[p][s]<<" ";
+			//<<stops_destination[p][s]<<" ";
 			//printf("%d ", stops_destination[p][s]);
 			s = s + 1;
 			//stringstream str2(data);
@@ -1441,7 +1441,7 @@ void input_requests_festival(char *filename) {
 					data.erase(remove(data.begin(), data.end(), '"'), data.end());
 					data.erase(remove(data.begin(), data.end(), ']'), data.end());
 					stops_destination[p][s] = stoi(stop);
-					//cout<<stops_destination[p][s]<<" ";
+					//<<stops_destination[p][s]<<" ";
 					//printf("%d ", stops_destination[p][s]);
 					s = s + 1;
 					if (leave_loop)
@@ -1463,7 +1463,7 @@ void input_requests_festival(char *filename) {
 			//<<data.end()<<endl;
 			s = 0;
 			walking_time_stops_destination[p][s] = stoi(data);
-			//cout<<walking_time_stops_destination[p][s]<<" ";
+			//<<walking_time_stops_destination[p][s]<<" ";
 			//printf("%d ", stops_destination[p][s]);
 			s = s + 1;
 			//stringstream str2(data);
@@ -1476,7 +1476,7 @@ void input_requests_festival(char *filename) {
 					data.erase(remove(data.begin(), data.end(), '"'), data.end());
 					data.erase(remove(data.begin(), data.end(), ']'), data.end());
 					walking_time_stops_destination[p][s] = stoi(stop);
-					//cout<<walking_time_stops_destination[p][s]<<" ";
+					//<<walking_time_stops_destination[p][s]<<" ";
 					//printf("%d ", stops_destination[p][s]);
 					s = s + 1;
 					if (leave_loop)
@@ -1484,7 +1484,7 @@ void input_requests_festival(char *filename) {
 				}
 			}
 			//printf("\n");
-			//cout<<endl;
+			//<<endl;
 			getline(str, data, ',');
 			getline(str, data, ',');
 
@@ -1585,8 +1585,8 @@ void cheapest_origin2_p(int p, int v, int &min_increase_length, int &sel_origin,
 					curr_dpt_time = current_time;
 				}
 			}
-			//cout<<"testY "<<endl;
-			//cout<<"dptstimes "<<curr_dpt_time<<" "<<current_time<<endl;
+			//<<"testY "<<endl;
+			//<<"dptstimes "<<curr_dpt_time<<" "<<current_time<<endl;
 			if (curr_dpt_time >= current_time) {
 
 				//<<"i:"<<i<<endl;
@@ -1643,7 +1643,7 @@ void cheapest_origin2_p(int p, int v, int &min_increase_length, int &sel_origin,
 					}
 				}
 
-				//cout<<"testZ "<<endl;
+				//<<"testZ "<<endl;
 				//at what time the passenger will have to leave their home to pick up the bus on time?
 				departure_time_from_home = new_departure_time-walking_time_stops_origin[p][j];
 				//if the departure time from home is greater than or equal to current time, it means it is still a future event, which means it is feasible to happen
@@ -1666,8 +1666,8 @@ void cheapest_origin2_p(int p, int v, int &min_increase_length, int &sel_origin,
 				//if ((increase < min_increase_length) && (new_slack_time >= 0) && (pick_up_time <= latest_departure_passenger)) {
 			 	//<<"capacity: "<<new_capacity<<endl;
 			 	
-			 	//cout<<"testX "<<endl;
-			 	//cout<<"co: "<<new_slack_time<<" "<<pick_up_time<<" "<<latest_departure_passenger<<" "<<new_capacity<<" "<<departure_time_from_home<<" "<<current_time<<endl;
+			 	//<<"testX "<<endl;
+			 	//<<"co: "<<new_slack_time<<" "<<pick_up_time<<" "<<latest_departure_passenger<<" "<<new_capacity<<" "<<departure_time_from_home<<" "<<current_time<<endl;
 			 	if ((new_slack_time >= 0) && (pick_up_time <= latest_departure_passenger) && (new_capacity >= 0) && (departure_time_from_home >= current_time)) {
 
 
@@ -1700,7 +1700,7 @@ void cheapest_origin2_p(int p, int v, int &min_increase_length, int &sel_origin,
 					if (curr_number_insertions_p > 44995) {
 						return;
 					}
-					//cout<<"inset: "<<curr_number_insertions_p<<endl;
+					//<<"inset: "<<curr_number_insertions_p<<endl;
 
 					//<<s_origin<<" "<<stops[v][i]<<" "<<stops[v][i+1]<<" "<<new_arrival_nxt_stop<<" "<<old_arrival_nxt_stop<<" "<<new_slack_time<<endl;
 
@@ -1717,7 +1717,7 @@ void cheapest_origin2_p(int p, int v, int &min_increase_length, int &sel_origin,
 	//else 
 	//	pos_origin = remove_edge;
 
-	//cout<<"pos origin:"<<pos_origin<<" "<<stops[v][pos_origin]<<endl;
+	//<<"pos origin:"<<pos_origin<<" "<<stops[v][pos_origin]<<endl;
 }
 
 void cheapest_origin(int p, int v, int &min_increase_length, int &sel_origin, int &pos_origin, bool &repeated_station, bool &flexibilize_lat_departure_time, int &best_departure_time_from_home){
@@ -1736,7 +1736,7 @@ void cheapest_origin(int p, int v, int &min_increase_length, int &sel_origin, in
 	/*if (empty_running_vehicle){
 		bi = number_stops[v] - 1;
 	}*/
-	//cout<<number_stops_origin[p]<<" "<<number_stops[v]<<endl;
+	//<<number_stops_origin[p]<<" "<<number_stops[v]<<endl;
 	for (int j=0;j<number_stops_origin[p];j++) {
 		s_origin = stops_origin[p][j];
 		
@@ -1754,7 +1754,7 @@ void cheapest_origin(int p, int v, int &min_increase_length, int &sel_origin, in
 					curr_dpt_time = current_time;
 				}
 			}
-			//cout<<curr_dpt_time<<" "<<current_time<<endl;
+			//<<curr_dpt_time<<" "<<current_time<<endl;
 			if (curr_dpt_time >= current_time) {
 
 				//<<"i:"<<i<<endl;
@@ -1829,7 +1829,7 @@ void cheapest_origin(int p, int v, int &min_increase_length, int &sel_origin, in
 			 	}
 			 	//<<"ptl: "<<pick_up_time<<" "<<latest_departure_passenger<<endl;
 			 	//<<"capacity: "<<new_capacity<<endl;
-			 	//cout<<"co: "<<" "<<increase<<" "<<min_increase_length<<" "<<new_slack_time<<" "<<pick_up_time<<" "<<latest_departure_passenger<<" "<<new_capacity<<" "<<departure_time_from_home<<" "<<current_time;
+			 	//<<"co: "<<" "<<increase<<" "<<min_increase_length<<" "<<new_slack_time<<" "<<pick_up_time<<" "<<latest_departure_passenger<<" "<<new_capacity<<" "<<departure_time_from_home<<" "<<current_time;
 				if ((increase < min_increase_length) && (new_slack_time >= 0) && (pick_up_time <= latest_departure_passenger) && (new_capacity >= 0) && (departure_time_from_home >= current_time)) {
 
 					//passengers_departure_time_from_home[p] = departure_time_from_home;
@@ -1943,9 +1943,9 @@ void cheapest_destination(int p, int v, int pos_origin, int &min_increase_length
 				latest_arrival_passenger = latest_arrival[p];
 				delay_trip = 0;
 			}
-			//cout<<"dpt: "<<drop_off_time<<" "<<latest_arrival_passenger<<endl;
-			//cout<<new_slack_time<<endl;
-			//cout<<"cd: "<<" "<<increase<<" "<<min_increase_length<<" "<<new_slack_time<<" "<<drop_off_time<<" "<<latest_arrival_passenger<<" "<<new_capacity<<" ";
+			//<<"dpt: "<<drop_off_time<<" "<<latest_arrival_passenger<<endl;
+			//<<new_slack_time<<endl;
+			//<<"cd: "<<" "<<increase<<" "<<min_increase_length<<" "<<new_slack_time<<" "<<drop_off_time<<" "<<latest_arrival_passenger<<" "<<new_capacity<<" ";
 			if ((increase < min_increase_length) && (new_slack_time >= 0) && (drop_off_time <= latest_arrival_passenger) && (new_capacity >= 0)) {
 				feasible_insertion_found = true;
 				infeasible_insertion = false;
@@ -2022,7 +2022,7 @@ void filter_vehicles(int p, int c_id, vector<int>& filtered_vehicles_p){
 	for (int i = 0; i < clusters[c_id].size(); i++) {
 		v = clusters[c_id][i];
 		//if (free_capacity[v].size()>2){//means that vehicle is not empty
-			//cout<<"heere";
+			//<<"heere";
 			leave_loop = false;
 			for (int j=0; j<=number_stops[v];j++) {
 				for (int k=0;k<number_stops_origin[p];k++) {
@@ -2051,7 +2051,7 @@ void filter_vehicles2(int p, int c_id, vector<int>& filtered_vehicles_p){
 	for (int i = 0; i < clusters[c_id].size(); i++) {
 		v = clusters[c_id][i];
 		if (free_capacity[v].size()>2){//means that vehicle is not empty
-			//cout<<"heere";
+			//<<"heere";
 			leave_loop = false;
 			for (int j=0; j<=number_stops[v];j++) {
 				for (int k=0;k<number_stops_origin[p];k++) {
@@ -2080,7 +2080,7 @@ void filter_vehicles_restricted(int p, int c_id, int vp, vector<int>& filtered_v
 	for (int i = 0; i < clusters[c_id].size(); i++) {
 		v = clusters[c_id][i];
 		if ((free_capacity[v].size()>2) && (free_capacity[v][0] < free_capacity[vp][0])) {//means that vehicle is not empty
-			//cout<<"heere";
+			//<<"heere";
 			leave_loop = false;
 			for (int j=0; j<=number_stops[v];j++) {
 				for (int k=0;k<number_stops_origin[p];k++) {
@@ -2895,7 +2895,7 @@ void remove_passenger_from_vehicle(int v, int p) {
 
 void see_if_arrival_departure_dont_match(int best_v) {
 
-	//cout<<number_stops[best_v]<<" "<<departure_time_stop[best_v].size()<<endl;
+	//<<number_stops[best_v]<<" "<<departure_time_stop[best_v].size()<<endl;
 	for (int i = 1; i <= number_stops[best_v]; i++) {
 
 		//if (arrival_time_stop[best_v][i] > current_time)
@@ -3150,7 +3150,7 @@ int compute_difference_URT_by_fake_adding_passenger(int p, int v, int sel_destin
 
 		arrival_time_stop_temp[v][i] = arrival_time_stop[v][i];
 		departure_time_stop_temp[v][i] = departure_time_stop[v][i];  
-		//cout<<stops[v][i]<<" "<<arrival_time_stop_temp[v][i]<<" "<<departure_time_stop_temp[v][i]<<endl;
+		//<<stops[v][i]<<" "<<arrival_time_stop_temp[v][i]<<" "<<departure_time_stop_temp[v][i]<<endl;
 	}
 
 
@@ -3180,7 +3180,7 @@ int compute_difference_URT_by_fake_adding_passenger(int p, int v, int sel_destin
 				if (greatest_ed > departure_time_stop_temp[v][i])
 					departure_time_stop_temp[v][i] = greatest_ed;
 			}
-			//cout<<"diff "<<" "<<arrival_time_stop_temp[v][i]<<" "<<departure_time_stop_temp[v][i]<<endl;
+			//<<"diff "<<" "<<arrival_time_stop_temp[v][i]<<" "<<departure_time_stop_temp[v][i]<<endl;
 		}
 	}
 
@@ -3217,11 +3217,11 @@ int compute_difference_URT_by_fake_adding_passenger(int p, int v, int sel_destin
 	if (greatest_ed > departure_time_stop_temp[v][pos_destination])
 		departure_time_stop_temp[v][pos_destination] = greatest_ed;
 
-	//cout<<stops[v][pos_destination]<<"dp "<<arrival_time_stop_temp[v][pos_destination]<<" "<<departure_time_stop_temp[v][pos_destination]<<endl;
+	//<<stops[v][pos_destination]<<"dp "<<arrival_time_stop_temp[v][pos_destination]<<" "<<departure_time_stop_temp[v][pos_destination]<<endl;
 
 	if (repeated_station) {
 
-		//cout<<" "<<departure_time_stop_temp[v][pos_destination]<<" "<<travel_time[sel_destination][stops[v][pos_destination+1]]<<" "<<sel_destination<<" "<<stops[v][pos_destination+1]<<endl;
+		//<<" "<<departure_time_stop_temp[v][pos_destination]<<" "<<travel_time[sel_destination][stops[v][pos_destination+1]]<<" "<<sel_destination<<" "<<stops[v][pos_destination+1]<<endl;
 		arrival_time_stop_temp[v][pos_destination+1] = departure_time_stop_temp[v][pos_destination]+travel_time[sel_destination][stops[v][pos_destination+1]];
 		departure_time_stop_temp[v][pos_destination+1] = arrival_time_stop_temp[v][pos_destination+1];
 	} else {
@@ -3243,7 +3243,7 @@ int compute_difference_URT_by_fake_adding_passenger(int p, int v, int sel_destin
 	//<<"fad: "<<stops[v][pos_destination]<<" "<<arrival_time_stop_temp[v][pos_destination+1]<<" "<<departure_time_stop_temp[v][pos_destination+1]<<endl;
 	//<<"hier4"<<endl;
 	
-	//cout<<stops[v][pos_destination+1]<<"ps1 "<<arrival_time_stop_temp[v][pos_destination+1]<<" "<<departure_time_stop_temp[v][pos_destination+1]<<endl;
+	//<<stops[v][pos_destination+1]<<"ps1 "<<arrival_time_stop_temp[v][pos_destination+1]<<" "<<departure_time_stop_temp[v][pos_destination+1]<<endl;
 
 	greatest_ed = INT_MIN;
 	//the departure time of a stop can change according to the earliest departure of passengers assigned to that stop
@@ -3255,13 +3255,13 @@ int compute_difference_URT_by_fake_adding_passenger(int p, int v, int sel_destin
 		}
 		//<<"hier4.2"<<endl;
 		if (greatest_ed > departure_time_stop_temp[v][pos_destination+1]) {
-			//cout<<"hiierx3 "<<greatest_ed<<endl;
+			//<<"hiierx3 "<<greatest_ed<<endl;
 			departure_time_stop_temp[v][pos_destination+1] = greatest_ed;
 		}
 	}
 	//<<"hier5"<<endl;
 
-	//cout<<stops[v][pos_destination+1]<<"ps2 "<<arrival_time_stop_temp[v][pos_destination+1]<<" "<<departure_time_stop_temp[v][pos_destination+1]<<endl;
+	//<<stops[v][pos_destination+1]<<"ps2 "<<arrival_time_stop_temp[v][pos_destination+1]<<" "<<departure_time_stop_temp[v][pos_destination+1]<<endl;
 	
 	for (int i=pos_destination+2; i<=number_stops[v];i++){
 
@@ -3309,7 +3309,7 @@ int compute_difference_URT_by_fake_adding_passenger(int p, int v, int sel_destin
 		//	departure_time_stop_temp[v][i] = arrival_time_stop_temp[v][i];
 		//}
 
-		//cout<<stops[v][i]<<" "<<arrival_time_stop_temp[v][i]<<" "<<departure_time_stop_temp[v][i]<<endl;
+		//<<stops[v][i]<<" "<<arrival_time_stop_temp[v][i]<<" "<<departure_time_stop_temp[v][i]<<endl;
 	}
 	//<<"hier6"<<endl;
 
@@ -3320,16 +3320,16 @@ int compute_difference_URT_by_fake_adding_passenger(int p, int v, int sel_destin
 	for (int i=0; i<=number_stops[v];i++) {
 		for (int j=0; j<number_passengers_action[v][i];j++) {
 			int save_p = action_passengers[v][i][j];
-			//cout<<save_p<<endl;
+			//<<save_p<<endl;
 			if (save_p == p){
 				user_ride_time_temp[save_p] = arrival_time_stop_temp[v][pos_destination] - departure_time_stop_temp[v][i];
 				difference += user_ride_time[save_p] - user_ride_time_temp[save_p];
-				//cout<<"COMP DIFFERENCE add "<<save_p<<" "<<user_ride_time[save_p] - user_ride_time_temp[save_p]<<endl;
+				//<<"COMP DIFFERENCE add "<<save_p<<" "<<user_ride_time[save_p] - user_ride_time_temp[save_p]<<endl;
 			} else {
 				for (int k=i+1; k<=number_stops[v];k++) {
 					leave_loop = false;
 					for (int l=0; l<number_passengers_action[v][k];l++) {
-						//cout<<action_passengers[v][k][l]<<endl;
+						//<<action_passengers[v][k][l]<<endl;
 						if (action_passengers[v][k][l] == save_p){
 
 							if ((k >= pos_destination) && (not repeated_station))  {
@@ -3345,7 +3345,7 @@ int compute_difference_URT_by_fake_adding_passenger(int p, int v, int sel_destin
 							
 							user_ride_time_temp[save_p] = current_user_ride_time;
 							
-							//cout<<"fad2: "<<save_p<<"; "<<current_user_ride_time<<" "<<arrival_time_stop_temp[v][k]<<" "<<departure_time_stop_temp[v][i]<<endl;
+							//<<"fad2: "<<save_p<<"; "<<current_user_ride_time<<" "<<arrival_time_stop_temp[v][k]<<" "<<departure_time_stop_temp[v][i]<<endl;
 							if (current_user_ride_time != user_ride_time[save_p]) {
 								difference += user_ride_time[save_p] - current_user_ride_time;
 								//<<"COMP DIFFERENCE add "<<save_p<<" "<<user_ride_time[save_p] - current_user_ride_time<<endl;
@@ -3454,8 +3454,8 @@ void re_insertion_to_repair(int p, bool &accept_relocate_trip, int cluster_id){
 				best_v = insertions_p[iterations2].v;
 				best_repeated_station = insertions_p[iterations2].repeated_station;
 
-				//cout<<"few checks "<<endl;
-				//cout<<best_min_increase_length<<" "<<best_sel_origin<<" "<<best_pos_origin<<" "<<best_v<<" "<<best_repeated_station<<endl<<endl;
+				//<<"few checks "<<endl;
+				//<<best_min_increase_length<<" "<<best_sel_origin<<" "<<best_pos_origin<<" "<<best_v<<" "<<best_repeated_station<<endl<<endl;
 
 				if (not best_repeated_station) {
 					stops[best_v].insert(stops[best_v].begin() + best_pos_origin, best_sel_origin);
@@ -3680,7 +3680,7 @@ void re_insertion_to_repair(int p, bool &accept_relocate_trip, int cluster_id){
 
 					
 					if (not repeated_station) {
-						//cout<<"hierrs"<<endl;
+						//<<"hierrs"<<endl;
 						stops[best_v].insert(stops[best_v].begin() + pos_destination, sel_destination);
 						number_stops[best_v]++;
 
@@ -3701,7 +3701,7 @@ void re_insertion_to_repair(int p, bool &accept_relocate_trip, int cluster_id){
 						prv_capacity = free_capacity[best_v][pos_destination-1];
 						free_capacity[best_v].insert(free_capacity[best_v].begin() + pos_destination, prv_capacity+1);
 					} else {
-						//cout<<"hierNrs1"<<endl;
+						//<<"hierNrs1"<<endl;
 						//update passenger performing actions on the stops
 						if (number_passengers_action[best_v][pos_destination] < action_passengers[best_v][pos_destination].size()) {
 							action_passengers[best_v][pos_destination][number_passengers_action[best_v][pos_destination]] = p;
@@ -3738,14 +3738,14 @@ void re_insertion_to_repair(int p, bool &accept_relocate_trip, int cluster_id){
 					//update further arrival, departure times, and slack times
 					for (int i=pos_destination; i<=number_stops[best_v];i++) {
 						old_arr_time = arrival_time_stop[best_v][i];
-						//cout<<"aki "<<" "<<departure_time_stop[best_v][i-1]<<" "<<travel_time[stops[best_v][i-1]][stops[best_v][i]]<<" "<<stops[best_v][i-1]<<" "<<stops[best_v][i]<<endl;
+						//<<"aki "<<" "<<departure_time_stop[best_v][i-1]<<" "<<travel_time[stops[best_v][i-1]][stops[best_v][i]]<<" "<<stops[best_v][i-1]<<" "<<stops[best_v][i]<<endl;
 						arrival_time_stop[best_v][i] = departure_time_stop[best_v][i-1]+travel_time[stops[best_v][i-1]][stops[best_v][i]];
 						old_dpt_time = departure_time_stop[best_v][i];
 						//if (arrival_time_stop[best_v][i] > departure_time_stop[best_v][i]) {
 						departure_time_stop[best_v][i] = arrival_time_stop[best_v][i];
 						//}
 
-						//cout<<arrival_time_stop[best_v][i]<<" "<<departure_time_stop[best_v][i]<<endl;
+						//<<arrival_time_stop[best_v][i]<<" "<<departure_time_stop[best_v][i]<<endl;
 
 						int greatest_ed = INT_MIN;
 						//the departure time of a stop can change according to the earliest departure of passengers assigned to that stop
@@ -3758,7 +3758,7 @@ void re_insertion_to_repair(int p, bool &accept_relocate_trip, int cluster_id){
 							departure_time_stop[best_v][i] = greatest_ed;
 
 						slack_time[best_v][i] -= arrival_time_stop[best_v][i] - old_arr_time;
-						//cout<<arrival_time_stop[best_v][i]<<" "<<departure_time_stop[best_v][i]<<endl;
+						//<<arrival_time_stop[best_v][i]<<" "<<departure_time_stop[best_v][i]<<endl;
 					}
 
 					//for (int i=1; i<pos_destination;i++){
@@ -3887,19 +3887,19 @@ void re_insertion_to_repair(int p, bool &accept_relocate_trip, int cluster_id){
 
 					if (number_passengers_action[best_v][best_pos_origin] == 1) {
 						
-						//cout<<"hxxx"<<endl;
+						//<<"hxxx"<<endl;
 						stops[best_v].erase(stops[best_v].begin() + best_pos_origin);
 						action_passengers[best_v].erase(action_passengers[best_v].begin() + best_pos_origin);
 						number_passengers_action[best_v].erase(number_passengers_action[best_v].begin() + best_pos_origin);
 						
 
 						//re-update further arrival and departure times
-						//cout<<"ns: "<<best_pos_origin<<" "<<number_stops[best_v]<<endl;
+						//<<"ns: "<<best_pos_origin<<" "<<number_stops[best_v]<<endl;
 						for (int i=best_pos_origin+1; i<=number_stops[best_v];i++) {
 							arrival_time_stop[best_v][i] = saved_arrival_time[best_v][i];
 							departure_time_stop[best_v][i] = saved_departure_time[best_v][i];
 							slack_time[best_v][i] = saved_slack_time[best_v][i];
-							//cout<<saved_arrival_time[i]<<" "<<saved_departure_time[i]<<" "<<saved_slack_time[i]<<endl;
+							//<<saved_arrival_time[i]<<" "<<saved_departure_time[i]<<" "<<saved_slack_time[i]<<endl;
 						}
 						number_stops[best_v]--;
 						arrival_time_stop[best_v].erase(arrival_time_stop[best_v].begin() + best_pos_origin);
@@ -3912,7 +3912,7 @@ void re_insertion_to_repair(int p, bool &accept_relocate_trip, int cluster_id){
 
 					} else {
 
-						//cout<<"hed1ere"<<endl;
+						//<<"hed1ere"<<endl;
 						//<<action_passengers[best_v][best_pos_origin][1]<<endl;
 						//action_passengers[best_v][best_pos_origin].erase(action_passengers[best_v][best_pos_origin].begin());
 						
@@ -3959,7 +3959,7 @@ void re_insertion_to_repair(int p, bool &accept_relocate_trip, int cluster_id){
 					cout<<"*"<<free_capacity[best_v][i]<<"*"<<endl;
 				}*/
 				//}	
-				//cout<<endl;
+				//<<endl;
 			} //end while
 		} else {
 			iterations = filtered_vehicles_p.size()+1;
@@ -3997,7 +3997,7 @@ void re_insertion_to_repair(int p, bool &accept_relocate_trip, int cluster_id){
 
 void relocate_passenger_to_repair(int p, bool &accept_relocate_trip, int cluster_id){
 
-	//cout<<"before relocated passenger: "<<p<<endl;
+	//<<"before relocated passenger: "<<p<<endl;
 
 	//compute the removal of passenger p from the solution
 	int v = vehicle_assigned[p];
@@ -4038,7 +4038,7 @@ void relocate_passenger_to_repair(int p, bool &accept_relocate_trip, int cluster
 	for (int i=0;i<total_number_vehicles;i++)
 		blocked_vehicles[p][i] = 0;
 
-	//cout<<"vehicle and p :"<<vehicle_assigned[p]<<" "<<p<<endl;
+	//<<"vehicle and p :"<<vehicle_assigned[p]<<" "<<p<<endl;
 	blocked_vehicles[p][vehicle_assigned[p]] = 1;
 
 	re_insertion_to_repair(p, accept_relocate_trip, cluster_id);
@@ -4048,7 +4048,7 @@ void relocate_passenger_to_repair(int p, bool &accept_relocate_trip, int cluster
 	end = 0;
 	int total_faking_error = 0;
 	if (accept_relocate_trip) {
-		//cout<<"removeee here SA"<<endl;
+		//<<"removeee here SA"<<endl;
 		//printf("remove heeeere SA\n");
 		//<<"number stops "<<number_stops[v]<<endl;
 		//it means the passenger was relocated to another trip 
@@ -4077,7 +4077,7 @@ void relocate_passenger_to_repair(int p, bool &accept_relocate_trip, int cluster
 					if (number_passengers_action[v][i] == 1) {
 						number_stops[v]--;
 
-						//cout<<"REMOVINGhier2"<<i<<endl;
+						//<<"REMOVINGhier2"<<i<<endl;
 						stops[v].erase(stops[v].begin() + i);
 						action_passengers[v].erase(action_passengers[v].begin() + i);
 
@@ -4198,9 +4198,9 @@ void relocate_passenger_to_repair(int p, bool &accept_relocate_trip, int cluster
 										
 										if (count == 2){
 											if (current_user_ride_time != user_ride_time_temp[save_p]) {
-												//cout<<"faking removing error"<<endl;
-												//cout<<current_user_ride_time<<" "<<user_ride_time_temp[save_p]<<endl;
-												//cout<<arrival_time_stop[v][k]<<" "<<departure_time_stop[v][i]<<endl;
+												//<<"faking removing error"<<endl;
+												//<<current_user_ride_time<<" "<<user_ride_time_temp[save_p]<<endl;
+												//<<arrival_time_stop[v][k]<<" "<<departure_time_stop[v][i]<<endl;
 												total_faking_error += user_ride_time_temp[save_p] - current_user_ride_time;
 											}
 										
@@ -4258,7 +4258,7 @@ void relocate_passenger_to_repair(int p, bool &accept_relocate_trip, int cluster
 			/*if (count == 2) {
 				//<<"oldyxnew: "<<oldy_urt<<" "<<total_user_ride_time<<" "<<(oldy_urt-total_user_ride_time)<<" "<<computedDELTA<<" ;"<<total_difference<<endl; 
 				if ((oldy_urt-total_user_ride_time) != computedDELTA){
-					//cout<<"COMPUTING ERRROR"<<endl;
+					//<<"COMPUTING ERRROR"<<endl;
 					if (total_faking_error != 0)
 						cout<<"total faking error: "<<total_faking_error<<endl;
 				}
@@ -4360,7 +4360,7 @@ void remove_from_vehicle(int p, int v){
 				if (number_passengers_action[v][i] == 1) {
 					number_stops[v]--;
 
-					//cout<<"SAhier2"<<i<<endl;
+					//<<"SAhier2"<<i<<endl;
 					stops[v].erase(stops[v].begin() + i);
 					action_passengers[v].erase(action_passengers[v].begin() + i);
 					number_passengers_action[v].erase(number_passengers_action[v].begin() + i);
@@ -4524,7 +4524,7 @@ void remove_from_vehicle(int p, int v){
 		/*if (count == 2) {
 			//<<"oldyxnew: "<<oldy_urt<<" "<<total_user_ride_time<<" "<<(oldy_urt-total_user_ride_time)<<" "<<computedDELTA<<" ;"<<total_difference<<endl; 
 			if ((oldy_urt-total_user_ride_time) != computedDELTA){
-				//cout<<"COMPUTING ERRROR"<<endl;
+				//<<"COMPUTING ERRROR"<<endl;
 				if (total_faking_error != 0)
 					cout<<"total faking error: "<<total_faking_error<<endl;
 			}
@@ -4599,7 +4599,7 @@ bool repair_solution(int v, int p, int cluster_id){
 	int i = 1;
 	while ((found_p < 2) && (i < number_stops[v])) {
 
-		//cout<<"stuck"<<endl;
+		//<<"stuck"<<endl;
 		for (int j=0; j<number_passengers_action[v][i];j++) {
 
 			if (action_passengers[v][i][j] != p) {
@@ -4609,11 +4609,11 @@ bool repair_solution(int v, int p, int cluster_id){
 
 				if (blocked_passengers[passenger_relocate] == 0) {
 					blocked_passengers[passenger_relocate] = 1;
-					//cout<<"repair passenger "<<passenger_relocate<<endl;
+					//<<"repair passenger "<<passenger_relocate<<endl;
 					relocate_passenger_to_repair(passenger_relocate, accept_relocate_trip, cluster_id);
 
 					if (accept_relocate_trip) {
-						//cout<<"accepted relocate "<<endl;
+						//<<"accepted relocate "<<endl;
 						changed_passengers.push_back(passenger_relocate);
 						to_vehicles.push_back(vehicle_assigned[passenger_relocate]);
 						//test if capacity and slack times are respected
@@ -4632,7 +4632,7 @@ bool repair_solution(int v, int p, int cluster_id){
 						}
 
 						if (repaired_solution) {
-							//cout<<"REPAIRED "<<endl;
+							//<<"REPAIRED "<<endl;
 							return true;
 						}
 
@@ -4653,18 +4653,18 @@ bool repair_solution(int v, int p, int cluster_id){
 	}
 
 	for (int i=0; i<changed_passengers.size(); i++) {
-		//cout<<"NOT REPAIRED  HERE"<<endl;
-		//cout<<changed_passengers[i]<<" "<<to_vehicles[i]<<endl;
+		//<<"NOT REPAIRED  HERE"<<endl;
+		//<<changed_passengers[i]<<" "<<to_vehicles[i]<<endl;
 		remove_from_vehicle(changed_passengers[i], to_vehicles[i]);
-		//cout<<"left hier1"<<endl;
+		//<<"left hier1"<<endl;
 		vehicle_assigned[changed_passengers[i]] = v;
 		see_if_arrival_departure_dont_match(to_vehicles[i]);
-		//cout<<"left hier2"<<endl;
+		//<<"left hier2"<<endl;
 		update_URT(to_vehicles[i]);
-		//cout<<"left hier3"<<endl;
+		//<<"left hier3"<<endl;
 	}
 
-	//cout<<"left hier4"<<endl;
+	//<<"left hier4"<<endl;
 	/*cout<<"BEFORE RETURN SAVE VEHICLE"<<endl;
 	for (int kk=0;kk<900;kk++){
 		if (vehicle_assigned[kk] != -1) {
@@ -4674,7 +4674,7 @@ bool repair_solution(int v, int p, int cluster_id){
 	}*/
 
 	return_save_vehicle_p(v);
-	//cout<<"left hier5"<<endl;
+	//<<"left hier5"<<endl;
 
 	/*cout<<"AFTER RETURN SAVE VEHICLE"<<endl;
 	for (int kk=0;kk<900;kk++){
@@ -4691,7 +4691,7 @@ bool repair_solution(int v, int p, int cluster_id){
 		to_vehicles.clear();
 	}
 
-	//cout<<"left hier6"<<endl;
+	//<<"left hier6"<<endl;
 
 	return false;
 }
@@ -4731,7 +4731,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 	
 	//check for highest capacitated vehicle from partition that is empty
 
-	//cout<<p<<endl;
+	//<<p<<endl;
 	capacity_best_empty_vehicle = INT_MIN;
 	int best_distance_location = INT_MAX;
 
@@ -4740,7 +4740,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 		veh = clusters[cluster_id][j];
 
 		if (free_capacity[veh].size() == 2){//means that vehicle is empty
-			//cout<<"hieer"<<endl;
+			//<<"hieer"<<endl;
 			ttcsd = INT_MAX;
 			for (int k=0;k<number_stops_origin[p];k++) {
 				if (travel_time[stops_origin[p][k]][depot[vehicle_located_at_depot[veh]]] < ttcsd) {
@@ -4750,7 +4750,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 
 			if (ttcsd < best_distance_location) {
 				if (current_time + ttcsd <= latest_arrival[p]) { //important to verify if is feasible according to time window constraints
-					//cout<<"NOPE"<<endl;
+					//<<"NOPE"<<endl;
 					best_empty_vehicle = veh;
 					best_distance_location = ttcsd;
 					capacity_best_empty_vehicle = free_capacity[veh][0];
@@ -4810,14 +4810,14 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 
 	if (filtered_vehicles_p.size()>0)
 		filtered_vehicles_p.clear();
-	//cout<<"hier 5.1"<<endl;
+	//<<"hier 5.1"<<endl;
 	int vv;
 	/*if ((cluster_id < 0) or (cluster_id >= number_clusters)) {
 		cout<<cluster_id<<endl;
 		cout<<"exiting here CID PROBLM"<<endl;
 		return;
 	}*/
-	//cout<<"clusterSIZ: "<<cluster_id<<" "<<clusters[cluster_id].size()<<endl;
+	//<<"clusterSIZ: "<<cluster_id<<" "<<clusters[cluster_id].size()<<endl;
 	for (int i = 0; i < clusters[cluster_id].size(); i++) {
 		vv = clusters[cluster_id][i];
 		/*if ((vv > total_number_vehicles) or (vv < 0)) {
@@ -4844,13 +4844,13 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 	if (filtered_vehicles_p.size() == 0) {
 		v = -1;
 	}
-	//cout<<"hier 5.2"<<endl;
-	//cout<<"filtered SIZE: "<<filtered_vehicles_p.size()<<" "<<cluster_id<<endl;
+	//<<"hier 5.2"<<endl;
+	//<<"filtered SIZE: "<<filtered_vehicles_p.size()<<" "<<cluster_id<<endl;
 	for (int itv = 0; itv < filtered_vehicles_p.size(); itv++) {
 
 		v = filtered_vehicles_p[itv];
 		if (not_feasible_insertion) {
-			//cout<<"yhiery";
+			//<<"yhiery";
 			//emptyfirst = true;
 			int prv_arr_time_at_origin, prv_dpt_time_at_origin;
 			//int old_user_ride_time = total_user_ride_time;
@@ -4867,16 +4867,16 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 			repeated_station = false;
 			flexibilize_lat_departure_time = false;
 			sel_origin = -1;
-			//cout<<"veh: "<<v<<endl;
+			//<<"veh: "<<v<<endl;
 			cheapest_origin(p, v, min_increase_length, sel_origin, pos_origin, repeated_station, flexibilize_lat_departure_time, best_departure_time_from_home);
-			//cout<<"outside here"<<" "<<cluster_id<<endl;
+			//<<"outside here"<<" "<<cluster_id<<endl;
 			if (sel_origin != -1) {
 
 				//printf("1234");
 				//bool not_repeated_origin;
 				if (not repeated_station) {
 
-					//cout<<v<<" "<<pos_origin<<" "<<sel_origin<<" "<<p<<endl;
+					//<<v<<" "<<pos_origin<<" "<<sel_origin<<" "<<p<<endl;
 					//return;
 
 					/*if ((v > total_number_vehicles) or (v < 0)) {
@@ -4907,11 +4907,11 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 					stops[v].insert(stops[v].begin() + pos_origin, sel_origin);
 					
 					//update passenger performing actions on the stops
-					//cout<<"hiiieer1"<<endl;
+					//<<"hiiieer1"<<endl;
 					action_passengers[v].insert(action_passengers[v].begin() + pos_origin, vector<int>());
 					action_passengers[v][pos_origin].resize(10);
 					action_passengers[v][pos_origin][0] = p;
-					//cout<<"hiiieer2"<<endl;
+					//<<"hiiieer2"<<endl;
 					//action_passengers[v][pos_origin].insert(action_passengers[v][pos_origin].begin(), p);
 					number_passengers_action[v].insert(number_passengers_action[v].begin() + pos_origin, 1);
 
@@ -4964,7 +4964,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 				}
 
 
-				//cout<<"hier 5.4"<<endl;
+				//<<"hier 5.4"<<endl;
 				vehicle_assigned[p] = v;
 
 				/*for (int i=0; i<=number_stops[v];i++) {
@@ -4988,7 +4988,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 				see_if_arrival_departure_dont_match(v);
 				cheapest_destination(p, v, pos_origin, min_increase_length, sel_destination, pos_destination, repeated_station, flexibilize_arrival_time, infeasible_insertion);
 				//<<min_increase_length<<" "<<pos_destination<<endl;
-				//cout<<"hier 5.5"<<endl;
+				//<<"hier 5.5"<<endl;
 				if ((sel_destination != -1) && (not infeasible_insertion)) {
 
 					/*if ((v > total_number_vehicles) or (v < 0)) {
@@ -5014,17 +5014,17 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 					}*/
 					
 					not_feasible_insertion = false;
-					//cout<<"1hierxx"<<endl;
+					//<<"1hierxx"<<endl;
 					passengers_departure_time_from_home[p] = best_departure_time_from_home;
 					//<<"pos dest: "<<sel_destination<<endl;
 					stops[v].insert(stops[v].begin() + pos_destination, sel_destination);
 					
 					//update passenger performing actions on the stops
-					//cout<<"hiiieer3"<<endl;
+					//<<"hiiieer3"<<endl;
 					action_passengers[v].insert(action_passengers[v].begin() + pos_destination, vector<int>());
 					action_passengers[v][pos_destination].resize(10);
 					action_passengers[v][pos_destination][0] = p;
-					//cout<<"hiiieer2"<<endl;
+					//<<"hiiieer2"<<endl;
 					//action_passengers[v][pos_destination].insert(action_passengers[v][pos_destination].begin(), p);
 					number_passengers_action[v].insert(number_passengers_action[v].begin() + pos_destination, 1);
 
@@ -5070,7 +5070,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 
 
 					arrival_time_stop[v][pos_destination+1] = departure_time_stop[v][pos_destination]+travel_time[stops[v][pos_destination]][stops[v][pos_destination+1]];	
-					//cout<<"as :"<<stops[v][pos_destination]<<" "<<stops[v][pos_destination+1]<<endl;
+					//<<"as :"<<stops[v][pos_destination]<<" "<<stops[v][pos_destination+1]<<endl;
 					departure_time_stop[v][pos_destination+1] = arrival_time_stop[v][pos_destination+1];
 				
 
@@ -5113,7 +5113,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 					if ((sel_destination != -1) && (accept_delay_trip) && (not infeasible_insertion)) {
 						
 						not_feasible_insertion = false;
-						//cout<<"2hierxx"<<endl;
+						//<<"2hierxx"<<endl;
 						passengers_departure_time_from_home[p] = best_departure_time_from_home;
 						//<<"pos dest: "<<sel_destination<<endl;
 						stops[v].insert(stops[v].begin() + pos_destination, sel_destination);
@@ -5163,7 +5163,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 						number_stops[v]++;
 
 						arrival_time_stop[v][pos_destination+1] = departure_time_stop[v][pos_destination]+travel_time[stops[v][pos_destination]][stops[v][pos_destination+1]];	
-						//cout<<"as :"<<stops[v][pos_destination]<<" "<<stops[v][pos_destination+1]<<endl;
+						//<<"as :"<<stops[v][pos_destination]<<" "<<stops[v][pos_destination+1]<<endl;
 						departure_time_stop[v][pos_destination+1] = arrival_time_stop[v][pos_destination+1];
 
 						int min_slack_time_so_far = INT_MAX;	
@@ -5189,7 +5189,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 					} else {
 
 						 
-						//cout<<"3hierxx"<<endl;
+						//<<"3hierxx"<<endl;
 						//solution_cost -= saved_increase;
 						vehicle_assigned[p] = -1;
 						number_stops[v]--;
@@ -5225,9 +5225,9 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 				repeated_station = false;
 				flexibilize_lat_departure_time = true;
 				sel_origin = -1;
-				//cout<<"hier 5.55"<<endl;
+				//<<"hier 5.55"<<endl;
 				cheapest_origin(p, v, min_increase_length, sel_origin, pos_origin, repeated_station, flexibilize_lat_departure_time, best_departure_time_from_home);
-				//cout<<"hier 5.57"<<" "<<cluster_id<<endl;
+				//<<"hier 5.57"<<" "<<cluster_id<<endl;
 				if (sel_origin != -1) {
 
 					if (not repeated_station) {
@@ -5357,10 +5357,10 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 							return;
 						}*/
 
-						//cout<<"4hierxx"<<endl;
+						//<<"4hierxx"<<endl;
 						
 						not_feasible_insertion = false;
-						//cout<<"pos dest: "<<pos_destination<<" "<<cluster_id<<endl;
+						//<<"pos dest: "<<pos_destination<<" "<<cluster_id<<endl;
 						stops[v].insert(stops[v].begin() + pos_destination, sel_destination);
 						
 						passengers_departure_time_from_home[p] = best_departure_time_from_home;
@@ -5393,7 +5393,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 						//updates solution cost
 						//<<"heere3"<<endl;
 						user_ride_time[p] = travel_time[sel_origin][sel_destination];
-						//cout<<"user ride time: "<<travel_time[sel_origin][sel_destination]<<" "<<sel_origin<<" "<<sel_destination<<endl;
+						//<<"user ride time: "<<travel_time[sel_origin][sel_destination]<<" "<<sel_origin<<" "<<sel_destination<<endl;
 						//total_user_ride_time += user_ride_time[p];
 						//<<"total_user_ride_time: "<<total_user_ride_time<<endl;
 
@@ -5410,7 +5410,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 						number_stops[v]++;
 
 						arrival_time_stop[v][pos_destination+1] = departure_time_stop[v][pos_destination]+travel_time[stops[v][pos_destination]][stops[v][pos_destination+1]];	
-						//cout<<"as :"<<stops[v][pos_destination]<<" "<<stops[v][pos_destination+1]<<endl;
+						//<<"as :"<<stops[v][pos_destination]<<" "<<stops[v][pos_destination+1]<<endl;
 						departure_time_stop[v][pos_destination+1] = arrival_time_stop[v][pos_destination+1];
 
 						int min_slack_time_so_far = INT_MAX;	
@@ -5422,7 +5422,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 								}
 							}
 
-						//cout<<"hierx56"<<endl;
+						//<<"hierx56"<<endl;
 						//checks for next empty vehicle
 						/*while (free_capacity[empty_vehicle].size() > 2) { 
 							empty_vehicle++;
@@ -5437,7 +5437,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 					} else {
 
 
-						//cout<<"5hierxx"<<endl;
+						//<<"5hierxx"<<endl;
 						//no feasible insertion for destination according to constraints (probably time constrains since the travel time from the depot)
 						//try to insert giving flexibility according to latest_arrivel_time
 						min_increase_length = INT_MAX;
@@ -5527,7 +5527,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 							number_stops[v]++;
 
 							arrival_time_stop[v][pos_destination+1] = departure_time_stop[v][pos_destination]+travel_time[stops[v][pos_destination]][stops[v][pos_destination+1]];	
-							//cout<<"as :"<<stops[v][pos_destination]<<" "<<stops[v][pos_destination+1]<<endl;
+							//<<"as :"<<stops[v][pos_destination]<<" "<<stops[v][pos_destination+1]<<endl;
 							departure_time_stop[v][pos_destination+1] = arrival_time_stop[v][pos_destination+1];
 
 							int min_slack_time_so_far = INT_MAX;	
@@ -5553,7 +5553,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 						} else {
 
 							 
-							//cout<<"5hierxx"<<endl;
+							//<<"5hierxx"<<endl;
 							vehicle_assigned[p] = -1;
 							if (not same_station) {
 								//solution_cost -= saved_increase;
@@ -5623,7 +5623,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 
 	} 
 
-	//cout<<"hier 5.6"<<endl;
+	//<<"hier 5.6"<<endl;
 	if (vehicle_assigned[p] == -1) {
 		if ((no_feasible_insertion_empty) or (v == -1)) {
 
@@ -5637,9 +5637,9 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 				filtered_vehicles.clear();*/
 			vector<int> filtered_vehicles_p2;
 			filter_vehicles2(p, cluster_id, filtered_vehicles_p2);
-			//cout<<"filtered size: "<<filtered_vehicles_p.size()<<endl;
-			//cout<<"filtered_vehicles SIZE "<<filtered_vehicles_p2.size()<<" "<<served_passengers<<" "<<cluster_id<<endl;
-			//cout<<"clsize "<<clusters[cluster_id].size()<<"p "<<p<<endl;
+			//<<"filtered size: "<<filtered_vehicles_p.size()<<endl;
+			//<<"filtered_vehicles SIZE "<<filtered_vehicles_p2.size()<<" "<<served_passengers<<" "<<cluster_id<<endl;
+			//<<"clsize "<<clusters[cluster_id].size()<<"p "<<p<<endl;
 			bool not_feasible_insertion = true;
 			int iterations = 0;
 			bool tested_all_vehicles_once = false;
@@ -5647,7 +5647,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 			/*if (filtered_vehicles.size() == 0){
 				serve_passenger_third_party_vehicle(p);
 			}*/
-			//cout<<"hier 5.7"<<endl;
+			//<<"hier 5.7"<<endl;
 			std::shuffle(filtered_vehicles_p2.begin(), filtered_vehicles_p2.end(), default_random_engine(current_time));
 			while ((not_feasible_insertion) && (iterations < filtered_vehicles_p2.size())) {
 				
@@ -5659,7 +5659,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 				best_min_increase_length = INT_MAX;
 				best_v = -1;
 				curr_number_insertions_p = 0;
-				//cout<<"heeereAA";
+				//<<"heeereAA";
 				for (int vf=0; vf<filtered_vehicles_p2.size();vf++) {
 					int v = filtered_vehicles_p2[vf];
 
@@ -5678,7 +5678,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 					}
 					cout<<endl;*/
 
-					//cout<<"veh: "<<v<<"iterations: "<<iterations<<" "<<filtered_vehicles_p.size()<<" "<<total_number_vehicles<<endl;
+					//<<"veh: "<<v<<"iterations: "<<iterations<<" "<<filtered_vehicles_p.size()<<" "<<total_number_vehicles<<endl;
 					min_increase_length = INT_MAX;
 					repeated_station = false;
 					//(free_capacity[v] > 0) && 
@@ -5700,18 +5700,18 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 						}*/
 
 						see_if_arrival_departure_dont_match(v);
-						//cout<<"heereBB"<<endl;
-						//cout<<v<<endl;
-						//cout<<"insidere here"<<endl;
+						//<<"heereBB"<<endl;
+						//<<v<<endl;
+						//<<"insidere here"<<endl;
 						if (curr_number_insertions_p < 44995)
 							cheapest_origin2_p(p, v, min_increase_length, sel_origin, pos_origin, repeated_station, flexibilize_lat_departure_time, insertions_p, curr_number_insertions_p);
 						
 					}
 				}
 				//<<endl;
-				//cout<<"hier num insers "<<curr_number_insertions_p<<endl;
-				//cout<<"heereCC";
-				//cout<<"curr insert5: " << curr_number_insertions_p<<" "<<flexibilize_lat_departure_time<<endl;
+				//<<"hier num insers "<<curr_number_insertions_p<<endl;
+				//<<"heereCC";
+				//<<"curr insert5: " << curr_number_insertions_p<<" "<<flexibilize_lat_departure_time<<endl;
 				sort(insertions_p, insertions_p+curr_number_insertions_p, comparator);
 
 				//<<best_v<<endl;
@@ -5730,9 +5730,9 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 
 					while ((no_feasible_insertion2) && (iterations2 < curr_number_insertions_p)) {
 
-						//cout<<"5.87"<<endl;
+						//<<"5.87"<<endl;
 							
-						//cout<<"remain inser "<<remaining_insertions<<" "<<iterations2<<" "<<curr_number_insertions_p<<endl;
+						//<<"remain inser "<<remaining_insertions<<" "<<iterations2<<" "<<curr_number_insertions_p<<endl;
 						//<<best_v<<"\n";
 						int prv_arr_time_at_origin, prv_dpt_time_at_origin;
 
@@ -5741,15 +5741,15 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 						//else
 						selected_insertion = rand() % remaining_insertions;
 
-						//cout<<"sel inser "<<selected_insertion<<" "<<next_replace<<endl;
+						//<<"sel inser "<<selected_insertion<<" "<<next_replace<<endl;
 
-						//cout<<"selec inser"<<selected_insertion<<endl;
+						//<<"selec inser"<<selected_insertion<<endl;
 						//print_v_vehicle(insertions_p[selected_insertion].v);
 						best_min_increase_length = insertions_p[selected_insertion].increase_length;
 						best_sel_origin = insertions_p[selected_insertion].sel_station;
 						best_pos_origin = insertions_p[selected_insertion].pos_station;
 						best_v = insertions_p[selected_insertion].v;
-						//cout<<"best v"<<best_v<<endl;
+						//<<"best v"<<best_v<<endl;
 
 						best_repeated_station = insertions_p[selected_insertion].repeated_station;
 						remaining_insertions--; //updates the number of remaining feasible insertions
@@ -5778,7 +5778,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 						}
 						cout<<endl;*/
 
-						//cout<<"npt passed saved"<<endl;
+						//<<"npt passed saved"<<endl;
 						/*if (saved_stops2.size() > 0) {
 							saved_stops2.clear();
 							saved_number_passengers_action2.clear();
@@ -5786,9 +5786,9 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 							saved_departure_time2.clear();
 							saved_slack_time2.clear();
 							saved_free_capacity2.clear();
-							//cout<<"size saved: "<<saved_arrival_time2.size()<<endl;
+							//<<"size saved: "<<saved_arrival_time2.size()<<endl;
 							saved_arrival_time2.clear();
-							//cout<<"size saved: "<<saved_arrival_time2.size()<<endl;
+							//<<"size saved: "<<saved_arrival_time2.size()<<endl;
 							//for (int i=0; i <){
 							///		saved_arrival_time2[i].clear();
 							//}
@@ -5810,11 +5810,11 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 							//served_passengers++;
 							}
 						}*/
-						//cout<<"passed saved"<<endl;
-						//cout<<best_pos_origin<<" "<<number_stops[best_v]<<" "<<arrival_time_stop[best_v].size()<<" "<<departure_time_stop[best_v].size()<<" "<<slack_time[best_v].size()<<" "<<number_passengers_action[best_v].size()<<" "<<free_capacity[best_v].size()<<endl<<endl;
+						//<<"passed saved"<<endl;
+						//<<best_pos_origin<<" "<<number_stops[best_v]<<" "<<arrival_time_stop[best_v].size()<<" "<<departure_time_stop[best_v].size()<<" "<<slack_time[best_v].size()<<" "<<number_passengers_action[best_v].size()<<" "<<free_capacity[best_v].size()<<endl<<endl;
 						if (not best_repeated_station) {
-							//cout<<"heere5.8.2.2.2"<<endl;
-							//cout<<"non rep"<<endl;
+							//<<"heere5.8.2.2.2"<<endl;
+							//<<"non rep"<<endl;
 							//oneoftwo++;
 							//<<best_sel_origin<<" "<<best_min_increase_length<<endl;
 							/*cout<<"start"<<endl;
@@ -5826,8 +5826,8 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 								cout<<endl;
 							}
 							cout<<endl<<endl;*/
-							//cout<<"best v "<<best_v<<endl;
-							//cout<<best_pos_origin<<" "<<best_sel_origin<<endl;
+							//<<"best v "<<best_v<<endl;
+							//<<best_pos_origin<<" "<<best_sel_origin<<endl;
 							stops[best_v].insert(stops[best_v].begin() + best_pos_origin, best_sel_origin);
 							number_stops[best_v]++;
 
@@ -5904,7 +5904,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 								departure_time_stop[best_v].insert(departure_time_stop[best_v].begin() + best_pos_origin, arrival_time_stop[best_v][best_pos_origin]);
 							slack_time[best_v].insert(slack_time[best_v].begin() + best_pos_origin, 86400);
 							
-							//cout<<"hier 5.999"<<endl;
+							//<<"hier 5.999"<<endl;
 							/*for (int i=0; i<=number_stops[best_v];i++) {
 								cout<<stops[best_v][i]<<" ("<<number_passengers_action[best_v][i]<<") "<<" [";
 								for (int j=0; j<number_passengers_action[best_v][i];j++) 
@@ -5945,7 +5945,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 							}*/	
 							
 						} else {
-							//cout<<"heere5.88888"<<endl;
+							//<<"heere5.88888"<<endl;
 							//update passenger performing actions on the stops
 							//action_passengers[best_v][best_pos_origin].insert(action_passengers[best_v][best_pos_origin].begin(), p);
 							if (number_passengers_action[best_v][best_pos_origin] < action_passengers[best_v][best_pos_origin].size()) {
@@ -5966,9 +5966,9 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 						}
 
 						//update further arrival, departure times and slack times
-						//cout<<best_pos_origin<<" "<<number_stops[best_v]<<" "<<arrival_time_stop[best_v].size()<<" "<<departure_time_stop[best_v].size()<<" "<<slack_time[best_v].size()<<" "<<number_passengers_action[best_v].size()<<" "<<free_capacity[best_v].size()<<endl<<endl;
+						//<<best_pos_origin<<" "<<number_stops[best_v]<<" "<<arrival_time_stop[best_v].size()<<" "<<departure_time_stop[best_v].size()<<" "<<slack_time[best_v].size()<<" "<<number_passengers_action[best_v].size()<<" "<<free_capacity[best_v].size()<<endl<<endl;
 						for (int i=best_pos_origin+1; i<=number_stops[best_v];i++) {
-							//cout<<"hiier "<<arrival_time_stop[best_v][i]<<endl;
+							//<<"hiier "<<arrival_time_stop[best_v][i]<<endl;
 							saved_arrival_time[best_v][i] = arrival_time_stop[best_v][i];
 							arrival_time_stop[best_v][i] = departure_time_stop[best_v][i-1]+travel_time[stops[best_v][i-1]][stops[best_v][i]];
 							saved_departure_time[best_v][i] = departure_time_stop[best_v][i];
@@ -6013,7 +6013,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 							cout<<"*"<<free_capacity[best_v][i]<<"*"<<endl;
 						}
 						//}
-						//cout<<endl;*/
+						//<<endl;*/
 
 						best_min_increase_length = INT_MAX;
 						
@@ -6025,11 +6025,11 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 						else
 							flexibilize_arrival_time = false;
 
-						//cout<<"15.872"<<endl;
+						//<<"15.872"<<endl;
 						cheapest_destination(p, best_v, best_pos_origin, min_increase_length, sel_destination, pos_destination, repeated_station, flexibilize_arrival_time, infeasible_insertion);
-						//cout<<"out 15.872"<<endl;
-						//cout<<"pos origin: "<<best_pos_origin<<" "<<endl;
-						//cout<<"pos dest: "<<pos_destination<<" sd: "<<sel_destination<<" "<<endl;
+						//<<"out 15.872"<<endl;
+						//<<"pos origin: "<<best_pos_origin<<" "<<endl;
+						//<<"pos dest: "<<pos_destination<<" sd: "<<sel_destination<<" "<<endl;
 						
 						if ((sel_destination != -1)) { 
 
@@ -6052,7 +6052,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 
 						//if (delay[p] == 0) {
 						//	cout<<"delay "<<delay[p]<<endl;
-						//cout<<"xxx :"<<sel_destination<<" "<<no_violation_capacity<<" "<<accept_delay_trip<<" "<<infeasible_insertion<<" "<<endl;
+						//<<"xxx :"<<sel_destination<<" "<<no_violation_capacity<<" "<<accept_delay_trip<<" "<<infeasible_insertion<<" "<<endl;
 						//}
 
 						/*if (total_number_vehicles == 0){
@@ -6061,7 +6061,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 						if ((sel_destination != -1) && (no_violation_capacity) && (accept_delay_trip) && (not infeasible_insertion)) {
 							
 							
-							//cout<<"742hierxx"<<endl;
+							//<<"742hierxx"<<endl;
 							//print_v_vehicle(best_v);
 							no_feasible_insertion2 = false;
 							not_feasible_insertion = false;
@@ -6069,7 +6069,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 							passengers_departure_time_from_home[p] = insertions_p[next_replace].passengers_departure_time_from_home;
 							
 							if (not repeated_station) {
-								//cout<<"hier NR"<<endl;
+								//<<"hier NR"<<endl;
 								//oneoftwo++;
 								stops[best_v].insert(stops[best_v].begin() + pos_destination, sel_destination);
 								number_stops[best_v]++;
@@ -6091,7 +6091,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 								prv_capacity = free_capacity[best_v][pos_destination-1];
 								free_capacity[best_v].insert(free_capacity[best_v].begin() + pos_destination, prv_capacity+1);
 							} else {	
-								//cout<<"hier REP"<<endl;
+								//<<"hier REP"<<endl;
 								//update passenger performing actions on the stops
 								//action_passengers[best_v][pos_destination].insert(action_passengers[best_v][pos_destination].begin(), p);
 								if (number_passengers_action[best_v][pos_destination] < action_passengers[best_v][pos_destination].size()) {
@@ -6123,7 +6123,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 
 							}
 
-							//cout<<"outxhier "<<number_stops[best_v]<<endl;
+							//<<"outxhier "<<number_stops[best_v]<<endl;
 							//update further arrival, departure times, and slack times
 							for (int i=pos_destination+1; i<=number_stops[best_v];i++) {
 								old_arr_time = arrival_time_stop[best_v][i];
@@ -6134,7 +6134,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 								}
 								slack_time[best_v][i] -= arrival_time_stop[best_v][i] - old_arr_time;
 							}
-							//cout<<"outxhier1"<<endl;
+							//<<"outxhier1"<<endl;
 
 							//for (int i=1; i<pos_destination;i++){
 							//	int min_slack_time = INT_MAX;
@@ -6154,9 +6154,9 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 								}
 							}
 							//updates solution cost
-							//cout<<"outxhier2"<<endl;
+							//<<"outxhier2"<<endl;
 							//<<"heere5"<<endl;
-							//cout<<"stations "<<best_pos_origin<<" "<<sel_destination<<endl;
+							//<<"stations "<<best_pos_origin<<" "<<sel_destination<<endl;
 							user_ride_time[p] = 0;
 							//total_user_ride_time += user_ride_time[p];
 							//<<"total_user_ride_time: "<<total_user_ride_time<<endl;
@@ -6188,7 +6188,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 									//}
 								} 
 							}
-							//cout<<"outxhier3"<<endl;
+							//<<"outxhier3"<<endl;
 
 
 							
@@ -6218,7 +6218,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 								}*/
 							if ((infeasible_insertion) && (accept_infeasible_insertion)) {
 								
-								//cout<<"72hierxx"<<endl;	
+								//<<"72hierxx"<<endl;	
 								/*cout<<"7hierxx"<<endl;
 								cout<<"vehicle infinsertion "<<best_v<<endl;
 								for (int i=0; i<=number_stops[best_v];i++) {
@@ -6237,11 +6237,11 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 
 								passengers_departure_time_from_home[p] = insertions_p[next_replace].passengers_departure_time_from_home;
 								
-								//cout<<"hieer1"<<endl;
-								//cout<<best_v<<" "<<pos_destination<<" "<<number_stops[best_v]<<" "<<arrival_time_stop[best_v].size()<<endl<<endl;
+								//<<"hieer1"<<endl;
+								//<<best_v<<" "<<pos_destination<<" "<<number_stops[best_v]<<" "<<arrival_time_stop[best_v].size()<<endl<<endl;
 								if (not repeated_station) {
 									//oneoftwo++;
-									//cout<<"hieer2"<<endl;
+									//<<"hieer2"<<endl;
 									stops[best_v].insert(stops[best_v].begin() + pos_destination, sel_destination);
 									number_stops[best_v]++;
 
@@ -6251,7 +6251,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 									action_passengers[best_v][pos_destination][0] = p;
 									//action_passengers[best_v][pos_destination].insert(action_passengers[best_v][pos_destination].begin(), p);
 									number_passengers_action[best_v].insert(number_passengers_action[best_v].begin() + pos_destination, 1);
-									//cout<<"hieer3"<<endl;
+									//<<"hieer3"<<endl;
 									//updating arrival and departure from stops
 									int arr_time = departure_time_stop[best_v][pos_destination-1]+travel_time[stops[best_v][pos_destination-1]][sel_destination];
 									//<<"pd "<<stops[best_v][pos_destination-1]<<" tt"<<travel_time[stops[best_v][pos_destination-1]][sel_destination]<<endl;
@@ -6261,9 +6261,9 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 
 									prv_capacity = free_capacity[best_v][pos_destination-1];
 									free_capacity[best_v].insert(free_capacity[best_v].begin() + pos_destination, prv_capacity+1);
-									//cout<<"hieer4"<<endl;
+									//<<"hieer4"<<endl;
 								} else {
-									//cout<<"hieer2"<<endl;
+									//<<"hieer2"<<endl;
 									//update passenger performing actions on the stops
 									//action_passengers[best_v][pos_destination].insert(action_passengers[best_v][pos_destination].begin(), p);
 									if (number_passengers_action[best_v][pos_destination] < action_passengers[best_v][pos_destination].size()) {
@@ -6271,7 +6271,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 									} else
 										action_passengers[best_v][pos_destination].insert(action_passengers[best_v][pos_destination].begin() + number_passengers_action[best_v][pos_destination], p);
 									number_passengers_action[best_v][pos_destination]++;
-									//cout<<"hieer3"<<endl;
+									//<<"hieer3"<<endl;
 									//according to the update when the origin is added, if the stop already exists then no need to change
 									//int arr_time = departure_time_stop[best_v][pos_destination-1]+travel_time[stops[best_v][pos_destination-1]][sel_destination];
 									//arrival_time_stop[best_v][pos_destination] = arr_time;
@@ -6289,13 +6289,13 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 										}
 									}
 									slack_time[best_v][pos_destination] = min_slck_time;
-									//cout<<"hieer4"<<endl;
+									//<<"hieer4"<<endl;
 									//prv_capacity = free_capacity[best_v][pos_destination];
 									//free_capacity[best_v][pos_destination] = prv_capacity+1;
 
 								}
 
-								//cout<<"hieer5"<<endl;
+								//<<"hieer5"<<endl;
 								//update further arrival, departure times, and slack times
 								for (int i=pos_destination+1; i<=number_stops[best_v];i++) {
 									old_arr_time = arrival_time_stop[best_v][i];
@@ -6306,7 +6306,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 									}
 									slack_time[best_v][i] -= arrival_time_stop[best_v][i] - old_arr_time;
 								}
-								//cout<<"hieer6"<<endl;
+								//<<"hieer6"<<endl;
 								//for (int i=1; i<pos_destination;i++){
 								//	int min_slack_time = INT_MAX;
 								//	for (int j=i+1; i<number_stops[best_v];i++){
@@ -6325,9 +6325,9 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 									}
 								}
 								//updates solution cost
-								//cout<<"hieer7"<<endl;
+								//<<"hieer7"<<endl;
 								//<<"heere5"<<endl;
-								//cout<<"stations "<<best_pos_origin<<" "<<sel_destination<<endl;
+								//<<"stations "<<best_pos_origin<<" "<<sel_destination<<endl;
 								user_ride_time[p] = 0;
 								//total_user_ride_time += user_ride_time[p];
 								//<<"total_user_ride_time: "<<total_user_ride_time<<endl;
@@ -6400,7 +6400,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 								
 
 							} else {
-								//cout<<"omg here"<<endl;
+								//<<"omg here"<<endl;
 								iterations2++;
 								//solution_cost -= saved_increase;
 								vehicle_assigned[p] = -1;
@@ -6470,15 +6470,15 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 
 						}
 
-						//cout<<"XYZhieer"<<endl;
-						//cout<<"outxhier4"<<endl;
+						//<<"XYZhieer"<<endl;
+						//<<"outxhier4"<<endl;
 						update_URT(best_v);
 
 						/*if (total_number_vehicles == 0){
 							cout<<"megra error hier 8"<<endl;
 						}*/
 						//print_v_vehicle(best_v);
-						//cout<<"outxhier5"<<endl;
+						//<<"outxhier5"<<endl;
 
 						/*cout<<"URT UPDATED "<<endl;
 						for (int i=0; i<=number_stops[best_v];i++) {
@@ -6509,13 +6509,13 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 							cout<<"*"<<free_capacity[best_v][i]<<"*"<<endl;
 						}*/
 						//}	
-						//cout<<endl;
+						//<<endl;
 					} //end while
 				} else {
 					iterations = filtered_vehicles_p2.size()+1;
 				}
-				//cout<<"hier 5.85"<<endl;
-				///cout<<"heereFF";
+				//<<"hier 5.85"<<endl;
+				///<<"heereFF";
 				if (no_feasible_insertion2) {
 
 					//iterations++;
@@ -6535,15 +6535,15 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 						//ultimately serve passenger with a 3rd party vehicle
 						//<<"serving 3rd party";
 						//serve_passenger_third_party_vehicle(p);
-						//cout<<p<<endl;
-						//cout<<"rejected "<<endl;
+						//<<p<<endl;
+						//<<"rejected "<<endl;
 					}
 				}
 			}
 		}
 	}
 
-	//cout<<"hieer2"<<endl;
+	//<<"hieer2"<<endl;
 	/*if (vehicle_assigned[p] == -1) {
 		//serve_passenger_third_party_vehicle(p);
 		if (second_try)
@@ -6554,10 +6554,10 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 
 	//route_assigned[p] = 1;
 	//reset blocked vehicles structure
-	//cout<<"almost exiting"<<endl;
+	//<<"almost exiting"<<endl;
 	for (int i=0;i<total_number_vehicles;i++)
 		blocked_vehicles[p][i] = 0;
-	//cout<<"exiting cluster: "<<cluster_id<<endl;
+	//<<"exiting cluster: "<<cluster_id<<endl;
 }
 
 //this cheapest insertion considers to insert passengers at positions that are not the min increase in length traveled
@@ -9415,7 +9415,7 @@ void re_insertion(int p, bool &accept_relocate_trip, double &temperature, int &t
 
 					
 					if (not repeated_station) {
-						//cout<<"hierrs"<<endl;
+						//<<"hierrs"<<endl;
 						stops[best_v].insert(stops[best_v].begin() + pos_destination, sel_destination);
 						number_stops[best_v]++;
 
@@ -9436,7 +9436,7 @@ void re_insertion(int p, bool &accept_relocate_trip, double &temperature, int &t
 						prv_capacity = free_capacity[best_v][pos_destination-1];
 						free_capacity[best_v].insert(free_capacity[best_v].begin() + pos_destination, prv_capacity+1);
 					} else {
-						//cout<<"hierNrs1"<<endl;
+						//<<"hierNrs1"<<endl;
 						//update passenger performing actions on the stops
 						//action_passengers[best_v][pos_destination].insert(action_passengers[best_v][pos_destination].begin(), p);
 						
@@ -9475,14 +9475,14 @@ void re_insertion(int p, bool &accept_relocate_trip, double &temperature, int &t
 					//update further arrival, departure times, and slack times
 					for (int i=pos_destination; i<=number_stops[best_v];i++) {
 						old_arr_time = arrival_time_stop[best_v][i];
-						//cout<<"aki "<<" "<<departure_time_stop[best_v][i-1]<<" "<<travel_time[stops[best_v][i-1]][stops[best_v][i]]<<" "<<stops[best_v][i-1]<<" "<<stops[best_v][i]<<endl;
+						//<<"aki "<<" "<<departure_time_stop[best_v][i-1]<<" "<<travel_time[stops[best_v][i-1]][stops[best_v][i]]<<" "<<stops[best_v][i-1]<<" "<<stops[best_v][i]<<endl;
 						arrival_time_stop[best_v][i] = departure_time_stop[best_v][i-1]+travel_time[stops[best_v][i-1]][stops[best_v][i]];
 						old_dpt_time = departure_time_stop[best_v][i];
 						//if (arrival_time_stop[best_v][i] > departure_time_stop[best_v][i]) {
 						departure_time_stop[best_v][i] = arrival_time_stop[best_v][i];
 						//}
 
-						//cout<<arrival_time_stop[best_v][i]<<" "<<departure_time_stop[best_v][i]<<endl;
+						//<<arrival_time_stop[best_v][i]<<" "<<departure_time_stop[best_v][i]<<endl;
 
 						int greatest_ed = INT_MIN;
 						//the departure time of a stop can change according to the earliest departure of passengers assigned to that stop
@@ -9495,7 +9495,7 @@ void re_insertion(int p, bool &accept_relocate_trip, double &temperature, int &t
 							departure_time_stop[best_v][i] = greatest_ed;
 
 						slack_time[best_v][i] -= arrival_time_stop[best_v][i] - old_arr_time;
-						//cout<<arrival_time_stop[best_v][i]<<" "<<departure_time_stop[best_v][i]<<endl;
+						//<<arrival_time_stop[best_v][i]<<" "<<departure_time_stop[best_v][i]<<endl;
 					}
 
 					//for (int i=1; i<pos_destination;i++){
@@ -9569,7 +9569,7 @@ void re_insertion(int p, bool &accept_relocate_trip, double &temperature, int &t
 										current_user_ride_time = arrival_time_stop[best_v][k] - departure_time_stop[best_v][i];
 
 										//if (current_user_ride_time != user_ride_time_temp[save_p]) {
-											//cout<<"crime fake add "<<save_p<<endl;
+											//<<"crime fake add "<<save_p<<endl;
 										//}
 										if (current_user_ride_time != user_ride_time[save_p]) {
 											difference = current_user_ride_time -  user_ride_time[save_p];
@@ -9623,7 +9623,7 @@ void re_insertion(int p, bool &accept_relocate_trip, double &temperature, int &t
 						
 						if (not repeated_station) {
 
-							//cout<<"huiishx"<<endl;
+							//<<"huiishx"<<endl;
 							//<<"vehicle "<<best_v<<endl;
 							stops[best_v].insert(stops[best_v].begin() + pos_destination, sel_destination);
 							
@@ -9651,7 +9651,7 @@ void re_insertion(int p, bool &accept_relocate_trip, double &temperature, int &t
 							free_capacity[best_v].insert(free_capacity[best_v].begin() + pos_destination, prv_capacity+1);
 							
 						} else {
-							//cout<<"huiishxESe"<<endl;
+							//<<"huiishxESe"<<endl;
 							//<<"hereeeeLSE"<<endl;
 							//update passenger performing actions on the stops
 							//action_passengers[best_v][pos_destination].insert(action_passengers[best_v][pos_destination].begin(), p);
@@ -9796,19 +9796,19 @@ void re_insertion(int p, bool &accept_relocate_trip, double &temperature, int &t
 
 						if (number_passengers_action[best_v][best_pos_origin] == 1) {
 							
-							//cout<<"hxxx"<<endl;
+							//<<"hxxx"<<endl;
 							stops[best_v].erase(stops[best_v].begin() + best_pos_origin);
 							action_passengers[best_v].erase(action_passengers[best_v].begin() + best_pos_origin);
 							number_passengers_action[best_v].erase(number_passengers_action[best_v].begin() + best_pos_origin);
 							
 
 							//re-update further arrival and departure times
-							//cout<<"ns: "<<best_pos_origin<<" "<<number_stops[best_v]<<endl;
+							//<<"ns: "<<best_pos_origin<<" "<<number_stops[best_v]<<endl;
 							for (int i=best_pos_origin+1; i<=number_stops[best_v];i++) {
 								arrival_time_stop[best_v][i] = saved_arrival_time[best_v][i];
 								departure_time_stop[best_v][i] = saved_departure_time[best_v][i];
 								slack_time[best_v][i] = saved_slack_time[best_v][i];
-								//cout<<saved_arrival_time[i]<<" "<<saved_departure_time[i]<<" "<<saved_slack_time[i]<<endl;
+								//<<saved_arrival_time[i]<<" "<<saved_departure_time[i]<<" "<<saved_slack_time[i]<<endl;
 							}
 							number_stops[best_v]--;
 							arrival_time_stop[best_v].erase(arrival_time_stop[best_v].begin() + best_pos_origin);
@@ -9821,7 +9821,7 @@ void re_insertion(int p, bool &accept_relocate_trip, double &temperature, int &t
 
 						} else {
 
-							//cout<<"hed1ere"<<endl;
+							//<<"hed1ere"<<endl;
 							//<<action_passengers[best_v][best_pos_origin][1]<<endl;
 							//action_passengers[best_v][best_pos_origin].erase(action_passengers[best_v][best_pos_origin].begin());
 							
@@ -9868,7 +9868,7 @@ void re_insertion(int p, bool &accept_relocate_trip, double &temperature, int &t
 					cout<<"*"<<free_capacity[best_v][i]<<"*"<<endl;
 				}*/
 				//}	
-				//cout<<endl;
+				//<<endl;
 			} //end while
 		} else {
 			iterations = filtered_vehicles_p.size()+1;
@@ -9995,8 +9995,8 @@ void re_insertion_nn(int p, bool &accept_relocate_trip, double &temperature, int
 
 
 	}
-	//cout<<"here1"<<endl;
-	//cout<<filtered_vehicles_p.size()<<endl;
+	//<<"here1"<<endl;
+	//<<filtered_vehicles_p.size()<<endl;
 	//<<"filtered_vehicles SIZE "<<filtered_vehicles.size()<<endl;
 	while ((not_feasible_insertion) && (iterations < filtered_vehicles_p.size())) {
 		
@@ -10008,37 +10008,37 @@ void re_insertion_nn(int p, bool &accept_relocate_trip, double &temperature, int
 		best_min_increase_length = INT_MAX;
 		best_v = -1;
 		curr_number_insertions_p = 0;
-		//cout<<"here2"<<endl;
+		//<<"here2"<<endl;
 
-		//cout<<"fps:"<<filtered_vehicles_p.size()<<" "<<p<<" "<<v<<" "<<endl;
+		//<<"fps:"<<filtered_vehicles_p.size()<<" "<<p<<" "<<v<<" "<<endl;
 		for (int vf=0; vf<filtered_vehicles_p.size();vf++) {
 			int v = filtered_vehicles_p[vf];
-			//cout<<"here2.0"<<endl;
+			//<<"here2.0"<<endl;
 
 			//<<v<<" "<<free_capacity[v]<<endl;
 			min_increase_length = INT_MAX;
 			repeated_station = false;
 			//(free_capacity[v] > 0) && 
-			//cout<<"here2.1"<<endl;
+			//<<"here2.1"<<endl;
 			if (blocked_vehicles[p][v] == 0) {
 
 				if (tested_all_vehicles_once)
 					flexibilize_lat_departure_time = true;
 				else
 					flexibilize_lat_departure_time = false;
-				//cout<<"here2.2"<<endl;
+				//<<"here2.2"<<endl;
 				see_if_arrival_departure_dont_match(v);
-				//cout<<"here2.3"<<endl;
+				//<<"here2.3"<<endl;
 				if (curr_number_insertions_p < 44955)
 					cheapest_origin2_p(p, v, min_increase_length, sel_origin, pos_origin, repeated_station, flexibilize_lat_departure_time, insertions_p, curr_number_insertions_p);
-				//cout<<"here2.4"<<endl;		
+				//<<"here2.4"<<endl;		
 			}
-			//cout<<"here2.5"<<endl;
+			//<<"here2.5"<<endl;
 		}
 		//<<endl;
 
 		//<<"curr insert3: " << curr_number_insertions<<endl;
-		//cout<<"here3"<<endl;
+		//<<"here3"<<endl;
 		sort(insertions_p, insertions_p+curr_number_insertions_p, comparator);
 
 		//<<best_v<<endl;
@@ -10046,7 +10046,7 @@ void re_insertion_nn(int p, bool &accept_relocate_trip, double &temperature, int
 		bool no_feasible_insertion2 = true;
 		int iterations2 = 0;
 		if (curr_number_insertions_p > 0) {
-			//cout<<"here4"<<endl;
+			//<<"here4"<<endl;
 			while ((no_feasible_insertion2) && (iterations2 < curr_number_insertions_p)) {
 
 				//<<best_v<<"\n";
@@ -10057,7 +10057,7 @@ void re_insertion_nn(int p, bool &accept_relocate_trip, double &temperature, int
 				best_pos_origin = insertions_p[iterations2].pos_station;
 				best_v = insertions_p[iterations2].v;
 				best_repeated_station = insertions_p[iterations2].repeated_station;
-				//cout<<"here5"<<endl;
+				//<<"here5"<<endl;
 				if (not best_repeated_station) {
 					stops[best_v].insert(stops[best_v].begin() + best_pos_origin, best_sel_origin);
 					number_stops[best_v]++;
@@ -10111,7 +10111,7 @@ void re_insertion_nn(int p, bool &accept_relocate_trip, double &temperature, int
 					prv_capacity = free_capacity[best_v][best_pos_origin];
 					free_capacity[best_v][best_pos_origin] = prv_capacity-1;
 				}
-				//cout<<"here6"<<endl;
+				//<<"here6"<<endl;
 				//update further arrival, departure times and slack times
 				for (int i=best_pos_origin+1; i<=number_stops[best_v];i++) {
 					saved_arrival_time[best_v][i] = arrival_time_stop[best_v][i];
@@ -10173,9 +10173,9 @@ void re_insertion_nn(int p, bool &accept_relocate_trip, double &temperature, int
 					flexibilize_arrival_time = true;
 				else
 					flexibilize_arrival_time = false;
-				//cout<<"here7"<<endl;
+				//<<"here7"<<endl;
 				cheapest_destination(p, best_v, best_pos_origin, min_increase_length, sel_destination, pos_destination, repeated_station, flexibilize_arrival_time, infeasible_insertion);
-				//cout<<"here8"<<endl;
+				//<<"here8"<<endl;
 				//<<"pos origin: "<<best_pos_origin<<" "<<endl;
 				//<<"pos dest: "<<pos_destination<<" sd: "<<sel_destination<<" "<<endl;
 				
@@ -10256,7 +10256,7 @@ void re_insertion_nn(int p, bool &accept_relocate_trip, double &temperature, int
 					accept_relocate_trip = true; //first feasible is accepted?
 
 				//printf("DELTA:%d \n", DELTA);
-					//cout<<"here9"<<endl;
+					//<<"here9"<<endl;
 				//totalcomputedDELTA += DELTA;
 				if ((sel_destination != -1) && (no_violation_capacity) && (accept_relocate_trip) && (not infeasible_insertion)) {
 
@@ -10323,7 +10323,7 @@ void re_insertion_nn(int p, bool &accept_relocate_trip, double &temperature, int
 
 					}
 
-					//cout<<"here10"<<endl;
+					//<<"here10"<<endl;
 					//update further arrival, departure times, and slack times
 					for (int i=pos_destination; i<=number_stops[best_v];i++) {
 						old_arr_time = arrival_time_stop[best_v][i];
@@ -10420,7 +10420,7 @@ void re_insertion_nn(int p, bool &accept_relocate_trip, double &temperature, int
 					iterations2++;
 					//solution_cost -= saved_increase;
 					//vehicle_assigned[p] = -1;
-					//cout<<"here11"<<endl;
+					//<<"here11"<<endl;
 					if (sel_destination != -1) {
 						for (int i=best_pos_origin+1;i<pos_destination;i++){
 
@@ -10437,12 +10437,12 @@ void re_insertion_nn(int p, bool &accept_relocate_trip, double &temperature, int
 						
 
 						//re-update further arrival and departure times
-						//cout<<"ns: "<<best_pos_origin<<" "<<number_stops[best_v]<<endl;
+						//<<"ns: "<<best_pos_origin<<" "<<number_stops[best_v]<<endl;
 						for (int i=best_pos_origin+1; i<=number_stops[best_v];i++) {
 							arrival_time_stop[best_v][i] = saved_arrival_time[best_v][i];
 							departure_time_stop[best_v][i] = saved_departure_time[best_v][i];
 							slack_time[best_v][i] = saved_slack_time[best_v][i];
-							//cout<<saved_arrival_time[i]<<" "<<saved_departure_time[i]<<" "<<saved_slack_time[i]<<endl;
+							//<<saved_arrival_time[i]<<" "<<saved_departure_time[i]<<" "<<saved_slack_time[i]<<endl;
 						}
 						number_stops[best_v]--;
 						arrival_time_stop[best_v].erase(arrival_time_stop[best_v].begin() + best_pos_origin);
@@ -10468,11 +10468,11 @@ void re_insertion_nn(int p, bool &accept_relocate_trip, double &temperature, int
 							arrival_time_stop[best_v][i] = saved_arrival_time[best_v][i];
 							departure_time_stop[best_v][i] = saved_departure_time[best_v][i];
 							slack_time[best_v][i] = saved_slack_time[best_v][i];
-							//cout<<saved_arrival_time[i]<<" "<<saved_departure_time[i]<<" "<<saved_slack_time[i]<<endl;
+							//<<saved_arrival_time[i]<<" "<<saved_departure_time[i]<<" "<<saved_slack_time[i]<<endl;
 						}
 					}
 				}
-				//cout<<"here12"<<endl;
+				//<<"here12"<<endl;
 				update_URT(best_v);
 			
 				
@@ -10496,14 +10496,14 @@ void re_insertion_nn(int p, bool &accept_relocate_trip, double &temperature, int
 		} else {
 			iterations = filtered_vehicles_p.size()+1;
 		}
-		//cout<<"here13"<<endl;
+		//<<"here13"<<endl;
 		if (no_feasible_insertion2) {
 
 			type_move = 3;
 			//iterations++;
 			iterations = filtered_vehicles_p.size()+1;
 		}
-		//cout<<"here14"<<endl;
+		//<<"here14"<<endl;
 		if (iterations >= filtered_vehicles_p.size()) {
 			if (not tested_all_vehicles_once) {
 				tested_all_vehicles_once = true;
@@ -10519,12 +10519,12 @@ void re_insertion_nn(int p, bool &accept_relocate_trip, double &temperature, int
 			}
 		}
 	}
-	//cout<<"here15"<<endl;
+	//<<"here15"<<endl;
 	//route_assigned[p] = 1;
 	//reset blocked vehicles structure
 	for (int i=0;i<total_number_vehicles;i++)
 		blocked_vehicles[p][i] = 0;
-	//cout<<"here16"<<endl;
+	//<<"here16"<<endl;
 }
 
 void relocate_all_passengers_vehicle_nn(int v, double &temperature, int &type_move, int& counter, int& deltaURT, bool&megaerror, int cluster_id){
@@ -10554,10 +10554,10 @@ void relocate_all_passengers_vehicle_nn(int v, double &temperature, int &type_mo
 	}
 	cout<<endl;*/
 
-	//cout<<"here1"<<endl;
+	//<<"here1"<<endl;
 	for (int kk=0; kk<passengers_at_vehicle[v].size();kk++){
 		p = passengers_at_vehicle[v][kk]; //passenger that will try to relocate
-		//cout<<"here2"<<endl;
+		//<<"here2"<<endl;
 		/*if ((p < 0) || (p > 300)){
 			cout<<"SUPERR ERROR"<<endl;
 			megaerror = true;
@@ -10579,21 +10579,21 @@ void relocate_all_passengers_vehicle_nn(int v, double &temperature, int &type_mo
 		}*/
 
 		//if (vehicle_assigned[p] != v)
-			//cout<<"ERROR HYER"<<endl;
+			//<<"ERROR HYER"<<endl;
 
 		blocked_vehicles[p][vehicle_assigned[p]] = 1;
 
 		accept_relocate_trip = false;
-		//cout<<"here3"<<endl;
+		//<<"here3"<<endl;
 		re_insertion_nn(p, accept_relocate_trip, temperature, type_move, diffURT, cluster_id, v);
-		//cout<<"OUT1"<<endl;
+		//<<"OUT1"<<endl;
 		int begin, end;
 		begin = 0;
 		end = 0;
 
 
 		if (accept_relocate_trip) {
-			//cout<<"OUT2"<<endl;
+			//<<"OUT2"<<endl;
 			counter++; //one passenger has been succesfully been removed
 			
 			count = 0;
@@ -10797,7 +10797,7 @@ int compute_cluster_URT(int cluster_id){
 
 	for (int j=0;j<clusters[cluster_id].size();j++){
 
-		//cout<<
+		//<<
 		int v = clusters[cluster_id][j];
 		
 		for (int p=0;p<total_requests;p++) {
@@ -10829,7 +10829,7 @@ void empty_vehicle(int v, bool& megaerror, double &temperature, int &type_move, 
 
 	
 	//totalcomputedDELTA = 0;
-	//cout<<"B"<<endl;
+	//<<"B"<<endl;
 	save_intm_solution(cluster_id);
 	//vector<int> edited_vehicles;
 
@@ -10857,38 +10857,38 @@ void empty_vehicle(int v, bool& megaerror, double &temperature, int &type_move, 
 
 	//bool megaerror = false;
 
-	//cout<<"C"<<endl;
+	//<<"C"<<endl;
 	relocate_all_passengers_vehicle_nn(v, init_temperature, type_move, counter, deltaURT, megaerror, cluster_id);
-	//cout<<"OUT3"<<endl;
+	//<<"OUT3"<<endl;
 	//UPDATE USER RIDE TIMES TO SEE IF NOW I CAN COMPUTE DELTA CORRECTLY??????
 	
 	if (megaerror){
 		return;
 	}
 	bool accept_relocate_trip;
-	//cout<<passengers_at_vehicle[v].size()<<endl;
+	//<<passengers_at_vehicle[v].size()<<endl;
 	if (counter == passengers_at_vehicle[v].size()) {
-		//cout<<"OUT5"<<endl;
+		//<<"OUT5"<<endl;
 		//improving move regarding URT
 		//necessary to remove the passengers from v
 
 		//<<"revert changes1"<<endl;
 		for (int i = 0; i<passengers_at_vehicle[v].size();i++){
 			int p = passengers_at_vehicle[v][i];
-			//cout<<p<<endl;
+			//<<p<<endl;
 			remove_passenger_from_vehicle(v, p);
 			//update URT
 			update_URT(vehicle_assigned[p]);
 		}
 		see_if_arrival_departure_dont_match(v);
 		update_URT(v);
-		//cout<<"OUT6"<<endl;
-		//cout<<"E"<<endl;
+		//<<"OUT6"<<endl;
+		//<<"E"<<endl;
 		int new_URT = compute_cluster_URT(cluster_id);
 		//<<"oldyxnew: "<<oldy_urt<<" "<<total_user_ride_time<<" "<<(oldy_urt-total_user_ride_time)<<endl; 
 		//if ((oldy_urt-total_user_ride_time) > 0){
 		if ((prev_URT-new_URT) > 0){
-			//cout<<"REMOVEALLPOSITIVE"<<endl;
+			//<<"REMOVEALLPOSITIVE"<<endl;
 			type_move = 1;
 		} else {
 			int x = (double)rand() / (double)RAND_MAX;
@@ -10901,9 +10901,9 @@ void empty_vehicle(int v, bool& megaerror, double &temperature, int &type_move, 
 			} else {
 				accept_relocate_trip = false;
 			}
-			//cout<<"F0"<<endl;
+			//<<"F0"<<endl;
 			if (accept_relocate_trip) {
-				//cout<<"REMOVEALLACCEPT"<<endl;
+				//<<"REMOVEALLACCEPT"<<endl;
 				type_move = 2;
 			} else {
 				type_move = 3;
@@ -10911,13 +10911,13 @@ void empty_vehicle(int v, bool& megaerror, double &temperature, int &type_move, 
 				return_intm_solution(cluster_id);
 			}
 		}
-		//cout<<"F"<<endl;
+		//<<"F"<<endl;
 	} else {
 		type_move = 3;
-		//cout<<"revert changes2"<<endl;
-		//cout<<"G"<<endl;
+		//<<"revert changes2"<<endl;
+		//<<"G"<<endl;
 		return_intm_solution(cluster_id);
-		//cout<<"H"<<endl;
+		//<<"H"<<endl;
 		//revert changes
 		/*for (int i=0; i<new_insertions_v.size(); i++){
 			int p = new_insertions_p[i];
@@ -10931,12 +10931,12 @@ void empty_vehicle(int v, bool& megaerror, double &temperature, int &type_move, 
  		update_URT(v);*/
 
 	}
-	//cout<<"OUT_OUT"<<endl;
+	//<<"OUT_OUT"<<endl;
 }
 
 void relocate_passenger(int p, double &temperature, int &type_move, int cluster_id){
 
-	//cout<<"before relocated passenger: "<<p<<endl;
+	//<<"before relocated passenger: "<<p<<endl;
 
 	bool accept_relocate_trip = false;
 	//compute the removal of passenger p from the solution
@@ -10978,19 +10978,19 @@ void relocate_passenger(int p, double &temperature, int &type_move, int cluster_
 	blocked_vehicles[p][vehicle_assigned[p]] = 1;
 
 	int addedAtV;
-	//cout<<"A"<<endl;
+	//<<"A"<<endl;
 	re_insertion(p, accept_relocate_trip, temperature, type_move, cluster_id, addedAtV, v);
-	//cout<<"B"<<endl;
+	//<<"B"<<endl;
 	int begin, end;
 	begin = 0;
 	end = 0;
 	int total_faking_error = 0;
 	if (accept_relocate_trip) {
-		//cout<<"removeee here SA"<<endl;
+		//<<"removeee here SA"<<endl;
 		//printf("remove heeeere SA\n");
 		//<<"number stops "<<number_stops[v]<<endl;
 		//it means the passenger was relocated to another trip 
-		//cout<<"C"<<endl;
+		//<<"C"<<endl;
 		for (int i=0; i<number_stops[v]; i++){
 			for (int j=0; j<number_passengers_action[v][i];j++) {
 				//<<"actp "<<action_passengers[v][i][j]<<endl;
@@ -11002,7 +11002,7 @@ void relocate_passenger(int p, double &temperature, int &type_move, int cluster_
 					if (number_passengers_action[v][i] == 1) {
 						number_stops[v]--;
 
-						//cout<<"SAhier2"<<i<<endl;
+						//<<"SAhier2"<<i<<endl;
 						stops[v].erase(stops[v].begin() + i);
 						action_passengers[v].erase(action_passengers[v].begin() + i);
 						number_passengers_action[v].erase(number_passengers_action[v].begin() + i);
@@ -11120,9 +11120,9 @@ void relocate_passenger(int p, double &temperature, int &type_move, int cluster_
 										
 										if (count == 2){
 											if (current_user_ride_time != user_ride_time_temp[save_p]) {
-												//cout<<"faking removing error"<<endl;
-												//cout<<current_user_ride_time<<" "<<user_ride_time_temp[save_p]<<endl;
-												//cout<<arrival_time_stop[v][k]<<" "<<departure_time_stop[v][i]<<endl;
+												//<<"faking removing error"<<endl;
+												//<<current_user_ride_time<<" "<<user_ride_time_temp[save_p]<<endl;
+												//<<arrival_time_stop[v][k]<<" "<<departure_time_stop[v][i]<<endl;
 												total_faking_error += user_ride_time_temp[save_p] - current_user_ride_time;
 											}
 										
@@ -11166,17 +11166,17 @@ void relocate_passenger(int p, double &temperature, int &type_move, int cluster_
 			if (count == 2) {
 				//<<"oldyxnew: "<<oldy_urt<<" "<<total_user_ride_time<<" "<<(oldy_urt-total_user_ride_time)<<" "<<computedDELTA<<" ;"<<total_difference<<endl; 
 				//if ((oldy_urt-total_user_ride_time) != computedDELTA){
-					//cout<<"COMPUTING ERRROR"<<endl;
+					//<<"COMPUTING ERRROR"<<endl;
 					//if (total_faking_error != 0)
-						//cout<<"total faking error: "<<total_faking_error<<endl;
+						//<<"total faking error: "<<total_faking_error<<endl;
 				//}
 				break;
 			}	
 		}
-		//cout<<"D"<<endl;
+		//<<"D"<<endl;
 		see_if_arrival_departure_dont_match(v);
 		update_URT(v);
-		//cout<<"E"<<endl;
+		//<<"E"<<endl;
 
 	} else {
 		vehicle_assigned[p] = v;
@@ -11185,7 +11185,7 @@ void relocate_passenger(int p, double &temperature, int &type_move, int cluster_
 	for (int l=begin;l<end;l++) {
 		free_capacity[v][l]++;
 	}
-	//cout<<"F"<<endl;
+	//<<"F"<<endl;
 	if (count == 2) {
 
 		if (free_capacity[v].size()==2){
@@ -11219,7 +11219,7 @@ void relocate_passenger(int p, double &temperature, int &type_move, int cluster_
 
 		//break;
 	}
-	//cout<<"G"<<endl;
+	//<<"G"<<endl;
 
 
 	/*cout<<"after removing: "<<endl;
@@ -11251,9 +11251,9 @@ void relocate_passenger(int p, double &temperature, int &type_move, int cluster_
 							
 							//if (count == 2){
 							if (current_user_ride_time != user_ride_time_temp[save_p]) {
-								//cout<<"delta computing error"<<endl;
-								//cout<<save_p<<" "<<current_user_ride_time<<" "<<user_ride_time_temp[save_p]<<endl;
-								//cout<<arrival_time_stop[v][k]<<" "<<departure_time_stop[v][i]<<endl;
+								//<<"delta computing error"<<endl;
+								//<<save_p<<" "<<current_user_ride_time<<" "<<user_ride_time_temp[save_p]<<endl;
+								//<<arrival_time_stop[v][k]<<" "<<departure_time_stop[v][i]<<endl;
 								total_faking_error += user_ride_time_temp[save_p] - current_user_ride_time;
 							}
 							leave_loop = true;
@@ -11276,7 +11276,7 @@ void relocate_passenger(int p, double &temperature, int &type_move, int cluster_
 			} 
 		}
 	}
-	//cout<<"H"<<endl;
+	//<<"H"<<endl;
 }
 
 
@@ -11308,7 +11308,7 @@ void check_valid_user_ride_times() {
 								l = number_passengers_action[v][k]+1;
 								//k = number_stops[v]+2; //leave loop
 								leave_loop = true;
-								//cout<<"leave"<<endl;
+								//<<"leave"<<endl;
 							} else {
 								extra_travel_time += current_user_ride_time - direct_travel_time[save_p];
 								average_travel_time_ratio += (double)current_user_ride_time/direct_travel_time[save_p];
@@ -11513,7 +11513,7 @@ void check_last_position_route() {
  	//and make vehicle wait so new requests can be added afterwords
  	for (int v=0; v<total_number_vehicles; v++){
 
- 		//cout<<"v: "<<v<<endl;
+ 		//<<"v: "<<v<<endl;
  		if (number_stops[v] > 2) {
 
  			if (free_capacity[v][number_stops[v]-1] == free_capacity[v][0]) {
@@ -11525,7 +11525,7 @@ void check_last_position_route() {
  			} else {
 		 		if (departure_time_stop[v][number_stops[v]-1] < current_time) {
 		 			//means that already passed
-		 			//cout<<"passed!!!"; 
+		 			//<<"passed!!!"; 
 		 			int prev_stop = stops[v][number_stops[v]-1];
 		 			int pos_origin = number_stops[v];
 		 			stops[v].insert(stops[v].begin() + pos_origin, prev_stop);
@@ -11581,7 +11581,7 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 	//type_move 2 - accepted and non improving
 	//type_move 3 - rejected or not feasible move
 
-	//cout<<"hier8"<<endl;
+	//<<"hier8"<<endl;
 	temperature = init_temperature;
 	no_improvement = 0; 
 	count = 0;
@@ -11590,15 +11590,15 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 	
 	vector<int> vehicles_still_depot;
 
-	//cout<<"cid: "<<cluster_id<<endl;
-	//cout<<"X"<<endl;
+	//<<"cid: "<<cluster_id<<endl;
+	//<<"X"<<endl;
 	save_best_solution(cluster_id);
-	//cout<<"Y"<<endl;
-	//cout<<"hier9"<<endl;
+	//<<"Y"<<endl;
+	//<<"hier9"<<endl;
 	std::vector<int> passengers_in_cluster;
 	for (int i=0;i<clusters[cluster_id].size();i++){
 		int v = clusters[cluster_id][i];
-		//cout<<v<<" ";
+		//<<v<<" ";
 		for (int j=0;j<n_allocated;j++){
 
 			if (vehicle_assigned[j] == v) {
@@ -11607,9 +11607,9 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 
 		}
 	}
-	//cout<<"hier10"<<endl;
-	//cout<<endl;
-	//cout<<"size pic: "<<passengers_in_cluster.size()<<endl;
+	//<<"hier10"<<endl;
+	//<<endl;
+	//<<"size pic: "<<passengers_in_cluster.size()<<endl;
 
 	while(true){
 
@@ -11621,17 +11621,17 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 
 			if (y <= 1.0) {
 				//SWITCH
-				cout<<passengers_in_cluster.size()<<endl;
+				//cout<<passengers_in_cluster.size()<<endl;
 				relocate_p = passengers_in_cluster[rand() % passengers_in_cluster.size()];
-				//cout<<"rel p: "<<relocate_p<<endl;
+				//<<"rel p: "<<relocate_p<<endl;
 				if (vehicle_assigned[relocate_p] != -1) {
 					if (passengers_departure_time_from_home[relocate_p] >= current_time) {
-						//cout<<"relocate passenger SA: "<<relocate_p<<endl;
-						//cout<<"hier11"<<endl;
+						//<<"relocate passenger SA: "<<relocate_p<<endl;
+						//<<"hier11"<<endl;
 						relocate_passenger(relocate_p, temperature, type_move, cluster_id);
-						//cout<<"hier12"<<endl;
+						//<<"hier12"<<endl;
 						if (relocate_p < 0){
-							//cout<<"MEGAERRORRRR1"<<endl;
+							//<<"MEGAERRORRRR1"<<endl;
 							return;
 						}
 						// <<"vehicle_assigned SA: "<<vehicle_assigned[relocate_p]<<endl;
@@ -11652,11 +11652,11 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 
 				/*
 				//REDUCE
-				//cout<<"heere"<<endl;
+				//<<"heere"<<endl;
 				select_vehicles_havent_that_can_be_turned_empty(vehicles_still_depot, cluster_id);
-				//cout<<"A"<<endl;
-				//cout<<"hieerx";
-				//cout<<"size vehicles at depot "<<vehicles_still_depot.size()<<endl;
+				//<<"A"<<endl;
+				//<<"hieerx";
+				//<<"size vehicles at depot "<<vehicles_still_depot.size()<<endl;
 				//for (int i=0; i<vehicles_still_depot.size();i++) {
 
 				bool megaerror = false;
@@ -11669,12 +11669,12 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 						empty_vehicle(v, megaerror, temperature, type_move, cluster_id);
 					}
 				}
-				//cout<<"heere1"<<endl;
+				//<<"heere1"<<endl;
 				
-				//cout<<"no idea1"<<endl;
-				//cout<<"heere2"<<endl;
+				//<<"no idea1"<<endl;
+				//<<"heere2"<<endl;
 				if (megaerror){
-					//cout<<"MEGAERRORRRR2"<<endl;
+					//<<"MEGAERRORRRR2"<<endl;
 					//return 0;
 				}
 					//relocate_all_passengers_vehicle(v, init_temperature, type_move);
@@ -11691,17 +11691,17 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 			if (type_move == 2) {
 				no_improvement++;
 			}
-			//cout<<"hier13"<<endl;
-			//cout<<"no idea2"<<endl;
+			//<<"hier13"<<endl;
+			//<<"no idea2"<<endl;
 			int curr_cluster_URT = compute_cluster_URT(cluster_id);
-			//cout<<"no idea3"<<endl;
-			//cout<<cluster_id<<best_tot_cluster_ride_time.size()<<endl;
-			//cout<<"hier14"<<endl;
+			//<<"no idea3"<<endl;
+			//<<cluster_id<<best_tot_cluster_ride_time.size()<<endl;
+			//<<"hier14"<<endl;
 			if (curr_cluster_URT < best_tot_cluster_ride_time[cluster_id]) {
-				//cout<<"BEEST FOUND SO FAR"<<endl;
-				//cout<<"no idea4"<<endl;
+				//<<"BEEST FOUND SO FAR"<<endl;
+				//<<"no idea4"<<endl;
 				save_best_solution(cluster_id);
-				//cout<<"no idea5"<<endl;
+				//<<"no idea5"<<endl;
 				/*for (int kk=0;kk<total_requests;kk++){
 					if (vehicle_assigned[kk] != -1) {
 						solution_validation(kk, vehicle_assigned[kk]);
@@ -11710,13 +11710,13 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 				}*/
 				//<<"heerex"<<endl;
 			}
-			//cout<<"no idea6"<<endl;
-			//cout<<"hier15"<<endl;
+			//<<"no idea6"<<endl;
+			//<<"hier15"<<endl;
 			
 			if (++count > 25) {
 				//elapsed = get_wall_time() - start_time;
 				elapsed = (double)(std::clock() - start_time)/(double)(CLOCKS_PER_SEC);
-				//cout<<"ELAPSED TIME "<<elapsed<<endl;
+				//<<"ELAPSED TIME "<<elapsed<<endl;
 				if (elapsed > comp_time) {
 					return;
 				}
@@ -11880,7 +11880,7 @@ void randomly_assign_clusters() {
     // Initialize iterators for the original vector
     int begin = 0;
     int end = subVectorSize;
-    //cout<<"subsize: "<<subVectorSize<<endl;
+    //<<"subsize: "<<subVectorSize<<endl;
 
     // Split the vector into x sub-vectors
     for (int i = 0; i < number_clusters; i++) {
@@ -11934,9 +11934,9 @@ void k_medoids(int k, int epochs){
 		for (int j=0; j<total_number_vehicles;j++){
 
 			int loc_vehicle = stops[j][current_position[j]];
-			//cout<<"comp: "<<stops[centroids[i]][current_position[centroids[i]]]<<" "<<stops[j][current_position[j]]<<endl;
+			//<<"comp: "<<stops[centroids[i]][current_position[centroids[i]]]<<" "<<stops[j][current_position[j]]<<endl;
 			dist = travel_time[loc_centroid][loc_vehicle];
-			//cout<<"dist:"<<dist<<endl;
+			//<<"dist:"<<dist<<endl;
 			if (dist < mindDist[j]) {
 				mindDist[j] = dist;
 				cluster[j] = clusterId;
@@ -11963,7 +11963,7 @@ void k_medoids(int k, int epochs){
 			sum_all_distances += mindDist[j];
 		}
 
-		//cout<<"dist:"<<sum_all_distances<<endl;
+		//<<"dist:"<<sum_all_distances<<endl;
 		int new_sum_all_distances;
 		int best_sum_all_distances = sum_all_distances;
 		int new_best_cluster = -1;
@@ -11977,7 +11977,7 @@ void k_medoids(int k, int epochs){
 
 					//perform swap and recompute distance costs
 					new_sum_all_distances = recompute_distance_costs(clusterId, j, sum_all_distances);
-					//cout<<new_sum_all_distances<<endl;
+					//<<new_sum_all_distances<<endl;
 					if (new_sum_all_distances < best_sum_all_distances) {
 						best_sum_all_distances = new_sum_all_distances;
 						new_best_cluster = j;
@@ -12018,21 +12018,21 @@ void build_clusters(){
 
 void compute_mean_distances_request_partitions(int p){
 
-	//cout<<"p:"<<p<<endl;
+	//<<"p:"<<p<<endl;
 	int expected_position, k;
 	int sum_dist_clusters;
 	for (int i=0;i<number_clusters;i++){
-		//cout<<"i: "<<i<<endl;
+		//<<"i: "<<i<<endl;
 		sort_clusters[p][i].mean_dist = 0;
 		sort_clusters[p][i].idx_cluster = i;
 		sum_dist_clusters = 0;
 		for (int j=0;j<clusters[i].size();j++){ //for each vehicle
 			
 			int v = clusters[i][j];
-			//cout<<"v: "<<v<<" "<<total_number_vehicles<<endl;
+			//<<"v: "<<v<<" "<<total_number_vehicles<<endl;
 			//compute the expected position of vehicle at the earliest_departure time of passenger
 			for (k=0;k<=number_stops[v];k++){
-				//cout<<"k: "<<k<<endl;
+				//<<"k: "<<k<<endl;
 				if (arrival_time_stop[v][k] > earliest_departure[p]) {
 					break;
 				} 
@@ -12053,7 +12053,7 @@ void compute_mean_distances_request_partitions(int p){
 
 		}
 
-		//cout<<"cluster size: "<<clusters[i].size()<<endl;
+		//<<"cluster size: "<<clusters[i].size()<<endl;
 		sort_clusters[p][i].mean_dist = (int)sum_dist_clusters/clusters[i].size();
 
 	}
@@ -12082,22 +12082,22 @@ int main(int argc, char **argv) {
 			requests_filename = argv[i+1];;
 			cout<<"x"<<total_requests<<" ";
 		} else if (strcmp(argv[i], "--filename_travel_time") == 0) {
-			//cout<<"HIER"<<endl;
+			//<<"HIER"<<endl;
 			input_travel_time(argv[i+1]);
 			/*for(int i=0;i<5828;i++) {
 			for (int j=0;j<5828;j++) {
 				if (travel_time[i][j] == 0) {
 					cout<<i<<" "<<j<<endl;
-		  			//cout << travel_time[i][j] <<',';
+		  			// << travel_time[i][j] <<',';
 		  		}
 		  	}
 		  }*/
-		   //cout <<endl;
+		   // <<endl;
 		} else if (strcmp(argv[i], "--output_file") == 0) {
-			//cout<<"ttm"<<endl;
+			//<<"ttm"<<endl;
 			//input_travel_time(argv[i+1]);
 			output_filename = argv[i+1];
-			//cout<<"leave ttm"<<endl;
+			//<<"leave ttm"<<endl;
 		} else if (strcmp(argv[i], "--depot") == 0) {
 			for (int j = 0; j < number_depots; j++) {
 				i++;
@@ -12154,19 +12154,19 @@ int main(int argc, char **argv) {
 		}
 
 	}
-	//cout<<"x1"<<total_requests<<" ";
+	//<<"x1"<<total_requests<<" ";
 	/*cout<<"AFTER"<<endl;
 	for(int i=0;i<5828;i++) {
 	for (int j=0;j<5828;j++) {
 		if (travel_time[i][j] == 0) {
 			cout<<i<<" "<<j<<endl;
-  			//cout << travel_time[i][j] <<',';
+  			// << travel_time[i][j] <<',';
   		}
   	}
   }
    cout <<endl;*/
 	srand(seed);
-	//cout<<total_requests<<" "<<seed<<" ";
+	//<<total_requests<<" "<<seed<<" ";
 
 	/*if (total_requests == 300) {
 		number_vehicles[0] = 50;
@@ -12210,7 +12210,7 @@ int main(int argc, char **argv) {
    		number_vehicles_at_depot[i] = 0;
    	}
 
-   	//cout<<"x2 "<<total_requests<<" ";
+   	//<<"x2 "<<total_requests<<" ";
    	
 	current_time = time_stamp[0]; //time stamp of the first passenger is the current time on the system
 	int current_passenger;
@@ -12226,18 +12226,18 @@ int main(int argc, char **argv) {
 		//already_opened_vehicle_for_it[i] = 0;
 	}
 
-	//cout<<"x3 "<<total_requests<<" ";
+	//<<"x3 "<<total_requests<<" ";
 
 	int k = 0;
 
 	int next_depot = 0;
 
 	//initialize route of vehicles at the depot
-	//cout<<"staart "<<number_type_vehicles<<" "<<endl;
+	//<<"staart "<<number_type_vehicles<<" "<<endl;
 	for (int j=0; j<number_type_vehicles; j++) {
 		next_depot = 0;
 		for (int i=0; i<number_vehicles[j];i++) {
-			//cout<<number_vehicles[j]<<endl;
+			//<<number_vehicles[j]<<endl;
 			//total_capacity[i] = maxcapacity;
 			//max_capacity[i] = maxcapacity;
 
@@ -12283,14 +12283,14 @@ int main(int argc, char **argv) {
 		}
 	}
 
-	//cout<<"x4 "<<total_requests<<" ";
+	//<<"x4 "<<total_requests<<" ";
 
 	for (int i=0;i<total_requests;i++){
 		for (int j=0;j<maxvehicles;j++){
 			blocked_vehicles[i][j] = 0;
 		}
 	}
-	//cout<<"x5 "<<total_requests<<endl;
+	//<<"x5 "<<total_requests<<endl;
 	//total_capacity[number_vehicles] = maxcapacity;
 	//max_capacity[number_vehicles] = maxcapacity;
 
@@ -12394,7 +12394,7 @@ int main(int argc, char **argv) {
 		stops[i][0] = rand() % 5588; 
 	}*/
 	//stops[centroids[3]][0] = rand() % 5588; 	
-	//cout<<"hier1"<<endl;
+	//<<"hier1"<<endl;
 	k_medoids(number_clusters, epochs);
 
 	/*cout<<"new centroids "<<endl;
@@ -12403,7 +12403,7 @@ int main(int argc, char **argv) {
 	}*/
 
 	build_clusters();
-	//cout<<"hier2"<<endl;
+	//<<"hier2"<<endl;
 	/*for (int i=0;i<number_clusters;i++){
 
 		for (int j=0;j<clusters[i].size();j++){
@@ -12416,7 +12416,7 @@ int main(int argc, char **argv) {
 	for (int j=0;j<5828;j++) {
 		if (travel_time[i][j] == 0) {
 			cout<<i<<" "<<j<<endl;
-  			//cout << travel_time[i][j] <<',';
+  			// << travel_time[i][j] <<',';
   		}
   	}
   }
@@ -12437,7 +12437,7 @@ int main(int argc, char **argv) {
 	k = 0;
 	//for (int k=0;k<total_requests;k++){
 	current_time = time_stamp[0];
-	//cout<<"hier"<<endl;
+	//<<"hier"<<endl;
 	//change the current time part to a parameter given value
 	//MAIN ALGORITHM
 
@@ -12469,10 +12469,10 @@ int main(int argc, char **argv) {
 		}
 	}
 
-	//cout<<"hier3"<<endl;'
+	//<<"hier3"<<endl;'
 	//41400
 	//k = total_requests+1;
-	//cout<<k<<" "<<total_requests<<" "<<current_time<<endl;
+	//<<k<<" "<<total_requests<<" "<<current_time<<endl;
 	clock_t start_algorithm_time;
 	start_algorithm_time = std::clock();
 	double p_elapsed_algo_time, l_elapsed_algo_time, difference_elapsed, difference_updated, p_updated_cluster;
@@ -12480,9 +12480,9 @@ int main(int argc, char **argv) {
 	p_updated_cluster = current_time;
 	while((k < total_requests) or (current_time < 64800)) {
 	//while(current_time < 28800) {
-		//cout<<"k2: "<<k<<endl;
+		cout<<"k2: "<<k<<endl;
 		check_last_position_route();
-		//cout<<"hier3.1"<<endl;
+		//<<"hier3.1"<<endl;
 		//if (k > num_iterations_to_start_reassign)
 		//	reassign_vehicles_to_another_depot();
 		
@@ -12510,7 +12510,7 @@ int main(int argc, char **argv) {
 			if (num_threads_for > number_clusters) {
 				num_threads_for = number_clusters;
 			}
-			//cout<<"hier3.2"<<endl;
+			//<<"hier3.2"<<endl;
 			#pragma omp parallel for num_threads(num_threads_for)
 			for (int itx = 0; itx<num_threads_for; itx++) {
 				int nxt_p = passengers_to_be_inserted[itx];
@@ -12520,15 +12520,15 @@ int main(int argc, char **argv) {
 
 			//maybe sort passengers_to_be_inserted in a way to avoid collision between clusters???
 
-			//cout<<"hier4"<<endl;
+			//<<"hier4"<<endl;
 			for (int c=0;c<number_clusters;c++) {
 				avl_cluster[c] = c;
 			}
 			while (passengers_to_be_inserted.size() > 0) {
 
-				//cout<<"10size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
+				//<<"10size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 				
-				//cout<<"11size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
+				//<<"11size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 				for (int itx = 0; itx<num_threads_for; itx++) {
 
 					//each passengers will be inserted in one processor
@@ -12537,13 +12537,13 @@ int main(int argc, char **argv) {
 					for (int px = 0; px<num_threads_for; px++) {
 
 						if (px < passengers_to_be_inserted.size()) {
-							//cout<<"12size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
+							//<<"12size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 							int nxt_p = passengers_to_be_inserted[px];
-							//cout<<"nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
+							//<<"nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 							
-							//cout<<"nxp: "<<nxt_p<<endl;
+							//<<"nxp: "<<nxt_p<<endl;
 							it_cl_inser[nxt_p] = 0;
-							//cout<<"13size: "<<passengers_to_be_inserted.size()<<" "<<nxt_p<<"ends"<<endl;
+							//<<"13size: "<<passengers_to_be_inserted.size()<<" "<<nxt_p<<"ends"<<endl;
 							
 							
 							compute_mean_distances_request_partitions(nxt_p);
@@ -12551,89 +12551,89 @@ int main(int argc, char **argv) {
 							bool continue_this_passenger = true;
 							bool accept_infeasible_insertion = false;
 							while (continue_this_passenger) {
-								//cout<<"hier5"<<endl;
+								//<<"hier5"<<endl;
 								//#pragma omp parallel for num_threads(num_threads_for)
-								//cout<<"0nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
-								//cout<<"cluster av: "<<avl_cluster[px]<<endl;
+								//<<"0nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
+								//<<"cluster av: "<<avl_cluster[px]<<endl;
 								
 								if (avl_cluster[px] == sort_clusters[nxt_p][it_cl_inser[nxt_p]].idx_cluster){
 									cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, avl_cluster[px]);
 								}
 
-								//cout<<"hier5.9"<<endl;
+								//<<"hier5.9"<<endl;
 								if (vehicle_assigned[nxt_p] == -1) {
-									//cout<<"1nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
+									//<<"1nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 									it_cl_inser[nxt_p]++;
 								} else {
-									//cout<<"2nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
+									//<<"2nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 									continue_this_passenger = false;
-									//cout<<px<<" "<<del_passenger.size()<<endl;
+									//<<px<<" "<<del_passenger.size()<<endl;
 									del_passenger[px] = 1;
 									served_requests_so_far++;
 								}
-								//cout<<"hier6"<<endl;
-								//cout<<"3nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<" cid: "<<sort_clusters[nxt_p][it_cl_inser[nxt_p]].idx_cluster<<endl;
-								//cout<<"continue: "<<vehicle_assigned[nxt_p]<<endl;
+								//<<"hier6"<<endl;
+								//<<"3nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<" cid: "<<sort_clusters[nxt_p][it_cl_inser[nxt_p]].idx_cluster<<endl;
+								//<<"continue: "<<vehicle_assigned[nxt_p]<<endl;
 								if (continue_this_passenger) {
 									if (it_cl_inser[nxt_p] >= number_clusters) {
 										att_inser[nxt_p]++;
-										//cout<<"pass1 "<<nxt_p<<vehicle_assigned[nxt_p]<<endl;
+										//<<"pass1 "<<nxt_p<<vehicle_assigned[nxt_p]<<endl;
 
 
 										if (att_inser[nxt_p] >= 2){
 											if (vehicle_assigned[nxt_p] == -1) {
-												//cout<<"hier6.5"<<endl;
+												//<<"hier6.5"<<endl;
 												int response_time = current_time - time_stamp[nxt_p];
-												//cout<<"pass2 "<<nxt_p<<response_time<<endl;
+												//<<"pass2 "<<nxt_p<<response_time<<endl;
 												if (response_time < 500) {
 													passengers_to_be_insertedOLD.push_back(nxt_p);
 												}
 												//serve_passenger_third_party_vehicle(nxt_p);
 												//passengers_on_hold.push_back(nxt_p);
 											}
-											//cout<<"hier6.7"<<endl;
+											//<<"hier6.7"<<endl;
 											continue_this_passenger = false;
 											del_passenger[px] = 1;
 										}
 									}
 								}
-								//cout<<"4nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
+								//<<"4nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 								
 							}
 
 						}
 					}
 					//end parallelized for
-					//cout<<"hier6.8"<<endl;
+					//<<"hier6.8"<<endl;
 					for (int c=0;c<number_clusters;c++) {
 						avl_cluster[c] = avl_cluster[c]+1;
 						avl_cluster[c] = avl_cluster[c]%number_clusters;
-						//cout<<avl_cluster[c]<<" ";
+						//<<avl_cluster[c]<<" ";
 					}
-					//cout<<"hier6.9"<<endl;
-					//cout<<endl;
+					//<<"hier6.9"<<endl;
+					//<<endl;
 
 					for (int c=number_clusters-1; c>=0;c--) {
 						if (del_passenger[c] == 1) {
-							//cout<<"size ptbi: "<<passengers_to_be_inserted.size()<<endl;
-							//cout<<"del p: "<<del_passenger[c]<<endl;
+							//<<"size ptbi: "<<passengers_to_be_inserted.size()<<endl;
+							//<<"del p: "<<del_passenger[c]<<endl;
 							passengers_to_be_inserted.erase(passengers_to_be_inserted.begin() + c);
-							//cout<<c<<endl;
-							//cout<<"5size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
+							//<<c<<endl;
+							//<<"5size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 							del_passenger[c] = 0;
 							att_inser[passengers_to_be_inserted[c]] = 0;	
 						}
 					}
-					//cout<<"hier6.93"<<endl;
-					//cout<<"6size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
+					//<<"hier6.93"<<endl;
+					//<<"6size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 					num_threads_for = passengers_to_be_inserted.size();
 					if (num_threads_for > number_clusters) {
-						//cout<<"7size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
+						//<<"7size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 						num_threads_for = number_clusters;
-						//cout<<"8size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
+						//<<"8size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 					}
-					//cout<<"9size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
-					//cout<<"hier6.95"<<endl;
+					//<<"9size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
+					//<<"hier6.95"<<endl;
 
 					
 				}
@@ -12668,12 +12668,12 @@ int main(int argc, char **argv) {
 					//served_passengers++;
 					}
 				}*/
-				//cout<<"hieer0"<<endl;
+				//<<"hieer0"<<endl;
 				/*for (int vv=0;vv<total_number_vehicles;vv++){
 					times_validation(vv);
 				}*/
 
-				//cout<<"hieer1"<<endl;
+				//<<"hieer1"<<endl;
 				//current_passenger++;
 			
 		} 
@@ -12682,7 +12682,7 @@ int main(int argc, char **argv) {
 
 		difference_updated = current_time - p_updated_cluster;
 
-		//cout<<"els:"<<difference_updated<<endl;
+		//<<"els:"<<difference_updated<<endl;
 		if (difference_updated > 50) {
 			p_updated_cluster = current_time;
 			centroids.clear();
@@ -12760,23 +12760,23 @@ int main(int argc, char **argv) {
 		//decide new centroids
 
 		//<<"xxxheeerexxxx1"<<endl;
-		//cout<<"actual passenger "<<k<<endl;
-		//cout<<"hier7sa"<<endl;
+		//<<"actual passenger "<<k<<endl;
+		//<<"hier7sa"<<endl;
 		if (k > total_number_vehicles + 10) {
 		
 			
 			//omp_set_num_threads(2);	
 			#pragma omp parallel for num_threads(number_clusters)
 			for (int c=0; c<number_clusters; c++) {
-				//cout<<k<<endl;
-				//cout<<"passenger: p"<<k<<endl;
-				//cout<<"cluster c"<<c<<endl;
+				//<<k<<endl;
+				//<<"passenger: p"<<k<<endl;
+				//<<"cluster c"<<c<<endl;
 				simulated_annealing(k, c);
 				//check_valid_user_ride_times();
-				//cout<<"passenger: p"<<k<<endl;
-				//cout<<"cluster c"<<c<<endl;
+				//<<"passenger: p"<<k<<endl;
+				//<<"cluster c"<<c<<endl;
 				return_best_solution(c);
-				//cout<<"out heere"<<endl;
+				//<<"out heere"<<endl;
 
 			}
 		}
@@ -12787,7 +12787,7 @@ int main(int argc, char **argv) {
 
 		l_elapsed_algo_time = (double)(std::clock() - start_algorithm_time)/(double)(CLOCKS_PER_SEC);
 		//l_elapsed_algo_time = l_elapsed_algo_time*10000;
-		//cout<<"lelapsed: "<<l_elapsed_algo_time<<endl;
+		//<<"lelapsed: "<<l_elapsed_algo_time<<endl;
 		difference_elapsed = l_elapsed_algo_time - p_elapsed_algo_time;
 		
 		difference_elapsed = difference_elapsed*4;
@@ -12797,13 +12797,13 @@ int main(int argc, char **argv) {
 			current_time += difference_elapsed;
 
 		p_elapsed_algo_time = l_elapsed_algo_time;
-		//cout<<"cct: "<<current_time<<endl;
+		//<<"cct: "<<current_time<<endl;
 		update_current_position();
 		
 
 
 
-		//cout<<"out current pos"<<endl;
+		//<<"out current pos"<<endl;
 		
 		//<<"xxxheeerexxxx2"<<endl;
 
@@ -12916,9 +12916,9 @@ int main(int argc, char **argv) {
 		best_total_user_ride_time += user_ride_time[p];
 	}
 	
-	//cout<<total_user_ride_time<<" "<<best_total_user_ride_time<<endl;
-	//cout<<served_passengers<<"  "<<total_user_ride_time<<endl;
-	//cout<<total_user_ride_time<<endl;
+	//<<total_user_ride_time<<" "<<best_total_user_ride_time<<endl;
+	//<<served_passengers<<"  "<<total_user_ride_time<<endl;
+	//<<total_user_ride_time<<endl;
 	std::ofstream output_file;
 	output_file.open(output_filename, std::ios::app);
 	output_file << requests_filename << " " << served_passengers << " " << served_passengers_3party << " " << total_served_passengers << " " << passengers_per_kilometer << " " << average_extra_travel_time << " " << average_travel_time_ratio << " " << total_deadheading_times << " " << total_shared_times << " " << total_user_ride_time << " " << best_total_user_ride_time;
