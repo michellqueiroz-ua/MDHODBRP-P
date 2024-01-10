@@ -12478,7 +12478,7 @@ int main(int argc, char **argv) {
 	double p_elapsed_algo_time, l_elapsed_algo_time, difference_elapsed, difference_updated, p_updated_cluster;
 	p_elapsed_algo_time = 0;
 	p_updated_cluster = current_time;
-	while((k < total_requests) or (current_time < 30600)) {
+	while((k < total_requests) or (current_time < 64800)) {
 	//while(current_time < 28800) {
 		//cout<<"k2: "<<k<<endl;
 		check_last_position_route();
