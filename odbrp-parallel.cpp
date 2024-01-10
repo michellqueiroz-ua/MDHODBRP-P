@@ -28,7 +28,7 @@ using namespace std;
 #define maxtotalcapacity 40
 #define maxtypevehicles 40
 #define maxnumberdepots 10
-#define number_clusters 1
+#define number_clusters 3
 
 typedef int listP[20000 + 1];
 //typedef int matrixVP[maxvehicles + 1][maxpassengers + 1];
@@ -12718,14 +12718,38 @@ int main(int argc, char **argv) {
 
 				build_clusters();
 
+				int summ=0;
+				for (int ix=0; ix<number_clusters;ix++){
+					summ += clusters[ix].size();
+					cout<<clusters[ix].size()<<"; ";
+				}
+
+				cout<<endl;
+				
+				if (summ < total_number_vehicles) {
+					cout<<"MEGRA ERROR1"<<endl;
+					cout<<"sum: "<<summ<<endl;
+				}
+
 			} else {
 				randomly_assign_clusters();
+
+				int summ=0;
+				for (int ix=0; ix<number_clusters;ix++){
+					summ += clusters[ix].size();
+					cout<<clusters[ix].size()<<"; ";
+				}
+
+				cout<<endl;
+				
+				if (summ < total_number_vehicles) {
+					cout<<"MEGRA ERROR2"<<endl;
+					cout<<"sum: "<<summ<<endl;
+				}
+
 			}
 
-			for (int ix=0; ix<number_clusters;ix++){
-				cout<<clusters[ix].size()<<" ";
-			}
-			cout<<endl;
+			
 			/*for (int i = 0; i < number_clusters; i++) {
 		    	for (int j=0; j<clusters[i].size();j++){
 		    		cout<<clusters[i][j]<<" ";
