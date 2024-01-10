@@ -219,7 +219,7 @@ struct SortPassengers {
 	
 
 };
-static SortClusters sort_passengers[20000 + 1];
+static SortPassengers sort_passengers[20000 + 1];
 
 static SortClusters sort_clusters[20000 + 1][number_clusters + 1];
 static int it_cl_inser[22000];
