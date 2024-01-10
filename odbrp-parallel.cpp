@@ -211,6 +211,16 @@ struct SortClusters {
 
 };
 
+
+struct SortPassengers {
+
+	int k;
+	int time_stamp;
+	
+
+};
+static SortClusters sort_passengers[20000 + 1];
+
 static SortClusters sort_clusters[20000 + 1][number_clusters + 1];
 static int it_cl_inser[22000];
 static int att_inser[22000];
@@ -224,6 +234,13 @@ bool comparator( Insertions a, Insertions b){
 
 bool comparator2( SortClusters a, SortClusters b){
 	if(a.mean_dist < b.mean_dist)
+		return 1;
+	else 
+		return 0;
+}
+
+bool comparator3( SortPassengers a, SortPassengers b){
+	if(a.time_stamp < b.time_stamp)
 		return 1;
 	else 
 		return 0;
@@ -11601,7 +11618,8 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 		//<<v<<" ";
 		for (int j=0;j<n_allocated;j++){
 
-			if (vehicle_assigned[j] == v) {
+			int pid = sort_passengers[j].k;
+			if (vehicle_assigned[pid] == v) {
 				passengers_in_cluster.push_back(j);
 			}
 
@@ -12434,9 +12452,7 @@ int main(int argc, char **argv) {
 	vector<int> passengers_to_be_inserted;
 	vector<int> passengers_to_be_insertedOLD;
 
-	k = 0;
-	//for (int k=0;k<total_requests;k++){
-	current_time = time_stamp[0];
+	
 	//<<"hier"<<endl;
 	//change the current time part to a parameter given value
 	//MAIN ALGORITHM
@@ -12469,6 +12485,16 @@ int main(int argc, char **argv) {
 		}
 	}
 
+	for (int p = 0; p < total_requests; p++) {
+		sort_passengers[p].k = p;
+		sort_passengers[p].time_stamp = time_stamp[p];
+	}
+
+	sort(sort_passengers, sort_passengers+total_requests, comparator3);
+
+	k = 0;
+	current_time = sort_passengers[k].time_stamp;
+
 	//<<"hier3"<<endl;'
 	//41400
 	//k = total_requests+1;
@@ -12486,16 +12512,16 @@ int main(int argc, char **argv) {
 		//if (k > num_iterations_to_start_reassign)
 		//	reassign_vehicles_to_another_depot();
 		
-		if ((current_time >= time_stamp[k]) && (k < total_requests)) {
+		if ((current_time >= sort_passengers[k].time_stamp) && (k < total_requests)) {
 
 			if (passengers_to_be_inserted.size() > 0) {
 				passengers_to_be_inserted.clear();
 			}
 
 			
-			cout<<"ct ts: "<<current_time<<" "<<time_stamp[k]<<endl;
-			while((current_time >= time_stamp[k]) && (k < total_requests)) { 
-				passengers_to_be_inserted.push_back(k);
+			//cout<<"ct ts: "<<current_time<<" "<<time_stamp[k]<<endl;
+			while((current_time >= sort_passengers[k].time_stamp) && (k < total_requests)) { 
+				passengers_to_be_inserted.push_back(sort_passengers[k].k);
 				k++;
 			}
 
