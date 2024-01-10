@@ -28,7 +28,7 @@ using namespace std;
 #define maxtotalcapacity 40
 #define maxtypevehicles 40
 #define maxnumberdepots 10
-#define number_clusters 1
+#define number_clusters 3
 
 typedef int listP[20000 + 1];
 //typedef int matrixVP[maxvehicles + 1][maxpassengers + 1];
@@ -12582,9 +12582,11 @@ int main(int argc, char **argv) {
 								//<<"0nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 								//<<"cluster av: "<<avl_cluster[px]<<endl;
 								
+								cout<<"bf_inser1"<<endl;
 								if (avl_cluster[px] == sort_clusters[nxt_p][it_cl_inser[nxt_p]].idx_cluster){
 									cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, avl_cluster[px]);
 								}
+								cout<<"af_inser1"<<endl;
 
 								//<<"hier5.9"<<endl;
 								if (vehicle_assigned[nxt_p] == -1) {
@@ -12665,7 +12667,8 @@ int main(int argc, char **argv) {
 				}
 
 				//shuffle passengers to add some variety
-				std::shuffle(passengers_to_be_inserted.begin(), passengers_to_be_inserted.end(), default_random_engine(current_time));
+				if (passengers_to_be_inserted.size() > 1)
+					std::shuffle(passengers_to_be_inserted.begin(), passengers_to_be_inserted.end(), default_random_engine(current_time));
 
 			}
 
@@ -12744,34 +12747,34 @@ int main(int argc, char **argv) {
 
 				build_clusters();
 
-				int summ=0;
+				/*int summ=0;
 				for (int ix=0; ix<number_clusters;ix++){
 					summ += clusters[ix].size();
 					cout<<clusters[ix].size()<<"; ";
 				}
 
-				cout<<endl;
+				cout<<endl;*/
 				
-				if (summ < total_number_vehicles) {
+				/*if (summ < total_number_vehicles) {
 					cout<<"MEGRA ERROR1"<<endl;
 					cout<<"sum: "<<summ<<endl;
-				}
+				}*/
 
 			} else {
 				randomly_assign_clusters();
 
-				int summ=0;
+				/*int summ=0;
 				for (int ix=0; ix<number_clusters;ix++){
 					summ += clusters[ix].size();
 					cout<<clusters[ix].size()<<"; ";
-				}
+				}*/
 
 				cout<<endl;
 				
-				if (summ < total_number_vehicles) {
+				/*if (summ < total_number_vehicles) {
 					cout<<"MEGRA ERROR2"<<endl;
 					cout<<"sum: "<<summ<<endl;
-				}
+				}*/
 
 			}
 
@@ -12787,7 +12790,7 @@ int main(int argc, char **argv) {
 
 		//<<"xxxheeerexxxx1"<<endl;
 		//<<"actual passenger "<<k<<endl;
-		//<<"hier7sa"<<endl;
+		cout<<"hier7sa"<<endl;
 		if (k > total_number_vehicles + 10) {
 		
 			
@@ -12806,6 +12809,7 @@ int main(int argc, char **argv) {
 
 			}
 		}
+		cout<<"hier8sa"<<endl;
 
 		
 
