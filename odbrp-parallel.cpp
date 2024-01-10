@@ -12582,11 +12582,11 @@ int main(int argc, char **argv) {
 								//<<"0nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 								//<<"cluster av: "<<avl_cluster[px]<<endl;
 								
-								cout<<"bf_inser1"<<endl;
+								cout<<"bf_inser1 "<<avl_cluster[px]<<endl;
 								if (avl_cluster[px] == sort_clusters[nxt_p][it_cl_inser[nxt_p]].idx_cluster){
 									cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, avl_cluster[px]);
 								}
-								cout<<"af_inser1"<<endl;
+								cout<<"af_inser1 "<<avl_cluster[px]<<endl;
 
 								//<<"hier5.9"<<endl;
 								if (vehicle_assigned[nxt_p] == -1) {
