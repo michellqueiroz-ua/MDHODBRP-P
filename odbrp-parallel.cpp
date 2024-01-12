@@ -1279,6 +1279,8 @@ void input_requests_festival(char *filename) {
 		{
 
 			total_requests++;
+			//if (total_requests > 15000)
+			//	return;
 			stringstream str(line);
 			getline(str, data, ',');
 			p = stoi(data);
@@ -1364,14 +1366,14 @@ void input_requests_festival(char *filename) {
 					data.erase(remove(data.begin(), data.end(), '"'), data.end());
 					data.erase(remove(data.begin(), data.end(), ']'), data.end());
 					stops_origin[p][s] = stoi(stop);
-					if (stops_origin[p][s] > 6000) {
-						cout<<stops_origin[p][s]<<" ";
-					}
+					//if (stops_origin[p][s] > 6000) {
+					//	cout<<stops_origin[p][s]<<" ";
+					//}
 					//printf("%d ", stops_origin[p][s]);
 					s = s + 1;
-					if (s >= 6000) {
-						cout<<"error hier "<<" ";
-					}
+					//if (s >= 6000) {
+					//	cout<<"error hier "<<" ";
+					//}
 					if (leave_loop)
 						break;
 				}
@@ -1408,9 +1410,9 @@ void input_requests_festival(char *filename) {
 					//<<walking_time_stops_origin[p][s]<<" ";
 					//printf("%d ", stops_origin[p][s]);
 					s = s + 1;
-					if (s >= 6000) {
-						cout<<"error hier "<<" ";
-					}
+					//if (s >= 6000) {
+					//	cout<<"error hier "<<" ";
+					//}
 					if (leave_loop)
 						break;
 				}
@@ -1467,13 +1469,13 @@ void input_requests_festival(char *filename) {
 					data.erase(remove(data.begin(), data.end(), '"'), data.end());
 					data.erase(remove(data.begin(), data.end(), ']'), data.end());
 					stops_destination[p][s] = stoi(stop);
-					if (stops_destination[p][s] > 6000)
-						cout<<stops_destination[p][s]<<" ";
+					//if (stops_destination[p][s] > 6000)
+						//cout<<stops_destination[p][s]<<" ";
 					//printf("%d ", stops_destination[p][s]);
 					s = s + 1;
-					if (s >= 6000) {
+					/*if (s >= 6000) {
 						cout<<"error hier "<<" ";
-					}
+					}*/
 					if (leave_loop)
 						break;
 				}
@@ -1510,9 +1512,9 @@ void input_requests_festival(char *filename) {
 					//<<walking_time_stops_destination[p][s]<<" ";
 					//printf("%d ", stops_destination[p][s]);
 					s = s + 1;
-					if (s >= 6000) {
+					/*if (s >= 6000) {
 						cout<<"error hier "<<" ";
-					}
+					}*/
 					if (leave_loop)
 						break;
 				}
@@ -1527,9 +1529,9 @@ void input_requests_festival(char *filename) {
 
 			if ((y >= 0.2) && (y <= 0.6)) {
 
-				if (p > 19999) {
+				/*if (p > 19999) {
 						cout<<"error hier "<<" ";
-					}
+					}*/
 				time_stamp[p] = temp_time_stamp;
 				earliest_departure[p] = temp_earliest_departure;
 				latest_departure[p] = temp_latest_departure;
@@ -1539,9 +1541,9 @@ void input_requests_festival(char *filename) {
 
 				if (y > 0.6) {
 
-					if (p > 19999) {
+					/*if (p > 19999) {
 						cout<<"error hier "<<" ";
-					}
+					}*/
 					time_stamp[p] = temp_time_stamp2;
 					earliest_departure[p] = temp_earliest_departure2;
 					latest_departure[p] = temp_latest_departure2;
