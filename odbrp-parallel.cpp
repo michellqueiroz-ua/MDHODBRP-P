@@ -1279,7 +1279,7 @@ void input_requests_festival(char *filename) {
 		{
 
 			total_requests++;
-			if (total_requests > 19050) {
+			if (total_requests > 19060) {
 				total_requests--;
 				return;
 			}
