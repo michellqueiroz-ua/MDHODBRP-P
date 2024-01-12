@@ -11620,7 +11620,7 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 
 			int pid = sort_passengers[j].k;
 			if (vehicle_assigned[pid] == v) {
-				passengers_in_cluster.push_back(j);
+				passengers_in_cluster.push_back(pid);
 			}
 
 		}
@@ -12532,7 +12532,8 @@ int main(int argc, char **argv) {
 			for (int ol=0;ol<passengers_to_be_insertedOLD.size();ol++){
 				passengers_to_be_inserted.push_back(passengers_to_be_insertedOLD[ol]);
 			}
-			passengers_to_be_insertedOLD.clear();
+			if (passengers_to_be_insertedOLD.size() > 0) {
+				passengers_to_be_insertedOLD.clear();
 
 			
 
@@ -12586,7 +12587,7 @@ int main(int argc, char **argv) {
 								//<<"0nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 								//<<"cluster av: "<<avl_cluster[px]<<endl;
 								
-								cout<<"bf_inser1 "<<avl_cluster[px]<<endl;
+								//cout<<"bf_inser1 "<<avl_cluster[px]<<endl;
 								if (avl_cluster[px] == sort_clusters[nxt_p][it_cl_inser[nxt_p]].idx_cluster){
 									cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, avl_cluster[px]);
 								}
