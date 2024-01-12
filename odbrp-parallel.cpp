@@ -30,12 +30,12 @@ using namespace std;
 #define maxnumberdepots 10
 #define number_clusters 8
 
-typedef long unsigned listP[20000 + 1];
+typedef long unsigned listP[21000 + 1];
 //typedef int matrixVP[maxvehicles + 1][maxpassengers + 1];
-typedef long unsigned matrixPV[20000 + 1][maxvehicles + 1];
+typedef long unsigned matrixPV[21000 + 1][maxvehicles + 1];
 typedef long unsigned matrixVS[maxvehicles + 1][maxstations + 1];
 typedef long unsigned matrixVC[maxvehicles + 1][maxtotalcapacity*2];
-typedef long unsigned matrixPS[20000 + 1][maxstations + 1];
+typedef long unsigned matrixPS[21000 + 1][maxstations + 1];
 typedef long unsigned matrixSS[maxstations + 1][maxstations + 1];
 typedef long unsigned matrixDV[maxnumberdepots + 1][maxvehicles + 1];
 typedef long unsigned listS[maxstations + 1];
@@ -219,9 +219,9 @@ struct SortPassengers {
 	
 
 };
-static SortPassengers sort_passengers[20000 + 1];
+static SortPassengers sort_passengers[21000 + 1];
 
-static SortClusters sort_clusters[20000 + 1][number_clusters + 1];
+static SortClusters sort_clusters[21000 + 1][number_clusters + 1];
 static int it_cl_inser[22000];
 static int att_inser[22000];
 
@@ -1258,15 +1258,15 @@ void input_requests_festival(char *filename) {
 	string line, data, stop;
 	int p, s;
 
-	int temp_time_stamp;
-	int temp_earliest_departure;
-	int temp_latest_departure;
-	int temp_latest_arrival;
+	long unsigned temp_time_stamp;
+	long unsigned temp_earliest_departure;
+	long unsigned temp_latest_departure;
+	long unsigned temp_latest_arrival;
 
-	int temp_time_stamp2;
-	int temp_earliest_departure2;
-	int temp_latest_departure2;
-	int temp_latest_arrival2;
+	long unsigned temp_time_stamp2;
+	long unsigned temp_earliest_departure2;
+	long unsigned temp_latest_departure2;
+	long unsigned temp_latest_arrival2;
 
 	if(file.is_open())
 	{
