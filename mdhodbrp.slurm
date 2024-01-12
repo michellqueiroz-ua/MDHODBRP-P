@@ -10,7 +10,7 @@
 #SBATCH --mail-user=michell.queiroz@uantwerpen.be
 #SBATCH -o stdout.file
 #SBATCH -e stderr.file
-#SBATCH --partition=skylake
+#SBATCH --partition=broadwell
 
 module load calcua/supported
 module load parallel/20200422
