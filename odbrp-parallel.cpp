@@ -1279,8 +1279,8 @@ void input_requests_festival(char *filename) {
 		{
 
 			total_requests++;
-			//if (total_requests > 15000)
-			//	return;
+			if (total_requests > 15000)
+				return;
 			stringstream str(line);
 			getline(str, data, ',');
 			p = stoi(data);
