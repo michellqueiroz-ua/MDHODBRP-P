@@ -1282,7 +1282,7 @@ void input_requests_festival(char *filename) {
 			stringstream str(line);
 			getline(str, data, ',');
 			p = stoi(data);
-			//<<p<<" ";
+			cout<<"p: "<<p<<endl;
 			
 			getline(str, data, ',');
 			time_stamp[p] = stoi(data);
@@ -1452,7 +1452,7 @@ void input_requests_festival(char *filename) {
 			
 			if (not (leave_loop)) {
 				while(getline(str, stop, ',')) {
-					
+					cout<<s<" ";
 					if (stop.find(']') != std::string::npos)
 						leave_loop = true; 
 					data.erase(remove(data.begin(), data.end(), '"'), data.end());
@@ -1465,6 +1465,7 @@ void input_requests_festival(char *filename) {
 						break;
 				}
 			}
+			cout<<endl;
 			//printf("\n");
 			number_stops_destination[p] = s;
 
@@ -1487,7 +1488,7 @@ void input_requests_festival(char *filename) {
 			
 			if (not (leave_loop)) {
 				while(getline(str, stop, ',')) {
-					
+					cout<<s<" ";
 					if (stop.find(']') != std::string::npos)
 						leave_loop = true; 
 					data.erase(remove(data.begin(), data.end(), '"'), data.end());
@@ -1500,6 +1501,7 @@ void input_requests_festival(char *filename) {
 						break;
 				}
 			}
+			cout<<endl;
 			//printf("\n");
 			//<<endl;
 			getline(str, data, ',');
