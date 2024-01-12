@@ -1452,7 +1452,7 @@ void input_requests_festival(char *filename) {
 			
 			if (not (leave_loop)) {
 				while(getline(str, stop, ',')) {
-					cout<<s<" ";
+					cout<<s<<" ";
 					if (stop.find(']') != std::string::npos)
 						leave_loop = true; 
 					data.erase(remove(data.begin(), data.end(), '"'), data.end());
@@ -1488,7 +1488,7 @@ void input_requests_festival(char *filename) {
 			
 			if (not (leave_loop)) {
 				while(getline(str, stop, ',')) {
-					cout<<s<" ";
+					cout<<s<<" ";
 					if (stop.find(']') != std::string::npos)
 						leave_loop = true; 
 					data.erase(remove(data.begin(), data.end(), '"'), data.end());
