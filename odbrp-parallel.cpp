@@ -1364,7 +1364,7 @@ void input_requests_festival(char *filename) {
 					data.erase(remove(data.begin(), data.end(), '"'), data.end());
 					data.erase(remove(data.begin(), data.end(), ']'), data.end());
 					stops_origin[p][s] = stoi(stop);
-					//<<stops_origin[p][s]<<" ";
+					cout<<stops_origin[p][s]<<" ";
 					//printf("%d ", stops_origin[p][s]);
 					s = s + 1;
 					if (leave_loop)
@@ -1452,13 +1452,13 @@ void input_requests_festival(char *filename) {
 			
 			if (not (leave_loop)) {
 				while(getline(str, stop, ',')) {
-					cout<<s<<" ";
+					//cout<<s<<" ";
 					if (stop.find(']') != std::string::npos)
 						leave_loop = true; 
 					data.erase(remove(data.begin(), data.end(), '"'), data.end());
 					data.erase(remove(data.begin(), data.end(), ']'), data.end());
 					stops_destination[p][s] = stoi(stop);
-					//<<stops_destination[p][s]<<" ";
+					cout<<stops_destination[p][s]<<" ";
 					//printf("%d ", stops_destination[p][s]);
 					s = s + 1;
 					if (leave_loop)
@@ -1488,7 +1488,7 @@ void input_requests_festival(char *filename) {
 			
 			if (not (leave_loop)) {
 				while(getline(str, stop, ',')) {
-					cout<<s<<" ";
+					//cout<<s<<" ";
 					if (stop.find(']') != std::string::npos)
 						leave_loop = true; 
 					data.erase(remove(data.begin(), data.end(), '"'), data.end());
@@ -1501,7 +1501,7 @@ void input_requests_festival(char *filename) {
 						break;
 				}
 			}
-			cout<<endl;
+			//cout<<endl;
 			//printf("\n");
 			//<<endl;
 			getline(str, data, ',');
@@ -1534,6 +1534,7 @@ void input_requests_festival(char *filename) {
 		}
 
 	} else cout<<"Could not open the file\n";
+	cout<<"exit oxe"<<endl;
 }
 
 
