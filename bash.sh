@@ -10,7 +10,7 @@ run_binary() {
 }
 
 export -f run_binary
-ulimit -s unlimited
+ulimit -n unlimited
 
 # Use find to generate a list of input files and pass them to parallel
 find ../../large-instances/festival1 -type f -name "*.csv" | parallel -j $num_parallel run_binary {}
