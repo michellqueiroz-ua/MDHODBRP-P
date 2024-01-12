@@ -30,24 +30,24 @@ using namespace std;
 #define maxnumberdepots 10
 #define number_clusters 8
 
-typedef int listP[20000 + 1];
+typedef long unsigned listP[20000 + 1];
 //typedef int matrixVP[maxvehicles + 1][maxpassengers + 1];
-typedef int matrixPV[20000 + 1][maxvehicles + 1];
-typedef int matrixVS[maxvehicles + 1][maxstations + 1];
-typedef int matrixVC[maxvehicles + 1][maxtotalcapacity*2];
-typedef int matrixPS[20000 + 1][maxstations + 1];
-typedef int matrixSS[maxstations + 1][maxstations + 1];
-typedef int matrixDV[maxnumberdepots + 1][maxvehicles + 1];
-typedef int listS[maxstations + 1];
-typedef int listV[maxvehicles + 1];
-typedef int listD[maxnumberdepots + 1];
-typedef int listT[maxtypevehicles + 1];
+typedef long unsigned matrixPV[20000 + 1][maxvehicles + 1];
+typedef long unsigned matrixVS[maxvehicles + 1][maxstations + 1];
+typedef long unsigned matrixVC[maxvehicles + 1][maxtotalcapacity*2];
+typedef long unsigned matrixPS[20000 + 1][maxstations + 1];
+typedef long unsigned matrixSS[maxstations + 1][maxstations + 1];
+typedef long unsigned matrixDV[maxnumberdepots + 1][maxvehicles + 1];
+typedef long unsigned listS[maxstations + 1];
+typedef long unsigned listV[maxvehicles + 1];
+typedef long unsigned listD[maxnumberdepots + 1];
+typedef long unsigned listT[maxtypevehicles + 1];
 typedef double listTd[maxtypevehicles + 1];
-typedef int matrixVSS[maxvehicles + 1][maxstations + 1][maxstations + 1]; //to know which stations are visited after another (in case its necessary)
+typedef long unsigned matrixVSS[maxvehicles + 1][maxstations + 1][maxstations + 1]; //to know which stations are visited after another (in case its necessary)
 //typedef int matrixVPP[maxvehicles + 1][maxpassengers + 1][maxtotalcapacity + 1];
 //typedef int matrixPW[maxpassengers + 1][number_clusters + 1];
-typedef int matrixVR[maxvehicles + 1][25000];
-typedef int matrixVRC[maxvehicles + 1][25000][80];
+typedef long unsigned matrixVR[maxvehicles + 1][25000];
+typedef long unsigned matrixVRC[maxvehicles + 1][25000][80];
 
 //int n;
 
