@@ -28,7 +28,7 @@ using namespace std;
 #define maxtotalcapacity 40
 #define maxtypevehicles 40
 #define maxnumberdepots 10
-#define number_clusters 8
+#define number_clusters 1
 
 typedef int listP[20000 + 1];
 //typedef int matrixVP[maxvehicles + 1][maxpassengers + 1];
@@ -12096,7 +12096,8 @@ int main(int argc, char **argv) {
 	for (int i=1; i<argc; i++)
   	{
 		if (strcmp(argv[i], "--filename_requests") == 0) {
-			input_requests_festival(argv[i+1]);
+			//input_requests_festival(argv[i+1]);
+			input_requests_commuting(argv[i+1]);
 			requests_filename = argv[i+1];;
 			cout<<"x"<<total_requests<<" ";
 		} else if (strcmp(argv[i], "--filename_travel_time") == 0) {
@@ -12504,7 +12505,9 @@ int main(int argc, char **argv) {
 	double p_elapsed_algo_time, l_elapsed_algo_time, difference_elapsed, difference_updated, p_updated_cluster;
 	p_elapsed_algo_time = 0;
 	p_updated_cluster = current_time;
-	while((k < total_requests) or (current_time < 64800)) {
+	//64800 - festival
+	//commuting - 32400
+	while((k < total_requests) or (current_time < 32400)) {
 	//while(current_time < 28800) {
 		
 		check_last_position_route();
