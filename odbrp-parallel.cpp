@@ -11656,7 +11656,7 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 					}
 				}
 
-				cout<<"AFTER_SIMPLE RELOCATE"<<endl;
+				/*cout<<"AFTER_SIMPLE RELOCATE"<<endl;
 				for (int kk=0;kk<900;kk++){
 					if (vehicle_assigned[kk] != -1) {
 						solution_validation(kk, vehicle_assigned[kk]);
@@ -11665,7 +11665,7 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 				}
 				for (int vv=0;vv<total_number_vehicles;vv++){
 					times_validation(vv);
-				}
+				}*/
 
 			} else {
 
@@ -12695,7 +12695,7 @@ int main(int argc, char **argv) {
 
 				k++;*/
 
-				cout<<"AFTER CONSTRUCTIVE"<<endl;
+				/*cout<<"AFTER CONSTRUCTIVE"<<endl;
 				for (int kk=0;kk<k;kk++){
 					if (vehicle_assigned[kk] != -1) {
 						solution_validation(kk, vehicle_assigned[kk]);
@@ -12705,7 +12705,7 @@ int main(int argc, char **argv) {
 				//<<"hieer0"<<endl;
 				for (int vv=0;vv<total_number_vehicles;vv++){
 					times_validation(vv);
-				}
+				}*/
 
 				//<<"hieer1"<<endl;
 				//current_passenger++;
