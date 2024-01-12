@@ -6574,7 +6574,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 	//<<"almost exiting"<<endl;
 	for (int i=0;i<total_number_vehicles;i++)
 		blocked_vehicles[p][i] = 0;
-	//cout<<"exiting cluster: "<<cluster_id<<endl;
+	cout<<"exiting cluster: "<<cluster_id<<endl;
 }
 
 //this cheapest insertion considers to insert passengers at positions that are not the min increase in length traveled
@@ -12596,7 +12596,7 @@ int main(int argc, char **argv) {
 								//<<"0nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 								//<<"cluster av: "<<avl_cluster[px]<<endl;
 								
-								//cout<<"bf_inser1 "<<avl_cluster[px]<<endl;
+								cout<<"bf_inser1 "<<avl_cluster[px]<<endl;
 								if (avl_cluster[px] == sort_clusters[nxt_p][it_cl_inser[nxt_p]].idx_cluster){
 									cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, avl_cluster[px]);
 								}
@@ -12931,10 +12931,11 @@ int main(int argc, char **argv) {
 	}
 
 
+	cout<<"END"<<endl;
 	update_arrival_time_depot();
 
 	check_valid_user_ride_times();
-	//<<"ALL VEHICLES"<<endl;
+	
 	//print_all_vehicles();
 
 
