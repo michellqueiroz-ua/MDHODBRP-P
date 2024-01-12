@@ -6574,7 +6574,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 	//<<"almost exiting"<<endl;
 	for (int i=0;i<total_number_vehicles;i++)
 		blocked_vehicles[p][i] = 0;
-	cout<<"exiting cluster: "<<cluster_id<<endl;
+	//cout<<"exiting cluster: "<<cluster_id<<endl;
 }
 
 //this cheapest insertion considers to insert passengers at positions that are not the min increase in length traveled
@@ -12086,6 +12086,15 @@ void compute_mean_distances_request_partitions(int p){
 	cout<<endl;*/
 }
 
+void update_arrival_time_depot() {
+
+	for (int v=0; v<total_number_vehicles;v++){
+		arrival_time_stop[v][number_stops[v]] = departure_time_stop[v][number_stops[v]-1]+travel_time[stops[v][number_stops[v]-1]][stops[v][number_stops[v]]];
+		departure_time_stop[v][number_stops[v]] = arrival_time_stop[v][number_stops[v]];
+	}
+
+}
+
 int main(int argc, char **argv) {
 
 	string output_filename;
@@ -12921,6 +12930,9 @@ int main(int argc, char **argv) {
 		//	break;
 	}
 
+
+	update_arrival_time_depot();
+
 	check_valid_user_ride_times();
 	//<<"ALL VEHICLES"<<endl;
 	//print_all_vehicles();
@@ -12932,6 +12944,8 @@ int main(int argc, char **argv) {
 			served_passengers++;
 		}
 	}
+
+	served_passengers_3party = total_requests - served_passengers;
 
 	compute_passengers_per_kilometers();
 
