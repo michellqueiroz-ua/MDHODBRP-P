@@ -1364,8 +1364,9 @@ void input_requests_festival(char *filename) {
 					data.erase(remove(data.begin(), data.end(), '"'), data.end());
 					data.erase(remove(data.begin(), data.end(), ']'), data.end());
 					stops_origin[p][s] = stoi(stop);
-					if (stops_origin[p][s] > 6000)
+					if (stops_origin[p][s] > 6000) {
 						cout<<stops_origin[p][s]<<" ";
+					}
 					//printf("%d ", stops_origin[p][s]);
 					s = s + 1;
 					if (leave_loop)
