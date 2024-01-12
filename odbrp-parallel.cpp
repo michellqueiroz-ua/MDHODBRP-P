@@ -1288,14 +1288,16 @@ void input_requests_festival(char *filename) {
 			
 			getline(str, data, ',');
 			time_stamp[p] = stoi(data);
-			//<<time_stamp[p]<<" ";
+			cout<<time_stamp[p]<<" ";
 
 			getline(str, data, ',');
 			getline(str, data, ',');
 			temp_time_stamp = stoi(data);
+			cout<<temp_time_stamp<<" ";
 			getline(str, data, ',');
 			getline(str, data, ',');
 			temp_time_stamp2 = stoi(data);
+			cout<<temp_time_stamp2<<" ";
 			getline(str, data, ',');
 			getline(str, data, ',');
 			getline(str, data, ',');
@@ -1308,35 +1310,42 @@ void input_requests_festival(char *filename) {
 
 			getline(str, data, ',');
 			earliest_departure[p] = stoi(data);
+			cout<<earliest_departure[p]<<" ";
 			//printf("%d\n", earliest_departure[p]);
 			//<<earliest_departure[p]<<" ";
 			
 			getline(str, data, ',');
 			latest_departure[p] = stoi(data);
+			cout<<latest_departure[p]<<" ";
 
 
 			getline(str, data, ',');
 			temp_earliest_departure = stoi(data);
+			cout<<temp_earliest_departure<<" ";
 			//printf("%d\n", earliest_departure[p]);
 			//<<earliest_departure[p]<<" ";
 			
 			getline(str, data, ',');
 			temp_latest_departure = stoi(data);
+			cout<<temp_latest_departure<<" ";
 			//printf("%d\n", latest_departure[p]);
 			//<<latest_departure[p]<<" ";
 
 			getline(str, data, ',');
 			temp_earliest_departure2 = stoi(data);
+			cout<<temp_earliest_departure2<<" ";
 			//printf("%d\n", earliest_departure[p]);
 			//<<earliest_departure[p]<<" ";
 			
 			getline(str, data, ',');
 			temp_latest_departure2 = stoi(data);
+			cout<<temp_latest_departure2<<" ";
 			//printf("%d\n", latest_departure[p]);
 			//<<latest_departure[p]<<" ";
 
 			getline(str, data, ','); //direct travel time
 			direct_travel_time[p] = stoi(data);
+			cout<<direct_travel_time[p]<<" ";
 			getline(str, data, ',');
 			//getline(str, data, ',');
 
@@ -1353,6 +1362,7 @@ void input_requests_festival(char *filename) {
 			//<<data.end()<<endl;
 			s = 0;
 			stops_origin[p][s] = stoi(data);
+			cout<<stops_origin[p][s]<<" ";
 			//<<stops_origin[p][s]<<" ";
 			//printf("%d ", stops_origin[p][s]);
 			s = s + 1;
@@ -1366,6 +1376,7 @@ void input_requests_festival(char *filename) {
 					data.erase(remove(data.begin(), data.end(), '"'), data.end());
 					data.erase(remove(data.begin(), data.end(), ']'), data.end());
 					stops_origin[p][s] = stoi(stop);
+					cout<<stops_origin[p][s]<<" ";
 					//if (stops_origin[p][s] > 6000) {
 					//	cout<<stops_origin[p][s]<<" ";
 					//}
@@ -1379,8 +1390,9 @@ void input_requests_festival(char *filename) {
 				}
 			}
 			//printf("\n");
-			cout<<endl;
+			//cout<<endl;
 			number_stops_origin[p] = s;
+			cout<<number_stops_origin[p]<<" ";
 
 			getline(str, data, ',');
 			leave_loop = false;
@@ -1394,6 +1406,7 @@ void input_requests_festival(char *filename) {
 			//<<data.end()<<endl;
 			s = 0;
 			walking_time_stops_origin[p][s] = stoi(data);
+			cout<<walking_time_stops_origin[p][s]<<" ";
 			//<<walking_time_stops_origin[p][s]<<" ";
 			//printf("%d ", stops_origin[p][s]);
 			s = s + 1;
@@ -1407,6 +1420,7 @@ void input_requests_festival(char *filename) {
 					data.erase(remove(data.begin(), data.end(), '"'), data.end());
 					data.erase(remove(data.begin(), data.end(), ']'), data.end());
 					walking_time_stops_origin[p][s] = stoi(stop);
+					cout<<walking_time_stops_origin[p][s]<<" ";
 					//<<walking_time_stops_origin[p][s]<<" ";
 					//printf("%d ", stops_origin[p][s]);
 					s = s + 1;
@@ -1421,12 +1435,15 @@ void input_requests_festival(char *filename) {
 			
 			getline(str, data, ',');
 			latest_arrival[p] = stoi(data);
+			cout<<latest_arrival[p]<<" ";
 
 			getline(str, data, ',');
 			temp_latest_arrival = stoi(data);
+			cout<<temp_latest_arrival<<" ";
 
 			getline(str, data, ',');
 			temp_latest_arrival2 = stoi(data);
+			cout<<temp_latest_arrival2<<" ";
 			//<<latest_arrival[p]<<" ";
 
 
@@ -1456,7 +1473,7 @@ void input_requests_festival(char *filename) {
 			//<<data.end()<<endl;
 			s = 0;
 			stops_destination[p][s] = stoi(data);
-			//<<stops_destination[p][s]<<" ";
+			cout<<stops_destination[p][s]<<" ";
 			//printf("%d ", stops_destination[p][s]);
 			s = s + 1;
 			//stringstream str2(data);
@@ -1470,7 +1487,7 @@ void input_requests_festival(char *filename) {
 					data.erase(remove(data.begin(), data.end(), ']'), data.end());
 					stops_destination[p][s] = stoi(stop);
 					//if (stops_destination[p][s] > 6000)
-						//cout<<stops_destination[p][s]<<" ";
+					cout<<stops_destination[p][s]<<" ";
 					//printf("%d ", stops_destination[p][s]);
 					s = s + 1;
 					/*if (s >= 6000) {
@@ -1480,9 +1497,10 @@ void input_requests_festival(char *filename) {
 						break;
 				}
 			}
-			cout<<endl;
+			//cout<<endl;
 			//printf("\n");
 			number_stops_destination[p] = s;
+			cout<<number_stops_destination[p]<<" "<<endl;
 
 			getline(str, data, ',');
 			leave_loop = false;
@@ -1496,7 +1514,7 @@ void input_requests_festival(char *filename) {
 			//<<data.end()<<endl;
 			s = 0;
 			walking_time_stops_destination[p][s] = stoi(data);
-			//<<walking_time_stops_destination[p][s]<<" ";
+			cout<<walking_time_stops_destination[p][s]<<" ";
 			//printf("%d ", stops_destination[p][s]);
 			s = s + 1;
 			//stringstream str2(data);
@@ -1509,7 +1527,7 @@ void input_requests_festival(char *filename) {
 					data.erase(remove(data.begin(), data.end(), '"'), data.end());
 					data.erase(remove(data.begin(), data.end(), ']'), data.end());
 					walking_time_stops_destination[p][s] = stoi(stop);
-					//<<walking_time_stops_destination[p][s]<<" ";
+					cout<<walking_time_stops_destination[p][s]<<" ";
 					//printf("%d ", stops_destination[p][s]);
 					s = s + 1;
 					/*if (s >= 6000) {
@@ -1524,7 +1542,7 @@ void input_requests_festival(char *filename) {
 			//<<endl;
 			getline(str, data, ',');
 			getline(str, data, ',');
-
+			cout<<endl;
 			double y = (double)rand() / (double)RAND_MAX;
 
 			if ((y >= 0.2) && (y <= 0.6)) {

@@ -2,9 +2,9 @@
 #
 
 #SBATCH --job-name=CreateNetwork
-#SBATCH --ntasks=12
-#SBATCH --cpus-per-task=5
-#SBATCH --mem-per-cpu=3g
+#SBATCH --ntasks=8
+#SBATCH --cpus-per-task=8
+#SBATCH --mem-per-cpu=4g
 #SBATCH --time=24:00:00
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=michell.queiroz@uantwerpen.be
