@@ -1364,7 +1364,8 @@ void input_requests_festival(char *filename) {
 					data.erase(remove(data.begin(), data.end(), '"'), data.end());
 					data.erase(remove(data.begin(), data.end(), ']'), data.end());
 					stops_origin[p][s] = stoi(stop);
-					cout<<stops_origin[p][s]<<" ";
+					if (stops_origin[p][s] > 6000)
+						cout<<stops_origin[p][s]<<" ";
 					//printf("%d ", stops_origin[p][s]);
 					s = s + 1;
 					if (leave_loop)
@@ -1372,6 +1373,7 @@ void input_requests_festival(char *filename) {
 				}
 			}
 			//printf("\n");
+			cout<<endl;
 			number_stops_origin[p] = s;
 
 			getline(str, data, ',');
@@ -1458,7 +1460,8 @@ void input_requests_festival(char *filename) {
 					data.erase(remove(data.begin(), data.end(), '"'), data.end());
 					data.erase(remove(data.begin(), data.end(), ']'), data.end());
 					stops_destination[p][s] = stoi(stop);
-					cout<<stops_destination[p][s]<<" ";
+					if (stops_destination[p][s] > 6000)
+						cout<<stops_destination[p][s]<<" ";
 					//printf("%d ", stops_destination[p][s]);
 					s = s + 1;
 					if (leave_loop)
