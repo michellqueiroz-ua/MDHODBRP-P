@@ -10964,7 +10964,7 @@ void relocate_passenger(int p, double &temperature, int &type_move, int cluster_
 	int old_arrival_time;
 
 
-	/*cout<<vehicle_assigned[p]<<endl;
+	cout<<vehicle_assigned[p]<<endl;
 	cout<<"removing passenger y "<<p<<endl;
 	for (int l=0; l<=number_stops[v];l++) {
 		cout<<stops[v][l]<<" ("<<number_passengers_action[v][l]<<") "<<" [";
@@ -10977,7 +10977,7 @@ void relocate_passenger(int p, double &temperature, int &type_move, int cluster_
 		cout<<"|"<<slack_time[v][l]<<"|  ";
 		cout<<"*"<<free_capacity[v][l]<<"*"<<endl;
 	}
-	cout<<endl<<endl;*/
+	cout<<endl<<endl;
 
 	//this can be maybe speed up by keeping a variable of where in the vehicle the passenger is assigned
 	/*for (int i = 0; i < number_stops[v]; i++){
@@ -11003,7 +11003,7 @@ void relocate_passenger(int p, double &temperature, int &type_move, int cluster_
 	end = 0;
 	int total_faking_error = 0;
 	if (accept_relocate_trip) {
-		//<<"removeee here SA"<<endl;
+		cout<<"removeee here SA"<<endl;
 		//printf("remove heeeere SA\n");
 		//<<"number stops "<<number_stops[v]<<endl;
 		//it means the passenger was relocated to another trip 
@@ -11239,7 +11239,7 @@ void relocate_passenger(int p, double &temperature, int &type_move, int cluster_
 	//<<"G"<<endl;
 
 
-	/*cout<<"after removing: "<<endl;
+	cout<<"after removing: "<<endl;
 	for (int l=0; l<=number_stops[v];l++) {
 		cout<<stops[v][l]<<" ("<<number_passengers_action[v][l]<<") "<<" [";
 		for (int m=0; m<number_passengers_action[v][l];m++) 
@@ -11251,7 +11251,7 @@ void relocate_passenger(int p, double &temperature, int &type_move, int cluster_
 		cout<<"|"<<slack_time[v][l]<<"|  ";
 		cout<<"*"<<free_capacity[v][l]<<"*"<<endl;
 	}
-	cout<<endl;*/
+	cout<<endl;
 
 	if (count == 2) {
 		v = addedAtV;
@@ -11656,7 +11656,7 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 					}
 				}
 
-				/*cout<<"AFTER_SIMPLE RELOCATE"<<endl;
+				cout<<"AFTER_SIMPLE RELOCATE"<<endl;
 				for (int kk=0;kk<900;kk++){
 					if (vehicle_assigned[kk] != -1) {
 						solution_validation(kk, vehicle_assigned[kk]);
@@ -11665,7 +11665,8 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 				}
 				for (int vv=0;vv<total_number_vehicles;vv++){
 					times_validation(vv);
-				}*/
+				}
+
 			} else {
 
 				/*
@@ -12693,17 +12694,17 @@ int main(int argc, char **argv) {
 
 				k++;*/
 
-				/*cout<<"AFTER CONSTRUCTIVE"<<endl;
+				cout<<"AFTER CONSTRUCTIVE"<<endl;
 				for (int kk=0;kk<k;kk++){
 					if (vehicle_assigned[kk] != -1) {
 						solution_validation(kk, vehicle_assigned[kk]);
 					//served_passengers++;
 					}
-				}*/
+				}
 				//<<"hieer0"<<endl;
-				/*for (int vv=0;vv<total_number_vehicles;vv++){
+				for (int vv=0;vv<total_number_vehicles;vv++){
 					times_validation(vv);
-				}*/
+				}
 
 				//<<"hieer1"<<endl;
 				//current_passenger++;
