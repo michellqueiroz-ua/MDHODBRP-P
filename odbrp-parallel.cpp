@@ -1256,7 +1256,7 @@ void input_requests_festival(char *filename) {
 
 	fstream file (filename, ios::in);
 	string line, data, stop;
-	int p, s;
+	long unsigned p, s;
 
 	long unsigned temp_time_stamp;
 	long unsigned temp_earliest_departure;
@@ -1267,7 +1267,7 @@ void input_requests_festival(char *filename) {
 	long unsigned temp_earliest_departure2;
 	long unsigned temp_latest_departure2;
 	long unsigned temp_latest_arrival2;
-
+	srand(1);
 	if(file.is_open())
 	{
 		getline(file, line);
@@ -1279,10 +1279,10 @@ void input_requests_festival(char *filename) {
 		{
 
 			total_requests++;
-			if (total_requests > 19060) {
+			/*if (total_requests > 19060) {
 				total_requests--;
 				return;
-			}
+			}*/
 			stringstream str(line);
 			getline(str, data, ',');
 			p = stoi(data);
@@ -1578,7 +1578,8 @@ void input_requests_festival(char *filename) {
 		}
 
 	} else cout<<"Could not open the file\n";
-	cout<<"exit oxe"<<endl;
+	
+	//cout<<"exit oxe"<<endl;
 }
 
 
