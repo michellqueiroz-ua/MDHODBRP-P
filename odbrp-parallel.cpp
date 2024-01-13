@@ -22,7 +22,7 @@
 //using namespace Eigen;
 using namespace std;
 
-#define maxvehicles 4000
+#define maxvehicles 4500
 #define maxpassengers 3000
 #define maxstations 6000
 #define maxtotalcapacity 40
