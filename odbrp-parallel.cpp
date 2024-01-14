@@ -28,7 +28,7 @@ using namespace std;
 #define maxtotalcapacity 40
 #define maxtypevehicles 40
 #define maxnumberdepots 10
-#define number_clusters 5
+#define number_clusters 6
 
 typedef long unsigned listP[21000 + 1];
 //typedef int matrixVP[maxvehicles + 1][maxpassengers + 1];
