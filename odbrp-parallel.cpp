@@ -28,7 +28,7 @@ using namespace std;
 #define maxtotalcapacity 40
 #define maxtypevehicles 40
 #define maxnumberdepots 10
-#define number_clusters 7
+#define number_clusters 4
 
 typedef long unsigned listP[21000 + 1];
 //typedef int matrixVP[maxvehicles + 1][maxpassengers + 1];
@@ -12831,7 +12831,7 @@ int main(int argc, char **argv) {
 					cout<<clusters[ix].size()<<"; ";
 				}*/
 
-				cout<<endl;
+				//cout<<endl;
 				
 				/*if (summ < total_number_vehicles) {
 					cout<<"MEGRA ERROR2"<<endl;
