@@ -12155,7 +12155,8 @@ int main(int argc, char **argv) {
   	{
 		if (strcmp(argv[i], "--filename_requests") == 0) {
 			//input_requests_festival(argv[i+1]);
-			input_requests_commuting(argv[i+1]);
+			//input_requests_commuting(argv[i+1]);
+			input_requests(argv[i+1]); //concert
 			requests_filename = argv[i+1];;
 			cout<<"x"<<total_requests<<" ";
 		} else if (strcmp(argv[i], "--filename_travel_time") == 0) {
@@ -12565,7 +12566,8 @@ int main(int argc, char **argv) {
 	p_updated_cluster = current_time;
 	//64800 - festival
 	//commuting - 32400
-	while((k < total_requests) or (current_time < 32400)) {
+	//concert 84600
+	while((k < total_requests) or (current_time < 84600)) {
 	//while(current_time < 28800) {
 		
 		check_last_position_route();
