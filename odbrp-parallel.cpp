@@ -12155,8 +12155,8 @@ int main(int argc, char **argv) {
   	{
 		if (strcmp(argv[i], "--filename_requests") == 0) {
 			//input_requests_festival(argv[i+1]);
-			//input_requests_commuting(argv[i+1]);
-			input_requests(argv[i+1]); //concert
+			input_requests_commuting(argv[i+1]);
+			//input_requests(argv[i+1]); //concert
 			requests_filename = argv[i+1];;
 			cout<<"x"<<total_requests<<" ";
 		} else if (strcmp(argv[i], "--filename_travel_time") == 0) {
