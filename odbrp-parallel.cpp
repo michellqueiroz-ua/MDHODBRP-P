@@ -12418,9 +12418,9 @@ int main(int argc, char **argv) {
 
 	max_flex_delay = 0;
 
-	for (int k=0;k<total_requests;k++){
+	/*for (int k=0;k<total_requests;k++){
 		latest_arrival[k] = latest_arrival[k] + 1800;
-	}
+	}*/
 
 	//int number_clusters = 4;
 
