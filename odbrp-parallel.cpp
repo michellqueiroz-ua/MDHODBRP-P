@@ -28,7 +28,7 @@ using namespace std;
 #define maxtotalcapacity 40
 #define maxtypevehicles 40
 #define maxnumberdepots 10
-#define number_clusters 4
+#define number_clusters 1
 
 typedef long unsigned listP[21000 + 1];
 //typedef int matrixVP[maxvehicles + 1][maxpassengers + 1];
@@ -12425,9 +12425,9 @@ int main(int argc, char **argv) {
 	//int number_clusters = 4;
 
 
-	for (int k=0;k<total_requests;k++){
+	/*for (int k=0;k<total_requests;k++){
 		latest_arrival[k] = latest_arrival[k] + 3600;
-	}
+	}*/
 
 	served_requests_so_far = 0;
 	rejected_requests_so_far = 0;
@@ -12468,9 +12468,15 @@ int main(int argc, char **argv) {
 
 	int epochs = 1000;
 	//randomly assign a new position to each vehicle
+	//this is for concert instances -> they all start at stadium
 	/*for (int i = 0; i < total_number_vehicles; i++){
-		stops[i][0] = rand() % 5588; 
+		//for (int j=0;j<number_stops_origin[p];j++) {
+		int j = rand() % number_stops_origin[0];
+		int s_origin = stops_origin[0][j];
+		stops[i][0] = s_origin; 
+		//}
 	}*/
+
 	//stops[centroids[3]][0] = rand() % 5588; 	
 	//<<"hier1"<<endl;
 	k_medoids(number_clusters, epochs);
@@ -12567,7 +12573,7 @@ int main(int argc, char **argv) {
 	//64800 - festival
 	//commuting - 32400
 	//concert 42120(ta errado era pra ser 23.5, nao 11.5)
-	while((k < total_requests) or (current_time < 42120)) {
+	while((k < total_requests) or (current_time < 34400)) {
 	//while(current_time < 28800) {
 		
 		check_last_position_route();
