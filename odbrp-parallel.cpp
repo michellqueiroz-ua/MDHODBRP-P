@@ -28,7 +28,7 @@ using namespace std;
 #define maxtotalcapacity 40
 #define maxtypevehicles 40
 #define maxnumberdepots 10
-#define number_clusters 5
+#define number_clusters 1
 
 typedef long unsigned listP[21000 + 1];
 //typedef int matrixVP[maxvehicles + 1][maxpassengers + 1];
@@ -12425,9 +12425,9 @@ int main(int argc, char **argv) {
 	//int number_clusters = 4;
 
 
-	/*for (int k=0;k<total_requests;k++){
+	for (int k=0;k<total_requests;k++){
 		latest_arrival[k] = latest_arrival[k] + 3600;
-	}*/
+	}
 
 	served_requests_so_far = 0;
 	rejected_requests_so_far = 0;
