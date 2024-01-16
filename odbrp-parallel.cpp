@@ -12566,8 +12566,8 @@ int main(int argc, char **argv) {
 	p_updated_cluster = current_time;
 	//64800 - festival
 	//commuting - 32400
-	//concert 84600
-	while((k < total_requests) or (current_time < 84600)) {
+	//concert 42120(ta errado era pra ser 23.5, nao 11.5)
+	while((k < total_requests) or (current_time < 42120)) {
 	//while(current_time < 28800) {
 		
 		check_last_position_route();
