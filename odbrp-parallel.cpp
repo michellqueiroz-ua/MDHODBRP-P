@@ -12683,7 +12683,7 @@ int main(int argc, char **argv) {
 											cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, avl_cluster[px]);
 										} else {
 											double y = (double)rand() / (double)RAND_MAX;
-											if (y <= 0.5) {
+											if (y <= 0.15) {
 												cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, avl_cluster[px]);
 											}
 										}
