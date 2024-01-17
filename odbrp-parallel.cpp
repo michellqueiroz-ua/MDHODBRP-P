@@ -4994,6 +4994,9 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 					
 					arrival_time_stop[v].insert(arrival_time_stop[v].begin() + pos_origin, departure_time_stop[v][pos_origin-1]+travel_time[stops[v][pos_origin-1]][sel_origin]);
 					departure_time_stop[v].insert(departure_time_stop[v].begin() + pos_origin, departure_time_stop[v][pos_origin-1]+travel_time[stops[v][pos_origin-1]][sel_origin]);
+					//if (earliest_departure[p] > departure_time_stop[v][pos_origin])
+					//	departure_time_stop[v][pos_origin] = earliest_departure[p];
+
 					slack_time[v].insert(slack_time[v].begin() + pos_origin, 86400);
 
 					prv_capacity = free_capacity[v][pos_origin-1];
@@ -5343,6 +5346,9 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 							departure_time_stop[v][0] = curr_dpt_time;
 						arrival_time_stop[v].insert(arrival_time_stop[v].begin() + pos_origin, departure_time_stop[v][pos_origin-1]+travel_time[stops[v][pos_origin-1]][sel_origin]);
 						departure_time_stop[v].insert(departure_time_stop[v].begin() + pos_origin, departure_time_stop[v][pos_origin-1]+travel_time[stops[v][pos_origin-1]][sel_origin]);
+						//if (earliest_departure[p] > departure_time_stop[v][pos_origin])
+						//	departure_time_stop[v][pos_origin] = earliest_departure[p];
+
 						slack_time[v].insert(slack_time[v].begin() + pos_origin, 86400);
 
 						prv_capacity = free_capacity[v][pos_origin-1];
@@ -12622,9 +12628,19 @@ int main(int argc, char **argv) {
 			for (int c=0;c<number_clusters;c++) {
 				avl_cluster[c] = c;
 			}
+			int reinsertions_passenger_old = 0;
 			while (passengers_to_be_inserted.size() > 0) {
 
+
 				//for (int itx = 0; itx<num_threads_for; itx++) {
+
+					#pragma omp parallel for num_threads(num_threads_for)
+					for (int px = 0; px<num_threads_for; px++) {
+						if (px < passengers_to_be_inserted.size()) {
+							int nxt_p = passengers_to_be_inserted[px];
+							compute_mean_distances_request_partitions(nxt_p);
+						}
+					}
 
 					//each passengers will be inserted in one processor
 					//start parallelized for	
@@ -12640,7 +12656,7 @@ int main(int argc, char **argv) {
 							it_cl_inser[nxt_p] = 0;
 							//<<"13size: "<<passengers_to_be_inserted.size()<<" "<<nxt_p<<"ends"<<endl;
 							
-							compute_mean_distances_request_partitions(nxt_p);
+							//compute_mean_distances_request_partitions(nxt_p);
 							
 							bool continue_this_passenger = true;
 							bool accept_infeasible_insertion = false;
@@ -12651,9 +12667,22 @@ int main(int argc, char **argv) {
 								//<<"cluster av: "<<avl_cluster[px]<<endl;
 								
 								//cout<<"bf_inser1 "<<avl_cluster[px]<<endl;
-								//if (avl_cluster[px] == sort_clusters[nxt_p][it_cl_inser[nxt_p]].idx_cluster){
-								cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, avl_cluster[px]);
-								//}
+								
+								if (avl_cluster[px] == sort_clusters[nxt_p][0].idx_cluster){
+									cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, avl_cluster[px]);
+								} else {
+									if (number_clusters > 1) {
+										if (avl_cluster[px] == sort_clusters[nxt_p][1].idx_cluster){
+											cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, avl_cluster[px]);
+										} else {
+											double y = (double)rand() / (double)RAND_MAX;
+											if (y <= 0.3) {
+												cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, avl_cluster[px]);
+											}
+										}
+									}
+								}
+								
 								//cout<<"af_inser1 "<<avl_cluster[px]<<endl;
 
 								//<<"hier5.9"<<endl;
@@ -12720,6 +12749,17 @@ int main(int argc, char **argv) {
 								
 						}
 					}
+
+					if (reinsertions_passenger_old < 10) {
+						reinsertions_passenger_old++;
+						for (int ol=0;ol<passengers_to_be_insertedOLD.size();ol++){
+							passengers_to_be_inserted.push_back(passengers_to_be_insertedOLD[ol]);
+						}
+						if (passengers_to_be_insertedOLD.size() > 0) 
+							passengers_to_be_insertedOLD.clear();
+					}
+					
+
 					//<<"hier6.93"<<endl;
 					//<<"6size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 					num_threads_for = passengers_to_be_inserted.size();
