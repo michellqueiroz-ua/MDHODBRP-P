@@ -12652,7 +12652,7 @@ int main(int argc, char **argv) {
 						if (px < passengers_to_be_inserted.size()) {
 							//<<"12size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 							int nxt_p = passengers_to_be_inserted[px];
-							//<<"nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
+							cout<<"nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 							
 							//<<"nxp: "<<nxt_p<<endl;
 							it_cl_inser[nxt_p] = 0;
