@@ -6628,7 +6628,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 	//<<"almost exiting"<<endl;
 	for (int i=0;i<total_number_vehicles;i++)
 		blocked_vehicles[p][i] = 0;
-	//cout<<"exiting cluster: "<<cluster_id<<endl;
+	cout<<"exiting cluster: "<<cluster_id<<endl;
 }
 
 //this cheapest insertion considers to insert passengers at positions that are not the min increase in length traveled
@@ -12673,7 +12673,7 @@ int main(int argc, char **argv) {
 								//<<"0nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 								//<<"cluster av: "<<avl_cluster[px]<<endl;
 								
-								//cout<<"bf_inser1 "<<avl_cluster[px]<<endl;
+								cout<<"bf_inser1 "<<avl_cluster[px]<<endl;
 								bool entered_here = false;
 								bool entered_there = false;
 								if (avl_cluster[px] == sort_clusters[nxt_p][0].idx_cluster){
@@ -12686,7 +12686,7 @@ int main(int argc, char **argv) {
 											cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, avl_cluster[px]);
 										} else {
 											double y = (double)rand() / (double)RAND_MAX;
-											if (y <= 0.3) {
+											if (y <= 0.5) {
 												entered_there = true;
 												//entered_here = true;
 												cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, avl_cluster[px]);
@@ -12694,15 +12694,17 @@ int main(int argc, char **argv) {
 										}
 									}
 								}
+
+								//cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, avl_cluster[px]);
 								
 								//cout<<"af_inser1 "<<avl_cluster[px]<<endl;
 
 								//<<"hier5.9"<<endl;
 								if (vehicle_assigned[nxt_p] == -1) {
-									if ((entered_here) and (not entered_there))
-										cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, avl_cluster[px]);
+									//if (not (entered_here))
+									//	cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, avl_cluster[px]);
 									//<<"1nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
-									//it_cl_inser[nxt_p]++;
+									it_cl_inser[nxt_p]++;
 								} else {
 									//<<"2nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 									continue_this_passenger = false;
@@ -12842,7 +12844,7 @@ int main(int argc, char **argv) {
 
 			double y = (double)rand() / (double)RAND_MAX;
 
-			if (y <= 0.0) {
+			if (y <= 0.5) {
 
 				//decide new centroids
 				
@@ -12920,11 +12922,11 @@ int main(int argc, char **argv) {
 			for (int c=0; c<number_clusters; c++) {
 				//<<k<<endl;
 				//<<"passenger: p"<<k<<endl;
-				//<<"cluster c"<<c<<endl;
+				cout<<"cluster c"<<c<<endl;
 				simulated_annealing(k, c);
 				//check_valid_user_ride_times();
 				//<<"passenger: p"<<k<<endl;
-				//<<"cluster c"<<c<<endl;
+				cout<<"cluster c2"<<c<<endl;
 				return_best_solution(c);
 				//<<"out heere"<<endl;
 
