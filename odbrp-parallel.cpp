@@ -28,7 +28,7 @@ using namespace std;
 #define maxtotalcapacity 40
 #define maxtypevehicles 40
 #define maxnumberdepots 10
-#define number_clusters 1
+#define number_clusters 4
 
 typedef long unsigned listP[21000 + 1];
 //typedef int matrixVP[maxvehicles + 1][maxpassengers + 1];
@@ -310,7 +310,7 @@ bool solution_validation(int p, int v){
 	bool pick_up = true;
 	bool valid_solution = true;
 	int count = 0;
-	for (int i=0; i<=number_stops[v];i++) {
+	for (int i=0; i<number_stops[v];i++) {
 
 		if (number_stops[v] + 1 != departure_time_stop[v].size()){
 			cout<<"weird here"<<endl;
@@ -6628,7 +6628,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 	//<<"almost exiting"<<endl;
 	for (int i=0;i<total_number_vehicles;i++)
 		blocked_vehicles[p][i] = 0;
-	//cout<<"exiting cluster: "<<cluster_id<<endl;
+	cout<<"exiting cluster: "<<cluster_id<<endl;
 }
 
 //this cheapest insertion considers to insert passengers at positions that are not the min increase in length traveled
@@ -12615,11 +12615,12 @@ int main(int argc, char **argv) {
 				num_threads_for = number_clusters;
 			}
 			//<<"hier3.2"<<endl;
-			#pragma omp parallel for num_threads(num_threads_for)
+
+			/*#pragma omp parallel for num_threads(num_threads_for)
 			for (int itx = 0; itx<num_threads_for; itx++) {
 				int nxt_p = passengers_to_be_inserted[itx];
 				compute_mean_distances_request_partitions(nxt_p);
-			}
+			}*/
 			
 
 			//maybe sort passengers_to_be_inserted in a way to avoid collision between clusters???
@@ -12640,7 +12641,6 @@ int main(int argc, char **argv) {
 			}
 
 			while (passengers_to_be_inserted.size() > 0) {
-
 
 				//for (int itx = 0; itx<num_threads_for; itx++) {
 
@@ -12668,7 +12668,7 @@ int main(int argc, char **argv) {
 								//<<"0nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 								//<<"cluster av: "<<avl_cluster[px]<<endl;
 								
-								//cout<<"bf_inser1 "<<avl_cluster[px]<<endl;
+								cout<<"bf_inser1 "<<avl_cluster[px]<<endl;
 								
 								if (avl_cluster[px] == sort_clusters[nxt_p][0].idx_cluster){
 									cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, avl_cluster[px]);
