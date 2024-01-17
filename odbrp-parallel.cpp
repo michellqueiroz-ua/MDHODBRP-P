@@ -11666,6 +11666,8 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 	save_best_solution(cluster_id);
 	//<<"Y"<<endl;
 	//<<"hier9"<<endl;
+
+	//int veih_cluster = 
 	std::vector<int> passengers_in_cluster;
 
 	if (clusters[cluster_id].size() > 1) {
@@ -11713,6 +11715,8 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 							// <<"vehicle_assigned SA: "<<vehicle_assigned[relocate_p]<<endl;
 						}
 					}
+				} else {
+					return;
 				}
 
 				/*cout<<"AFTER_SIMPLE RELOCATE"<<endl;
@@ -12847,7 +12851,7 @@ int main(int argc, char **argv) {
 
 			double y = (double)rand() / (double)RAND_MAX;
 
-			if (y <= 0.5) {
+			if (y <= 0.0) {
 
 				//decide new centroids
 				
