@@ -5713,7 +5713,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 				serve_passenger_third_party_vehicle(p);
 			}*/
 			//<<"hier 5.7"<<endl;
-			std::shuffle(filtered_vehicles_p2.begin(), filtered_vehicles_p2.end(), default_random_engine(current_time));
+			//std::shuffle(filtered_vehicles_p2.begin(), filtered_vehicles_p2.end(), default_random_engine(current_time));
 			while ((not_feasible_insertion) && (iterations < filtered_vehicles_p2.size())) {
 				
 				int best_pos_origin, best_pos_destination;
@@ -12598,6 +12598,7 @@ int main(int argc, char **argv) {
 			for (int ol=0;ol<passengers_to_be_insertedOLD.size();ol++){
 				passengers_to_be_inserted.push_back(passengers_to_be_insertedOLD[ol]);
 			}
+
 			if (passengers_to_be_insertedOLD.size() > 0) 
 				passengers_to_be_insertedOLD.clear();
 
@@ -12623,10 +12624,7 @@ int main(int argc, char **argv) {
 			}
 			while (passengers_to_be_inserted.size() > 0) {
 
-				//<<"10size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
-				
-				//<<"11size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
-				for (int itx = 0; itx<num_threads_for; itx++) {
+				//for (int itx = 0; itx<num_threads_for; itx++) {
 
 					//each passengers will be inserted in one processor
 					//start parallelized for	
@@ -12654,9 +12652,9 @@ int main(int argc, char **argv) {
 								//<<"cluster av: "<<avl_cluster[px]<<endl;
 								
 								//cout<<"bf_inser1 "<<avl_cluster[px]<<endl;
-								if (avl_cluster[px] == sort_clusters[nxt_p][it_cl_inser[nxt_p]].idx_cluster){
-									cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, avl_cluster[px]);
-								}
+								//if (avl_cluster[px] == sort_clusters[nxt_p][it_cl_inser[nxt_p]].idx_cluster){
+								cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, avl_cluster[px]);
+								//}
 								//cout<<"af_inser1 "<<avl_cluster[px]<<endl;
 
 								//<<"hier5.9"<<endl;
@@ -12674,27 +12672,26 @@ int main(int argc, char **argv) {
 								//<<"3nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<" cid: "<<sort_clusters[nxt_p][it_cl_inser[nxt_p]].idx_cluster<<endl;
 								//<<"continue: "<<vehicle_assigned[nxt_p]<<endl;
 								if (continue_this_passenger) {
-									if (it_cl_inser[nxt_p] >= number_clusters) {
-										att_inser[nxt_p]++;
-										//<<"pass1 "<<nxt_p<<vehicle_assigned[nxt_p]<<endl;
+									//if (it_cl_inser[nxt_p] >= number_clusters) {
+										//att_inser[nxt_p]++;
+										
 
 
-										if (att_inser[nxt_p] >= 2){
+										//if (att_inser[nxt_p] >= 2){
 											if (vehicle_assigned[nxt_p] == -1) {
-												//<<"hier6.5"<<endl;
+												
 												int response_time = current_time - time_stamp[nxt_p];
-												//<<"pass2 "<<nxt_p<<response_time<<endl;
+												
 												if (response_time < 500) {
 													passengers_to_be_insertedOLD.push_back(nxt_p);
 												}
-												//serve_passenger_third_party_vehicle(nxt_p);
-												//passengers_on_hold.push_back(nxt_p);
+												
 											}
-											//<<"hier6.7"<<endl;
+											
 											continue_this_passenger = false;
 											del_passenger[px] = 1;
-										}
-									}
+										//}
+									//}
 								}
 								//<<"4nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 								
@@ -12735,12 +12732,11 @@ int main(int argc, char **argv) {
 					//<<"hier6.95"<<endl;
 
 					
-				}
+				//}
 
 				//shuffle passengers to add some variety
-				if (passengers_to_be_inserted.size() > 1)
-					std::shuffle(passengers_to_be_inserted.begin(), passengers_to_be_inserted.end(), default_random_engine(current_time));
-
+				//if (passengers_to_be_inserted.size() > 1)
+				//	std::shuffle(passengers_to_be_inserted.begin(), passengers_to_be_inserted.end(), default_random_engine(current_time));
 			}
 
 				/*bool accept_infeasible_insertion = false;
@@ -12891,7 +12887,7 @@ int main(int argc, char **argv) {
 		//<<"lelapsed: "<<l_elapsed_algo_time<<endl;
 		difference_elapsed = l_elapsed_algo_time - p_elapsed_algo_time;
 		
-		difference_elapsed = difference_elapsed*4;
+		difference_elapsed = difference_elapsed*2;
 		if (difference_elapsed < 1)
 			current_time += 1;
 		else
