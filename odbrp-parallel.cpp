@@ -11659,7 +11659,7 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 	//start_time = get_wall_time();
 	start_time = std::clock();
 	
-	vector<int> vehicles_still_depot;
+	//vector<int> vehicles_still_depot;
 
 	cout<<"cid: "<<cluster_id<<" "<<clusters[cluster_id].size()<<endl;
 	//<<"X"<<endl;
@@ -11809,6 +11809,9 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 
 
 	}
+
+	if (passengers_in_cluster.size() > 0)
+		passengers_in_cluster.clear();
 }
 
 int recompute_distance_costs(int old_cluster, int new_cluster, int sum_all_distances){
