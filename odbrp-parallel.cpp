@@ -6628,7 +6628,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 	//<<"almost exiting"<<endl;
 	for (int i=0;i<total_number_vehicles;i++)
 		blocked_vehicles[p][i] = 0;
-	cout<<"exiting cluster: "<<cluster_id<<endl;
+	//cout<<"exiting cluster: "<<cluster_id<<endl;
 }
 
 //this cheapest insertion considers to insert passengers at positions that are not the min increase in length traveled
@@ -11715,13 +11715,13 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 					}
 				}
 
-				cout<<"AFTER_SIMPLE RELOCATE"<<endl;
+				/*cout<<"AFTER_SIMPLE RELOCATE"<<endl;
 				for (int kk=0;kk<900;kk++){
 					if (vehicle_assigned[kk] != -1) {
 						solution_validation(kk, vehicle_assigned[kk]);
 					//served_passengers++;
 					}
-				}
+				}*/
 				/*for (int vv=0;vv<total_number_vehicles;vv++){
 					times_validation(vv);
 				}*/
@@ -12600,7 +12600,7 @@ int main(int argc, char **argv) {
 			}
 
 			
-			cout<<"ct ts: "<<current_time<<" "<<time_stamp[k]<<endl;
+			//cout<<"ct ts: "<<current_time<<" "<<time_stamp[k]<<endl;
 			while((current_time >= sort_passengers[k].time_stamp) && (k < total_requests)) { 
 				passengers_to_be_inserted.push_back(sort_passengers[k].k);
 				k++;
@@ -12657,7 +12657,7 @@ int main(int argc, char **argv) {
 						if (px < passengers_to_be_inserted.size()) {
 							//<<"12size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 							int nxt_p = passengers_to_be_inserted[px];
-							cout<<"nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
+							//cout<<"nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 							
 							//<<"nxp: "<<nxt_p<<endl;
 							it_cl_inser[nxt_p] = 0;
@@ -12673,7 +12673,7 @@ int main(int argc, char **argv) {
 								//<<"0nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 								//<<"cluster av: "<<avl_cluster[px]<<endl;
 								
-								cout<<"bf_inser1 "<<avl_cluster[px]<<endl;
+								//cout<<"bf_inser1 "<<avl_cluster[px]<<endl;
 								
 								if (avl_cluster[px] == sort_clusters[nxt_p][0].idx_cluster){
 									cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, avl_cluster[px]);
@@ -12683,7 +12683,7 @@ int main(int argc, char **argv) {
 											cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, avl_cluster[px]);
 										} else {
 											double y = (double)rand() / (double)RAND_MAX;
-											if (y <= 0.3) {
+											if (y <= 0.5) {
 												cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, avl_cluster[px]);
 											}
 										}
@@ -12757,7 +12757,7 @@ int main(int argc, char **argv) {
 						}
 					}
 
-					if (reinsertions_passenger_old < 10) {
+					if (reinsertions_passenger_old < 20) {
 						reinsertions_passenger_old++;
 						if (passengers_to_be_insertedOLD.size() > 0) {
 							for (int ol=0;ol<passengers_to_be_insertedOLD.size();ol++){
@@ -12805,13 +12805,13 @@ int main(int argc, char **argv) {
 
 				k++;*/
 
-				cout<<"AFTER CONSTRUCTIVE"<<endl;
+				/*cout<<"AFTER CONSTRUCTIVE"<<endl;
 				for (int kk=0;kk<k;kk++){
 					if (vehicle_assigned[kk] != -1) {
 						solution_validation(kk, vehicle_assigned[kk]);
 					//served_passengers++;
 					}
-				}
+				}*/
 				//<<"hieer0"<<endl;
 				/*for (int vv=0;vv<total_number_vehicles;vv++){
 					times_validation(vv);
@@ -12923,7 +12923,7 @@ int main(int argc, char **argv) {
 
 			}
 		}
-		cout<<"hier8sa"<<endl;
+		//cout<<"hier8sa"<<endl;
 
 		
 
