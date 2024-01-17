@@ -12674,16 +12674,21 @@ int main(int argc, char **argv) {
 								//<<"cluster av: "<<avl_cluster[px]<<endl;
 								
 								//cout<<"bf_inser1 "<<avl_cluster[px]<<endl;
-								
+								bool entered_here = false;
+								bool entered_there = false;
 								if (avl_cluster[px] == sort_clusters[nxt_p][0].idx_cluster){
+									entered_here = true;
 									cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, avl_cluster[px]);
 								} else {
 									if (number_clusters > 1) {
 										if (avl_cluster[px] == sort_clusters[nxt_p][1].idx_cluster){
+											entered_here = true;
 											cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, avl_cluster[px]);
 										} else {
 											double y = (double)rand() / (double)RAND_MAX;
-											if (y <= 0.15) {
+											if (y <= 0.3) {
+												entered_there = true;
+												//entered_here = true;
 												cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, avl_cluster[px]);
 											}
 										}
@@ -12694,8 +12699,10 @@ int main(int argc, char **argv) {
 
 								//<<"hier5.9"<<endl;
 								if (vehicle_assigned[nxt_p] == -1) {
+									if ((entered_here) and (not entered_there))
+										cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, avl_cluster[px]);
 									//<<"1nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
-									it_cl_inser[nxt_p]++;
+									//it_cl_inser[nxt_p]++;
 								} else {
 									//<<"2nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 									continue_this_passenger = false;
