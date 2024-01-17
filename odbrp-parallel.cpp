@@ -12147,9 +12147,9 @@ int main(int argc, char **argv) {
 
 	string output_filename;
 	string requests_filename;
-	comp_time = 0.05;
-	start_time = std::clock();
-	//begin_time = get_wall_time();
+	comp_time = 0.50;
+	//start_time = std::clock();
+	begin_time = get_wall_time();
 	total_number_vehicles = 0;
 	for (int i=1; i<argc; i++)
   	{
@@ -12640,7 +12640,6 @@ int main(int argc, char **argv) {
 							it_cl_inser[nxt_p] = 0;
 							//<<"13size: "<<passengers_to_be_inserted.size()<<" "<<nxt_p<<"ends"<<endl;
 							
-							
 							compute_mean_distances_request_partitions(nxt_p);
 							
 							bool continue_this_passenger = true;
@@ -12713,11 +12712,12 @@ int main(int argc, char **argv) {
 						if (del_passenger[c] == 1) {
 							//<<"size ptbi: "<<passengers_to_be_inserted.size()<<endl;
 							//<<"del p: "<<del_passenger[c]<<endl;
+							att_inser[passengers_to_be_inserted[c]] = 0;
 							passengers_to_be_inserted.erase(passengers_to_be_inserted.begin() + c);
 							//<<c<<endl;
 							//<<"5size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 							del_passenger[c] = 0;
-							att_inser[passengers_to_be_inserted[c]] = 0;	
+								
 						}
 					}
 					//<<"hier6.93"<<endl;
@@ -13035,6 +13035,6 @@ int main(int argc, char **argv) {
 	//compute_idle_times();
 
 	//elapsed = get_wall_time() - begin_time;
-	elapsedf = (double)(std::clock() - start_time)/(double)(CLOCKS_PER_SEC);		 
+	elapsedf = (double)(std::clock() - start_algorithm_time)/(double)(CLOCKS_PER_SEC);		 
 	output_file << elapsedf << endl;
 }
