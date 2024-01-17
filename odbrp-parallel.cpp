@@ -11661,22 +11661,25 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 	
 	vector<int> vehicles_still_depot;
 
-	//<<"cid: "<<cluster_id<<endl;
+	cout<<"cid: "<<cluster_id<<" "<<clusters[cluster_id].size()<<endl;
 	//<<"X"<<endl;
 	save_best_solution(cluster_id);
 	//<<"Y"<<endl;
 	//<<"hier9"<<endl;
 	std::vector<int> passengers_in_cluster;
-	for (int i=0;i<clusters[cluster_id].size();i++){
-		int v = clusters[cluster_id][i];
-		//<<v<<" ";
-		for (int j=0;j<n_allocated;j++){
 
-			int pid = sort_passengers[j].k;
-			if (vehicle_assigned[pid] == v) {
-				passengers_in_cluster.push_back(pid);
+	if (clusters[cluster_id].size() > 1) {
+		for (int i=0;i<clusters[cluster_id].size();i++){
+			int v = clusters[cluster_id][i];
+			//<<v<<" ";
+			for (int j=0;j<n_allocated;j++){
+
+				int pid = sort_passengers[j].k;
+				if (vehicle_assigned[pid] == v) {
+					passengers_in_cluster.push_back(pid);
+				}
+
 			}
-
 		}
 	}
 	//<<"hier10"<<endl;
@@ -12597,7 +12600,7 @@ int main(int argc, char **argv) {
 			}
 
 			
-			//cout<<"ct ts: "<<current_time<<" "<<time_stamp[k]<<endl;
+			cout<<"ct ts: "<<current_time<<" "<<time_stamp[k]<<endl;
 			while((current_time >= sort_passengers[k].time_stamp) && (k < total_requests)) { 
 				passengers_to_be_inserted.push_back(sort_passengers[k].k);
 				k++;
@@ -12920,7 +12923,7 @@ int main(int argc, char **argv) {
 
 			}
 		}
-		//cout<<"hier8sa"<<endl;
+		cout<<"hier8sa"<<endl;
 
 		
 
