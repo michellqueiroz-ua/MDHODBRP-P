@@ -28,7 +28,7 @@ using namespace std;
 #define maxtotalcapacity 40
 #define maxtypevehicles 40
 #define maxnumberdepots 10
-#define number_clusters 4
+#define number_clusters 1
 
 typedef long unsigned listP[21000 + 1];
 //typedef int matrixVP[maxvehicles + 1][maxpassengers + 1];
@@ -12851,7 +12851,7 @@ int main(int argc, char **argv) {
 
 			double y = (double)rand() / (double)RAND_MAX;
 
-			if (y <= 0.0) {
+			if (y <= 1.0) {
 
 				//decide new centroids
 				
