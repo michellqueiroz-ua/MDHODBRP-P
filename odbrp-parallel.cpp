@@ -28,7 +28,7 @@ using namespace std;
 #define maxtotalcapacity 40
 #define maxtypevehicles 40
 #define maxnumberdepots 10
-#define number_clusters 4
+#define number_clusters 1
 
 typedef long unsigned listP[21000 + 1];
 //typedef int matrixVP[maxvehicles + 1][maxpassengers + 1];
@@ -12443,9 +12443,9 @@ int main(int argc, char **argv) {
 	//int number_clusters = 4;
 
 
-	/*for (int k=0;k<total_requests;k++){
+	for (int k=0;k<total_requests;k++){
 		latest_arrival[k] = latest_arrival[k] + 3600;
-	}*/
+	}
 
 	served_requests_so_far = 0;
 	rejected_requests_so_far = 0;
@@ -12600,7 +12600,7 @@ int main(int argc, char **argv) {
 		//if (k > num_iterations_to_start_reassign)
 		//	reassign_vehicles_to_another_depot();
 		
-		if ((current_time >= sort_passengers[k].time_stamp) && (k < total_requests)) {
+		if ((current_time >= sort_passengers[k].time_stamp)) {
 
 			if (passengers_to_be_inserted.size() > 0) {
 				passengers_to_be_inserted.clear();
@@ -12680,7 +12680,7 @@ int main(int argc, char **argv) {
 								//<<"0nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 								//<<"cluster av: "<<avl_cluster[px]<<endl;
 								
-								cout<<"bf_inser1 "<<avl_cluster[px]<<endl;
+								/*cout<<"bf_inser1 "<<avl_cluster[px]<<endl;
 								bool entered_here = false;
 								bool entered_there = false;
 								if (avl_cluster[px] == sort_clusters[nxt_p][0].idx_cluster){
@@ -12700,9 +12700,9 @@ int main(int argc, char **argv) {
 											}
 										}
 									}
-								}
+								}*/
 
-								//cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, avl_cluster[px]);
+								cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, avl_cluster[px]);
 								
 								//cout<<"af_inser1 "<<avl_cluster[px]<<endl;
 
@@ -12726,8 +12726,6 @@ int main(int argc, char **argv) {
 									//if (it_cl_inser[nxt_p] >= number_clusters) {
 										//att_inser[nxt_p]++;
 										
-
-
 										//if (att_inser[nxt_p] >= 2){
 											if (vehicle_assigned[nxt_p] == -1) {
 												
@@ -12851,7 +12849,7 @@ int main(int argc, char **argv) {
 
 			double y = (double)rand() / (double)RAND_MAX;
 
-			if (y <= 0.5) {
+			if (y <= 0.0) {
 
 				//decide new centroids
 				
@@ -13052,7 +13050,7 @@ int main(int argc, char **argv) {
 
 	check_valid_user_ride_times();
 	
-	//print_all_vehicles();
+	print_all_vehicles();
 
 
 	for (int k=0;k<total_requests;k++){
