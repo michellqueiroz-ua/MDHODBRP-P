@@ -12592,7 +12592,7 @@ int main(int argc, char **argv) {
 	//commuting - 32400
 	//concert 42120(ta errado era pra ser 23.5, nao 11.5)
 	//nightlife - 88400 
-	while((k < total_requests) or (current_time < 32400)) {
+	while((k < total_requests) or (current_time < 88400)) {
 	//while(current_time < 28800) {
 		
 		check_last_position_route();
