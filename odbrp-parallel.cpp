@@ -6267,7 +6267,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 							accept_delay_trip = false;
 
 						//if (delay[p] == 0) {
-						//	cout<<"delay "<<delay[p]<<endl;
+						cout<<"delay "<<delay[p]<<" "<<max_flex_delay<<endl;
 						cout<<"xxx :"<<sel_destination<<" "<<no_violation_capacity<<" "<<accept_delay_trip<<" "<<infeasible_insertion<<" "<<latest_arrival[p]<<endl;
 						//}
 
