@@ -2155,7 +2155,7 @@ void cheapest_destination2(int p, int v, int pos_origin, int &min_increase_lengt
 			}
 			//<<"dpt: "<<drop_off_time<<" "<<latest_arrival_passenger<<endl;
 			//<<new_slack_time<<endl;
-			//cout<<"cd: "<<" "<<increase<<" "<<min_increase_length<<" "<<new_slack_time<<" "<<drop_off_time<<" "<<latest_arrival_passenger<<" "<<new_capacity<<endl;
+			cout<<"cd: "<<" "<<increase<<" "<<min_increase_length<<" "<<new_slack_time<<" "<<drop_off_time<<" "<<latest_arrival_passenger<<" "<<new_capacity<<latest_arrival[p]<<endl;
 			if ((increase < min_increase_length) && (new_slack_time >= 0) && (drop_off_time <= latest_arrival_passenger) && (new_capacity >= 0)) {
 				feasible_insertion_found = true;
 				infeasible_insertion = false;
@@ -6268,7 +6268,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 
 						//if (delay[p] == 0) {
 						cout<<"delay "<<delay[p]<<" "<<max_flex_delay<<endl;
-						cout<<"xxx :"<<sel_destination<<" "<<no_violation_capacity<<" "<<accept_delay_trip<<" "<<infeasible_insertion<<" "<<latest_arrival[p]<<endl;
+						//cout<<"xxx :"<<sel_destination<<" "<<no_violation_capacity<<" "<<accept_delay_trip<<" "<<infeasible_insertion<<" "<<latest_arrival[p]<<endl;
 						//}
 
 						/*if (total_number_vehicles == 0){
