@@ -1,5 +1,5 @@
 # Set the number of parallel processes
-num_parallel=4
+num_parallel=1
 
 # Define the function to execute your binary
 run_binary() {
