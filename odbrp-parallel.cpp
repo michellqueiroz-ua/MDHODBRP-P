@@ -28,7 +28,7 @@ using namespace std;
 #define maxtotalcapacity 40
 #define maxtypevehicles 40
 #define maxnumberdepots 10
-#define number_clusters 4
+#define number_clusters 1
 
 typedef int listP[21000 + 1];
 //typedef int matrixVP[maxvehicles + 1][maxpassengers + 1];
@@ -4941,7 +4941,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 	
 	//check for highest capacitated vehicle from partition that is empty
 
-	cout<<"pass: "<<p<<endl;
+	//cout<<"pass: "<<p<<endl;
 	capacity_best_empty_vehicle = INT_MIN;
 	int best_distance_location = INT_MAX;
 
@@ -5854,8 +5854,8 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 			vector<int> filtered_vehicles_p2;
 			filter_vehicles2(p, cluster_id, filtered_vehicles_p2);
 			//<<"filtered size: "<<filtered_vehicles_p.size()<<endl;
-			cout<<"filtered_vehicles SIZE "<<filtered_vehicles_p2.size()<<" "<<served_passengers<<" "<<cluster_id<<endl;
-			cout<<"clsize "<<clusters[cluster_id].size()<<"p "<<p<<endl;
+			//cout<<"filtered_vehicles SIZE "<<filtered_vehicles_p2.size()<<" "<<served_passengers<<" "<<cluster_id<<endl;
+			//cout<<"clsize "<<clusters[cluster_id].size()<<"p "<<p<<endl;
 			bool not_feasible_insertion = true;
 			int iterations = 0;
 			bool tested_all_vehicles_once = false;
@@ -11807,7 +11807,7 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 	
 	//vector<int> vehicles_still_depot;
 
-	cout<<"cid: "<<cluster_id<<" "<<clusters[cluster_id].size()<<endl;
+	//cout<<"cid: "<<cluster_id<<" "<<clusters[cluster_id].size()<<endl;
 	//<<"X"<<endl;
 	save_best_solution(cluster_id);
 	//<<"Y"<<endl;
