@@ -13229,7 +13229,7 @@ int main(int argc, char **argv) {
 		best_total_user_ride_time += user_ride_time[p];
 	}
 
-	double average_user_ride_time = (double)(best_total_user_ride_time/served_passengers)
+	double average_user_ride_time = (double)(best_total_user_ride_time/served_passengers);
 	
 	//<<total_user_ride_time<<" "<<best_total_user_ride_time<<endl;
 	//<<served_passengers<<"  "<<total_user_ride_time<<endl;
