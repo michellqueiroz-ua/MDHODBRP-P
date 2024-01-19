@@ -6774,7 +6774,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 	for (int i=0;i<total_number_vehicles;i++)
 		blocked_vehicles[p][i] = 0;
 	//if (vehicle_assigned[p] == -1)
-	//	cout<<"exiting cluster: "<<cluster_id<<endl;
+	cout<<"exiting cluster: "<<cluster_id<<endl;
 }
 
 //this cheapest insertion considers to insert passengers at positions that are not the min increase in length traveled
@@ -12830,7 +12830,7 @@ int main(int argc, char **argv) {
 								//<<"0nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 								//<<"cluster av: "<<avl_cluster[px]<<endl;
 								
-								//cout<<"bf_inser1 "<<avl_cluster[px]<<endl;
+								cout<<"bf_inser1 "<<avl_cluster[px]<<endl;
 								bool entered_here = false;
 								bool entered_there = false;
 								if (avl_cluster[px] == sort_clusters[nxt_p][0].idx_cluster){
@@ -13068,7 +13068,7 @@ int main(int argc, char **argv) {
 
 		//<<"xxxheeerexxxx1"<<endl;
 		//<<"actual passenger "<<k<<endl;
-		//cout<<"hier7sa"<<endl;
+		cout<<"hier7sa"<<endl;
 		if (k > total_number_vehicles + 10) {
 		
 			
@@ -13077,11 +13077,11 @@ int main(int argc, char **argv) {
 			for (int c=0; c<number_clusters; c++) {
 				//<<k<<endl;
 				//<<"passenger: p"<<k<<endl;
-				//cout<<"cluster c"<<c<<endl;
+				cout<<"cluster c"<<c<<endl;
 				simulated_annealing(k, c);
 				//check_valid_user_ride_times();
 				//<<"passenger: p"<<k<<endl;
-				//cout<<"cluster c2"<<c<<endl;
+				cout<<"cluster c2"<<c<<endl;
 				return_best_solution(c);
 				//<<"out heere"<<endl;
 
