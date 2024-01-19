@@ -2010,7 +2010,7 @@ void cheapest_destination(int p, int v, int pos_origin, int &min_increase_length
 			}
 			//<<"dpt: "<<drop_off_time<<" "<<latest_arrival_passenger<<endl;
 			//<<new_slack_time<<endl;
-			cout<<"cd: "<<" "<<increase<<" "<<min_increase_length<<" "<<new_slack_time<<" "<<drop_off_time<<" "<<latest_arrival_passenger<<" "<<new_capacity<<" ";
+			cout<<"cd: "<<" "<<increase<<" "<<min_increase_length<<" "<<new_slack_time<<" "<<drop_off_time<<" "<<latest_arrival_passenger<<" "<<new_capacity<<endl;
 			if ((increase < min_increase_length) && (new_slack_time >= 0) && (drop_off_time <= latest_arrival_passenger) && (new_capacity >= 0)) {
 				feasible_insertion_found = true;
 				infeasible_insertion = false;
