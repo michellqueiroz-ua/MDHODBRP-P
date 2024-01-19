@@ -30,24 +30,24 @@ using namespace std;
 #define maxnumberdepots 10
 #define number_clusters 1
 
-typedef long unsigned listP[21000 + 1];
+typedef int listP[21000 + 1];
 //typedef int matrixVP[maxvehicles + 1][maxpassengers + 1];
-typedef long unsigned matrixPV[21000 + 1][maxvehicles + 1];
-typedef long unsigned matrixVS[maxvehicles + 1][maxstations + 1];
-typedef long unsigned matrixVC[maxvehicles + 1][maxtotalcapacity*2];
-typedef long unsigned matrixPS[21000 + 1][maxstations + 1];
-typedef long unsigned matrixSS[maxstations + 1][maxstations + 1];
-typedef long unsigned matrixDV[maxnumberdepots + 1][maxvehicles + 1];
-typedef long unsigned listS[maxstations + 1];
-typedef long unsigned listV[maxvehicles + 1];
-typedef long unsigned listD[maxnumberdepots + 1];
-typedef long unsigned listT[maxtypevehicles + 1];
+typedef int matrixPV[21000 + 1][maxvehicles + 1];
+typedef int matrixVS[maxvehicles + 1][maxstations + 1];
+typedef int matrixVC[maxvehicles + 1][maxtotalcapacity*2];
+typedef int matrixPS[21000 + 1][maxstations + 1];
+typedef int matrixSS[maxstations + 1][maxstations + 1];
+typedef int matrixDV[maxnumberdepots + 1][maxvehicles + 1];
+typedef int listS[maxstations + 1];
+typedef int listV[maxvehicles + 1];
+typedef int listD[maxnumberdepots + 1];
+typedef int listT[maxtypevehicles + 1];
 typedef double listTd[maxtypevehicles + 1];
-typedef long unsigned matrixVSS[maxvehicles + 1][maxstations + 1][maxstations + 1]; //to know which stations are visited after another (in case its necessary)
+typedef int matrixVSS[maxvehicles + 1][maxstations + 1][maxstations + 1]; //to know which stations are visited after another (in case its necessary)
 //typedef int matrixVPP[maxvehicles + 1][maxpassengers + 1][maxtotalcapacity + 1];
 //typedef int matrixPW[maxpassengers + 1][number_clusters + 1];
-typedef long unsigned matrixVR[maxvehicles + 1][25000];
-typedef long unsigned matrixVRC[maxvehicles + 1][25000][80];
+typedef int matrixVR[maxvehicles + 1][25000];
+typedef int matrixVRC[maxvehicles + 1][25000][80];
 
 //int n;
 
@@ -1256,17 +1256,17 @@ void input_requests_festival(char *filename) {
 
 	fstream file (filename, ios::in);
 	string line, data, stop;
-	long unsigned p, s;
+	int p, s;
 
-	long unsigned temp_time_stamp;
-	long unsigned temp_earliest_departure;
-	long unsigned temp_latest_departure;
-	long unsigned temp_latest_arrival;
+	int temp_time_stamp;
+	int temp_earliest_departure;
+	int temp_latest_departure;
+	int temp_latest_arrival;
 
-	long unsigned temp_time_stamp2;
-	long unsigned temp_earliest_departure2;
-	long unsigned temp_latest_departure2;
-	long unsigned temp_latest_arrival2;
+	int temp_time_stamp2;
+	int temp_earliest_departure2;
+	int temp_latest_departure2;
+	int temp_latest_arrival2;
 	srand(1);
 	if(file.is_open())
 	{
@@ -2155,7 +2155,7 @@ void cheapest_destination2(int p, int v, int pos_origin, int &min_increase_lengt
 			}
 			//<<"dpt: "<<drop_off_time<<" "<<latest_arrival_passenger<<endl;
 			//<<new_slack_time<<endl;
-			cout<<"cd: "<<" "<<increase<<" "<<min_increase_length<<" "<<new_slack_time<<" "<<drop_off_time<<" "<<latest_arrival_passenger<<" "<<new_capacity<<latest_arrival[p]<<endl;
+			//cout<<"cd: "<<" "<<increase<<" "<<min_increase_length<<" "<<new_slack_time<<" "<<drop_off_time<<" "<<latest_arrival_passenger<<" "<<new_capacity<<latest_arrival[p]<<endl;
 			if ((increase < min_increase_length) && (new_slack_time >= 0) && (drop_off_time <= latest_arrival_passenger) && (new_capacity >= 0)) {
 				feasible_insertion_found = true;
 				infeasible_insertion = false;
@@ -6267,7 +6267,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 							accept_delay_trip = false;
 
 						//if (delay[p] == 0) {
-						cout<<"delay "<<delay[p]<<" "<<max_flex_delay<<endl;
+						//cout<<"delay "<<delay[p]<<" "<<max_flex_delay<<endl;
 						//cout<<"xxx :"<<sel_destination<<" "<<no_violation_capacity<<" "<<accept_delay_trip<<" "<<infeasible_insertion<<" "<<latest_arrival[p]<<endl;
 						//}
 
@@ -6773,8 +6773,8 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 	//<<"almost exiting"<<endl;
 	for (int i=0;i<total_number_vehicles;i++)
 		blocked_vehicles[p][i] = 0;
-	if (vehicle_assigned[p] == -1)
-		cout<<"exiting cluster: "<<cluster_id<<endl;
+	//if (vehicle_assigned[p] == -1)
+	//	cout<<"exiting cluster: "<<cluster_id<<endl;
 }
 
 //this cheapest insertion considers to insert passengers at positions that are not the min increase in length traveled
@@ -12757,8 +12757,8 @@ int main(int argc, char **argv) {
 
 			while((current_time >= sort_passengers[k].time_stamp) && (k < total_requests)) { 
 				passengers_to_be_inserted.push_back(sort_passengers[k].k);
-				cout<<"p and ts: "<<sort_passengers[k].k<<" "<<sort_passengers[k].time_stamp<<endl;
-				cout<<"k: "<<k<<endl;
+				//cout<<"p and ts: "<<sort_passengers[k].k<<" "<<sort_passengers[k].time_stamp<<endl;
+				//cout<<"k: "<<k<<endl;
 				k++;
 			}
 
@@ -13076,11 +13076,11 @@ int main(int argc, char **argv) {
 			for (int c=0; c<number_clusters; c++) {
 				//<<k<<endl;
 				//<<"passenger: p"<<k<<endl;
-				cout<<"cluster c"<<c<<endl;
+				//cout<<"cluster c"<<c<<endl;
 				simulated_annealing(k, c);
 				//check_valid_user_ride_times();
 				//<<"passenger: p"<<k<<endl;
-				cout<<"cluster c2"<<c<<endl;
+				//cout<<"cluster c2"<<c<<endl;
 				return_best_solution(c);
 				//<<"out heere"<<endl;
 
@@ -13199,7 +13199,7 @@ int main(int argc, char **argv) {
 
 	check_valid_user_ride_times();
 	
-	print_all_vehicles();
+	//print_all_vehicles();
 
 
 	for (int k=0;k<total_requests;k++){
