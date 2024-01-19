@@ -12830,7 +12830,7 @@ int main(int argc, char **argv) {
 								//<<"cluster av: "<<avl_cluster[px]<<endl;
 								
 								//cout<<"bf_inser1 "<<avl_cluster[px]<<endl;
-								bool entered_here = false;
+								/*bool entered_here = false;
 								bool entered_there = false;
 								if (avl_cluster[px] == sort_clusters[nxt_p][0].idx_cluster){
 									entered_here = true;
@@ -12849,9 +12849,9 @@ int main(int argc, char **argv) {
 											}
 										}
 									}
-								}
+								}*/
 
-								//cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, avl_cluster[px]);
+								cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, avl_cluster[px]);
 								
 								//cout<<"af_inser1 "<<avl_cluster[px]<<endl;
 
@@ -12998,7 +12998,7 @@ int main(int argc, char **argv) {
 
 			double y = (double)rand() / (double)RAND_MAX;
 
-			if (y <= 1.0) {
+			if (y <= 0.0) {
 
 				//decide new centroids
 				
