@@ -12998,7 +12998,7 @@ int main(int argc, char **argv) {
 
 			double y = (double)rand() / (double)RAND_MAX;
 
-			if (y <= 1.0) {
+			if (y <= 0.5) {
 
 				//decide new centroids
 				
