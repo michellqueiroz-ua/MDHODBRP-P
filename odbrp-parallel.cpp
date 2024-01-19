@@ -2010,6 +2010,151 @@ void cheapest_destination(int p, int v, int pos_origin, int &min_increase_length
 			}
 			//<<"dpt: "<<drop_off_time<<" "<<latest_arrival_passenger<<endl;
 			//<<new_slack_time<<endl;
+			//cout<<"cd: "<<" "<<increase<<" "<<min_increase_length<<" "<<new_slack_time<<" "<<drop_off_time<<" "<<latest_arrival_passenger<<" "<<new_capacity<<endl;
+			if ((increase < min_increase_length) && (new_slack_time >= 0) && (drop_off_time <= latest_arrival_passenger) && (new_capacity >= 0)) {
+				feasible_insertion_found = true;
+				infeasible_insertion = false;
+				
+				min_increase_length = increase;
+				remove_edge = i;
+				sel_destination = s_destination;
+
+				repeated_station = false;
+				//check if included station is equal to one of the two stations
+				if (s_destination == stops[v][i]){
+					repeated_station = true;
+					remove_edge = i;
+				}
+
+				//check if included station is equal to one of the two stations
+				if (s_destination == stops[v][i+1]) {
+					repeated_station = true;
+					remove_edge = i+1;
+				}
+
+				delay[p] = delay_trip;
+			} else {
+
+				if (not feasible_insertion_found) {
+
+					infeasible_insertion = true;
+					if (increase < min_increase_length_inf) {
+
+						min_increase_length_inf = increase;
+						remove_edge_inf = i;
+						sel_destination_inf = s_destination;
+
+						repeated_station_inf = false;
+						//check if included station is equal to one of the two stations
+						if (s_destination == stops[v][i]){
+							repeated_station_inf = true;
+							remove_edge_inf = i;
+						}
+
+						//check if included station is equal to one of the two stations
+						if (s_destination == stops[v][i+1]) {
+							repeated_station_inf = true;
+							remove_edge_inf = i+1;
+						}
+
+					}
+
+				}
+
+			}
+		}
+	}
+
+	if ((not feasible_insertion_found) && (infeasible_insertion)) {
+		min_increase_length = min_increase_length_inf;
+		remove_edge = remove_edge_inf;
+		sel_destination = sel_destination_inf;
+		repeated_station = repeated_station_inf;
+		remove_edge =  remove_edge_inf;
+	}
+
+	if (not repeated_station)
+		pos_destination = remove_edge+1;
+	else
+		pos_destination = remove_edge;
+}
+
+void cheapest_destination2(int p, int v, int pos_origin, int &min_increase_length, int &sel_destination, int &pos_destination, bool &repeated_station, bool &flexibilize_arrival_time, bool &infeasible_insertion) {
+
+	//put here a check for the origin first then the loop (because of feasibility checks it may not be wise to insert the origin before checking for destination feasibility)
+	int s_destination, increase;	
+	int remove_edge;
+	int drop_off_time;
+	int new_arrival_time, new_departure_time, new_slack_time, new_arrival_nxt_stop, old_arrival_nxt_stop, old_slack_time;
+	int latest_arrival_passenger, delay_trip;
+	int new_capacity;
+	bool feasible_insertion_found = false;
+	infeasible_insertion = false;
+
+	int min_increase_length_inf = INT_MAX;
+	int remove_edge_inf, sel_destination_inf;
+	bool repeated_station_inf;
+	//look for cheapest insertion of destination
+	for (int j=0;j<number_stops_destination[p];j++) {
+		s_destination = stops_destination[p][j];
+		for (int i=pos_origin; i<number_stops[v];i++) {
+			increase = travel_time[stops[v][i]][s_destination] + travel_time[s_destination][stops[v][i+1]] - travel_time[stops[v][i]][stops[v][i+1]];
+			//<<s_destination<<" "<<stops[v][i]<<" "<<departure_time_stop[v][i]<<" "<<travel_time[stops[v][i]][s_destination]<<endl;
+			drop_off_time = departure_time_stop[v][i]+travel_time[stops[v][i]][s_destination];
+			
+			if (s_destination == stops[v][i]){
+				//arrival time does not change from the stop
+				
+				//if (earliest_departure[p] > departure_time_stop[v][i]) 
+				//	new_departure_time = earliest_departure[p];
+				//else
+				//new_departure_time = departure_time_stop[v][i];
+				new_capacity = free_capacity[v][i]-1;
+				old_arrival_nxt_stop = arrival_time_stop[v][i+1];
+				new_arrival_nxt_stop = departure_time_stop[v][i]+travel_time[s_destination][stops[v][i+1]];
+				old_slack_time = slack_time[v][i+1];
+
+			} else {
+				if (s_destination == stops[v][i+1]) {
+					//arrival time does not change from the stop
+					
+					//if (earliest_departure[p] > departure_time_stop[v][i+1]) 
+					//	new_departure_time = earliest_departure[p];
+					//else
+					//	new_departure_time = departure_time_stop[v][i+1];
+					new_capacity = free_capacity[v][i+1]-1;
+					old_arrival_nxt_stop = arrival_time_stop[v][i+2];
+					new_arrival_nxt_stop = departure_time_stop[v][i+1]+travel_time[s_destination][stops[v][i+2]];
+					old_slack_time = slack_time[v][i+2];
+
+				} else {
+
+					new_capacity = free_capacity[v][i]-1;
+					new_arrival_time = drop_off_time;
+					new_departure_time = new_arrival_time;
+
+					old_arrival_nxt_stop = arrival_time_stop[v][i+1];
+					
+					new_arrival_nxt_stop = new_departure_time+travel_time[s_destination][stops[v][i+1]];
+					old_slack_time = slack_time[v][i+1];
+				}
+			}
+
+			if (old_arrival_nxt_stop == 86400)
+				old_arrival_nxt_stop = 0;
+			new_slack_time = old_slack_time - (new_arrival_nxt_stop - old_arrival_nxt_stop);
+			//<<old_slack_time<<endl<<new_arrival_nxt_stop<<endl<<old_arrival_nxt_stop<<endl<<endl;
+
+			if (flexibilize_arrival_time) {
+				latest_arrival_passenger = drop_off_time;
+				delay_trip = drop_off_time - latest_arrival[p];
+				//<<"delay: "<<delay[p]<<endl;
+			} else {
+				latest_arrival_passenger = latest_arrival[p];
+				delay_trip = 0;
+			}
+			//<<"dpt: "<<drop_off_time<<" "<<latest_arrival_passenger<<endl;
+			//<<new_slack_time<<endl;
 			cout<<"cd: "<<" "<<increase<<" "<<min_increase_length<<" "<<new_slack_time<<" "<<drop_off_time<<" "<<latest_arrival_passenger<<" "<<new_capacity<<endl;
 			if ((increase < min_increase_length) && (new_slack_time >= 0) && (drop_off_time <= latest_arrival_passenger) && (new_capacity >= 0)) {
 				feasible_insertion_found = true;
@@ -6097,7 +6242,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 							flexibilize_arrival_time = false;
 
 						//<<"15.872"<<endl;
-						cheapest_destination(p, best_v, best_pos_origin, min_increase_length, sel_destination, pos_destination, repeated_station, flexibilize_arrival_time, infeasible_insertion);
+						cheapest_destination2(p, best_v, best_pos_origin, min_increase_length, sel_destination, pos_destination, repeated_station, flexibilize_arrival_time, infeasible_insertion);
 						//<<"out 15.872"<<endl;
 						//<<"pos origin: "<<best_pos_origin<<" "<<endl;
 						//<<"pos dest: "<<pos_destination<<" sd: "<<sel_destination<<" "<<endl;
