@@ -4941,7 +4941,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 	
 	//check for highest capacitated vehicle from partition that is empty
 
-	//<<p<<endl;
+	cout<<"pass: "<<p<<endl;
 	capacity_best_empty_vehicle = INT_MIN;
 	int best_distance_location = INT_MAX;
 
@@ -5854,8 +5854,8 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 			vector<int> filtered_vehicles_p2;
 			filter_vehicles2(p, cluster_id, filtered_vehicles_p2);
 			//<<"filtered size: "<<filtered_vehicles_p.size()<<endl;
-			//<<"filtered_vehicles SIZE "<<filtered_vehicles_p2.size()<<" "<<served_passengers<<" "<<cluster_id<<endl;
-			//<<"clsize "<<clusters[cluster_id].size()<<"p "<<p<<endl;
+			cout<<"filtered_vehicles SIZE "<<filtered_vehicles_p2.size()<<" "<<served_passengers<<" "<<cluster_id<<endl;
+			cout<<"clsize "<<clusters[cluster_id].size()<<"p "<<p<<endl;
 			bool not_feasible_insertion = true;
 			int iterations = 0;
 			bool tested_all_vehicles_once = false;
@@ -6244,8 +6244,8 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 						//<<"15.872"<<endl;
 						cheapest_destination2(p, best_v, best_pos_origin, min_increase_length, sel_destination, pos_destination, repeated_station, flexibilize_arrival_time, infeasible_insertion);
 						//<<"out 15.872"<<endl;
-						//<<"pos origin: "<<best_pos_origin<<" "<<endl;
-						//<<"pos dest: "<<pos_destination<<" sd: "<<sel_destination<<" "<<endl;
+						cout<<"pos origin: "<<best_pos_origin<<" "<<endl;
+						cout<<"pos dest: "<<pos_destination<<" sd: "<<sel_destination<<" "<<endl;
 						
 						if ((sel_destination != -1)) { 
 
