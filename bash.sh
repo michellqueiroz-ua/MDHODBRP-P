@@ -3,10 +3,13 @@ num_parallel=4
 
 # Define the function to execute your binary
 run_binary() {
-	input_file="$1"
-	seed1=1504
-    file_name=$(basename "$input_file")
-    ./a.out --filename_requests $input_file --seed $seed1 --filename_travel_time "travel_time_updated3.csv" --output_file "concert4.txt" --number_depots 3 --depot 5825 5826 5827 --type_vehicles 3 --number_vehicles1 7 --number_vehicles2 7 --number_vehicles3 7 --capacity_vehicles 8 16 32 --init_temperature 1.3 --lamba 0.9 --maxnrep 350 --increase_rep 800 --total_requests 900  
+	for iter in 1 2 3 4 5
+	do
+		input_file="$1"
+		seed1=1504+iter
+	    file_name=$(basename "$input_file")
+	    ./a.out --filename_requests $input_file --seed $seed1 --filename_travel_time "travel_time_updated3.csv" --output_file "concert1.txt" --number_depots 3 --depot 5825 5826 5827 --type_vehicles 3 --number_vehicles1 7 --number_vehicles2 7 --number_vehicles3 7 --capacity_vehicles 8 16 32 --init_temperature 1.3 --lamba 0.9 --maxnrep 350 --increase_rep 800 --total_requests 900  
+	done
 }
 
 export -f run_binary
