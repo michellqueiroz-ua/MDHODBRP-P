@@ -13097,7 +13097,7 @@ int main(int argc, char **argv) {
 		//<<"lelapsed: "<<l_elapsed_algo_time<<endl;
 		difference_elapsed = l_elapsed_algo_time - p_elapsed_algo_time;
 		
-		difference_elapsed = difference_elapsed*4;
+		difference_elapsed = difference_elapsed*2;
 		if (difference_elapsed < 1)
 			current_time += 1;
 		else
