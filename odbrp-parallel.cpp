@@ -12319,8 +12319,8 @@ int main(int argc, char **argv) {
   	{
 		if (strcmp(argv[i], "--filename_requests") == 0) {
 			//input_requests_festival(argv[i+1]);
-			input_requests_commuting(argv[i+1]);
-			//input_requests(argv[i+1]); //concert & nightlife
+			//input_requests_commuting(argv[i+1]);
+			input_requests(argv[i+1]); //concert & nightlife
 			requests_filename = argv[i+1];;
 			cout<<"x"<<total_requests<<" ";
 		} else if (strcmp(argv[i], "--filename_travel_time") == 0) {
@@ -12739,7 +12739,7 @@ int main(int argc, char **argv) {
 	//concert 42120(ta errado era pra ser 23.5, nao 11.5)
 	//nightlife - 88400 
 	//concert 2 - 70400
-	while((k < total_requests) or (current_time < 32400)) {
+	while((k < total_requests) or (current_time < 70400)) {
 	//while(current_time < 28800) {
 		
 		check_last_position_route();
