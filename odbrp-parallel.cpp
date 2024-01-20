@@ -28,7 +28,7 @@ using namespace std;
 #define maxtotalcapacity 40
 #define maxtypevehicles 40
 #define maxnumberdepots 10
-#define number_clusters 4
+#define number_clusters 1
 
 typedef int listP[21000 + 1];
 //typedef int matrixVP[maxvehicles + 1][maxpassengers + 1];
@@ -12736,7 +12736,6 @@ int main(int argc, char **argv) {
 	p_updated_cluster = current_time;
 	//64800 - festival
 	//commuting - 32400
-	//concert 42120(ta errado era pra ser 23.5, nao 11.5)
 	//nightlife - 88400 
 	//concert 2 - 70400
 	while((k < total_requests) or (current_time < 70400)) {
@@ -12831,7 +12830,7 @@ int main(int argc, char **argv) {
 								//<<"cluster av: "<<avl_cluster[px]<<endl;
 								
 								cout<<"bf_inser1 "<<avl_cluster[px]<<endl;
-								bool entered_here = false;
+								/*bool entered_here = false;
 								bool entered_there = false;
 								if (avl_cluster[px] == sort_clusters[nxt_p][0].idx_cluster){
 									entered_here = true;
@@ -12850,9 +12849,9 @@ int main(int argc, char **argv) {
 											}
 										}
 									}
-								}
+								}*/
 
-								//cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, avl_cluster[px]);
+								cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, avl_cluster[px]);
 								
 								//cout<<"af_inser1 "<<avl_cluster[px]<<endl;
 
@@ -12999,7 +12998,7 @@ int main(int argc, char **argv) {
 
 			double y = (double)rand() / (double)RAND_MAX;
 
-			if (y <= 0.5) {
+			if (y <= 0.0) {
 
 				//decide new centroids
 				
