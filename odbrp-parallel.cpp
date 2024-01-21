@@ -28,7 +28,7 @@ using namespace std;
 #define maxtotalcapacity 40
 #define maxtypevehicles 40
 #define maxnumberdepots 10
-#define number_clusters 8
+#define number_clusters 1
 
 typedef int listP[21000 + 1];
 //typedef int matrixVP[maxvehicles + 1][maxpassengers + 1];
@@ -12738,7 +12738,11 @@ int main(int argc, char **argv) {
 	//commuting - 32400
 	//nightlife - 88400 
 	//concert 2 - 70400
+
+	int algo_iterations = 0;
 	while((k < total_requests) or (current_time < 32400)) {
+	//while(algo_iterations < 1000) {
+		//algo_iterations++;
 	//while(current_time < 28800) {
 		
 		check_last_position_route();
@@ -12792,14 +12796,14 @@ int main(int argc, char **argv) {
 			}
 			int reinsertions_passenger_old = 0;
 			
-			int num_threads_compute_partitions = passengers_to_be_inserted.size();
+			/*int num_threads_compute_partitions = passengers_to_be_inserted.size();
 			#pragma omp parallel for num_threads(num_threads_compute_partitions)
 			for (int px = 0; px<num_threads_compute_partitions; px++) {
 				if (px < passengers_to_be_inserted.size()) {
 					int nxt_p = passengers_to_be_inserted[px];
 					compute_mean_distances_request_partitions(nxt_p);
 				}
-			}
+			}*/
 
 			while (passengers_to_be_inserted.size() > 0) {
 
@@ -13056,12 +13060,12 @@ int main(int argc, char **argv) {
 			}
 
 			
-			/*for (int i = 0; i < number_clusters; i++) {
+			for (int i = 0; i < number_clusters; i++) {
 		    	for (int j=0; j<clusters[i].size();j++){
 		    		cout<<clusters[i][j]<<" ";
 		    	}
 		    	cout<<endl;
-		    }*/
+		    }
 		}
 		//decide new centroids
 
