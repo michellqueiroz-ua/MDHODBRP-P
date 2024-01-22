@@ -28,7 +28,7 @@ using namespace std;
 #define maxtotalcapacity 40
 #define maxtypevehicles 40
 #define maxnumberdepots 10
-#define number_clusters 4
+#define number_clusters 2
 
 typedef int listP[21000 + 1];
 //typedef int matrixVP[maxvehicles + 1][maxpassengers + 1];
@@ -12738,9 +12738,10 @@ int main(int argc, char **argv) {
 	//commuting - 32400
 	//nightlife - 88400 
 	//concert 2 - 70400
+	//commuting2 - 70400
 
 	int algo_iterations = 0;
-	while((k < total_requests) or (current_time < 32400)) {
+	while((k < total_requests) or (current_time < 70400)) {
 	//while(algo_iterations < 1000) {
 		//algo_iterations++;
 	//while(current_time < 28800) {
@@ -13002,7 +13003,7 @@ int main(int argc, char **argv) {
 
 			double y = (double)rand() / (double)RAND_MAX;
 
-			if (y <= 0.0) {
+			if (y <= 1.0) {
 
 				//decide new centroids
 				
