@@ -13002,7 +13002,7 @@ int main(int argc, char **argv) {
 
 			double y = (double)rand() / (double)RAND_MAX;
 
-			if (y <= 0.0) {
+			if (y <= 1.0) {
 
 				//decide new centroids
 				
@@ -13059,13 +13059,16 @@ int main(int argc, char **argv) {
 
 			}
 
-			
 			for (int i = 0; i < number_clusters; i++) {
+				cout<<clusters[i].size()<<" ";
+			}
+			cout<<endl;
+			/*for (int i = 0; i < number_clusters; i++) {
 		    	for (int j=0; j<clusters[i].size();j++){
 		    		cout<<clusters[i][j]<<" ";
 		    	}
 		    	cout<<endl;
-		    }
+		    }*/
 		}
 		//decide new centroids
 
@@ -13240,7 +13243,7 @@ int main(int argc, char **argv) {
 	//<<total_user_ride_time<<endl;
 	std::ofstream output_file;
 	output_file.open(output_filename, std::ios::app);
-	output_file << requests_filename << " " << served_passengers << " " << served_passengers_3party << " " << total_served_passengers << " " << passengers_per_kilometer << " " << average_extra_travel_time << " " << average_travel_time_ratio << " " << total_deadheading_times << " " << total_shared_times << " " << total_user_ride_time << " " << best_total_user_ride_time << " " << average_user_ride_time << " " << seed << " ";
+	output_file << requests_filename << " " << served_passengers << " " << served_passengers_3party << " " << total_served_passengers << " " << passengers_per_kilometer << " " << average_extra_travel_time << " " << average_travel_time_ratio << " " << total_deadheading_times << " " << total_shared_times << " " << total_user_ride_time << " " << best_total_user_ride_time << " avgurt: " << average_user_ride_time << " " << seed << " ";
 	output_file<<" ";
 	//previously already commented
 	/*cout << "served passengers ODB " << served_passengers << endl;
