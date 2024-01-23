@@ -28,7 +28,7 @@ using namespace std;
 #define maxtotalcapacity 40
 #define maxtypevehicles 40
 #define maxnumberdepots 10
-#define number_clusters 8
+#define number_clusters 1
 
 typedef int listP[21000 + 1];
 //typedef int matrixVP[maxvehicles + 1][maxpassengers + 1];
@@ -12736,12 +12736,13 @@ int main(int argc, char **argv) {
 	p_updated_cluster = current_time;
 	//64800 - festival
 	//commuting - 32400
-	//nightlife - 88400 
+	//nightlife - 88400
+	//nightlife2 - 22600 
 	//concert 2 - 70400
 	//commuting2 - 70400
 
 	int algo_iterations = 0;
-	while((k < total_requests) or (current_time < 88400)) {
+	while((k < total_requests) or (current_time < nightlife2)) {
 	//while(algo_iterations < 1000) {
 		//algo_iterations++;
 	//while(current_time < 28800) {
