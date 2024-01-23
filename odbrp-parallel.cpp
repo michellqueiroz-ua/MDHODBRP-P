@@ -12742,7 +12742,7 @@ int main(int argc, char **argv) {
 	//commuting2 - 70400
 
 	int algo_iterations = 0;
-	while((k < total_requests) or (current_time < nightlife2)) {
+	while((k < total_requests) or (current_time < 22600)) {
 	//while(algo_iterations < 1000) {
 		//algo_iterations++;
 	//while(current_time < 28800) {
