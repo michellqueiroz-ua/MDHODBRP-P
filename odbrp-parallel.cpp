@@ -12319,8 +12319,8 @@ int main(int argc, char **argv) {
   	{
 		if (strcmp(argv[i], "--filename_requests") == 0) {
 			//input_requests_festival(argv[i+1]);
-			input_requests_commuting(argv[i+1]);
-			//input_requests(argv[i+1]); //concert & nightlife
+			//input_requests_commuting(argv[i+1]);
+			input_requests(argv[i+1]); //concert & nightlife
 			requests_filename = argv[i+1];;
 			cout<<"x"<<total_requests<<" ";
 		} else if (strcmp(argv[i], "--filename_travel_time") == 0) {
@@ -12741,7 +12741,7 @@ int main(int argc, char **argv) {
 	//commuting2 - 70400
 
 	int algo_iterations = 0;
-	while((k < total_requests) or (current_time < 70400)) {
+	while((k < total_requests) or (current_time < 88400)) {
 	//while(algo_iterations < 1000) {
 		//algo_iterations++;
 	//while(current_time < 28800) {
