@@ -28,7 +28,7 @@ using namespace std;
 #define maxtotalcapacity 40
 #define maxtypevehicles 40
 #define maxnumberdepots 10
-#define number_clusters 16
+#define number_clusters 1
 
 typedef int listP[21000 + 1];
 //typedef int matrixVP[maxvehicles + 1][maxpassengers + 1];
@@ -12318,9 +12318,9 @@ int main(int argc, char **argv) {
 	for (int i=1; i<argc; i++)
   	{
 		if (strcmp(argv[i], "--filename_requests") == 0) {
-			input_requests_festival(argv[i+1]);
+			//input_requests_festival(argv[i+1]);
 			//input_requests_commuting(argv[i+1]);
-			//input_requests(argv[i+1]); //concert & nightlife
+			input_requests(argv[i+1]); //concert & nightlife
 			requests_filename = argv[i+1];;
 			cout<<"x"<<total_requests<<" ";
 		} else if (strcmp(argv[i], "--filename_travel_time") == 0) {
@@ -12742,7 +12742,7 @@ int main(int argc, char **argv) {
 	//commuting2 - 70400
 
 	int algo_iterations = 0;
-	while((k < total_requests) or (current_time < 65800)) {
+	while((k < total_requests) or (current_time < 70400)) {
 	//while(algo_iterations < 1000) {
 		//algo_iterations++;
 	//while(current_time < 28800) {
