@@ -28,7 +28,7 @@ using namespace std;
 #define maxtotalcapacity 40
 #define maxtypevehicles 40
 #define maxnumberdepots 10
-#define number_clusters 16
+#define number_clusters 10
 
 typedef int listP[21000 + 1];
 //typedef int matrixVP[maxvehicles + 1][maxpassengers + 1];
@@ -12743,7 +12743,16 @@ int main(int argc, char **argv) {
 	//concert - 86600
 
 	int algo_iterations = 0;
-	while((k < total_requests) or (current_time < 86600)) {
+
+	/*while(k < total_requests) { 
+		passengers_to_be_inserted.push_back(sort_passengers[k].k);
+		//cout<<"p and ts: "<<sort_passengers[k].k<<" "<<sort_passengers[k].time_stamp<<endl;
+		//cout<<"k: "<<k<<endl;
+		k++;
+	}*/
+
+
+	while((k < total_requests) or (current_time < 88400)) {
 	//while(algo_iterations < 1000) {
 		//algo_iterations++;
 	//while(current_time < 28800) {
@@ -12754,20 +12763,17 @@ int main(int argc, char **argv) {
 		//	reassign_vehicles_to_another_depot();
 		
 		if ((current_time >= sort_passengers[k].time_stamp)) {
-
+		//if (algo_iterations < 1000) {
 			if (passengers_to_be_inserted.size() > 0) {
 				passengers_to_be_inserted.clear();
 			}
 
-			
-			//cout<<"ct ts: "<<current_time<<" "<<time_stamp[k]<<endl;
-
+			//comment static
 			while((current_time >= sort_passengers[k].time_stamp) && (k < total_requests)) { 
 				passengers_to_be_inserted.push_back(sort_passengers[k].k);
-				//cout<<"p and ts: "<<sort_passengers[k].k<<" "<<sort_passengers[k].time_stamp<<endl;
-				//cout<<"k: "<<k<<endl;
 				k++;
 			}
+			//coment static
 
 			for (int ol=0;ol<passengers_to_be_insertedOLD.size();ol++){
 				passengers_to_be_inserted.push_back(passengers_to_be_insertedOLD[ol]);
@@ -12776,13 +12782,14 @@ int main(int argc, char **argv) {
 			if (passengers_to_be_insertedOLD.size() > 0) 
 				passengers_to_be_insertedOLD.clear();
 
-			
 
+		
 			int num_threads_for = passengers_to_be_inserted.size();
 			if (num_threads_for > number_clusters) {
 				num_threads_for = number_clusters;
 			}
-			//<<"hier3.2"<<endl;
+
+			
 
 			/*#pragma omp parallel for num_threads(num_threads_for)
 			for (int itx = 0; itx<num_threads_for; itx++) {
@@ -12957,24 +12964,7 @@ int main(int argc, char **argv) {
 				//	std::shuffle(passengers_to_be_inserted.begin(), passengers_to_be_inserted.end(), default_random_engine(current_time));
 			}
 
-				/*bool accept_infeasible_insertion = false;
 				
-				for (int c=0; c<number_clusters; c++) {
-					cheapest_insertion_randomized_parallel(k, accept_infeasible_insertion, sort_clusters[k][c].idx_cluster);
-					if (vehicle_assigned[k] != -1)
-						break;
-				}
-
-				if (vehicle_assigned[k] == -1) {
-					//serve_passenger_third_party_vehicle(p);
-					//if (second_try)
-					serve_passenger_third_party_vehicle(k);
-					//else
-					//	passengers_on_hold.push_back(p);
-				}
-
-				k++;*/
-
 				/*cout<<"AFTER CONSTRUCTIVE"<<endl;
 				for (int kk=0;kk<k;kk++){
 					if (vehicle_assigned[kk] != -1) {
@@ -12986,8 +12976,7 @@ int main(int argc, char **argv) {
 				/*for (int vv=0;vv<total_number_vehicles;vv++){
 					times_validation(vv);
 				}*/
-				//<<"hieer1"<<endl;
-				//current_passenger++;
+				
 			
 		} 
 
@@ -12995,7 +12984,7 @@ int main(int argc, char **argv) {
 
 		difference_updated = current_time - p_updated_cluster;
 
-		//<<"els:"<<difference_updated<<endl;
+		//comment this static. no need to change partitions
 		if (difference_updated > 50) {
 			p_updated_cluster = current_time;
 			centroids.clear();
@@ -13004,6 +12993,7 @@ int main(int argc, char **argv) {
 			}
 
 			double y = (double)rand() / (double)RAND_MAX;
+
 
 			if (y <= 1.0) {
 
@@ -13031,52 +13021,15 @@ int main(int argc, char **argv) {
 
 				build_clusters();
 
-				/*int summ=0;
-				for (int ix=0; ix<number_clusters;ix++){
-					summ += clusters[ix].size();
-					cout<<clusters[ix].size()<<"; ";
-				}
-
-				cout<<endl;*/
-				
-				/*if (summ < total_number_vehicles) {
-					cout<<"MEGRA ERROR1"<<endl;
-					cout<<"sum: "<<summ<<endl;
-				}*/
-
 			} else {
 				randomly_assign_clusters();
 
-				/*int summ=0;
-				for (int ix=0; ix<number_clusters;ix++){
-					summ += clusters[ix].size();
-					cout<<clusters[ix].size()<<"; ";
-				}*/
-
-				//cout<<endl;
-				
-				/*if (summ < total_number_vehicles) {
-					cout<<"MEGRA ERROR2"<<endl;
-					cout<<"sum: "<<summ<<endl;
-				}*/
-
-			}
-
-			for (int i = 0; i < number_clusters; i++) {
-				cout<<clusters[i].size()<<" ";
-			}
-			cout<<endl;
-			/*for (int i = 0; i < number_clusters; i++) {
-		    	for (int j=0; j<clusters[i].size();j++){
-		    		cout<<clusters[i][j]<<" ";
-		    	}
-		    	cout<<endl;
-		    }*/
+			}		
 		}
 		//decide new centroids
+		//comment this static. no need to change partitions
 
-		//<<"xxxheeerexxxx1"<<endl;
-		//<<"actual passenger "<<k<<endl;
+		
 		cout<<"hier7sa"<<endl;
 		if (k > total_number_vehicles + 10) {
 		
@@ -13096,15 +13049,13 @@ int main(int argc, char **argv) {
 
 			}
 		}
-		//cout<<"hier8sa"<<endl;
+		
 
 		
 
-
-
+		//comment this static case
 		l_elapsed_algo_time = (double)(std::clock() - start_algorithm_time)/(double)(CLOCKS_PER_SEC);
-		//l_elapsed_algo_time = l_elapsed_algo_time*10000;
-		//<<"lelapsed: "<<l_elapsed_algo_time<<endl;
+		
 		difference_elapsed = l_elapsed_algo_time - p_elapsed_algo_time;
 		
 		difference_elapsed = difference_elapsed*2;
@@ -13114,93 +13065,13 @@ int main(int argc, char **argv) {
 			current_time += difference_elapsed;
 
 		p_elapsed_algo_time = l_elapsed_algo_time;
-		//<<"cct: "<<current_time<<endl;
+		
 		update_current_position();
 		
+		//comment this static case
 
-
-
-		//<<"out current pos"<<endl;
-		
-		//<<"xxxheeerexxxx2"<<endl;
-
-		//to remove all passengers from a vehicle
-		//possibly delta is being computed wrong
-		/*if (k > total_number_vehicles + 10) {
-
-			save_best_solution();
-			//<<"xxxheeerexxxx3"<<endl;
-			select_vehicles_havent_that_can_be_turned_empty();
-			cout<<"size vehicles at depot "<<vehicles_still_depot.size()<<endl;
-			for (int i=0; i<vehicles_still_depot.size();i++) {
-				int v = vehicles_still_depot[i];
-				bool megaerror = false;
-				if (passengers_at_vehicle[v].size() > 0)
-					empty_vehicle(v, megaerror, k);
-				if (megaerror){
-					cout<<"MEGAERRORRRR2"<<endl;
-					return 0;
-				}
-				//relocate_all_passengers_vehicle(v, init_temperature, type_move);
-				if (total_user_ride_time < best_total_user_ride_time) {
-					cout<<"2BEEST FOUND SO FAR2"<<endl;
-					save_best_solution();
-				}
-			}
-
-			return_best_solution();
-			cout<<"AFTER_ALL RELOCATE"<<endl;
-			for (int kk=0;kk<k;kk++){
-				if (vehicle_assigned[kk] != -1) {
-					solution_validation(kk, vehicle_assigned[kk]);
-				//served_passengers++;
-				}
-			}
-		}*/
 
 		
-		
-		//check_valid_user_ride_times();
-		/*served_passengers = 0;
-		for (int l=0;l<k;l++){
-			if (vehicle_assigned[l] != -1) {
-				served_passengers++;
-			}
-		}
-		cout << "served passengers ODB " << served_passengers << endl;*/
-
-
-		/*if (k > total_number_vehicles + 10) {
-			for (int l=0;l<3;l++){
-				int relocate_p = rand() % k;
-				if (vehicle_assigned[relocate_p] != -1)
-					relocate_passenger(relocate_p);
-			}
-			bool valid;
-			for (int m=0;m<=k;m++){
-				if (vehicle_assigned[m] != -1) {
-					valid = solution_validation(m, vehicle_assigned[m]);
-					if (not valid)
-						return 0;
-				}
-			}
-			
-		}*/
-		//cheapest_insertion(current_passenger);
-		
-		//update current position that still modifications will be able to happen
-		/*for (int v = 0; v < total_number_vehicles; v++) {
-			for (int j = current_position[v]; j < number_stops[v]; j++) {
-				if (departure_time_stop[v][j] >= current_time) {
-					current_position[v] = j; 
-					break;
-				}
-			}
-		}*/
-		
-		//<<endl;
-		//if (slack_time[19][1] < 0)
-		//	break;
 	}
 
 
