@@ -12744,16 +12744,18 @@ int main(int argc, char **argv) {
 
 	int algo_iterations = 0;
 
-	/*while(k < total_requests) { 
+	//static
+	while(k < total_requests) { 
 		passengers_to_be_inserted.push_back(sort_passengers[k].k);
 		//cout<<"p and ts: "<<sort_passengers[k].k<<" "<<sort_passengers[k].time_stamp<<endl;
 		//cout<<"k: "<<k<<endl;
 		k++;
-	}*/
+	}
+	//static
 
 
-	while((k < total_requests) or (current_time < 32400)) {
-	//while(algo_iterations < 1000) {
+	//while((k < total_requests) or (current_time < 32400)) {
+	while(algo_iterations < 1000) { //static
 		//algo_iterations++;
 	//while(current_time < 28800) {
 		
@@ -12762,17 +12764,20 @@ int main(int argc, char **argv) {
 		//if (k > num_iterations_to_start_reassign)
 		//	reassign_vehicles_to_another_depot();
 		
-		if ((current_time >= sort_passengers[k].time_stamp)) {
-		//if (algo_iterations < 1000) {
+		//if ((current_time >= sort_passengers[k].time_stamp)) {
+		if (algo_iterations < 1000) { //static
+
+			//comment static
+			/*
 			if (passengers_to_be_inserted.size() > 0) {
 				passengers_to_be_inserted.clear();
 			}
 
-			//comment static
+			
 			while((current_time >= sort_passengers[k].time_stamp) && (k < total_requests)) { 
 				passengers_to_be_inserted.push_back(sort_passengers[k].k);
 				k++;
-			}
+			}*/
 			//coment static
 
 			for (int ol=0;ol<passengers_to_be_insertedOLD.size();ol++){
@@ -12985,7 +12990,7 @@ int main(int argc, char **argv) {
 		difference_updated = current_time - p_updated_cluster;
 
 		//comment this static. no need to change partitions
-		if (difference_updated > 50) {
+		/*if (difference_updated > 50) {
 			p_updated_cluster = current_time;
 			centroids.clear();
 			for (int ix=0; ix<number_clusters;ix++){
@@ -13025,7 +13030,7 @@ int main(int argc, char **argv) {
 				randomly_assign_clusters();
 
 			}		
-		}
+		}*/
 		//decide new centroids
 		//comment this static. no need to change partitions
 
@@ -13054,6 +13059,7 @@ int main(int argc, char **argv) {
 		
 
 		//comment this static case
+		/*
 		l_elapsed_algo_time = (double)(std::clock() - start_algorithm_time)/(double)(CLOCKS_PER_SEC);
 		
 		difference_elapsed = l_elapsed_algo_time - p_elapsed_algo_time;
@@ -13066,7 +13072,7 @@ int main(int argc, char **argv) {
 
 		p_elapsed_algo_time = l_elapsed_algo_time;
 		
-		update_current_position();
+		update_current_position();*/
 		
 		//comment this static case
 
