@@ -1,10 +1,10 @@
 # Set the number of parallel processes
-num_parallel=4
+num_parallel=2
 
 # Define the function to execute your binary
 run_binary() {
 	counterx=0
-	for iter in 1 2 3 4 5
+	for iter in 5
 	do
 		counterx=$((counterx+1))
 		input_file="$1"
@@ -18,7 +18,7 @@ run_binary() {
 export -f run_binary
 
 # Use find to generate a list of input files and pass them to parallel
-find ../../large-instances/commuting2 -type f -name "*.csv" | parallel -j $num_parallel run_binary {}
+find ../../large-instances/commutingF2 -type f -name "*.csv" | parallel -j $num_parallel run_binary {}
 
 # Wait for all parallel processes to finish (old 502)
 wait

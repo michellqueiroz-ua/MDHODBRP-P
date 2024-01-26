@@ -2,7 +2,7 @@
 #
 
 #SBATCH --job-name=CreateNetwork
-#SBATCH --ntasks=8
+#SBATCH --ntasks=2
 #SBATCH --cpus-per-task=10
 #SBATCH --mem-per-cpu=4g
 #SBATCH --time=24:00:00
