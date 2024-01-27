@@ -28,7 +28,7 @@ using namespace std;
 #define maxtotalcapacity 40
 #define maxtypevehicles 40
 #define maxnumberdepots 10
-#define number_clusters 10
+#define number_clusters 1
 
 typedef int listP[21000 + 1];
 //typedef int matrixVP[maxvehicles + 1][maxpassengers + 1];
@@ -12939,7 +12939,7 @@ int main(int argc, char **argv) {
 						}
 					}
 
-					if (reinsertions_passenger_old < 20) {
+					if (reinsertions_passenger_old < 2) {
 						reinsertions_passenger_old++;
 						if (passengers_to_be_insertedOLD.size() > 0) {
 							for (int ol=0;ol<passengers_to_be_insertedOLD.size();ol++){
