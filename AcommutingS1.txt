@@ -1,0 +1,8 @@
+../../large-instances/commuting/Chicago,Illinois_ODBRP_commuting_6.5_8.5_5000_1.csv 5000 0 5000 0.0830248 -640.944 0.799083 4122723 3015842 12506528 12506528 avgurt: 2501 1  737.131
+../../large-instances/commuting/Chicago,Illinois_ODBRP_commuting_6.5_8.5_5000_1.csv 5000 0 5000 0.0828349 -667.718 0.787753 4154207 3014401 12372658 12372658 avgurt: 2474 2  720.169
+../../large-instances/commuting/Chicago,Illinois_ODBRP_commuting_6.5_8.5_5000_1.csv 5000 0 5000 0.0821774 -642.34 0.794457 4231131 2970026 12499551 12499551 avgurt: 2499 3  720.112
+../../large-instances/commuting/Chicago,Illinois_ODBRP_commuting_6.5_8.5_10000_1.csv 9998 2 10000 0.0803033 -283.292 0.954346 8143678 7222588 28901864 28901864 avgurt: 2890 1  2630.88
+../../large-instances/commuting/Chicago,Illinois_ODBRP_commuting_6.5_8.5_5000_1.csv 5000 0 5000 0.0821355 -632.877 0.803987 4297152 3020377 12546864 12546864 avgurt: 2509 4  725.639
+../../large-instances/commuting/Chicago,Illinois_ODBRP_commuting_6.5_8.5_5000_1.csv 5000 0 5000 0.0833834 -674.544 0.780857 4086600 2920783 12338529 12338529 avgurt: 2467 5  724.129
+../../large-instances/commuting/Chicago,Illinois_ODBRP_commuting_6.5_8.5_10000_1.csv 9998 2 10000 0.0800339 -295.109 0.947272 8229658 7061259 28783725 28783725 avgurt: 2878 2  2612.53
+../../large-instances/commuting/Chicago,Illinois_ODBRP_commuting_6.5_8.5_15000_1.csv 14995 5 15000 0.0772409 -25.2149 1.06028 12615605 11924740 47198561 47198561 avgurt: 3147 2  5893.39

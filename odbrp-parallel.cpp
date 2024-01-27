@@ -12734,6 +12734,8 @@ int main(int argc, char **argv) {
 	double p_elapsed_algo_time, l_elapsed_algo_time, difference_elapsed, difference_updated, p_updated_cluster;
 	p_elapsed_algo_time = 0;
 	p_updated_cluster = current_time;
+	int it_updated_cluster = 0;
+	int difference_updateds;
 	//64800 - festival
 	//commuting - 32400
 	//nightlife - 88400
@@ -12892,14 +12894,15 @@ int main(int argc, char **argv) {
 								//<<"continue: "<<vehicle_assigned[nxt_p]<<endl;
 								if (continue_this_passenger) {
 									//if (it_cl_inser[nxt_p] >= number_clusters) {
-										//att_inser[nxt_p]++;
+										att_inser[nxt_p]++;
 										
 										//if (att_inser[nxt_p] >= 2){
 											if (vehicle_assigned[nxt_p] == -1) {
 												
 												int response_time = current_time - time_stamp[nxt_p];
 												
-												if (response_time < 500) {
+												if (att_inser[nxt_p] < 100) { //static
+												//if (response_time < 500) {
 													passengers_to_be_insertedOLD.push_back(nxt_p);
 												}
 												
@@ -12987,50 +12990,55 @@ int main(int argc, char **argv) {
 
 		//l_elapsed_algo_time = (double)(std::clock() - start_algorithm_time)/(double)(CLOCKS_PER_SEC);
 
-		difference_updated = current_time - p_updated_cluster;
+		//difference_updated = current_time - p_updated_cluster;
+		difference_updateds = algo_iterations - it_updated_cluster; //static
 
 		//comment this static. no need to change partitions
-		/*if (difference_updated > 50) {
-			p_updated_cluster = current_time;
-			centroids.clear();
-			for (int ix=0; ix<number_clusters;ix++){
-				clusters[ix].clear();
-			}
+		//if (difference_updated > 50) {
+		if (number_clusters > 1) {
+			if (difference_updateds > 50) {
+				//p_updated_cluster = current_time;
 
-			double y = (double)rand() / (double)RAND_MAX;
-
-
-			if (y <= 1.0) {
-
-				//decide new centroids
-				
+				centroids.clear();
 				for (int ix=0; ix<number_clusters;ix++){
-
-					int cent = rand() % total_number_vehicles; 
-					bool already_centroid = false;
-					//i need also to verify if the vehicle is not already a "centroid"
-					for (int jx=0;jx<centroids.size();jx++){
-						if (centroids[jx] == cent)
-							already_centroid = true;
-					}
-
-					if (not already_centroid)
-						centroids.push_back(cent);
-					else
-						ix--;
+					clusters[ix].clear();
 				}
 
-				int epochs = 1000;
-				
-				k_medoids(number_clusters, epochs);
+				double y = (double)rand() / (double)RAND_MAX;
 
-				build_clusters();
+				//y = 0 - static
+				if (y <= 0.0) {
 
-			} else {
-				randomly_assign_clusters();
+					//decide new centroids
+					
+					for (int ix=0; ix<number_clusters;ix++){
 
-			}		
-		}*/
+						int cent = rand() % total_number_vehicles; 
+						bool already_centroid = false;
+						//i need also to verify if the vehicle is not already a "centroid"
+						for (int jx=0;jx<centroids.size();jx++){
+							if (centroids[jx] == cent)
+								already_centroid = true;
+						}
+
+						if (not already_centroid)
+							centroids.push_back(cent);
+						else
+							ix--;
+					}
+
+					int epochs = 1000;
+					
+					k_medoids(number_clusters, epochs);
+
+					build_clusters();
+
+				} else {
+					randomly_assign_clusters();
+
+				}		
+			}
+		}
 		//decide new centroids
 		//comment this static. no need to change partitions
 
