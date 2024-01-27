@@ -28,7 +28,7 @@ using namespace std;
 #define maxtotalcapacity 40
 #define maxtypevehicles 40
 #define maxnumberdepots 10
-#define number_clusters 16
+#define number_clusters 1
 
 typedef int listP[21000 + 1];
 //typedef int matrixVP[maxvehicles + 1][maxpassengers + 1];
@@ -12756,7 +12756,7 @@ int main(int argc, char **argv) {
 
 	//while((k < total_requests) or (current_time < 32400)) {
 	while(algo_iterations < 1000) { //static
-		//algo_iterations++;
+		algo_iterations++;
 	//while(current_time < 28800) {
 		
 		check_last_position_route();
