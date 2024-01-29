@@ -642,7 +642,7 @@ void return_save_vehicle_p(int v){
 				stops[v].insert(stops[v].begin(), 0);
 				number_passengers_action[v].insert(number_passengers_action[v].begin(), 0);
 				action_passengers[v].insert(action_passengers[v].begin(), vector<int>());
-				action_passengers[v][0].resize(15);
+				action_passengers[v][0].resize(10);
 				arrival_time_stop[v].insert(arrival_time_stop[v].begin(), 0);
 				departure_time_stop[v].insert(departure_time_stop[v].begin(), 0);
 				slack_time[v].insert(slack_time[v].begin(), 0);
@@ -2766,7 +2766,7 @@ void remove_passenger_from_vehicle(int v, int p) {
 					//update passenger performing actions on the stops
 					//if (action_passengers[best_v].size() < best_pos_origin)
 					action_passengers[best_v].insert(action_passengers[best_v].begin() + best_pos_origin, vector<int>());
-					action_passengers[best_v][best_pos_origin].resize(15);
+					action_passengers[best_v][best_pos_origin].resize(10);
 					action_passengers[best_v][best_pos_origin][0] = p;
 					next_free_position_passenger[best_v] = 1;
 					//action_passengers[best_v][best_pos_origin].insert(action_passengers[best_v][best_pos_origin].begin(), p);
@@ -2881,7 +2881,7 @@ void remove_passenger_from_vehicle(int v, int p) {
 						//update passenger performing actions on the stops
 						//if (action_passengers[best_v].size() < best_pos_origin)
 						action_passengers[best_v].insert(action_passengers[best_v].begin() + pos_destination, vector<int>());
-						action_passengers[best_v][pos_destination].resize(15);
+						action_passengers[best_v][pos_destination].resize(10);
 						action_passengers[best_v][pos_destination][0] = p;
 						//next_free_position_passenger[best_v] = 1;
 						//action_passengers[best_v][pos_destination].insert(action_passengers[best_v][pos_destination].begin(), p);
@@ -3673,7 +3673,7 @@ void re_insertion_to_repair(int p, bool &accept_relocate_trip, int cluster_id){
 
 					//update passenger performing actions on the stops
 					action_passengers[best_v].insert(action_passengers[best_v].begin() + best_pos_origin, vector<int>());
-					action_passengers[best_v][best_pos_origin].resize(15);
+					action_passengers[best_v][best_pos_origin].resize(10);
 					action_passengers[best_v][best_pos_origin][0] = p;
 					//next_free_position_passenger[best_v] = 1;
 					//action_passengers[best_v][best_pos_origin].insert(action_passengers[best_v][best_pos_origin].begin(), p);
@@ -3897,7 +3897,7 @@ void re_insertion_to_repair(int p, bool &accept_relocate_trip, int cluster_id){
 						//update passenger performing actions on the stops
 						action_passengers[best_v].insert(action_passengers[best_v].begin() + pos_destination, vector<int>());
 						//action_passengers[best_v][pos_destination].insert(action_passengers[best_v][pos_destination].begin(), p);
-						action_passengers[best_v][pos_destination].resize(15);
+						action_passengers[best_v][pos_destination].resize(10);
 						action_passengers[best_v][pos_destination][0] = p;
 						number_passengers_action[best_v].insert(number_passengers_action[best_v].begin() + pos_destination, 1);
 						//<<"hierrs2"<<endl;
@@ -5119,7 +5119,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 					//update passenger performing actions on the stops
 					//<<"hiiieer1"<<endl;
 					action_passengers[v].insert(action_passengers[v].begin() + pos_origin, vector<int>());
-					action_passengers[v][pos_origin].resize(15);
+					action_passengers[v][pos_origin].resize(10);
 					action_passengers[v][pos_origin][0] = p;
 					//<<"hiiieer2"<<endl;
 					//action_passengers[v][pos_origin].insert(action_passengers[v][pos_origin].begin(), p);
@@ -5235,7 +5235,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 					//update passenger performing actions on the stops
 					//<<"hiiieer3"<<endl;
 					action_passengers[v].insert(action_passengers[v].begin() + pos_destination, vector<int>());
-					action_passengers[v][pos_destination].resize(15);
+					action_passengers[v][pos_destination].resize(10);
 					action_passengers[v][pos_destination][0] = p;
 					//<<"hiiieer2"<<endl;
 					//action_passengers[v][pos_destination].insert(action_passengers[v][pos_destination].begin(), p);
@@ -5333,7 +5333,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 						
 						//update passenger performing actions on the stops
 						action_passengers[v].insert(action_passengers[v].begin() + pos_destination, vector<int>());
-						action_passengers[v].resize(15);
+						action_passengers[v].resize(10);
 						action_passengers[v][pos_destination][0] = p;
 						//action_passengers[v][pos_destination].insert(action_passengers[v][pos_destination].begin(), p);
 						number_passengers_action[v].insert(number_passengers_action[v].begin() + pos_destination, 1);
@@ -5473,7 +5473,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 						
 						//update passenger performing actions on the stops
 						action_passengers[v].insert(action_passengers[v].begin() + pos_origin, vector<int>());
-						action_passengers[v][pos_origin].resize(15);
+						action_passengers[v][pos_origin].resize(10);
 						action_passengers[v][pos_origin][0] = p;
 						//action_passengers[v][pos_origin].insert(action_passengers[v][pos_origin].begin(), p);
 						number_passengers_action[v].insert(number_passengers_action[v].begin() + pos_origin, 1);
@@ -5582,7 +5582,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 						passengers_departure_time_from_home[p] = best_departure_time_from_home;
 						//update passenger performing actions on the stops
 						action_passengers[v].insert(action_passengers[v].begin() + pos_destination, vector<int>());
-						action_passengers[v][pos_destination].resize(15);
+						action_passengers[v][pos_destination].resize(10);
 						action_passengers[v][pos_destination][0] = p;
 						//action_passengers[v][pos_destination].insert(action_passengers[v][pos_destination].begin(), p);
 						number_passengers_action[v].insert(number_passengers_action[v].begin() + pos_destination, 1);
@@ -5698,7 +5698,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 							//update passenger performing actions on the stops
 							
 							action_passengers[v].insert(action_passengers[v].begin() + pos_destination, vector<int>());
-							action_passengers[v][pos_destination].resize(15);
+							action_passengers[v][pos_destination].resize(10);
 							action_passengers[v][pos_destination][0] = p;
 							//action_passengers[v][pos_destination].insert(action_passengers[v][pos_destination].begin(), p);
 							number_passengers_action[v].insert(number_passengers_action[v].begin() + pos_destination, 1);
@@ -6074,7 +6074,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 
 							//update passenger performing actions on the stops
 							action_passengers[best_v].insert(action_passengers[best_v].begin() + best_pos_origin, std::vector<int>());
-							action_passengers[best_v][best_pos_origin].resize(15);
+							action_passengers[best_v][best_pos_origin].resize(10);
 							action_passengers[best_v][best_pos_origin][0] = p;
 
 							//action_passengers[best_v][best_pos_origin].insert(action_passengers[best_v][best_pos_origin].begin(), p);
@@ -6292,7 +6292,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 
 								//update passenger performing actions on the stops
 								action_passengers[best_v].insert(action_passengers[best_v].begin() + pos_destination, vector<int>());
-								action_passengers[best_v][pos_destination].resize(15);
+								action_passengers[best_v][pos_destination].resize(10);
 								action_passengers[best_v][pos_destination][0] = p;
 								//action_passengers[best_v][pos_destination].insert(action_passengers[best_v][pos_destination].begin(), p);
 								number_passengers_action[best_v].insert(number_passengers_action[best_v].begin() + pos_destination, 1);
@@ -6463,7 +6463,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 
 									//update passenger performing actions on the stops
 									action_passengers[best_v].insert(action_passengers[best_v].begin() + pos_destination, vector<int>());
-									action_passengers[best_v][pos_destination].resize(15);
+									action_passengers[best_v][pos_destination].resize(10);
 									action_passengers[best_v][pos_destination][0] = p;
 									//action_passengers[best_v][pos_destination].insert(action_passengers[best_v][pos_destination].begin(), p);
 									number_passengers_action[best_v].insert(number_passengers_action[best_v].begin() + pos_destination, 1);
@@ -6773,8 +6773,8 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 	//<<"almost exiting"<<endl;
 	for (int i=0;i<total_number_vehicles;i++)
 		blocked_vehicles[p][i] = 0;
-	//if (vehicle_assigned[p] == -1)
-	//cout<<"exiting cluster: "<<cluster_id<<endl;
+	if (vehicle_assigned[p] == -1)
+		cout<<"exiting cluster: "<<cluster_id<<endl;
 }
 
 //this cheapest insertion considers to insert passengers at positions that are not the min increase in length traveled
@@ -9417,7 +9417,7 @@ void re_insertion(int p, bool &accept_relocate_trip, double &temperature, int &t
 
 					//update passenger performing actions on the stops
 					action_passengers[best_v].insert(action_passengers[best_v].begin() + best_pos_origin, vector<int>());
-					action_passengers[best_v][best_pos_origin].resize(15);
+					action_passengers[best_v][best_pos_origin].resize(10);
 					action_passengers[best_v][best_pos_origin][0] = p;
 					//action_passengers[best_v][best_pos_origin].insert(action_passengers[best_v][best_pos_origin].begin(), p);
 					number_passengers_action[best_v].insert(number_passengers_action[best_v].begin() + best_pos_origin, 1);
@@ -9638,7 +9638,7 @@ void re_insertion(int p, bool &accept_relocate_trip, double &temperature, int &t
 
 						//update passenger performing actions on the stops
 						action_passengers[best_v].insert(action_passengers[best_v].begin() + pos_destination, vector<int>());
-						action_passengers[best_v][pos_destination].resize(15);
+						action_passengers[best_v][pos_destination].resize(10);
 						action_passengers[best_v][pos_destination][0] = p;
 						//action_passengers[best_v][pos_destination].insert(action_passengers[best_v][pos_destination].begin(), p);
 						number_passengers_action[best_v].insert(number_passengers_action[best_v].begin() + pos_destination, 1);
@@ -9850,7 +9850,7 @@ void re_insertion(int p, bool &accept_relocate_trip, double &temperature, int &t
 							//update passenger performing actions on the stops
 							action_passengers[best_v].insert(action_passengers[best_v].begin() + pos_destination, vector<int>());
 							
-							action_passengers[best_v][pos_destination].resize(15);
+							action_passengers[best_v][pos_destination].resize(10);
 							action_passengers[best_v][pos_destination][0] = p;
 							//action_passengers[best_v][pos_destination].insert(action_passengers[best_v][pos_destination].begin(), p);
 							number_passengers_action[best_v].insert(number_passengers_action[best_v].begin() + pos_destination, 1);
@@ -10069,7 +10069,7 @@ void re_insertion(int p, bool &accept_relocate_trip, double &temperature, int &t
 				}*/
 
 				update_URT(best_v);
-				print_v_vehicle(best_v);
+				//print_v_vehicle(best_v);
 				
 
 				//if (best_v == 24) {
@@ -10282,7 +10282,7 @@ void re_insertion_nn(int p, bool &accept_relocate_trip, double &temperature, int
 
 					//update passenger performing actions on the stops
 					action_passengers[best_v].insert(action_passengers[best_v].begin() + best_pos_origin, vector<int>());
-					action_passengers[best_v][best_pos_origin].resize(15);
+					action_passengers[best_v][best_pos_origin].resize(10);
 					action_passengers[best_v][best_pos_origin][0] = p;
 					//action_passengers[best_v][best_pos_origin].insert(action_passengers[best_v][best_pos_origin].begin(), p);
 					number_passengers_action[best_v].insert(number_passengers_action[best_v].begin() + best_pos_origin, 1);
@@ -10495,7 +10495,7 @@ void re_insertion_nn(int p, bool &accept_relocate_trip, double &temperature, int
 
 						//update passenger performing actions on the stops
 						action_passengers[best_v].insert(action_passengers[best_v].begin() + pos_destination, vector<int>());
-						action_passengers[best_v][pos_destination].resize(15);
+						action_passengers[best_v][pos_destination].resize(10);
 						action_passengers[best_v][pos_destination][0] = p;
 						//action_passengers[best_v][pos_destination].insert(action_passengers[best_v][pos_destination].begin(), p);
 						number_passengers_action[best_v].insert(number_passengers_action[best_v].begin() + pos_destination, 1);
@@ -11750,7 +11750,7 @@ void check_last_position_route() {
 						
 					//update passenger performing actions on the stops
 					action_passengers[v].insert(action_passengers[v].begin() + pos_origin, vector<int>());
-					action_passengers[v][pos_origin].resize(15);
+					action_passengers[v][pos_origin].resize(10);
 					action_passengers[v][pos_origin][0] = -1;
 
 					//action_passengers[v][pos_origin].insert(action_passengers[v][pos_origin].begin(), -1);
@@ -12852,7 +12852,7 @@ int main(int argc, char **argv) {
 								//<<"0nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 								//<<"cluster av: "<<avl_cluster[px]<<endl;
 								
-								//cout<<"bf_inser1 "<<avl_cluster[px]<<endl;
+								cout<<"bf_inser1 "<<avl_cluster[px]<<endl;
 								/*bool entered_here = false;
 								bool entered_there = false;
 								if (avl_cluster[px] == sort_clusters[nxt_p][0].idx_cluster){
@@ -13054,11 +13054,11 @@ int main(int argc, char **argv) {
 			for (int c=0; c<number_clusters; c++) {
 				//<<k<<endl;
 				//<<"passenger: p"<<k<<endl;
-				//cout<<"cluster c"<<c<<endl;
+				cout<<"cluster c"<<c<<endl;
 				simulated_annealing(k, c);
 				//check_valid_user_ride_times();
 				//<<"passenger: p"<<k<<endl;
-				//cout<<"cluster c2"<<c<<endl;
+				cout<<"cluster c2"<<c<<endl;
 				return_best_solution(c);
 				//<<"out heere"<<endl;
 
