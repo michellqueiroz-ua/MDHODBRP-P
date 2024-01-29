@@ -10,7 +10,7 @@
 #SBATCH -e stderr.file
 #SBATCH --partition=zen2
 
-for input_file in `find festival -type f -name "*.csv"` ; do
+for input_file in `find ../../large-instances/festival -type f -name "*.csv"` ; do
     counterx=0
     for iter in 1 2 3 4 5
     do
