@@ -6774,7 +6774,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 	for (int i=0;i<total_number_vehicles;i++)
 		blocked_vehicles[p][i] = 0;
 	//if (vehicle_assigned[p] == -1)
-	cout<<"exiting cluster: "<<cluster_id<<endl;
+	//cout<<"exiting cluster: "<<cluster_id<<endl;
 }
 
 //this cheapest insertion considers to insert passengers at positions that are not the min increase in length traveled
@@ -10069,6 +10069,7 @@ void re_insertion(int p, bool &accept_relocate_trip, double &temperature, int &t
 				}*/
 
 				update_URT(best_v);
+				print_v_vehicle(best_v);
 				
 
 				//if (best_v == 24) {
@@ -11164,7 +11165,7 @@ void relocate_passenger(int p, double &temperature, int &type_move, int cluster_
 	int old_arrival_time;
 
 
-	/*cout<<vehicle_assigned[p]<<endl;
+	cout<<vehicle_assigned[p]<<endl;
 	cout<<"removing passenger y "<<p<<endl;
 	for (int l=0; l<=number_stops[v];l++) {
 		cout<<stops[v][l]<<" ("<<number_passengers_action[v][l]<<") "<<" [";
@@ -11177,7 +11178,7 @@ void relocate_passenger(int p, double &temperature, int &type_move, int cluster_
 		cout<<"|"<<slack_time[v][l]<<"|  ";
 		cout<<"*"<<free_capacity[v][l]<<"*"<<endl;
 	}
-	cout<<endl<<endl;*/
+	cout<<endl<<endl;
 
 	//this can be maybe speed up by keeping a variable of where in the vehicle the passenger is assigned
 	/*for (int i = 0; i < number_stops[v]; i++){
@@ -12851,7 +12852,7 @@ int main(int argc, char **argv) {
 								//<<"0nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 								//<<"cluster av: "<<avl_cluster[px]<<endl;
 								
-								cout<<"bf_inser1 "<<avl_cluster[px]<<endl;
+								//cout<<"bf_inser1 "<<avl_cluster[px]<<endl;
 								/*bool entered_here = false;
 								bool entered_there = false;
 								if (avl_cluster[px] == sort_clusters[nxt_p][0].idx_cluster){
@@ -13053,11 +13054,11 @@ int main(int argc, char **argv) {
 			for (int c=0; c<number_clusters; c++) {
 				//<<k<<endl;
 				//<<"passenger: p"<<k<<endl;
-				cout<<"cluster c"<<c<<endl;
+				//cout<<"cluster c"<<c<<endl;
 				simulated_annealing(k, c);
 				//check_valid_user_ride_times();
 				//<<"passenger: p"<<k<<endl;
-				cout<<"cluster c2"<<c<<endl;
+				//cout<<"cluster c2"<<c<<endl;
 				return_best_solution(c);
 				//<<"out heere"<<endl;
 

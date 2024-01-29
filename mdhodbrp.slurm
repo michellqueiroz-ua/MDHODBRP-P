@@ -3,12 +3,12 @@
 
 #SBATCH --job-name=CreateNetwork
 #SBATCH --nodes=1
-#SBATCH --ntasks=20
+#SBATCH --ntasks=7
 #SBATCH --cpus-per-task=2
 #SBATCH --time=24:00:00
 #SBATCH -o stdout.file
 #SBATCH -e stderr.file
-#SBATCH --partition=zen2
+#SBATCH --partition=skylake
 
 for input_file in `find ../../large-instances/festival -type f -name "*.csv"` ; do
     counterx=0
