@@ -2,17 +2,25 @@
 #
 
 #SBATCH --job-name=CreateNetwork
-#SBATCH --ntasks=4
-#SBATCH --cpus-per-task=16
-#SBATCH --mem-per-cpu=4g
+#SBATCH --nodes=1
+#SBATCH --ntasks=20
+#SBATCH --cpus-per-task=2
 #SBATCH --time=24:00:00
-#SBATCH --mail-type=ALL
-#SBATCH --mail-user=michell.queiroz@uantwerpen.be
 #SBATCH -o stdout.file
 #SBATCH -e stderr.file
-#SBATCH --partition=skylake
+#SBATCH --partition=zen2
 
-module load calcua/supported
-module load parallel/20200422
+for input_file in `find festival -type f -name "*.csv"` ; do
+    counterx=0
+    for iter in 1 2 3 4 5
+    do
+        counterx=$((counterx+1))
+        seed1=0
+        seed1=$(($seed1 + $counterx))
+	file_name=$(basename "$input_file")
+	srun -n 1 -c ${SLURM_CPUS_PER_TASK} ./a.out --filename_requests $input_file --seed $seed1 --filename_travel_time "travel_time_updated3.csv" --output_file "AFfestivalS4.txt" --number_depots 3 --depot 5825 5826 5827 --type_vehicles 3 --number_vehicles1 7 --number_vehicles2 7 --number_vehicles3 7 --capacity_vehicles 8 16 32 --init_temperature 1.3 --lamba 0.9 --maxnrep 350 --increase_rep 800 --total_requests 900 &
+    done
+done
 
-./bash.sh
+wait
+
