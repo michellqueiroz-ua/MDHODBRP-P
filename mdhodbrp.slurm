@@ -10,9 +10,9 @@
 #SBATCH -e stderr.file
 #SBATCH --partition=skylake
 
-for input_file in `find ../../large-instances/festival -type f -name "*.csv"` ; do
+for input_file in `find ../../large-instances/festivalT -type f -name "*.csv"` ; do
     counterx=0
-    for iter in 1 2 3 4 5
+    for iter in 1
     do
         counterx=$((counterx+1))
         seed1=0
