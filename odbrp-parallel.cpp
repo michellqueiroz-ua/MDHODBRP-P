@@ -10056,6 +10056,16 @@ void re_insertion(int p, bool &accept_relocate_trip, double &temperature, int &t
 							}
 
 						}
+
+						if (best_pos_origin == 1) {
+							int new_dpt_time = arrival_time_stop[best_v][1]-travel_time[stops[best_v][0]][stops[best_v][1]];
+							if (new_dpt_time < current_time){
+								new_dpt_time = current_time;
+							}
+
+						
+							departure_time_stop[best_v][0] = new_dpt_time;
+						}
 					}
 
 				}
@@ -11165,7 +11175,7 @@ void relocate_passenger(int p, double &temperature, int &type_move, int cluster_
 	int old_arrival_time;
 
 
-	cout<<vehicle_assigned[p]<<endl;
+	/*cout<<vehicle_assigned[p]<<endl;
 	cout<<"removing passenger y "<<p<<endl;
 	for (int l=0; l<=number_stops[v];l++) {
 		cout<<stops[v][l]<<" ("<<number_passengers_action[v][l]<<") "<<" [";
@@ -11178,7 +11188,7 @@ void relocate_passenger(int p, double &temperature, int &type_move, int cluster_
 		cout<<"|"<<slack_time[v][l]<<"|  ";
 		cout<<"*"<<free_capacity[v][l]<<"*"<<endl;
 	}
-	cout<<endl<<endl;
+	cout<<endl<<endl;*/
 
 	//this can be maybe speed up by keeping a variable of where in the vehicle the passenger is assigned
 	/*for (int i = 0; i < number_stops[v]; i++){
