@@ -13156,8 +13156,8 @@ int main(int argc, char **argv) {
 	//compute_idle_times();
 
 	//elapsed = get_wall_time() - begin_time;
-	auto end_time = std::chrono::high_resolution_clock::now();
-	auto duration = std::chrono::duration_cast<std::chrono::seconds>(end_time - start_time);
+	auto end_time_chrono = std::chrono::high_resolution_clock::now();
+	auto duration = std::chrono::duration_cast<std::chrono::seconds>(end_time_chrono - start_time_chrono);
 	elapsedf = (double)(std::clock() - start_algorithm_time)/(double)(CLOCKS_PER_SEC);		 
 	output_file << elapsedf << " " << duration.count() endl;
 }
