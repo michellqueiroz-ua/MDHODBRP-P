@@ -13159,5 +13159,5 @@ int main(int argc, char **argv) {
 	auto end_time_chrono = std::chrono::high_resolution_clock::now();
 	auto duration = std::chrono::duration_cast<std::chrono::seconds>(end_time_chrono - start_time_chrono);
 	elapsedf = (double)(std::clock() - start_algorithm_time)/(double)(CLOCKS_PER_SEC);		 
-	output_file << elapsedf << " " << duration.count() endl;
+	output_file << elapsedf << " " << duration.count() << endl;
 }
