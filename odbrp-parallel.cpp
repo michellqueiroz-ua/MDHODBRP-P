@@ -18,6 +18,7 @@
 #include <random>
 #include <omp.h>
 #include <sys/resource.h>
+#include <chrono>
 //#include<Eigen/Dense>
 //using namespace Eigen;
 using namespace std;
@@ -12743,6 +12744,7 @@ int main(int argc, char **argv) {
 	//<<k<<" "<<total_requests<<" "<<current_time<<endl;
 	clock_t start_algorithm_time;
 	start_algorithm_time = std::clock();
+	auto start_time_chrono = std::chrono::high_resolution_clock::now();
 	double p_elapsed_algo_time, l_elapsed_algo_time, difference_elapsed, difference_updated, p_updated_cluster;
 	p_elapsed_algo_time = 0;
 	p_updated_cluster = current_time;
@@ -13154,6 +13156,8 @@ int main(int argc, char **argv) {
 	//compute_idle_times();
 
 	//elapsed = get_wall_time() - begin_time;
+	auto end_time = std::chrono::high_resolution_clock::now();
+	auto duration = std::chrono::duration_cast<std::chrono::seconds>(end_time - start_time);
 	elapsedf = (double)(std::clock() - start_algorithm_time)/(double)(CLOCKS_PER_SEC);		 
-	output_file << elapsedf << endl;
+	output_file << elapsedf << " " << duration.count() endl;
 }
