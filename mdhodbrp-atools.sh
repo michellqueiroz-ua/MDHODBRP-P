@@ -5,9 +5,9 @@ module load atools
 run_file=parallelheur10.csv
 
 echo "input_file; seed1" > $run_file
-for input_file in `find ../../large-instances/misscomun -type f -name "*.csv"` ; do
+for input_file in `find ../../large-instances/misscomun2 -type f -name "*.csv"` ; do
     counterx=0
-    for iter in 5
+    for iter in 1
     do
         counterx=$((counterx+1))
         seed1=0
