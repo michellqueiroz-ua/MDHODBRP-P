@@ -2,7 +2,7 @@
 
 #SBATCH --job-name=CreateNetwork
 #SBATCH --ntasks=1 --cpus-per-task=6
-#SBATCH --time=5:00:00
+#SBATCH --time=4:00:00
 #SBATCH --partition=skylake
 
 module load atools
