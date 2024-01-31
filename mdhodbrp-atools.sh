@@ -7,7 +7,7 @@ run_file=parallelheur13.csv
 echo "input_file; seed1" > $run_file
 for input_file in `find ../../large-instances/missingconc -type f -name "*.csv"` ; do
     counterx=0
-    for iter in 2
+    for iter in 4
     do
         counterx=$((counterx+1))
         seed1=0
