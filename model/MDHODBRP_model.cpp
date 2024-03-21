@@ -1,7 +1,8 @@
-#include <ilcplex/ilocplex.h>
+//#include <ilcplex/ilocplex.h>
 #include "Global.h"
 #include "Input.h"
 #include <iomanip>
+#include "gurobi_c++.h"
 //using namespace std;
 
 
