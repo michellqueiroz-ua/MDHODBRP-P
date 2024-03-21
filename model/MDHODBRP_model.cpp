@@ -3,6 +3,7 @@
 #include "Input.h"
 #include <iomanip>
 #include "gurobi_c++.h"
+#include <vector>
 //using namespace std;
 
 
@@ -20,43 +21,61 @@ void MDHODBRPFR_MODEL(){
 	
 	int max_time = 86400;
 	
-	IloEnv env;
+	GRBEnv env = GRBEnv();
 
 	std::string varName;
 
 	try{
 
-		IloModel model(env);
+		GRBModel model = GRBModel(env);
 
+		'''
 		typedef IloArray<IloIntVarArray> IntVarMatrix;
 		typedef IloArray<IloNumVarArray> NumVarMatrix;
 		typedef IloArray<IntVarMatrix>   IntVar3Matrix;
+		'''
+
+		// Define a matrix of integer variables (2D array)
+		typedef std::vector<std::vector<GRBVar>> IntVarMatrix;
+
+		// Define a matrix of numeric variables (2D array)
+		typedef std::vector<std::vector<GRBVar>> NumVarMatrix;
+
+		// Define a 3D array of integer variables
+		typedef std::vector<IntVarMatrix> IntVar3Matrix;
 
 		//decision variables
 
 		//if vehicle b travels from node i to j
-		IntVar3Matrix x(env, total_number_vehicles);
+		//IntVar3Matrix x(env, total_number_vehicles);
+		IntVar3Matrix x(total_number_vehicles, IntVarMatrix(number_nodes, std::vector<GRBVar>(number_nodes)));
 		for (int b = 0; b < total_number_vehicles; b++) {
-			x[b] = IntVarMatrix(env, number_nodes);
 			for (int i = 0; i < number_nodes; i++) {
-				x[b][i] = IloIntVarArray(env, number_nodes, 0, 1);	
 				for (int j = 0; j < number_nodes; j++) {
+					x[b][i][j] = model.addVar(0.0, 1.0, 0.0, GRB_BINARY);
 					varName = "x("+IntToString(b) +","+IntToString(i)+","+IntToString(j)+")";
-	            	x[b][i][j].setName(varName.c_str());
+					x[b][i][j].set(GRB_StringAttr_VarName, varName);
+	            	//x[b][i][j].setName(varName.c_str());
             	}
 			}	
 		}
 
 		//load of vehicle b after serving node i
-		IntVarMatrix Q(env, total_number_vehicles);
-		for (int n = 0; n < number_nodes; n++) {
-			Q[n] = IloIntVarArray(env, number_nodes, 0, maxtotalcapacity);
+		//IntVarMatrix Q(env, total_number_vehicles);
+		IntVarMatrix Q(total_number_vehicles, std::vector<GRBVar>(number_nodes));
+		for (int n = 0; n < total_number_vehicles; n++) {
+			for (int j = 0; j < number_nodes; j++) {
+				Q[n][j] = model.addVar(0.0, maxtotalcapacity, 0.0, GRB_INTEGER);
+			}
 		}
 
 		//start service by vehicle b at node n
-		IntVarMatrix T(env, total_number_vehicles);
-		for (int n = 0; n < number_nodes; n++) {
-			T[n] = IloIntVarArray(env, number_nodes, 0, max_time);
+		//IntVarMatrix T(env, total_number_vehicles);
+		IntVarMatrix T(total_number_vehicles, std::vector<GRBVar>(number_nodes));
+		for (int n = 0; n < total_number_vehicles; n++) {
+			for (int j = 0; j < number_nodes; j++) {
+				T[n][j] = model.addVar(0.0, max_time, 0.0, GRB_INTEGER);
+			}
 		}
 
 
