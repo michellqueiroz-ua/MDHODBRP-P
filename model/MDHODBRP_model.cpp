@@ -28,14 +28,9 @@ void MDHODBRPFR_MODEL(){
 	try{
 
 		GRBModel model = GRBModel(env);
-
-		// Define a matrix of integer variables (2D array)
+		
 		typedef std::vector<std::vector<GRBVar>> IntVarMatrix;
-
-		// Define a matrix of numeric variables (2D array)
 		typedef std::vector<std::vector<GRBVar>> NumVarMatrix;
-
-		// Define a 3D array of integer variables
 		typedef std::vector<IntVarMatrix> IntVar3Matrix;
 
 		//decision variables
