@@ -29,12 +29,6 @@ void MDHODBRPFR_MODEL(){
 
 		GRBModel model = GRBModel(env);
 
-		'''
-		typedef IloArray<IloIntVarArray> IntVarMatrix;
-		typedef IloArray<IloNumVarArray> NumVarMatrix;
-		typedef IloArray<IntVarMatrix>   IntVar3Matrix;
-		'''
-
 		// Define a matrix of integer variables (2D array)
 		typedef std::vector<std::vector<GRBVar>> IntVarMatrix;
 
