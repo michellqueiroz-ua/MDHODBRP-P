@@ -1,25 +1,33 @@
-CC		= g++ -Wall -g -fPIC -fexceptions -DNDEBUG -DIL_STD -std=c++11 -O3 -fopenmp -Wl,--no-as-needed -ldl
-#CC		= g++ -Wall -g -fPIC -fexceptions -DNDEBUG -DIL_STD -std=c++11 -O3 -W
-
-CFLAGS1 = -I/opt/ibm/ILOG/CPLEX_Studio128/cplex/include/ -I/opt/ibm/ILOG/CPLEX_Studio128/concert/include/
-CFLAGS2	= -L/opt/ibm/ILOG/CPLEX_Studio128/cplex/lib/x86-64_linux/static_pic/ -lilocplex -lcplex -L/opt/ibm/ILOG/CPLEX_Studio128/concert/lib/x86-64_linux/static_pic/ -lconcert -lm -lpthread -mcmodel=medium
-
-
-FILES_CC	= MDHODBRP_model.cpp Input.cpp
-#FILES_CC	= mfvs-mwif-new.cpp
+# Define Gurobi directory
+GUROBI_HOME := $(shell echo $$GUROBI_HOME)
+# Include directory for Gurobi
+GUROBI_INCLUDE := $(GUROBI_HOME)/include
 
 
-BINARY		= mdhodbrpmodel
+# Library directory for Gurobi
+GUROBI_LIB := -L$(GUROBI_HOME)/lib -lgurobi_c++ -lgurobi110
+# Compiler
+CXX = g++
 
-all:	clean compile
+# Compiler flags
+CXXFLAGS = -m64 -g -std=c++11 -I$(GUROBI_INCLUDE)
 
+# Target executable name
+TARGET = my_gurobi_program
+
+# Source files
+SRC = MDHODBRP_model.cpp Input.cpp
+
+# Object files
+OBJ = $(SRC:.cpp=.o)
+
+# Make rule for the target
+$(TARGET): $(OBJ)
+	$(CXX) $(CXXFLAGS) -o $@ $^ $(GUROBI_LIB)
+
+# Clean rule
 clean:
-	find . -name '*.o' -exec rm -f '{}' ';'
-	rm -f $(BINARY);
+	rm -f *.o $(TARGET)
 
-compile:
-	$(CC) $(CFLAGS1)  $(FILES_CC) -o $(BINARY)  $(CFLAGS2)
-	#$(CC)  $(FILES_CC) -o $(BINARY)
-
-run:
-	./$(BINARY)
+# Phony targets
+.PHONY: clean
