@@ -10,7 +10,7 @@ GUROBI_LIB := -L$(GUROBI_HOME)/lib -lgurobi_c++ -lgurobi110
 CXX = g++
 
 # Compiler flags
-CXXFLAGS = -m64 -g -std=c++11 -I$(GUROBI_INCLUDE)
+CXXFLAGS = -m64 -g -std=c++11 -I$(GUROBI_INCLUDE) -fPIC
 
 # Target executable name
 TARGET = my_gurobi_program
