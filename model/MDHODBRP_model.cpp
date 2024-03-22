@@ -424,11 +424,11 @@ void MDHODBRPFR_MODEL(){
 	}
 
 	catch (GRBException e) {
-        cerr << "Concert exception caught: " << e << endl;
+        std::cerr << "Concert exception caught: " << e.getMessage() << endl;
     }
 
     catch (...) {
-        cerr << "Unknown exception caught" << endl;
+        std::cerr << "Unknown exception caught" << endl;
     }
 
 	//env.end();
