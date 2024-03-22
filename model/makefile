@@ -11,7 +11,7 @@ GUROBI_LIB := -L$(GUROBI_HOME)/lib -lgurobi110 -lgurobi_c++
 CXX = g++
 
 # Compiler flags
-CXXFLAGS = -m64 -g -std=c++11 -I$(GUROBI_INCLUDE) -fPIC
+CXXFLAGS = -m64 -g -std=c++11 -I$(GUROBI_INCLUDE) -mcmodel=medium
 
 LDFLAGS += -Wl,--no-relax -Wl,-rpath,$(GUROBI_HOME)/lib
 
