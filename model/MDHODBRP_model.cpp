@@ -38,7 +38,7 @@ void MDHODBRPFR_MODEL(){
 
 		//if vehicle b travels from node i to j
 		//IntVar3Matrix x(env, total_number_vehicles);
-		IntVar3Matrix x(total_number_vehicles, IntVarMatrix(number_nodes, std::vector<GRBVar>(number_nodes)));
+		/*IntVar3Matrix x(total_number_vehicles, IntVarMatrix(number_nodes, std::vector<GRBVar>(number_nodes)));
 		for (int b = 0; b < total_number_vehicles; b++) {
 			for (int i = 0; i < number_nodes; i++) {
 				for (int j = 0; j < number_nodes; j++) {
@@ -85,7 +85,7 @@ void MDHODBRPFR_MODEL(){
 		model.setObjective(objFunc, GRB_MINIMIZE);
 
 		//(2)
-		/*for (int r = 0; r < number_requests; r++){
+		for (int r = 0; r < number_requests; r++){
 
 			GRBLinExpr sum = 0;
 			for (int b = 0; b < total_number_vehicles; b++) {
