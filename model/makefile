@@ -12,7 +12,7 @@ CXX = g++
 # Compiler flags
 CXXFLAGS = -m64 -g -std=c++11 -I$(GUROBI_INCLUDE) -fPIC
 
-LDFLAGS += -Wl,-rpath,/apps/antwerpen/x86_64/rocky8/Gurobi/11.0.0/lib
+LDFLAGS += -Wl,--no-relax
 
 # Target executable name
 TARGET = my_gurobi_program
