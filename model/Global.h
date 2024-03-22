@@ -30,7 +30,12 @@ using namespace std;
 #define maxtypevehicles 40
 #define maxnumberdepots 10
 
-typedef int listP[maxpassengers + 1];
+typedef int listD[maxnumberdepots + 1];
+typedef int listT[maxtypevehicles + 1];
+typedef int listV[maxvehicles + 1];
+typedef int matrixDV[maxnumberdepots + 1][maxvehicles + 1];
+
+/*typedef int listP[maxpassengers + 1];
 typedef int matrixVP[maxvehicles + 1][maxpassengers + 1];
 typedef int matrixVC[maxvehicles + 1][maxtotalcapacity*2];
 typedef int matrixPS[maxpassengers + 1][maxstations + 1];
@@ -79,6 +84,21 @@ extern matrixPS walking_time_stops_origin, walking_time_stops_destination;
 extern listP number_stops_origin, number_stops_destination;
 extern int number_stations;
 
+extern int ts_min, ts_max;*/
+
 extern int ts_min, ts_max;
-
-
+extern map<int, int> nodes;
+extern listD depot;
+extern map<int, int> type_node;
+extern int number_nodes;
+extern listT number_vehicles;
+extern listD number_vehicles_at_depot;
+extern int total_number_vehicles;
+extern listT maxcapacity;
+extern int number_type_vehicles;
+extern int number_depots;
+extern int number_requests;
+extern listD number_vehicles_at_depot;
+extern listV vehicle_located_at_depot;
+extern matrixDV vehicles_at_depot;
+extern listV vehicle_type;
