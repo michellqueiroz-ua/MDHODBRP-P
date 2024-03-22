@@ -389,7 +389,7 @@ void MDHODBRPFR_MODEL(){
 		//printf("%d\n", count);
 		//IloCplex cplex2(model);
 		//cplex2.exportModel("model.lp");
-		model.write("model.lp")
+		model.write("model.lp");
 
 		model.set(GRB_DoubleParam_TimeLimit, 3600); // Time limit
         model.set(GRB_DoubleParam_MIPGapAbs, 0.9); // Absolute gap
