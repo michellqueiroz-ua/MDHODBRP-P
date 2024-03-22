@@ -4,6 +4,7 @@
 #include <iomanip>
 #include "gurobi_c++.h"
 #include <vector>
+#include <iostream>
 //using namespace std;
 
 
@@ -28,7 +29,7 @@ void MDHODBRPFR_MODEL(){
 	try{
 
 		GRBModel model = GRBModel(env);
-		
+
 		typedef std::vector<std::vector<GRBVar>> IntVarMatrix;
 		typedef std::vector<std::vector<GRBVar>> NumVarMatrix;
 		typedef std::vector<IntVarMatrix> IntVar3Matrix;
@@ -70,7 +71,7 @@ void MDHODBRPFR_MODEL(){
 
 		//(1) Objective function
 		//minimize total user ride time
-		IloExpr objFunc(env);
+		GRBLinExpr objFunc = 0;
 		for (int b = 0; b < total_number_vehicles; b++) {
 			for (int i = 0; i < number_nodes; i++) {
 				for (int j = 0; j < number_nodes; j++) {
@@ -79,14 +80,14 @@ void MDHODBRPFR_MODEL(){
 			}
 			
 		}
-		model.add(IloMinimize(env, objFunc));
-		objFunc.end(); 
-
+		//model.add(IloMinimize(env, objFunc));
+		//objFunc.end(); 
+		model.setObjective(objFunc, GRB_MINIMIZE);
 
 		//(2)
 		for (int r = 0; r < number_requests; r++){
 
-			IloExpr sum(env);
+			GRBLinExpr sum = 0;
 			for (int b = 0; b < total_number_vehicles; b++) {
 				for (int i = 0; i < number_stops_origin[r]; i++) {
 					for (int j = 0; j < number_nodes; j++) {
@@ -94,8 +95,9 @@ void MDHODBRPFR_MODEL(){
 					}
 				}
 			}
-			model.add(sum == 1);
-			sum.end();
+			model.addConstr(sum == 1);
+			//model.add(sum == 1);
+			//sum.end();
 
 		}
 
@@ -103,7 +105,8 @@ void MDHODBRPFR_MODEL(){
 		for (int r = 0; r < number_requests; r++){
 			for (int b = 0; b < total_number_vehicles; b++) {
 
-				IloExpr sum(env);
+				//IloExpr sum(env);
+				GRBLinExpr sum = 0;
 				for (int i = 0; i < number_stops_origin[r]; i++) {
 					for (int j = 0; j < number_nodes; j++) {
 						sum += x[b][stops_origin[r][i]][j];
@@ -111,16 +114,17 @@ void MDHODBRPFR_MODEL(){
 				}
 
 
-				IloExpr sum2(env);
+				GRBLinExpr sum2 = 0;
 				for (int j = 0; j < number_stops_destination[r]; j++) {
 					for (int i = 0; i < number_nodes; i++) {
 						sum2 += x[b][stops_destination[r][i]][j];
 					}
 				}
 
-				model.add(sum - sum2 == 0);
-				sum.end();
-				sum2.end();
+				//model.add(sum - sum2 == 0);
+				model.addConstr(sum - sum2 == 0);
+				//sum.end();
+				//sum2.end();
 
 			}
 		}
@@ -128,12 +132,12 @@ void MDHODBRPFR_MODEL(){
 		//(4)
 		for (int b = 0; b < total_number_vehicles; b++) {
 
-			IloExpr sum(env);
+			GRBLinExpr sum = 0;
 			for (int j = 0; j < number_nodes; j++) {
 				sum += x[b][vehicle_located_at_depot[b]][j];
 			}
-			model.add(sum == 1);
-			sum.end();
+			model.addConstr(sum == 1);
+			//sum.end();
 
 		}
 
@@ -144,35 +148,35 @@ void MDHODBRPFR_MODEL(){
 			for (int r = 0; r < number_requests; r++){
 				for (int i = 0; i < number_stops_origin[r]; i++) {
 
-					IloExpr sum(env);
+					GRBLinExpr sum = 0;
 					for (int j = 0; j < number_nodes; j++) {
 						sum += x[b][j][stops_origin[r][i]];
 					}
 
-					IloExpr sum2(env);
+					GRBLinExpr sum2 = 0;
 					for (int j = 0; j < number_nodes; j++) {
 						sum2 += x[b][stops_origin[r][i]][j];
 					}
-					model.add(sum - sum2 == 0);
-					sum.end();
-					sum2.end();
+					model.addConstr(sum - sum2 == 0);
+					//sum.end();
+					//sum2.end();
 
 				}
 
 				for (int i = 0; i < number_stops_destination[r]; i++) {
 
-					IloExpr sum(env);
+					GRBLinExpr sum = 0;
 					for (int j = 0; j < number_nodes; j++) {
 						sum += x[b][j][stops_destination[r][i]];
 					}
 
-					IloExpr sum2(env);
+					GRBLinExpr sum2 = 0;
 					for (int j = 0; j < number_nodes; j++) {
 						sum2 += x[b][stops_destination[r][i]][j];
 					}
-					model.add(sum - sum2 == 0);
-					sum.end();
-					sum2.end();
+					model.addConstr(sum - sum2 == 0);
+					//sum.end();
+					//sum2.end();
 
 				}
 
@@ -183,12 +187,12 @@ void MDHODBRPFR_MODEL(){
 		//(6)
 		for (int b = 0; b < total_number_vehicles; b++) {
 
-			IloExpr sum(env);
+			GRBLinExpr sum = 0;
 			for (int j = 0; j < number_nodes; j++) {
 				sum += x[b][j][vehicle_located_at_depot[b]];
 			}
-			model.add(sum == 1);
-			sum.end();
+			model.addConstr((sum == 1);
+			//sum.end();
 
 		}
 
@@ -206,13 +210,13 @@ void MDHODBRPFR_MODEL(){
 							for (int j = 0; j < number_stops_origin[r2]; j++) {
 								int j1 = stops_origin[r2][j];
 								M[b][i1][j1] = std::max(0, latest_departure[r1] + travel_time[nodes[i1]][nodes[j1]] - earliest_departure[r2]);
-								model.add(T[b][j1] >= T[b][i1] + travel_time[nodes[i1]][nodes[j1]]*x[b][i1][j1] - M[b][i1][j1]*(1 - x[b][i1][j1]));
+								model.addConstr(T[b][j1] >= T[b][i1] + travel_time[nodes[i1]][nodes[j1]]*x[b][i1][j1] - M[b][i1][j1]*(1 - x[b][i1][j1]));
 							}
 
 							for (int j = 0; j < number_stops_destination[r2]; j++) {
 								int j1 = stops_destination[r2][j];
 								M[b][i1][j1] = std::max(0, latest_departure[r1] + travel_time[nodes[i1]][nodes[j1]] - earliest_arrival[r2]);
-								model.add(T[b][j1] >= T[b][i1] + travel_time[nodes[i1]][nodes[j1]]*x[b][i1][j1] - M[b][i1][j1]*(1 - x[b][i1][j1]));
+								model.addConstr(T[b][j1] >= T[b][i1] + travel_time[nodes[i1]][nodes[j1]]*x[b][i1][j1] - M[b][i1][j1]*(1 - x[b][i1][j1]));
 							}
 						}
 
@@ -221,7 +225,7 @@ void MDHODBRPFR_MODEL(){
 					for (int j = 0; j < number_depots; j++) {
 						int j1 = depot[j];
 						M[b][i1][j1] = std::max(0, latest_departure[r1] + travel_time[nodes[i1]][nodes[j1]] - ts_min);
-						model.add(T[b][j1] >= T[b][i1] + travel_time[nodes[i1]][nodes[j1]]*x[b][i1][j1] - M[b][i1][j1]*(1 - x[b][i1][j1]));
+						model.addConstr(T[b][j1] >= T[b][i1] + travel_time[nodes[i1]][nodes[j1]]*x[b][i1][j1] - M[b][i1][j1]*(1 - x[b][i1][j1]));
 					}
 
 				}
@@ -236,13 +240,13 @@ void MDHODBRPFR_MODEL(){
 							for (int j = 0; j < number_stops_origin[r2]; j++) {
 								int j1 = stops_origin[r2][j];
 								M[b][i1][j1] = std::max(0, latest_arrival[r1] + travel_time[nodes[i1]][nodes[j1]] - earliest_departure[r2]);
-								model.add(T[b][j1] >= T[b][i1] + travel_time[nodes[i1]][nodes[j1]]*x[b][i1][j1] - M[b][i1][j1]*(1 - x[b][i1][j1]));
+								model.addConstr(T[b][j1] >= T[b][i1] + travel_time[nodes[i1]][nodes[j1]]*x[b][i1][j1] - M[b][i1][j1]*(1 - x[b][i1][j1]));
 							}
 
 							for (int j = 0; j < number_stops_destination[r2]; j++) {
 								int j1 = stops_destination[r2][j];
 								M[b][i1][j1] = std::max(0, latest_arrival[r1] + travel_time[nodes[i1]][nodes[j1]] - earliest_arrival[r2]);
-								model.add(T[b][j1] >= T[b][i1] + travel_time[nodes[i1]][nodes[j1]]*x[b][i1][j1] - M[b][i1][j1]*(1 - x[b][i1][j1]));
+								model.addConstr(T[b][j1] >= T[b][i1] + travel_time[nodes[i1]][nodes[j1]]*x[b][i1][j1] - M[b][i1][j1]*(1 - x[b][i1][j1]));
 							}
 						}
 
@@ -253,7 +257,7 @@ void MDHODBRPFR_MODEL(){
 					for (int j = 0; j < number_depots; j++) {
 						int j1 = depot[j];
 						M[b][i1][j1] = std::max(0, latest_arrival[r1] + travel_time[nodes[i1]][nodes[j1]] - ts_min);
-						model.add(T[b][j1] >= T[b][i1] + travel_time[nodes[i1]][nodes[j1]]*x[b][i1][j1] - M[b][i1][j1]*(1 - x[b][i1][j1]));
+						model.addConstr(T[b][j1] >= T[b][i1] + travel_time[nodes[i1]][nodes[j1]]*x[b][i1][j1] - M[b][i1][j1]*(1 - x[b][i1][j1]));
 					}
 
 				}
@@ -266,13 +270,13 @@ void MDHODBRPFR_MODEL(){
 						for (int j = 0; j < number_stops_origin[r2]; j++) {
 							int j1 = stops_origin[r2][j];
 							M[b][i1][j1] = std::max(0, ts_max + travel_time[nodes[i1]][nodes[j1]] - earliest_departure[r2]);
-							model.add(T[b][j1] >= T[b][i1] + travel_time[nodes[i1]][nodes[j1]]*x[b][i1][j1] - M[b][i1][j1]*(1 - x[b][i1][j1]));
+							model.addConstr(T[b][j1] >= T[b][i1] + travel_time[nodes[i1]][nodes[j1]]*x[b][i1][j1] - M[b][i1][j1]*(1 - x[b][i1][j1]));
 						}
 
 						for (int j = 0; j < number_stops_destination[r2]; j++) {
 							int j1 = stops_destination[r2][j];
 							M[b][i1][j1] = std::max(0, ts_max + travel_time[nodes[i1]][nodes[j1]] - earliest_arrival[r2]);
-							model.add(T[b][j1] >= T[b][i1] + travel_time[nodes[i1]][nodes[j1]]*x[b][i1][j1] - M[b][i1][j1]*(1 - x[b][i1][j1]));
+							model.addConstr(T[b][j1] >= T[b][i1] + travel_time[nodes[i1]][nodes[j1]]*x[b][i1][j1] - M[b][i1][j1]*(1 - x[b][i1][j1]));
 						}					
 
 					}
@@ -294,12 +298,12 @@ void MDHODBRPFR_MODEL(){
 			for (int r = 0; r < number_requests; r++){
 				for (int i = 0; i < number_stops_origin[r]; i++) {
 					int i1 = stops_origin[r][i];
-					IloExpr sum(env);
+					GRBLinExpr sum = 0;
 					for (int j = 0; j < number_nodes; j++) {
 						sum += x[b][i1][j];
 					}
-					model.add(T[b][i1] >= earliest_departure[r]*sum);
-					sum.end();	
+					model.addConstr(T[b][i1] >= earliest_departure[r]*sum);
+					//sum.end();	
 				}
 			}
 		}
@@ -309,12 +313,12 @@ void MDHODBRPFR_MODEL(){
 			for (int r = 0; r < number_requests; r++){
 				for (int i = 0; i < number_stops_origin[r]; i++) {
 					int i1 = stops_destination[r][i];
-					IloExpr sum(env);
+					GRBLinExpr sum = 0;
 					for (int j = 0; j < number_nodes; j++) {
 						sum += x[b][i1][j];
 					}
-					model.add(T[b][i1] <= latest_arrival[r]*sum);
-					sum.end();	
+					model.addConstr(T[b][i1] <= latest_arrival[r]*sum);
+					//sum.end();	
 				}
 			}
 		}
@@ -325,7 +329,7 @@ void MDHODBRPFR_MODEL(){
 				for (int j = 0; j < number_nodes; j++) {
 
 					W[b][i][j] =  std::min(maxcapacity[vehicle_type[b]], maxcapacity[vehicle_type[b]] + q[i]);
-					model.add(Q[b][j] >= Q[b][i] + q[i]*x[b][i][j] - W[b][i][j]*(1 - x[b][i][j]));
+					model.addConstr(Q[b][j] >= Q[b][i] + q[i]*x[b][i][j] - W[b][i][j]*(1 - x[b][i][j]));
 
 				}
 			}
@@ -335,13 +339,13 @@ void MDHODBRPFR_MODEL(){
 		for (int b = 0; b < total_number_vehicles; b++) {
 			for (int i = 0; i < number_nodes; i++) {
 
-				IloExpr sum(env);
+				GRBLinExpr sum = 0;
 				for (int j = 0; j < number_nodes; j++) {
 					sum += x[b][i][j];
 				}
 				int max1 = std::max(0, q[i]);
-				model.add(Q[b][i] >= max1*sum);
-				sum.end();
+				model.addConstr(Q[b][i] >= max1*sum);
+				//sum.end();
 
 			}
 		}
@@ -350,13 +354,13 @@ void MDHODBRPFR_MODEL(){
 		for (int b = 0; b < total_number_vehicles; b++) {
 			for (int i = 0; i < number_nodes; i++) {
 
-				IloExpr sum(env);
+				GRBLinExpr sum = 0;
 				for (int j = 0; j < number_nodes; j++) {
 					sum += x[b][i][j];
 				}
 				int min1 = std::min(maxcapacity[vehicle_type[b]], maxcapacity[vehicle_type[b]]+q[i]);
-				model.add(Q[b][i] <= min1*sum);
-				sum.end();
+				model.addConstr(Q[b][i] <= min1*sum);
+				//sum.end();
 
 			}
 		}
@@ -383,33 +387,43 @@ void MDHODBRPFR_MODEL(){
 		}*/
 
 		//printf("%d\n", count);
-		IloCplex cplex2(model);
-		cplex2.exportModel("model.lp");
+		//IloCplex cplex2(model);
+		//cplex2.exportModel("model.lp");
+		model.write("model.lp")
 
-		cplex2.setParam(IloCplex::TiLim, 3600);
-        cplex2.setParam(IloCplex::EpAGap, 0.9);
+		model.set(GRB_DoubleParam_TimeLimit, 3600); // Time limit
+        model.set(GRB_DoubleParam_MIPGapAbs, 0.9); // Absolute gap
 
-        time_t start3 = time(NULL);
+        //time_t start3 = time(NULL);
+        std::time_t start = std::time(nullptr);
 
-        if ( !cplex2.solve() ) {
+        /*if ( !cplex2.solve() ) {
             env.error() << "Failed to optimize LP." << endl;
+            throw(-1);
+        }*/
+        model.optimize();
+        if (model.get(GRB_IntAttr_Status) != GRB_OPTIMAL) {
+            std::cerr << "Failed to optimize LP." << std::endl;
             throw(-1);
         }
 
-        env.out() << "Solution status = " << cplex2.getStatus() << endl;
-        env.out() << "Solution value = " << cplex2.getObjValue() << endl;
-        env.out() << "Best upper bound = " << cplex2.getBestObjValue() << endl;
+        std::cout << "Solution status = " << model.get(GRB_IntAttr_Status) << endl;
+        std::cout << "Solution value = " << model.get(GRB_DoubleAttr_ObjVal) << endl;
+        std::cout << "Best upper bound = " << model.get(GRB_DoubleAttr_ObjBound) << endl;
 
-        double gap = 100*((cplex2.getBestObjValue() - cplex2.getObjValue())/cplex2.getObjValue());
+        //double gap = 100*((cplex2.getBestObjValue() - cplex2.getObjValue())/cplex2.getObjValue());
+        double gap = (model.get(GRB_DoubleAttr_ObjBound) - model.get(GRB_DoubleAttr_ObjVal)) / model.get(GRB_DoubleAttr_ObjVal) * 100;
 
-        time_t end3 = time(NULL);
-        elapsed3 = difftime(end3,start3);
+        //time_t end3 = time(NULL);
+        //elapsed3 = difftime(end3,start3);
+        std::time_t end = std::time(nullptr);
+        double elapsed = std::difftime(end, start);
 
-        env.out() << "Solution time = " <<  elapsed3 << endl;
+        std::cout << "Solution time = " <<  elapsed3 << endl;
 
 	}
 
-	catch (IloException& e) {
+	catch (GRBException e) {
         cerr << "Concert exception caught: " << e << endl;
     }
 
@@ -417,7 +431,7 @@ void MDHODBRPFR_MODEL(){
         cerr << "Unknown exception caught" << endl;
     }
 
-	env.end();
+	//env.end();
 }
 
 
