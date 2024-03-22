@@ -191,7 +191,7 @@ void MDHODBRPFR_MODEL(){
 			for (int j = 0; j < number_nodes; j++) {
 				sum += x[b][j][vehicle_located_at_depot[b]];
 			}
-			model.addConstr((sum == 1);
+			model.addConstr(sum == 1);
 			//sum.end();
 
 		}
