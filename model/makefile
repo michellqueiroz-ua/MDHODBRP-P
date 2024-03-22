@@ -12,6 +12,8 @@ CXX = g++
 # Compiler flags
 CXXFLAGS = -m64 -g -std=c++11 -I$(GUROBI_INCLUDE) -fPIC
 
+LDFLAGS += -Wl,option
+
 # Target executable name
 TARGET = my_gurobi_program
 
@@ -23,7 +25,7 @@ OBJ = $(SRC:.cpp=.o)
 
 # Make rule for the target
 $(TARGET): $(OBJ)
-	$(CXX) $(CXXFLAGS) -o $@ $^ $(GUROBI_LIB)
+	$(CXX) $(CXXFLAGS) -o $@ $^ $(GUROBI_LIB) $(LDFLAGS)
 
 # Clean rule
 clean:
