@@ -25,7 +25,7 @@ OBJ = $(SRC:.cpp=.o)
 
 # Make rule for the target
 $(TARGET): $(OBJ)
-	$(CXX) $(CXXFLAGS) -o $@ $^ $(GUROBI_LIB) $(LDFLAGS)
+	$(CXX) $(CXXFLAGS) -o $@ $^ $(GUROBI_LIB) $(LDFLAGS) -mcmodel=large
 
 # Clean rule
 clean:
