@@ -21,6 +21,8 @@
 #include <sstream>
 #include <string>
 #include <vector>
+#include <iomanip>
+#include "gurobi_c++.h"
 using namespace std;
 
 #define maxvehicles 100
