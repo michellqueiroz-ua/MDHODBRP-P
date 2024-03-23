@@ -19,7 +19,7 @@ LDFLAGS += -Wl,--no-relax -Wl,-rpath,$(GUROBI_HOME)/lib
 TARGET = my_gurobi_program
 
 # Source files
-SRC = MDHODBRP_model.cpp Input.cpp
+SRC = MDHODBRP_model.cpp
 
 # Object files
 OBJ = $(SRC:.cpp=.o)

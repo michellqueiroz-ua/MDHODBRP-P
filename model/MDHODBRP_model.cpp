@@ -1,8 +1,59 @@
-//#include <ilcplex/ilocplex.h>
-#include "Global.h"
-#include "Input.h"
+#pragma once
+//INCLUDE FILES AND GLOBAL VARIABLES
 
+// hide unsafe warnings wrt deprecated input/output commands
+#define _CRT_SECURE_NO_WARNINGS 1
+#pragma warning(disable: 4996)
+
+#include <iostream>
+#include <algorithm>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <curses.h>
+#include <time.h>
+#include <math.h>
+#include <climits>
+#include <ctime>
+#include <map>
+#include <sys/time.h>
+#include <fstream>
+#include <sstream>
+#include <string>
+#include <vector>
+#include <iomanip>
+#include "gurobi_c++.h"
+using namespace std;
+
+#define maxvehicles 100
+#define maxpassengers 3000
+#define maxstations 6000
+#define maxtotalcapacity 40
+#define maxtypevehicles 40
+#define maxnumberdepots 10
+
+typedef int listD[maxnumberdepots + 1];
+typedef int listT[maxtypevehicles + 1];
+typedef int listV[maxvehicles + 1];
+typedef int matrixDV[maxnumberdepots + 1][maxvehicles + 1];
 //using namespace std;
+
+int ts_min, ts_max;
+map<int, int> nodes;
+listD depot;
+map<int, int> type_node;
+int number_nodes;
+listT number_vehicles;
+listD number_vehicles_at_depot;
+int total_number_vehicles;
+listT maxcapacity;
+int number_type_vehicles;
+int number_depots;
+int number_requests;
+listD number_vehicles_at_depot;
+listV vehicle_located_at_depot;
+matrixDV vehicles_at_depot;
+listV vehicle_type;
 
 
 
@@ -434,7 +485,7 @@ void MDHODBRPFR_MODEL(){
 
 int main(int argc, char **argv) {
 
-	for (int i=1; i<argc; i++)
+	/*for (int i=1; i<argc; i++)
   	{
 		if (strcmp(argv[i], "--filename_requests") == 0) {
 			input_requests(argv[i+1]);
@@ -468,7 +519,7 @@ int main(int argc, char **argv) {
 		} else if (strcmp(argv[i], "--number_requests") == 0) {
 			number_requests = stoi(argv[i+1]);
 		}
-	}
+	}*/
 
 	for (int i = 0; i < number_depots; i++) {
    		number_vehicles_at_depot[i] = 0;
