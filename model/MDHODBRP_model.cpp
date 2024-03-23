@@ -39,6 +39,7 @@ typedef int listS[maxstations + 1];
 typedef int matrixSS[maxstations + 1][maxstations + 1];
 typedef int listP[maxpassengers + 1];
 typedef int matrixPS[maxpassengers + 1][maxstations + 1];
+typedef int matrixVSS[maxvehicles + 1][maxstations + 1][maxstations + 1];
 //using namespace std;
 
 int ts_min, ts_max;
