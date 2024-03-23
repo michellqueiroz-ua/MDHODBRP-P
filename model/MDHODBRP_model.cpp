@@ -421,7 +421,7 @@ void MDHODBRPFR_MODEL(){
 		model.setObjective(objFunc, GRB_MINIMIZE);
 
 		//(2)
-		/*for (int r = 0; r < number_requests; r++){
+		for (int r = 0; r < number_requests; r++){
 
 			GRBLinExpr sum = 0;
 			for (int b = 0; b < total_number_vehicles; b++) {
@@ -699,7 +699,7 @@ void MDHODBRPFR_MODEL(){
 				//sum.end();
 
 			}
-		}*/
+		}
 
 
 		//---
