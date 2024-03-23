@@ -1,4 +1,3 @@
-#pragma once
 //INCLUDE FILES AND GLOBAL VARIABLES
 
 // hide unsafe warnings wrt deprecated input/output commands
@@ -50,7 +49,6 @@ listT maxcapacity;
 int number_type_vehicles;
 int number_depots;
 int number_requests;
-listD number_vehicles_at_depot;
 listV vehicle_located_at_depot;
 matrixDV vehicles_at_depot;
 listV vehicle_type;
