@@ -68,6 +68,9 @@ matrixPS walking_time_stops_origin, walking_time_stops_destination;
 listP number_stops_origin, number_stops_destination;
 int number_stations;
 
+listS q;
+matrixVSS M, W;
+
 
 string IntToString (int a)
 {
