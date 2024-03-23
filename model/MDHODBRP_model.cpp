@@ -784,7 +784,6 @@ int main(int argc, char **argv) {
 			cout<<argv[i+1]<<endl;
 		} else if (strcmp(argv[i], "--filename_travel_time") == 0) {
 			input_travel_time(argv[i+1]);
-
 		} else if (strcmp(argv[i], "--depot") == 0) {
 			for (int j = 0; j < number_depots; j++) {
 				i++;
@@ -837,6 +836,9 @@ int main(int argc, char **argv) {
 
 	ts_min = 25200;
 	ts_max = 32400;
+
+
+	number_requests = 1;
 
 	MDHODBRPFR_MODEL();
 
