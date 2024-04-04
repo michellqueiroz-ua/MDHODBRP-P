@@ -1,7 +1,7 @@
 #!/bin/bash
 
 module load atools
-mudole load Gurobi
+module load Gurobi
 
 run_file=parallelheur18.csv
 
@@ -18,6 +18,6 @@ for input_file in `find ../../../instances/300_ni2 -type f -name "*.csv"` ; do
     done
 done
 
-sbatch --array $(arange --data $run_file) mdhodbrp-atools.slurm $run_file
+sbatch --account ap_enm --array $(arange --data $run_file) mdhodbrp-atools.slurm $run_file
 
 
