@@ -666,7 +666,7 @@ void MDHODBRPFR_MODEL(){
 
 		//(6)
 		//every request is served once
-		cout<<total_number_vehicles<<" "<<number_stops_origin[0]<<" "<<number_nodes<<endl;
+
 		for (int r = 0; r < number_requests; r++){
 
 			GRBLinExpr sum = 0;
@@ -1085,6 +1085,7 @@ int main(int argc, char **argv) {
 	number_requests = 1;
 
 	cout<<"success"<<endl;
+	cout<<total_number_vehicles<<" "<<number_stops_origin[0]<<" "<<number_nodes<<endl;
 	MDHODBRPFR_MODEL();
 	cout<<"FINAL success2"<<endl;
 	
