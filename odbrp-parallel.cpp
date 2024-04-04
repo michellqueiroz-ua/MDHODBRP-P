@@ -713,7 +713,7 @@ void input_travel_time(char *filename) {
 
 			stringstream str(line);
 			stop2 = 0;
-			//getline(str, data, ',');
+			getline(str, data, ',');
 			//<<data<<endl;
 			
 			//count = 0;
