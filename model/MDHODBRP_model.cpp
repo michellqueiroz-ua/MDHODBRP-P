@@ -664,7 +664,8 @@ void MDHODBRPFR_MODEL(){
 		//objFunc.end(); 
 		model.setObjective(objFunc, GRB_MINIMIZE);
 
-		//(2)
+		//(6)
+		//every request is served once
 		for (int r = 0; r < number_requests; r++){
 
 			GRBLinExpr sum = 0;
@@ -681,8 +682,9 @@ void MDHODBRPFR_MODEL(){
 
 		}
 
-		//(3)
-		/*for (int r = 0; r < number_requests; r++){
+		//(7)
+		//picked up and dropped by the same vehicle
+		for (int r = 0; r < number_requests; r++){
 			for (int b = 0; b < total_number_vehicles; b++) {
 
 				//IloExpr sum(env);
@@ -710,7 +712,7 @@ void MDHODBRPFR_MODEL(){
 		}
 
 		//(4)
-		for (int b = 0; b < total_number_vehicles; b++) {
+		/*for (int b = 0; b < total_number_vehicles; b++) {
 
 			GRBLinExpr sum = 0;
 			for (int j = 0; j < number_nodes; j++) {
