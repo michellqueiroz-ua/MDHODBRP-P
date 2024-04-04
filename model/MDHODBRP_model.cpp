@@ -53,7 +53,6 @@ int total_number_vehicles;
 listT maxcapacity;
 int number_type_vehicles;
 int number_depots;
-int number_requests;
 listV vehicle_located_at_depot;
 matrixDV vehicles_at_depot;
 listV vehicle_type;
@@ -667,7 +666,7 @@ void MDHODBRPFR_MODEL(){
 		//(6)
 		//every request is served once
 
-		for (int r = 0; r < number_requests; r++){
+		for (int r = 0; r < total_requests; r++){
 
 			GRBLinExpr sum = 0;
 
@@ -686,7 +685,7 @@ void MDHODBRPFR_MODEL(){
 
 		//(7)
 		//picked up and dropped by the same vehicle
-		for (int r = 0; r < number_requests; r++){
+		for (int r = 0; r < total_requests; r++){
 			for (int b = 0; b < total_number_vehicles; b++) {
 
 				//IloExpr sum(env);
@@ -729,7 +728,7 @@ void MDHODBRPFR_MODEL(){
 		for (int b = 0; b < total_number_vehicles; b++) {
 
 
-			for (int r = 0; r < number_requests; r++){
+			for (int r = 0; r < total_requests; r++){
 				for (int i = 0; i < number_stops_origin[r]; i++) {
 
 					GRBLinExpr sum = 0;
@@ -782,13 +781,13 @@ void MDHODBRPFR_MODEL(){
 
 		//(7) *review*
 		for (int b = 0; b < total_number_vehicles; b++) {
-			for (int r1 = 0; r1 < number_requests; r1++){
+			for (int r1 = 0; r1 < total_requests; r1++){
 
 				for (int i = 0; i < number_stops_origin[r1]; i++) {
 
 					int i1 = stops_origin[r1][i];
 					q[i1] = -1;
-					for (int r2 = 0; r2 < number_requests; r2++){
+					for (int r2 = 0; r2 < total_requests; r2++){
 
 						if (r1 != r2) {
 							for (int j = 0; j < number_stops_origin[r2]; j++) {
@@ -818,7 +817,7 @@ void MDHODBRPFR_MODEL(){
 
 					int i1 = stops_destination[r1][i];
 					q[i1] = 1;
-					for (int r2 = 0; r2 < number_requests; r2++){
+					for (int r2 = 0; r2 < total_requests; r2++){
 
 						if (r1 != r2) {
 							for (int j = 0; j < number_stops_origin[r2]; j++) {
@@ -849,7 +848,7 @@ void MDHODBRPFR_MODEL(){
 				for (int i = 0; i < number_depots; i++) {
 					int i1 = depot[i];
 					q[i1] = 0;
-					for (int r2 = 0; r2 < number_requests; r2++){
+					for (int r2 = 0; r2 < total_requests; r2++){
 
 						for (int j = 0; j < number_stops_origin[r2]; j++) {
 							int j1 = stops_origin[r2][j];
@@ -879,7 +878,7 @@ void MDHODBRPFR_MODEL(){
 
 		//(8)
 		for (int b = 0; b < total_number_vehicles; b++) {
-			for (int r = 0; r < number_requests; r++){
+			for (int r = 0; r < total_requests; r++){
 				for (int i = 0; i < number_stops_origin[r]; i++) {
 					int i1 = stops_origin[r][i];
 					GRBLinExpr sum = 0;
@@ -894,7 +893,7 @@ void MDHODBRPFR_MODEL(){
 
 		//(9)
 		for (int b = 0; b < total_number_vehicles; b++) {
-			for (int r = 0; r < number_requests; r++){
+			for (int r = 0; r < total_requests; r++){
 				for (int i = 0; i < number_stops_origin[r]; i++) {
 					int i1 = stops_destination[r][i];
 					GRBLinExpr sum = 0;
@@ -1051,8 +1050,27 @@ int main(int argc, char **argv) {
 			number_type_vehicles = stoi(argv[i+1]);
 		} else if (strcmp(argv[i], "--number_depots") == 0) {
 			number_depots = stoi(argv[i+1]);
-		} else if (strcmp(argv[i], "--number_requests") == 0) {
-			number_requests = stoi(argv[i+1]);
+		} else if (strcmp(argv[i], "--number_vehicles1") == 0) {
+			//for (int j = 0; j < number_type_vehicles; j++) {
+			i++;
+			float perc = (float)stoi(argv[i])/100;
+			number_vehicles[0] = perc*total_requests;
+			total_number_vehicles += number_vehicles[0];
+			//}
+		} else if (strcmp(argv[i], "--number_vehicles2") == 0) {
+			//for (int j = 0; j < number_type_vehicles; j++) {
+			i++;
+			float perc = (float)stoi(argv[i])/100;
+			number_vehicles[1] = perc*total_requests;
+			total_number_vehicles += number_vehicles[1];
+			//}
+		} else if (strcmp(argv[i], "--number_vehicles3") == 0) {
+			//for (int j = 0; j < number_type_vehicles; j++) {
+			i++;
+			float perc = (float)stoi(argv[i])/100;
+			number_vehicles[2] = perc*total_requests;
+			total_number_vehicles += number_vehicles[2];
+			//}
 		}
 	}
 
@@ -1082,7 +1100,7 @@ int main(int argc, char **argv) {
 	ts_max = 32400;
 
 
-	number_requests = 1;
+	total_requests = 1;
 
 	cout<<"success"<<endl;
 	cout<<"HIER "<<total_number_vehicles<<" "<<number_stops_origin[0]<<" "<<number_nodes<<endl;
