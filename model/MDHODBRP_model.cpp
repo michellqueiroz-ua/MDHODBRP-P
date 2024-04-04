@@ -57,7 +57,7 @@ int number_requests;
 listV vehicle_located_at_depot;
 matrixDV vehicles_at_depot;
 listV vehicle_type;
-static int total_requests;
+int total_requests;
 
 map<int, int> station_id_map;
 listS stations_ids;
@@ -1085,7 +1085,7 @@ int main(int argc, char **argv) {
 	number_requests = 1;
 
 	cout<<"success"<<endl;
-	cout<<total_number_vehicles<<" "<<number_stops_origin[0]<<" "<<number_nodes<<endl;
+	cout<<"HIER "<<total_number_vehicles<<" "<<number_stops_origin[0]<<" "<<number_nodes<<endl;
 	MDHODBRPFR_MODEL();
 	cout<<"FINAL success2"<<endl;
 	
