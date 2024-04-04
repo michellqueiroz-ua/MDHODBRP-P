@@ -841,11 +841,11 @@ int main(int argc, char **argv) {
 	number_requests = 1;
 
 	cout<<"success"<<endl;
-	//MDHODBRPFR_MODEL();
-
+	MDHODBRPFR_MODEL();
+	cout<<"FINAL success"<<endl;
+	
 	return 0;
 
-	
 }
 
 
