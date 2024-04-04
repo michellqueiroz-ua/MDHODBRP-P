@@ -669,6 +669,7 @@ void MDHODBRPFR_MODEL(){
 		for (int r = 0; r < number_requests; r++){
 
 			GRBLinExpr sum = 0;
+			cout<<total_number_vehicles<<" "<<number_stops_origin[r]<<" "<<number_nodes<<endl;
 			for (int b = 0; b < total_number_vehicles; b++) {
 				for (int i = 0; i < number_stops_origin[r]; i++) {
 					for (int j = 0; j < number_nodes; j++) {
