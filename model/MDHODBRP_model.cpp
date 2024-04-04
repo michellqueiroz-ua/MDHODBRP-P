@@ -57,6 +57,7 @@ int number_requests;
 listV vehicle_located_at_depot;
 matrixDV vehicles_at_depot;
 listV vehicle_type;
+static int total_requests;
 
 map<int, int> station_id_map;
 listS stations_ids;
@@ -119,7 +120,7 @@ void input_travel_time(char *filename) {
 			getline(str, data, ',');
 			//<<data<<endl;
 			
-			count = 0;
+			int count = 0;
 			while(getline(str, data, ',')) {
 				//cout<<data<<endl;
 				if (count > 0) {
