@@ -673,7 +673,8 @@ void MDHODBRPFR_MODEL(){
 			for (int b = 0; b < total_number_vehicles; b++) {
 				for (int i = 0; i < number_stops_origin[r]; i++) {
 					for (int j = 0; j < number_nodes; j++) {
-						sum += x[b][stops_origin[r][i]][j];
+						int nodei = stops_origin[r][i];
+						sum += x[b][nodei][j];
 					}
 				}
 			}
@@ -685,14 +686,15 @@ void MDHODBRPFR_MODEL(){
 
 		//(7)
 		//picked up and dropped by the same vehicle
-		for (int r = 0; r < total_requests; r++){
+		/*for (int r = 0; r < total_requests; r++){
 			for (int b = 0; b < total_number_vehicles; b++) {
 
 				//IloExpr sum(env);
 				GRBLinExpr sum = 0;
 				for (int i = 0; i < number_stops_origin[r]; i++) {
 					for (int j = 0; j < number_nodes; j++) {
-						sum += x[b][stops_origin[r][i]][j];
+						int nodei = stops_origin[r][i];
+						sum += x[b][nodei][j];
 					}
 				}
 
@@ -700,7 +702,8 @@ void MDHODBRPFR_MODEL(){
 				GRBLinExpr sum2 = 0;
 				for (int j = 0; j < number_stops_destination[r]; j++) {
 					for (int i = 0; i < number_nodes; i++) {
-						sum2 += x[b][stops_destination[r][i]][j];
+						int nodei = stops_destination[r][i];
+						sum2 += x[b][nodei][j];
 					}
 				}
 
@@ -713,7 +716,7 @@ void MDHODBRPFR_MODEL(){
 		}
 
 		//(4)
-		/*for (int b = 0; b < total_number_vehicles; b++) {
+		for (int b = 0; b < total_number_vehicles; b++) {
 
 			GRBLinExpr sum = 0;
 			for (int j = 0; j < number_nodes; j++) {
@@ -1104,6 +1107,7 @@ int main(int argc, char **argv) {
 	total_number_vehicles = 1;
 	for (int i =0; i < total_requests; i++){
 		number_stops_origin[i] = 2;
+		number_stops_destination[i] = 2;
 	}
 
 	cout<<"success"<<endl;
