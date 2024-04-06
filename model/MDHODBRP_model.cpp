@@ -674,6 +674,7 @@ void MDHODBRPFR_MODEL(){
 				for (int i = 0; i < number_stops_origin[r]; i++) {
 					for (int j = 0; j < number_nodes; j++) {
 						int nodei = stops_origin[r][i];
+						cout<<travel_time[nodes[nodei]][nodes[j]]<<endl;
 						sum += x[b][nodei][j];
 					}
 				}
