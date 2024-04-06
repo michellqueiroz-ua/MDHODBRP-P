@@ -129,7 +129,7 @@ void input_travel_time(char *filename) {
 				} 
 				count++;
 			}
-			cout<<stop1<<" "<<stop2<<endl;
+			//cout<<stop1<<" "<<stop2<<endl;
 			stop1 = stop1 + 1;
 
 		}
@@ -674,7 +674,7 @@ void MDHODBRPFR_MODEL(){
 				for (int i = 0; i < number_stops_origin[r]; i++) {
 					for (int j = 0; j < number_nodes; j++) {
 						int nodei = stops_origin[r][i];
-						cout<<travel_time[nodes[nodei]][nodes[j]]<<endl;
+						//cout<<travel_time[nodes[nodei]][nodes[j]]<<endl;
 						sum += x[b][nodei][j];
 					}
 				}
@@ -687,7 +687,7 @@ void MDHODBRPFR_MODEL(){
 
 		//(7)
 		//picked up and dropped by the same vehicle
-		/*for (int r = 0; r < total_requests; r++){
+		for (int r = 0; r < total_requests; r++){
 			for (int b = 0; b < total_number_vehicles; b++) {
 
 				//IloExpr sum(env);
@@ -717,7 +717,7 @@ void MDHODBRPFR_MODEL(){
 		}
 
 		//(4)
-		for (int b = 0; b < total_number_vehicles; b++) {
+		/*for (int b = 0; b < total_number_vehicles; b++) {
 
 			GRBLinExpr sum = 0;
 			for (int j = 0; j < number_nodes; j++) {
