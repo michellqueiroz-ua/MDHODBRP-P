@@ -1101,6 +1101,10 @@ int main(int argc, char **argv) {
 
 
 	total_requests = 1;
+	total_number_vehicles = 1;
+	for (int i =0; i < total_requests; i++){
+		number_stops_origin[i] = 2;
+	}
 
 	cout<<"success"<<endl;
 	cout<<"HIER "<<total_number_vehicles<<" "<<number_stops_origin[0]<<" "<<number_nodes<<endl;
