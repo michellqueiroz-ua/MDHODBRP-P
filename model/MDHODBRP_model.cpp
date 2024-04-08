@@ -716,8 +716,8 @@ void MDHODBRPFR_MODEL(){
 			}
 		}
 
-		//(4)
-		/*for (int b = 0; b < total_number_vehicles; b++) {
+		//(8)
+		for (int b = 0; b < total_number_vehicles; b++) {
 
 			GRBLinExpr sum = 0;
 			for (int j = 0; j < number_nodes; j++) {
@@ -729,7 +729,7 @@ void MDHODBRPFR_MODEL(){
 		}
 
 		//(5)
-		for (int b = 0; b < total_number_vehicles; b++) {
+		/*for (int b = 0; b < total_number_vehicles; b++) {
 
 
 			for (int r = 0; r < total_requests; r++){
@@ -1034,10 +1034,11 @@ int main(int argc, char **argv) {
 		} else if (strcmp(argv[i], "--depot") == 0) {
 			for (int j = 0; j < number_depots; j++) {
 				i++;
-				depot[j] = stoi(argv[i]);;
-				//nodes[number_nodes] = stoi(argv[i]);
+				//depot[j] = stoi(argv[i]);
+				depot[j] = number_nodes;
+				nodes[number_nodes] = stoi(argv[i]);
 				type_node[depot[j]] = 3;
-				//number_nodes++;
+				number_nodes++;
 			}
 		} else if (strcmp(argv[i], "--number_vehicles") == 0) {
 			for (int j = 0; j < number_type_vehicles; j++) {
@@ -1078,9 +1079,9 @@ int main(int argc, char **argv) {
 		}
 	}
 
-	for (int i = 0; i < number_depots; i++) {
+	/*for (int i = 0; i < number_depots; i++) {
    		number_vehicles_at_depot[i] = 0;
-   	}
+   	}*/
 
    	int k = 0;
    	for (int j=0; j<number_type_vehicles; j++) {
@@ -1088,10 +1089,11 @@ int main(int argc, char **argv) {
 		for (int i=0; i<number_vehicles[j];i++) {
 			
 			//assign "randomly" a depot to the vehicle
-			vehicle_located_at_depot[k] = rand() % number_depots; 
+			int depot_i = rand() % number_depots
+			vehicle_located_at_depot[k] = depot[depot_i]; 
 
-			vehicles_at_depot[vehicle_located_at_depot[k]][number_vehicles_at_depot[vehicle_located_at_depot[k]]] = k;
-			number_vehicles_at_depot[vehicle_located_at_depot[k]]++;
+			//vehicles_at_depot[vehicle_located_at_depot[k]][number_vehicles_at_depot[vehicle_located_at_depot[k]]] = k;
+			//number_vehicles_at_depot[vehicle_located_at_depot[k]]++;
 
 			vehicle_type[k] = j;
 
