@@ -728,8 +728,8 @@ void MDHODBRPFR_MODEL(){
 
 		}
 
-		//(5)
-		/*for (int b = 0; b < total_number_vehicles; b++) {
+		//(9)
+		for (int b = 0; b < total_number_vehicles; b++) {
 
 
 			for (int r = 0; r < total_requests; r++){
@@ -771,7 +771,7 @@ void MDHODBRPFR_MODEL(){
 
 		}
 
-		//(6)
+		//(10)
 		for (int b = 0; b < total_number_vehicles; b++) {
 
 			GRBLinExpr sum = 0;
@@ -784,7 +784,7 @@ void MDHODBRPFR_MODEL(){
 		}
 
 		//(7) *review*
-		for (int b = 0; b < total_number_vehicles; b++) {
+		/*for (int b = 0; b < total_number_vehicles; b++) {
 			for (int r1 = 0; r1 < total_requests; r1++){
 
 				for (int i = 0; i < number_stops_origin[r1]; i++) {
