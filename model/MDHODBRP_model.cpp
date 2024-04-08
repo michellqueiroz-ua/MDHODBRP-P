@@ -781,8 +781,8 @@ void MDHODBRPFR_MODEL(){
 
 		}
 
-		//(7) *review*
-		/*for (int b = 0; b < total_number_vehicles; b++) {
+		//(11) *review*
+		for (int b = 0; b < total_number_vehicles; b++) {
 			for (int r1 = 0; r1 < total_requests; r1++){
 
 				for (int i = 0; i < number_stops_origin[r1]; i++) {
@@ -797,13 +797,14 @@ void MDHODBRPFR_MODEL(){
 								M[b][i1][j1] = std::max(0, latest_departure[r1] + travel_time[nodes[i1]][nodes[j1]] - earliest_departure[r2]);
 								model.addConstr(T[b][j1] >= T[b][i1] + travel_time[nodes[i1]][nodes[j1]]*x[b][i1][j1] - M[b][i1][j1]*(1 - x[b][i1][j1]));
 							}
-
-							for (int j = 0; j < number_stops_destination[r2]; j++) {
-								int j1 = stops_destination[r2][j];
-								M[b][i1][j1] = std::max(0, latest_departure[r1] + travel_time[nodes[i1]][nodes[j1]] - earliest_arrival[r2]);
-								model.addConstr(T[b][j1] >= T[b][i1] + travel_time[nodes[i1]][nodes[j1]]*x[b][i1][j1] - M[b][i1][j1]*(1 - x[b][i1][j1]));
-							}
 						}
+
+						for (int j = 0; j < number_stops_destination[r2]; j++) {
+							int j1 = stops_destination[r2][j];
+							M[b][i1][j1] = std::max(0, latest_departure[r1] + travel_time[nodes[i1]][nodes[j1]] - earliest_arrival[r2]);
+							model.addConstr(T[b][j1] >= T[b][i1] + travel_time[nodes[i1]][nodes[j1]]*x[b][i1][j1] - M[b][i1][j1]*(1 - x[b][i1][j1]));
+						}
+						//}
 
 					}
 
@@ -822,12 +823,14 @@ void MDHODBRPFR_MODEL(){
 					for (int r2 = 0; r2 < total_requests; r2++){
 
 						if (r1 != r2) {
+							
 							for (int j = 0; j < number_stops_origin[r2]; j++) {
 								int j1 = stops_origin[r2][j];
 								M[b][i1][j1] = std::max(0, latest_arrival[r1] + travel_time[nodes[i1]][nodes[j1]] - earliest_departure[r2]);
 								model.addConstr(T[b][j1] >= T[b][i1] + travel_time[nodes[i1]][nodes[j1]]*x[b][i1][j1] - M[b][i1][j1]*(1 - x[b][i1][j1]));
 							}
 
+						
 							for (int j = 0; j < number_stops_destination[r2]; j++) {
 								int j1 = stops_destination[r2][j];
 								M[b][i1][j1] = std::max(0, latest_arrival[r1] + travel_time[nodes[i1]][nodes[j1]] - earliest_arrival[r2]);
@@ -874,7 +877,7 @@ void MDHODBRPFR_MODEL(){
 				}
 
 			}
-		}*/
+		}
 
 
 
