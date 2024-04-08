@@ -1089,7 +1089,7 @@ int main(int argc, char **argv) {
 		for (int i=0; i<number_vehicles[j];i++) {
 			
 			//assign "randomly" a depot to the vehicle
-			int depot_i = rand() % number_depots
+			int depot_i = rand() % number_depots;
 			vehicle_located_at_depot[k] = depot[depot_i]; 
 
 			//vehicles_at_depot[vehicle_located_at_depot[k]][number_vehicles_at_depot[vehicle_located_at_depot[k]]] = k;
