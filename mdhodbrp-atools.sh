@@ -17,6 +17,6 @@ for input_file in `find ../../instances/300_ni2 -type f -name "*.csv"` ; do
     done
 done
 
-sbatch -account ap_enm --array $(arange --data $run_file) mdhodbrp-atools.slurm $run_file
+sbatch --account ap_enm --array $(arange --data $run_file) mdhodbrp-atools.slurm $run_file
 
 
