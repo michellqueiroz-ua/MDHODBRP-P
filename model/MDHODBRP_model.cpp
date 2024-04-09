@@ -823,7 +823,7 @@ void MDHODBRPFR_MODEL(){
 					for (int r2 = 0; r2 < total_requests; r2++){
 
 						if (r1 != r2) {
-							
+
 							for (int j = 0; j < number_stops_origin[r2]; j++) {
 								int j1 = stops_origin[r2][j];
 								M[b][i1][j1] = std::max(0, latest_arrival[r1] + travel_time[nodes[i1]][nodes[j1]] - earliest_departure[r2]);
@@ -1008,7 +1008,7 @@ void MDHODBRPFR_MODEL(){
         std::time_t end = std::time(nullptr);
         double elapsed = std::difftime(end, start);
 
-        std::cout << "Solution time = " <<  elapsed3 << endl;
+        std::cout << "Solution time = " <<  elapsed << endl;
 
 	}
 
@@ -1108,7 +1108,7 @@ int main(int argc, char **argv) {
 	ts_max = 32400;
 
 
-	total_requests = 1;
+	total_requests = 2;
 	total_number_vehicles = 1;
 	for (int i =0; i < total_requests; i++){
 		number_stops_origin[i] = 2;
