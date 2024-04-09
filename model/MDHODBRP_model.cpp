@@ -958,6 +958,44 @@ void MDHODBRPFR_MODEL(){
 
 
 		//---
+		//setting to 0 some variables
+		bool can_be_part_of_solution = false;
+		for (int i = 0; i < number_nodes; i++) {
+			can_be_part_of_solution = false;
+			for (int r = 0; r < total_requests; r++){
+				//check if node belongs to the origin or destination of a request
+				for (int j = 0; j < number_stops_origin[r]; j++) {
+					int i1 = stops_origin[r][j];
+					if (i1 == i) {
+						can_be_part_of_solution = true;
+					}
+				}
+
+				for (int j = 0; j < number_stops_destination[r]; j++) {
+					int i1 = stops_destination[r][j];
+					if (i1 == i) {
+						can_be_part_of_solution = true;
+					}
+				}
+
+				for (int j = 0; j < number_depots; j++) {
+					int i1 = depot[j];
+					if (i1 == i) {
+						can_be_part_of_solution = true;
+					}
+				}
+
+			}
+
+			if (not can_be_part_of_solution) {
+				for (int b = 0; b < total_number_vehicles; b++) {
+					for (int j=0;j<number_nodes;j++) {
+						x[b][i][j].set(GRB_DoubleAttr_Start, 0.0);
+						x[b][j][i].set(GRB_DoubleAttr_Start, 0.0);
+					}
+				}
+			}
+		}
 
 		
 		

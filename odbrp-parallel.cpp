@@ -13068,7 +13068,7 @@ int main(int argc, char **argv) {
 		//comment this static. no need to change partitions
 
 		
-		cout<<"hier7sa"<<endl;
+		//cout<<"hier7sa"<<endl;
 		if (k > total_number_vehicles + 10) {
 		
 			
