@@ -1177,7 +1177,7 @@ int main(int argc, char **argv) {
 	ts_max = 32400;
 
 
-	total_requests = 2;
+	total_requests = 3;
 	total_number_vehicles = 2;
 	for (int i =0; i < total_requests; i++){
 		number_stops_origin[i] = 2;
@@ -1187,6 +1187,17 @@ int main(int argc, char **argv) {
 	cout<<"success"<<endl;
 	cout<<"HIER "<<total_number_vehicles<<" "<<number_stops_origin[0]<<" "<<number_nodes<<endl;
 	MDHODBRPFR_MODEL();
+	for (int i =0; i < total_requests; i++){
+		for (int j =0; j < number_stops_origin[i]; j++){
+			cout<<stops_origin[j]<<" ";
+		}
+		cout<<endl;
+		for (int j =0; j < number_stops_destination[i]; j++){
+			cout<<stops_destination[j]<<" ";
+		}
+		cout<<endl;
+		cout<<endl;
+	}
 	cout<<"FINAL success2"<<endl;
 	
 	return 0;

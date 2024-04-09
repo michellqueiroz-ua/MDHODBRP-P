@@ -12609,7 +12609,7 @@ int main(int argc, char **argv) {
 	rejected_requests_so_far = 0;
 
 	//reduce size instance (static exp with model)
-	total_requests = 2;
+	total_requests = 3;
 	total_number_vehicles = 2;
 	for (int i =0; i < total_requests; i++){
 		number_stops_origin[i] = 2;
@@ -13119,6 +13119,18 @@ int main(int argc, char **argv) {
 
 	check_valid_user_ride_times();
 	
+	for (int i =0; i < total_requests; i++){
+		for (int j =0; j < number_stops_origin[i]; j++){
+			cout<<stops_origin[j]<<" ";
+		}
+		cout<<endl;
+		for (int j =0; j < number_stops_destination[i]; j++){
+			cout<<stops_destination[j]<<" ";
+		}
+		cout<<endl;
+		cout<<endl;
+	}
+
 	print_all_vehicles();
 
 
