@@ -61,6 +61,8 @@ int total_requests;
 map<int, int> station_id_map;
 listS stations_ids;
 matrixSS travel_time;
+string output_filename;
+string requests_filename;
 
 listP time_stamp, earliest_departure, latest_departure, earliest_arrival, latest_arrival, direct_travel_time;
 
@@ -1010,6 +1012,10 @@ void MDHODBRPFR_MODEL(){
 
         std::cout << "Solution time = " <<  elapsed << endl;
 
+        std::ofstream output_file;
+		output_file.open(output_filename, std::ios::app);
+		output_file << requests_filename << " " << model.get(GRB_DoubleAttr_ObjVal) << " " << elapsed << endl;
+
 	}
 
 	catch (GRBException e) {
@@ -1031,6 +1037,7 @@ int main(int argc, char **argv) {
 		if (strcmp(argv[i], "--filename_requests") == 0) {
 			input_requests(argv[i+1]);
 			cout<<argv[i+1]<<endl;
+			requests_filename = argv[i+1];
 		} else if (strcmp(argv[i], "--filename_travel_time") == 0) {
 			input_travel_time(argv[i+1]);
 		} else if (strcmp(argv[i], "--depot") == 0) {
@@ -1078,6 +1085,11 @@ int main(int argc, char **argv) {
 			number_vehicles[2] = perc*total_requests;
 			total_number_vehicles += number_vehicles[2];
 			//}
+		} else if (strcmp(argv[i], "--output_file") == 0) {
+			//<<"ttm"<<endl;
+			//input_travel_time(argv[i+1]);
+			output_filename = argv[i+1];
+			//<<"leave ttm"<<endl;
 		}
 	}
 

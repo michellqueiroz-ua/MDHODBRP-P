@@ -29,7 +29,7 @@ using namespace std;
 #define maxtotalcapacity 40
 #define maxtypevehicles 40
 #define maxnumberdepots 10
-#define number_clusters 14
+#define number_clusters 1
 
 typedef int listP[21000 + 1];
 //typedef int matrixVP[maxvehicles + 1][maxpassengers + 1];
@@ -12608,6 +12608,14 @@ int main(int argc, char **argv) {
 	served_requests_so_far = 0;
 	rejected_requests_so_far = 0;
 
+	//reduce size instance (static exp with model)
+	total_requests = 2;
+	total_number_vehicles = 1;
+	for (int i =0; i < total_requests; i++){
+		number_stops_origin[i] = 2;
+		number_stops_destination[i] = 2;
+	}
+	//comment this later
 	
 	int it = 0;
 	//initialize clusters
@@ -12768,6 +12776,9 @@ int main(int argc, char **argv) {
 		k++;
 	}
 	//static
+
+
+	
 
 
 	//while((k < total_requests) or (current_time < 32400)) {

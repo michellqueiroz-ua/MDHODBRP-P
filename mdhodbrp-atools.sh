@@ -5,7 +5,7 @@ module load atools
 run_file=parallelheur18.csv
 
 echo "input_file; seed1" > $run_file
-for input_file in `find ../../large-instances/missingconc2 -type f -name "*.csv"` ; do
+for input_file in `find ../../instances/300_ni2 -type f -name "*.csv"` ; do
     counterx=6
     for iter in 1
     do
@@ -17,6 +17,6 @@ for input_file in `find ../../large-instances/missingconc2 -type f -name "*.csv"
     done
 done
 
-sbatch --array $(arange --data $run_file) mdhodbrp-atools.slurm $run_file
+sbatch -account ap_enm --array $(arange --data $run_file) mdhodbrp-atools.slurm $run_file
 
 
