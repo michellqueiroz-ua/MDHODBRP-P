@@ -990,8 +990,14 @@ void MDHODBRPFR_MODEL(){
 			if (not can_be_part_of_solution) {
 				for (int b = 0; b < total_number_vehicles; b++) {
 					for (int j=0;j<number_nodes;j++) {
-						x[b][i][j].set(GRB_DoubleAttr_Start, 0.0);
-						x[b][j][i].set(GRB_DoubleAttr_Start, 0.0);
+						//x[b][i][j].set(GRB_DoubleAttr_Start, 0.0);
+						//x[b][j][i].set(GRB_DoubleAttr_Start, 0.0);
+
+						x[b][i][j].set(GRB_DoubleAttr_LB, 0.0); // Lower bound
+           		 		x[b][i][j].set(GRB_DoubleAttr_UB, 0.0); // Upper bound
+
+           		 		x[b][j][i].set(GRB_DoubleAttr_LB, 0.0); // Lower bound
+           		 		x[b][j][i].set(GRB_DoubleAttr_UB, 0.0); // Upper bound
 					}
 				}
 			}
