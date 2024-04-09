@@ -13119,7 +13119,7 @@ int main(int argc, char **argv) {
 
 	check_valid_user_ride_times();
 	
-	//print_all_vehicles();
+	print_all_vehicles();
 
 
 	for (int k=0;k<total_requests;k++){

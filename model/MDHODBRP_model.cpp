@@ -1016,6 +1016,18 @@ void MDHODBRPFR_MODEL(){
 		output_file.open(output_filename, std::ios::app);
 		output_file << requests_filename << " " << model.get(GRB_DoubleAttr_ObjVal) << " " << elapsed << endl;
 
+		//printing solution
+		for (int b = 0; b < total_number_vehicles; b++) {
+			for (int i = 0; i < number_nodes; i++) {
+				for (int j = 0; j < number_nodes; j++) {
+					if (x[b][i][j] == 1){
+						cout<<b<<" "<<nodes[i]<<" "<<nodes[j]<<" "<<travel_time[nodes[i]][nodes[j]]<<endl;
+					}
+				}
+			}
+			cout<<endl;
+		}
+
 	}
 
 	catch (GRBException e) {
@@ -1121,7 +1133,7 @@ int main(int argc, char **argv) {
 
 
 	total_requests = 2;
-	total_number_vehicles = 1;
+	total_number_vehicles = 2;
 	for (int i =0; i < total_requests; i++){
 		number_stops_origin[i] = 2;
 		number_stops_destination[i] = 2;
