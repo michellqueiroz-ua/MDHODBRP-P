@@ -1020,7 +1020,7 @@ void MDHODBRPFR_MODEL(){
 		for (int b = 0; b < total_number_vehicles; b++) {
 			for (int i = 0; i < number_nodes; i++) {
 				for (int j = 0; j < number_nodes; j++) {
-					double bX = binaryVar.get(x[b][i][j]);
+					double bX = x[b][i][j].get(GRB_DoubleAttr_X);
 					if (bX == 1.0){
 						cout<<b<<" "<<nodes[i]<<" "<<nodes[j]<<" "<<travel_time[nodes[i]][nodes[j]]<<endl;
 					}
