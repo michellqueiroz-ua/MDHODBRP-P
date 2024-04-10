@@ -45,6 +45,7 @@ typedef int matrixVSS[maxvehicles + 1][maxstations + 1][maxstations + 1];
 int ts_min, ts_max;
 map<int, int> nodes;
 listD depot;
+listV all_depots;
 map<int, int> type_node;
 int number_nodes;
 listT number_vehicles;
@@ -53,7 +54,9 @@ int total_number_vehicles;
 listT maxcapacity;
 int number_type_vehicles;
 int number_depots;
+int number_nodes_depots;
 listV vehicle_located_at_depot;
+listV vehicle_return_to_depot;
 matrixDV vehicles_at_depot;
 listV vehicle_type;
 int total_requests;
@@ -776,7 +779,7 @@ void MDHODBRPFR_MODEL(){
 
 			GRBLinExpr sum = 0;
 			for (int j = 0; j < number_nodes; j++) {
-				sum += x[b][j][vehicle_located_at_depot[b]];
+				sum += x[b][j][vehicle_return_to_depot[b]];
 			}
 			model.addConstr(sum == 1);
 			//sum.end();
@@ -810,8 +813,8 @@ void MDHODBRPFR_MODEL(){
 
 					}
 
-					for (int j = 0; j < number_depots; j++) {
-						int j1 = depot[j];
+					for (int j = 0; j < number_nodes_depots; j++) {
+						int j1 = all_depots[j];
 						M[b][i1][j1] = std::max(0, latest_departure[r1] + travel_time[nodes[i1]][nodes[j1]] - ts_min);
 						model.addConstr(T[b][j1] >= T[b][i1] + travel_time[nodes[i1]][nodes[j1]]*x[b][i1][j1] - M[b][i1][j1]*(1 - x[b][i1][j1]));
 					}
@@ -844,16 +847,16 @@ void MDHODBRPFR_MODEL(){
 
 					}
 
-					for (int j = 0; j < number_depots; j++) {
-						int j1 = depot[j];
+					for (int j = 0; j < number_nodes_depots; j++) {
+						int j1 = all_depots[j];
 						M[b][i1][j1] = std::max(0, latest_arrival[r1] + travel_time[nodes[i1]][nodes[j1]] - ts_min);
 						model.addConstr(T[b][j1] >= T[b][i1] + travel_time[nodes[i1]][nodes[j1]]*x[b][i1][j1] - M[b][i1][j1]*(1 - x[b][i1][j1]));
 					}
 
 				}
 
-				for (int i = 0; i < number_depots; i++) {
-					int i1 = depot[i];
+				for (int i = 0; i < number_nodes_depots; i++) {
+					int i1 = all_depots[i];
 					q[i1] = 0;
 					for (int r2 = 0; r2 < total_requests; r2++){
 
@@ -978,8 +981,8 @@ void MDHODBRPFR_MODEL(){
 					}
 				}
 
-				for (int j = 0; j < number_depots; j++) {
-					int i1 = depot[j];
+				for (int j = 0; j < number_nodes_depots; j++) {
+					int i1 = all_depots[j];
 					if (i1 == i) {
 						can_be_part_of_solution = true;
 					}
@@ -1100,11 +1103,11 @@ int main(int argc, char **argv) {
 		} else if (strcmp(argv[i], "--depot") == 0) {
 			for (int j = 0; j < number_depots; j++) {
 				i++;
-				//depot[j] = stoi(argv[i]);
-				depot[j] = number_nodes;
-				nodes[number_nodes] = stoi(argv[i]);
+				depot[j] = stoi(argv[i]);
+				//depot[j] = number_nodes;
+				//nodes[number_nodes] = stoi(argv[i]);
 				type_node[depot[j]] = 3;
-				number_nodes++;
+				//number_nodes++;
 			}
 		} else if (strcmp(argv[i], "--number_vehicles") == 0) {
 			for (int j = 0; j < number_type_vehicles; j++) {
@@ -1155,13 +1158,34 @@ int main(int argc, char **argv) {
    	}*/
 
    	int k = 0;
+   	number_nodes_depots = 0;
+   	total_requests = 3;
+	total_number_vehicles = 2;
+	for (int i =0; i < total_requests; i++){
+		number_stops_origin[i] = 2;
+		number_stops_destination[i] = 2;
+	}
    	for (int j=0; j<number_type_vehicles; j++) {
 
 		for (int i=0; i<number_vehicles[j];i++) {
 			
 			//assign "randomly" a depot to the vehicle
 			int depot_i = rand() % number_depots;
-			vehicle_located_at_depot[k] = depot[depot_i]; 
+
+			if (k < total_number_vehicles) {
+				all_depots[number_nodes_depots] = number_nodes;
+				vehicle_located_at_depot[k] = number_nodes; 
+				nodes[number_nodes] = depot[depot_i];
+				number_nodes++;
+				number_nodes_depots++;
+
+				//repeat return node
+				all_depots[number_nodes_depots] = number_nodes;
+				vehicle_return_to_depot[k] = number_nodes; 
+				nodes[number_nodes] = depot[depot_i];
+				number_nodes++;
+				number_nodes_depots++;
+			}
 
 			//vehicles_at_depot[vehicle_located_at_depot[k]][number_vehicles_at_depot[vehicle_located_at_depot[k]]] = k;
 			//number_vehicles_at_depot[vehicle_located_at_depot[k]]++;
@@ -1177,16 +1201,13 @@ int main(int argc, char **argv) {
 	ts_max = 32400;
 
 
-	total_requests = 3;
-	total_number_vehicles = 2;
-	for (int i =0; i < total_requests; i++){
-		number_stops_origin[i] = 2;
-		number_stops_destination[i] = 2;
-	}
+	
 
-	for (int k=0;k<total_requests;k++){
+	
+
+	/*for (int k=0;k<total_requests;k++){
 		latest_arrival[k] = latest_arrival[k] + 1800;
-	}
+	}*/
 
 	cout<<"success"<<endl;
 	cout<<"HIER "<<total_number_vehicles<<" "<<number_stops_origin[0]<<" "<<number_nodes<<endl;
