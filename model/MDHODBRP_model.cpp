@@ -1041,11 +1041,20 @@ void MDHODBRPFR_MODEL(){
             throw(-1);
         }*/
         // Enable IIS computation
-        env.set(GRB_IntParam_IISMethod, 1);
+        //env.set(GRB_IntParam_IISMethod, 1);
 
         model.optimize();
 
+        cout<<"SEE WHICH INFEASIBLE"<<endl;
         if (model.get(GRB_IntAttr_Status) == GRB_INFEASIBLE) {
+            // Compute the IIS
+            model.computeIIS();
+            model.write('iismodel.ilp');
+
+        }
+        cout<<"SEE WHICH INFEASIBLE"<<endl;
+
+        /*if (model.get(GRB_IntAttr_Status) == GRB_INFEASIBLE) {
             // Compute the IIS
             model.computeIIS();
 
@@ -1059,7 +1068,7 @@ void MDHODBRPFR_MODEL(){
 			        std::cout << "Constraint '" << c.get(GRB_StringAttr_ConstrName) << "' is in the IIS." << std::endl;
 			    }
 			}
-        }
+        }*/
 
         if (model.get(GRB_IntAttr_Status) != GRB_OPTIMAL) {
             std::cerr << "Failed to optimize LP." << std::endl;
