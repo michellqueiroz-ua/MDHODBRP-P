@@ -1039,7 +1039,23 @@ void MDHODBRPFR_MODEL(){
             env.error() << "Failed to optimize LP." << endl;
             throw(-1);
         }*/
+        // Enable IIS computation
+        env.set(GRB_IntParam_IISMethod, 1);
+
         model.optimize();
+
+        if (model.get(GRB_IntAttr_Status) == GRB_INFEASIBLE) {
+            // Compute the IIS
+            model.computeIIS();
+
+            // Iterate over constraints to find which ones are in the IIS
+            for (GRBConstr c : model.getConstrs()) {
+                if (c.get(GRB_IntAttr_IISConstr) == 1) {
+                    std::cout << "Constraint '" << c.get(GRB_StringAttr_ConstrName) << "' is in the IIS." << std::endl;
+                }
+            }
+        }
+
         if (model.get(GRB_IntAttr_Status) != GRB_OPTIMAL) {
             std::cerr << "Failed to optimize LP." << std::endl;
             throw(-1);
@@ -1159,8 +1175,8 @@ int main(int argc, char **argv) {
 
    	int k = 0;
    	number_nodes_depots = 0;
-   	total_requests = 2;
-	total_number_vehicles = 2;
+   	total_requests = 3;
+	total_number_vehicles = 3;
 	for (int i =0; i < total_requests; i++){
 		number_stops_origin[i] = 2;
 		number_stops_destination[i] = 2;
