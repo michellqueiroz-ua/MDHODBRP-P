@@ -1049,13 +1049,16 @@ void MDHODBRPFR_MODEL(){
             // Compute the IIS
             model.computeIIS();
 
-            // Iterate over constraints to find which ones are in the IIS
-				for (auto it = model.getConstrs().begin(); it != model.getConstrs().end(); ++it) {
-				    GRBConstr c = *it;
-				    if (c.get(GRB_IntAttr_IISConstr) == 1) {
-				        std::cout << "Constraint '" << c.get(GRB_StringAttr_ConstrName) << "' is in the IIS." << std::endl;
-				    }
-				}
+            // Get the number of constraints
+			int numConstrs = model.get(GRB_IntAttr_NumConstrs);
+
+			// Iterate over constraints to find which ones are in the IIS
+			for (int i = 0; i < numConstrs; ++i) {
+			    GRBConstr c = model.getConstr(i);
+			    if (c.get(GRB_IntAttr_IISConstr) == 1) {
+			        std::cout << "Constraint '" << c.get(GRB_StringAttr_ConstrName) << "' is in the IIS." << std::endl;
+			    }
+			}
         }
 
         if (model.get(GRB_IntAttr_Status) != GRB_OPTIMAL) {
