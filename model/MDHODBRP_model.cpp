@@ -22,6 +22,7 @@
 #include <vector>
 #include <iomanip>
 #include "gurobi_c++.h"
+#include <iterator>
 using namespace std;
 
 #define maxvehicles 100
