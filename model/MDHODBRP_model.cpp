@@ -904,9 +904,9 @@ void MDHODBRPFR_MODEL(){
 		}
 
 		//(13)
-		for (int b = 0; b < total_number_vehicles; b++) {
+		/*for (int b = 0; b < total_number_vehicles; b++) {
 			for (int r = 0; r < total_requests; r++){
-				for (int i = 0; i < number_stops_origin[r]; i++) {
+				for (int i = 0; i < number_stops_destination[r]; i++) {
 					int i1 = stops_destination[r][i];
 					GRBLinExpr sum = 0;
 					for (int j = 0; j < number_nodes; j++) {
@@ -916,7 +916,7 @@ void MDHODBRPFR_MODEL(){
 					//sum.end();	
 				}
 			}
-		}
+		}*/
 
 		//(14)
 		for (int b = 0; b < total_number_vehicles; b++) {
@@ -1045,14 +1045,14 @@ void MDHODBRPFR_MODEL(){
 
         model.optimize();
 
-        cout<<"SEE WHICH INFEASIBLE"<<endl;
+        /*cout<<"SEE WHICH INFEASIBLE"<<endl;
         if (model.get(GRB_IntAttr_Status) == GRB_INFEASIBLE) {
             // Compute the IIS
             model.computeIIS();
             model.write("iismodel.ilp");
 
         }
-        cout<<"SEE WHICH INFEASIBLE"<<endl;
+        cout<<"SEE WHICH INFEASIBLE"<<endl;*/
 
         /*if (model.get(GRB_IntAttr_Status) == GRB_INFEASIBLE) {
             // Compute the IIS
