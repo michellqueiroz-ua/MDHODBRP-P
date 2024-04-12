@@ -678,8 +678,8 @@ void MDHODBRPFR_MODEL(){
 
 			for (int b = 0; b < total_number_vehicles; b++) {
 				for (int i = 0; i < number_stops_origin[r]; i++) {
+					int nodei = stops_origin[r][i];
 					for (int j = 0; j < number_nodes; j++) {
-						int nodei = stops_origin[r][i];
 						//cout<<travel_time[nodes[nodei]][nodes[j]]<<endl;
 						sum += x[b][nodei][j];
 					}
@@ -699,8 +699,8 @@ void MDHODBRPFR_MODEL(){
 				//IloExpr sum(env);
 				GRBLinExpr sum = 0;
 				for (int i = 0; i < number_stops_origin[r]; i++) {
+					int nodei = stops_origin[r][i];
 					for (int j = 0; j < number_nodes; j++) {
-						int nodei = stops_origin[r][i];
 						sum += x[b][nodei][j];
 					}
 				}
@@ -708,9 +708,9 @@ void MDHODBRPFR_MODEL(){
 
 				GRBLinExpr sum2 = 0;
 				for (int j = 0; j < number_stops_destination[r]; j++) {
+					int nodei = stops_destination[r][j];
 					for (int i = 0; i < number_nodes; i++) {
-						int nodei = stops_destination[r][i];
-						sum2 += x[b][nodei][j];
+						sum2 += x[b][nodei][i];
 					}
 				}
 
@@ -735,7 +735,7 @@ void MDHODBRPFR_MODEL(){
 		}
 
 		//(9)
-		/*for (int b = 0; b < total_number_vehicles; b++) {
+		for (int b = 0; b < total_number_vehicles; b++) {
 			for (int r = 0; r < total_requests; r++){
 				for (int i = 0; i < number_stops_origin[r]; i++) {
 
@@ -773,7 +773,7 @@ void MDHODBRPFR_MODEL(){
 
 			}
 
-		}*/
+		}
 
 		//(10)
 		for (int b = 0; b < total_number_vehicles; b++) {
