@@ -669,6 +669,7 @@ void MDHODBRPFR_MODEL(){
 
 		//(1) Objective function
 		//minimize total user ride time
+		GRBLinExpr objFunc = 0;
 		for (int r = 0; r < total_requests; r++){
 
 			GRBLinExpr sum = 0;
