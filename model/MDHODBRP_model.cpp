@@ -656,7 +656,7 @@ void MDHODBRPFR_MODEL(){
 
 		//(1) Objective function *maybe wrong*
 		//minimize total user ride time
-		/*GRBLinExpr objFunc = 0;
+		GRBLinExpr objFunc = 0;
 		for (int b = 0; b < total_number_vehicles; b++) {
 			for (int i = 0; i < number_nodes; i++) {
 				for (int j = 0; j < number_nodes; j++) {
@@ -664,7 +664,8 @@ void MDHODBRPFR_MODEL(){
 				}
 			}
 			
-		}*/
+		}
+		model.setObjective(objFunc, GRB_MINIMIZE);
 
 
 		//(1) Objective function
@@ -677,9 +678,7 @@ void MDHODBRPFR_MODEL(){
 				for (int i = 0; i < number_stops_destination[r]; i++) {
 						int nodei = stops_destination[r][i];
 						sum += T[b][nodei];
-						/*for (int j = 0; j < number_nodes; j++) {
-							sum += travel_time[nodes[j]][nodes[nodei]]*x[b][nodei][j];
-						}*/
+					
 					}
 			}
 
@@ -688,9 +687,7 @@ void MDHODBRPFR_MODEL(){
 				for (int i = 0; i < number_stops_origin[r]; i++) {
 					int nodei = stops_origin[r][i];
 					sum2 += T[b][nodei];
-					/*for (int j = 0; j < number_nodes; j++) {
-							sum2 += travel_time[nodes[nodei]][nodes[j]]*x[b][nodei][j];
-					}*/
+					
 				}
 			}
 
@@ -703,7 +700,7 @@ void MDHODBRPFR_MODEL(){
 		//model.add(IloMinimize(env, objFunc));
 		//objFunc.end(); 
 		model.setObjective(objFunc, GRB_MINIMIZE);
-
+													
 		//(6)
 		//every request is served once
 
@@ -953,6 +950,22 @@ void MDHODBRPFR_MODEL(){
 				}
 			}
 		}
+
+
+		// try to force T[b][i1] to zero if node isn't served
+		/*for (int b = 0; b < total_number_vehicles; b++) {
+			for (int r = 0; r < total_requests; r++){
+				for (int i = 0; i < number_nodes; i++) {
+					//int i1 = stops_origin[r][i];
+					GRBLinExpr sum = 0;
+					for (int j = 0; j < number_nodes; j++) {
+						sum += x[b][j][i];
+					}
+					model.addConstr(T[b][i] <= max_time*(sum));
+					//sum.end();	
+				}
+			}
+		}*/
 
 		//(13)
 		for (int b = 0; b < total_number_vehicles; b++) {
@@ -1279,7 +1292,7 @@ int main(int argc, char **argv) {
 	}
 
 	ts_min = 25200;
-	ts_max = 32400;
+	ts_max = 42400;
 
 
 	
