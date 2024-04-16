@@ -938,6 +938,22 @@ void MDHODBRPFR_MODEL(){
 			}
 		}
 
+
+		// try to force T[b][i1] to zero if node isn't served
+		for (int b = 0; b < total_number_vehicles; b++) {
+			for (int r = 0; r < total_requests; r++){
+				for (int i = 0; i < number_stops_origin[r]; i++) {
+					int i1 = stops_origin[r][i];
+					GRBLinExpr sum = 0;
+					for (int j = 0; j < number_nodes; j++) {
+						sum += x[b][j][i1];
+					}
+					model.addConstr(T[b][i1] <= max_time - max_time*(1-sum));
+					//sum.end();	
+				}
+			}
+		}
+
 		//(13)
 		for (int b = 0; b < total_number_vehicles; b++) {
 			for (int r = 0; r < total_requests; r++){
