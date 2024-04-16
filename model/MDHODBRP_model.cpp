@@ -1244,11 +1244,11 @@ int main(int argc, char **argv) {
 	MDHODBRPFR_MODEL();
 	for (int i =0; i < total_requests; i++){
 		for (int j =0; j < number_stops_origin[i]; j++){
-			cout<<stops_origin[j]<<" ";
+			cout<<stops_origin[i][j]<<" ";
 		}
 		cout<<endl;
 		for (int j =0; j < number_stops_destination[i]; j++){
-			cout<<stops_destination[j]<<" ";
+			cout<<stops_destination[i][j]<<" ";
 		}
 		cout<<endl;
 		cout<<endl;

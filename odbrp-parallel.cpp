@@ -12610,7 +12610,7 @@ int main(int argc, char **argv) {
 
 	//reduce size instance (static exp with model)
 	total_requests = 3;
-	total_number_vehicles = 2;
+	total_number_vehicles = 3;
 	for (int i =0; i < total_requests; i++){
 		number_stops_origin[i] = 2;
 		number_stops_destination[i] = 2;
