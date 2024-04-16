@@ -676,9 +676,10 @@ void MDHODBRPFR_MODEL(){
 			for (int b = 0; b < total_number_vehicles; b++) {
 				for (int i = 0; i < number_stops_destination[r]; i++) {
 						int nodei = stops_destination[r][i];
-						for (int j = 0; j < number_nodes; j++) {
-							sum += travel_time[nodes[nodei]][nodes[j]]*x[b][nodei][j];
-						}
+						sum += T[b][nodei];
+						/*for (int j = 0; j < number_nodes; j++) {
+							sum += travel_time[nodes[j]][nodes[nodei]]*x[b][nodei][j];
+						}*/
 					}
 			}
 
@@ -686,9 +687,10 @@ void MDHODBRPFR_MODEL(){
 			for (int b = 0; b < total_number_vehicles; b++) {
 				for (int i = 0; i < number_stops_origin[r]; i++) {
 					int nodei = stops_origin[r][i];
-					for (int j = 0; j < number_nodes; j++) {
+					sum2 += T[b][nodei];
+					/*for (int j = 0; j < number_nodes; j++) {
 							sum2 += travel_time[nodes[nodei]][nodes[j]]*x[b][nodei][j];
-					}
+					}*/
 				}
 			}
 
