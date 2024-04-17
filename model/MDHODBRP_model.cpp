@@ -722,7 +722,7 @@ void MDHODBRPFR_MODEL(){
 				}
 			}
 
-			model.addConstr(sum - sum2 > 0);
+			model.addConstr(sum - sum2, GRB_GREATER_EQUAL, 0);
 		}
 
 		//(6)
