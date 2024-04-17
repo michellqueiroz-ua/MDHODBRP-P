@@ -701,29 +701,6 @@ void MDHODBRPFR_MODEL(){
 		//objFunc.end(); 
 		model.setObjective(objFunc, GRB_MINIMIZE);
 		
-		//for every request, the departure station is served afterwards
-		for (int r = 0; r < total_requests; r++){
-
-			GRBLinExpr sum = 0;
-			for (int b = 0; b < total_number_vehicles; b++) {
-				for (int i = 0; i < number_stops_destination[r]; i++) {
-						int nodei = stops_destination[r][i];
-						sum += T[b][nodei];
-					
-					}
-			}
-
-			GRBLinExpr sum2 = 0;
-			for (int b = 0; b < total_number_vehicles; b++) {
-				for (int i = 0; i < number_stops_origin[r]; i++) {
-					int nodei = stops_origin[r][i];
-					sum2 += T[b][nodei];
-					
-				}
-			}
-
-			model.addConstr(sum - sum2, GRB_GREATER_EQUAL, 0);
-		}
 
 		//(6)
 		//every request is served once
@@ -967,7 +944,7 @@ void MDHODBRPFR_MODEL(){
 			}
 		}
 
-
+		//*new constraints*
 		// try to force T[b][i1] to zero if node isn't served
 		for (int b = 0; b < total_number_vehicles; b++) {
 			for (int r = 0; r < total_requests; r++){
@@ -982,6 +959,34 @@ void MDHODBRPFR_MODEL(){
 				}
 			}
 		}
+
+
+		//for every request, the departure station is served afterwards
+		for (int r = 0; r < total_requests; r++){
+
+			GRBLinExpr sum = 0;
+			for (int b = 0; b < total_number_vehicles; b++) {
+				for (int i = 0; i < number_stops_destination[r]; i++) {
+						int nodei = stops_destination[r][i];
+						sum += T[b][nodei];
+					
+					}
+			}
+
+			GRBLinExpr sum2 = 0;
+			for (int b = 0; b < total_number_vehicles; b++) {
+				for (int i = 0; i < number_stops_origin[r]; i++) {
+					int nodei = stops_origin[r][i];
+					sum2 += T[b][nodei];
+					
+				}
+			}
+
+			model.addConstr(sum - sum2, GRB_GREATER_EQUAL, 0);
+		}
+
+
+		//*new constraints*
 
 
 		// try to force T[b][i1] to zero if node isn't served
@@ -1103,6 +1108,18 @@ void MDHODBRPFR_MODEL(){
 			}
 		}
 
+		//it does not make sense to travel between the same physical nodes
+		for (int b = 0; b < total_number_vehicles; b++) {
+			for (int i = 0; i < number_nodes; i++) {
+				for (int j = 0; j < number_nodes; j++) {
+					if (nodes[i] == nodes[j]){
+						x[b][i][j].set(GRB_DoubleAttr_LB, 0.0); // Lower bound
+	       		 		x[b][i][j].set(GRB_DoubleAttr_UB, 0.0); // Upper bound
+       		 		}
+				}
+			}
+		}
+
 		
 		
 		//adding to zero walking variables that are not origin/dest of passenger
@@ -1195,7 +1212,7 @@ void MDHODBRPFR_MODEL(){
 				for (int j = 0; j < number_nodes; j++) {
 					double bX = x[b][i][j].get(GRB_DoubleAttr_X);
 					if (bX == 1.0){
-						cout<<b<<" "<<nodes[i]<<" "<<nodes[j]<<" "<<travel_time[nodes[i]][nodes[j]]<<endl;
+						cout<<b<<" "<<nodes[i]<<" "<<i<<" "<<nodes[j]<<" "<<j<<" "<<travel_time[nodes[i]][nodes[j]]<<endl;
 					}
 				}
 			}
@@ -1350,13 +1367,14 @@ int main(int argc, char **argv) {
 	for (int i =0; i < total_requests; i++){
 		for (int j =0; j < number_stops_origin[i]; j++){
 			cout<<stops_origin[i][j]<<" ";
+			for (int k =0; k < number_stops_destination[i]; k++){
+				cout<<stops_destination[i][k]<<" ";
+				cout<<travel_time[nodes[stops_origin[i][j]]][nodes[stops_destination[i][k]]]<<endl;
+			}
+			cout<<endl;
 		}
-		cout<<endl;
-		for (int j =0; j < number_stops_destination[i]; j++){
-			cout<<stops_destination[i][j]<<" ";
-		}
-		cout<<endl;
-		cout<<endl;
+		//cout<<endl;
+		//cout<<endl;
 	}
 	cout<<"FINAL success2"<<endl;
 	
