@@ -832,14 +832,16 @@ void MDHODBRPFR_MODEL(){
 						if (r1 != r2) {
 							for (int j = 0; j < number_stops_origin[r2]; j++) {
 								int j1 = stops_origin[r2][j];
-								M[b][i1][j1] = std::max(0, latest_departure[r1] + travel_time[nodes[i1]][nodes[j1]] - earliest_departure[r2]);
+								//M[b][i1][j1] = std::max(0, latest_departure[r1] + travel_time[nodes[i1]][nodes[j1]] - earliest_departure[r2]);
+								M[b][i1][j1] = ts_max*2;
 								model.addConstr(T[b][j1] >= T[b][i1] + travel_time[nodes[i1]][nodes[j1]]*x[b][i1][j1] - M[b][i1][j1]*(1 - x[b][i1][j1]));
 							}
 						}
 
 						for (int j = 0; j < number_stops_destination[r2]; j++) {
 							int j1 = stops_destination[r2][j];
-							M[b][i1][j1] = std::max(0, latest_departure[r1] + travel_time[nodes[i1]][nodes[j1]] - earliest_arrival[r2]);
+							//M[b][i1][j1] = std::max(0, latest_departure[r1] + travel_time[nodes[i1]][nodes[j1]] - earliest_arrival[r2]);
+							M[b][i1][j1] = ts_max*2;
 							model.addConstr(T[b][j1] >= T[b][i1] + travel_time[nodes[i1]][nodes[j1]]*x[b][i1][j1] - M[b][i1][j1]*(1 - x[b][i1][j1]));
 						}
 						//}
@@ -848,7 +850,8 @@ void MDHODBRPFR_MODEL(){
 
 					for (int j = 0; j < number_nodes_depots; j++) {
 						int j1 = all_depots[j];
-						M[b][i1][j1] = std::max(0, latest_departure[r1] + travel_time[nodes[i1]][nodes[j1]] - ts_min);
+						//M[b][i1][j1] = std::max(0, latest_departure[r1] + travel_time[nodes[i1]][nodes[j1]] - ts_min);
+						M[b][i1][j1] = ts_max*2;
 						model.addConstr(T[b][j1] >= T[b][i1] + travel_time[nodes[i1]][nodes[j1]]*x[b][i1][j1] - M[b][i1][j1]*(1 - x[b][i1][j1]));
 					}
 
@@ -864,14 +867,16 @@ void MDHODBRPFR_MODEL(){
 
 							for (int j = 0; j < number_stops_origin[r2]; j++) {
 								int j1 = stops_origin[r2][j];
-								M[b][i1][j1] = std::max(0, latest_arrival[r1] + travel_time[nodes[i1]][nodes[j1]] - earliest_departure[r2]);
+								//M[b][i1][j1] = std::max(0, latest_arrival[r1] + travel_time[nodes[i1]][nodes[j1]] - earliest_departure[r2]);
+								M[b][i1][j1] = ts_max*2;
 								model.addConstr(T[b][j1] >= T[b][i1] + travel_time[nodes[i1]][nodes[j1]]*x[b][i1][j1] - M[b][i1][j1]*(1 - x[b][i1][j1]));
 							}
 
 						
 							for (int j = 0; j < number_stops_destination[r2]; j++) {
 								int j1 = stops_destination[r2][j];
-								M[b][i1][j1] = std::max(0, latest_arrival[r1] + travel_time[nodes[i1]][nodes[j1]] - earliest_arrival[r2]);
+								//M[b][i1][j1] = std::max(0, latest_arrival[r1] + travel_time[nodes[i1]][nodes[j1]] - earliest_arrival[r2]);
+								M[b][i1][j1] = ts_max*2;
 								model.addConstr(T[b][j1] >= T[b][i1] + travel_time[nodes[i1]][nodes[j1]]*x[b][i1][j1] - M[b][i1][j1]*(1 - x[b][i1][j1]));
 							}
 						}
@@ -882,7 +887,8 @@ void MDHODBRPFR_MODEL(){
 
 					for (int j = 0; j < number_nodes_depots; j++) {
 						int j1 = all_depots[j];
-						M[b][i1][j1] = std::max(0, latest_arrival[r1] + travel_time[nodes[i1]][nodes[j1]] - ts_min);
+						//M[b][i1][j1] = std::max(0, latest_arrival[r1] + travel_time[nodes[i1]][nodes[j1]] - ts_min);
+						M[b][i1][j1] = ts_max*2;
 						model.addConstr(T[b][j1] >= T[b][i1] + travel_time[nodes[i1]][nodes[j1]]*x[b][i1][j1] - M[b][i1][j1]*(1 - x[b][i1][j1]));
 					}
 
@@ -895,13 +901,15 @@ void MDHODBRPFR_MODEL(){
 
 						for (int j = 0; j < number_stops_origin[r2]; j++) {
 							int j1 = stops_origin[r2][j];
-							M[b][i1][j1] = std::max(0, ts_max + travel_time[nodes[i1]][nodes[j1]] - earliest_departure[r2]);
+							//M[b][i1][j1] = std::max(0, ts_max + travel_time[nodes[i1]][nodes[j1]] - earliest_departure[r2]);
+							M[b][i1][j1] = ts_max*2;
 							model.addConstr(T[b][j1] >= T[b][i1] + travel_time[nodes[i1]][nodes[j1]]*x[b][i1][j1] - M[b][i1][j1]*(1 - x[b][i1][j1]));
 						}
 
 						for (int j = 0; j < number_stops_destination[r2]; j++) {
 							int j1 = stops_destination[r2][j];
-							M[b][i1][j1] = std::max(0, ts_max + travel_time[nodes[i1]][nodes[j1]] - earliest_arrival[r2]);
+							//M[b][i1][j1] = std::max(0, ts_max + travel_time[nodes[i1]][nodes[j1]] - earliest_arrival[r2]);
+							M[b][i1][j1] = ts_max*2;
 							model.addConstr(T[b][j1] >= T[b][i1] + travel_time[nodes[i1]][nodes[j1]]*x[b][i1][j1] - M[b][i1][j1]*(1 - x[b][i1][j1]));
 						}					
 
