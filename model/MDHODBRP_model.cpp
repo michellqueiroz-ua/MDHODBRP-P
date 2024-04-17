@@ -971,7 +971,7 @@ void MDHODBRPFR_MODEL(){
 
 
 		//for every request, the departure station is served afterwards
-		for (int r = 0; r < total_requests; r++){
+		/*for (int r = 0; r < total_requests; r++){
 
 			
 			for (int b = 0; b < total_number_vehicles; b++) {
@@ -998,7 +998,7 @@ void MDHODBRPFR_MODEL(){
 
 			//model.addConstr(sum - sum2, GRB_GREATER, 0);
 			//model.addConstr(sum - sum2, GRB_GREATER, 0);
-		}
+		}*/
 
 
 		/*for (int r = 0; r < total_requests; r++){
