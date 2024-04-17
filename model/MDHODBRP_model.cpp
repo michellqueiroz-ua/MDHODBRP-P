@@ -979,7 +979,7 @@ void MDHODBRPFR_MODEL(){
 						for (int k=0;k<number_nodes;k++){
 							sum2 += x[b][k][nodei];
 						}
-						model.addConstr(T[b][nodej] >= T[b][nodei]*sum2 + travel_time[nodes[nodei]][nodes[nodej]]*sum);
+						model.addConstr(T[b][nodej] >= T[b][nodei]*sum + travel_time[nodes[nodei]][nodes[nodej]]*sum);
 					
 					}
 				}
