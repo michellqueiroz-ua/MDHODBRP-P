@@ -964,13 +964,44 @@ void MDHODBRPFR_MODEL(){
 		//for every request, the departure station is served afterwards
 		for (int r = 0; r < total_requests; r++){
 
+			
+			for (int b = 0; b < total_number_vehicles; b++) {
+				for (int i = 0; i < number_stops_origin[r]; i++) {
+				int nodei = stops_origin[r][i];
+				for (int j = 0; j < number_stops_destination[r]; j++) {
+						int nodej = stops_destination[r][i];
+						//sum += T[b][nodei];
+						GRBLinExpr sum = 0;
+						for (int k=0;k<number_nodes;k++){
+							sum += x[b][k][nodej];
+						}
+						GRBLinExpr sum2 = 0;
+						for (int k=0;k<number_nodes;k++){
+							sum2 += x[b][k][nodei];
+						}
+						model.addConstr(T[b][nodej] >= T[b][nodei]*sum2 + travel_time[nodes[nodei]][nodes[nodej]]*sum);
+					
+					}
+				}
+			}
+
+			
+
+			//model.addConstr(sum - sum2, GRB_GREATER, 0);
+			//model.addConstr(sum - sum2, GRB_GREATER, 0);
+		}
+
+
+		/*for (int r = 0; r < total_requests; r++){
+
+			
 			GRBLinExpr sum = 0;
 			for (int b = 0; b < total_number_vehicles; b++) {
 				for (int i = 0; i < number_stops_destination[r]; i++) {
-						int nodei = stops_destination[r][i];
-						sum += T[b][nodei];
+					int nodei = stops_origin[r][i];
+					sum += T[b][nodei];
 					
-					}
+				}
 			}
 
 			GRBLinExpr sum2 = 0;
@@ -982,8 +1013,9 @@ void MDHODBRPFR_MODEL(){
 				}
 			}
 
-			model.addConstr(sum - sum2, GRB_GREATER_EQUAL, 0);
-		}
+			//model.addConstr(sum - sum2, GRB_GREATER, 0);
+			model.addConstr(sum - sum2, GRB_GREATER_EQUAL, travel_time[]);
+		}*/
 
 
 		//*new constraints*
@@ -1212,7 +1244,10 @@ void MDHODBRPFR_MODEL(){
 				for (int j = 0; j < number_nodes; j++) {
 					double bX = x[b][i][j].get(GRB_DoubleAttr_X);
 					if (bX == 1.0){
-						cout<<b<<" "<<nodes[i]<<" "<<i<<" "<<nodes[j]<<" "<<j<<" "<<travel_time[nodes[i]][nodes[j]]<<endl;
+						cout<<b<<" "<<nodes[i]<<" ("<<i<<") "<<nodes[j]<<" ("<<j<<") "<<travel_time[nodes[i]][nodes[j]]<<endl;
+						double bX2 = T[b][i].get(GRB_DoubleAttr_X);
+						double bX3 = T[b][j].get(GRB_DoubleAttr_X);
+						cout<<bX2<<" "<<bX3<<endl;
 					}
 				}
 			}
