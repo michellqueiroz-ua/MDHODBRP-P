@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #SBATCH --job-name=CreateNetwork
-#SBATCH --ntasks=1 --cpus-per-task=40
+#SBATCH --ntasks=1 --cpus-per-task=36
 #SBATCH --time=4:00:00
 #SBATCH --partition=skylake
 
