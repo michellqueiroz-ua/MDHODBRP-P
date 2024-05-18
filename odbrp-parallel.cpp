@@ -193,6 +193,7 @@ static int maxnrep, ntrials, increase_rep;
 listV avg_occupancy;
 int overall_max_capacity, overall_max_capacity4, overall_max_capacity8, overall_max_capacity12;
 int overall_occupancy, overall_occupancy4, overall_occupancy8, overall_occupancy12;
+listV running_max_capacity;
 
 struct Insertions {
 
