@@ -6993,6 +6993,13 @@ void cheapest_insertion_randomized_parallel_NEW(int p, bool accept_infeasible_in
 
 	vector<int> filtered_vehicles_p;
 
+	bool same_station = false;
+	//v = best_empty_vehicle;
+	int selected_insertion, next_replace, remaining_insertions;
+	//inserting in an empty vehicle stays the same as before
+	bool not_feasible_insertion = true;
+	bool no_feasible_insertion_empty = false;
+
 	int typev;
 	decide_capacity_vehicle_uneven(p, typev);
 	
@@ -7951,12 +7958,7 @@ void cheapest_insertion_randomized_parallel_NEW(int p, bool accept_infeasible_in
 
 
 	//<<"hieerx2xempt"<<" "<<best_empty_vehicle<<" "<<number_stops[best_empty_vehicle]<<endl;
-	bool same_station = false;
-	//v = best_empty_vehicle;
-	int selected_insertion, next_replace, remaining_insertions;
-	//inserting in an empty vehicle stays the same as before
-	bool not_feasible_insertion = true;
-	bool no_feasible_insertion_empty = false;
+	
 	//bool emptyfirst = false;
 	//if (filtered_vehicles_p.size() == 0) {
 	//	v = -1;
