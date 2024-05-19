@@ -6855,7 +6855,7 @@ void filter_vehicles_type(int type) {
 	
 	for (int v = 0; v < total_number_vehicles; v++) {
 		if (vehicle_type[v] == type){
-			filtered_vehicles.push_back(v);
+			filtered_vehicles_p.push_back(v);
 		}
 	}
 
