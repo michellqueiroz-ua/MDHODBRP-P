@@ -192,7 +192,7 @@ static int maxnrep, ntrials, increase_rep;
 
 listV avg_occupancy;
 int overall_max_capacity, overall_max_capacity4, overall_max_capacity8, overall_max_capacity12;
-int overall_occupancy, overall_occupancy4, overall_occupancy8, overall_occupancy12;
+double overall_occupancy, overall_occupancy4, overall_occupancy8, overall_occupancy12;
 listV running_max_capacity;
 
 struct Insertions {
@@ -12340,7 +12340,7 @@ void check_vehicle_occupancy(){
 		overall_occupancy += avg_occupancy[v];
 	}
 
-	overall_occupancy = overall_occupancy/total_number_vehicles;
+	overall_occupancy = (double)overall_occupancy/(double)total_number_vehicles;
 
 
 	//ocupancy per type of vehicle
@@ -12353,7 +12353,10 @@ void check_vehicle_occupancy(){
 			overall_occupancy4 += avg_occupancy[v];
 		}
 	}
-	overall_occupancy4 = overall_occupancy4/count4;
+	if (count4 > 0)
+		overall_occupancy4 = (double)overall_occupancy4/(double)count4;
+	else
+		overall_occupancy4 = 0;
 
 	overall_occupancy8 = 0;
 	int count8 = 0;
@@ -12363,7 +12366,10 @@ void check_vehicle_occupancy(){
 			overall_occupancy8 += avg_occupancy[v];
 		}
 	}
-	overall_occupancy8 = overall_occupancy8/count8;
+	if (count8 > 0)
+		overall_occupancy8 = (double)overall_occupancy8/(double)count8;
+	else
+		overall_occupancy8 = 0;
 
 
 	overall_occupancy12 = 0;
@@ -12374,7 +12380,10 @@ void check_vehicle_occupancy(){
 			overall_occupancy12 += avg_occupancy[v];
 		}
 	}
-	overall_occupancy12 = overall_occupancy12/count12;
+	if (count12 > 0)
+		overall_occupancy12 = (double)overall_occupancy12/(double)count12;
+	else
+		overall_occupancy12 = 0;
 
 
 	//running with maximum capacity
@@ -13220,7 +13229,7 @@ int main(int argc, char **argv) {
 
 	check_valid_user_ride_times();
 	
-	for (int i =0; i < total_requests; i++){
+	/*for (int i =0; i < total_requests; i++){
 		for (int j =0; j < number_stops_origin[i]; j++){
 			cout<<stops_origin[j]<<" ";
 		}
@@ -13230,9 +13239,9 @@ int main(int argc, char **argv) {
 		}
 		cout<<endl;
 		cout<<endl;
-	}
+	}*/
 
-	print_all_vehicles();
+	//print_all_vehicles();
 
 
 	for (int k=0;k<total_requests;k++){
