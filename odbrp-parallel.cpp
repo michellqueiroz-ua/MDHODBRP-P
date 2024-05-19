@@ -6850,7 +6850,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 		//cout<<"exiting cluster: "<<cluster_id<<endl;
 }
 
-void filter_vehicles_type(int type, vector<int>& filtered_vehicles_p {
+void filter_vehicles_type(int type, vector<int>& filtered_vehicles_p) {
 
 	
 	for (int v = 0; v < total_number_vehicles; v++) {
