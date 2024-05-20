@@ -14486,22 +14486,22 @@ int main(int argc, char **argv) {
     	} else if (strcmp(argv[i], "--number_vehicles1") == 0) {
 			//for (int j = 0; j < number_type_vehicles; j++) {
 			i++;
-			float perc = (float)stoi(argv[i])/100;
-			number_vehicles[0] = perc*total_requests;
+			float perc = (float)stof(argv[i])/100;
+			number_vehicles[0] = ceil(perc*total_requests);
 			total_number_vehicles += number_vehicles[0];
 			//}
 		} else if (strcmp(argv[i], "--number_vehicles2") == 0) {
 			//for (int j = 0; j < number_type_vehicles; j++) {
 			i++;
-			float perc = (float)stoi(argv[i])/100;
-			number_vehicles[1] = perc*total_requests;
+			float perc = (float)stof(argv[i])/100;
+			number_vehicles[1] = ceil(perc*total_requests);
 			total_number_vehicles += number_vehicles[1];
 			//}
 		} else if (strcmp(argv[i], "--number_vehicles3") == 0) {
 			//for (int j = 0; j < number_type_vehicles; j++) {
 			i++;
-			float perc = (float)stoi(argv[i])/100;
-			number_vehicles[2] = perc*total_requests;
+			float perc = (float)stof(argv[i])/100;
+			number_vehicles[2] = ceil(perc*total_requests);
 			total_number_vehicles += number_vehicles[2];
 			//}
 		}
