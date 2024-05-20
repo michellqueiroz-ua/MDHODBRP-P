@@ -2,7 +2,7 @@
 
 module load atools
 
-run_file=parallelheur18.csv
+run_file=parallelheur7.csv
 
 echo "input_file; seed1" > $run_file
 for input_file in `find ../../instances/2100_ni -type f -name "*.csv"` ; do
