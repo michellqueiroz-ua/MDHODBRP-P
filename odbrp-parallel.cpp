@@ -14701,7 +14701,7 @@ int main(int argc, char **argv) {
 
 
 
-	if ((total_requests >= 600) and (total_requests <= 2100)) {
+	if ((total_requests >= 600) && (total_requests <= 2100)) {
 		for (int k=0;k<total_requests;k++){
 			latest_arrival[k] = latest_arrival[k] + 3600;
 		}
