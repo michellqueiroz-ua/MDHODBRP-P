@@ -14999,7 +14999,7 @@ int main(int argc, char **argv) {
 									}
 								}*/
 
-								cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, avl_cluster[px]);
+								cheapest_insertion_randomized_parallel_NEW(nxt_p, accept_infeasible_insertion, avl_cluster[px]);
 								
 								//cout<<"af_inser1 "<<avl_cluster[px]<<endl;
 
