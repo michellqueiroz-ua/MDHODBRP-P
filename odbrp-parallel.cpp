@@ -14316,8 +14316,10 @@ void check_vehicle_occupancy(){
 				running_max_capacity[v]++;
 			}
 		}
-		avg_occupancy[v] = avg_occupancy[v]/(number_stops[v]-2);
-
+		if (number_stops[v] > 2)
+			avg_occupancy[v] = avg_occupancy[v]/(number_stops[v]-2);
+		else 
+			avg_occupancy[v] = 0;
 	}
 
 	overall_occupancy = 0;
