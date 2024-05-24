@@ -14434,7 +14434,7 @@ int main(int argc, char **argv) {
 			//input_requests_festival(argv[i+1]);
 			//input_requests_commuting(argv[i+1]);
 			input_requests(argv[i+1]); //concert & nightlife
-			requests_filename = argv[i+1];;
+			requests_filename = argv[i+1];
 			cout<<"x"<<total_requests<<" ";
 		} else if (strcmp(argv[i], "--filename_travel_time") == 0) {
 			//<<"HIER"<<endl;
@@ -14894,7 +14894,7 @@ int main(int argc, char **argv) {
 		algo_iterations++;
 
 	while(current_time < 28800) {
-		cout<<current_time<<endl;	
+		
 		check_last_position_route();
 		//<<"hier3.1"<<endl;
 		//if (k > num_iterations_to_start_reassign)
@@ -14902,7 +14902,7 @@ int main(int argc, char **argv) {
 		
 		if ((current_time >= sort_passengers[k].time_stamp)) {
 		//if (algo_iterations < 1000) { //static
-
+			cout<<current_time<<endl;	
 			//comment static
 			
 			if (passengers_to_be_inserted.size() > 0) {
