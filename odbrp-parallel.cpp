@@ -14909,7 +14909,7 @@ int main(int argc, char **argv) {
 				passengers_to_be_inserted.clear();
 			}
 
-			cout<<sort_passengers[k].time_stamp<<" "<<k<<" "endl;
+			cout<<sort_passengers[k].time_stamp<<" "<<k<<" "<<endl;
 			while((current_time >= sort_passengers[k].time_stamp) && (k < total_requests)) { 
 				passengers_to_be_inserted.push_back(sort_passengers[k].k);
 				k++;
