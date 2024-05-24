@@ -7005,7 +7005,7 @@ void cheapest_insertion_randomized_parallel_NEW(int p, bool accept_infeasible_in
 	
 	//check for highest capacitated vehicle from partition that is empty
 
-	//cout<<"pass: "<<p<<endl;
+	cout<<"pass: "<<p<<endl;
 
 
 	//running with non-empty vehicle
@@ -7967,6 +7967,8 @@ void cheapest_insertion_randomized_parallel_NEW(int p, bool accept_infeasible_in
 
 	for(int ci=0; ci <= 1;ci++) {
 
+		if (filtered_vehicles_p.size()>0)
+			filtered_vehicles_p.clear();
 		if (ci == 0) {
 			filter_vehicles_type_empty(typev, filtered_vehicles_p);
 		} else {
@@ -14850,7 +14852,7 @@ int main(int argc, char **argv) {
 
 	k = 0;
 	current_time = sort_passengers[k].time_stamp;
-	current_time = 0;
+	//current_time = 0;
 
 	//<<"hier3"<<endl;'
 	//41400
