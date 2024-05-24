@@ -1605,7 +1605,7 @@ void input_zones_uneven_demand(char *filename) {
 		stringstream str(line);
 		while(getline(str, data, ',')); //reads the header
 		//<<data<<endl;
-		total_requests = 0;
+		//total_requests = 0;
 
 		p = 0;
 		while(getline(file, line))
@@ -14909,7 +14909,7 @@ int main(int argc, char **argv) {
 				passengers_to_be_inserted.clear();
 			}
 
-			cout<<current_time<<" "<<sort_passengers[k].time_stamp<<" "<<k<<" "<<total_requests<<endl;
+			//cout<<current_time<<" "<<sort_passengers[k].time_stamp<<" "<<k<<" "<<total_requests<<endl;
 			while((current_time >= sort_passengers[k].time_stamp) && (k < total_requests)) { 
 				passengers_to_be_inserted.push_back(sort_passengers[k].k);
 				k++;
@@ -15006,7 +15006,7 @@ int main(int argc, char **argv) {
 									}
 								}*/
 
-								cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, avl_cluster[px]);
+								cheapest_insertion_randomized_parallel_NEW(nxt_p, accept_infeasible_insertion, avl_cluster[px]);
 								
 								//cout<<"af_inser1 "<<avl_cluster[px]<<endl;
 
