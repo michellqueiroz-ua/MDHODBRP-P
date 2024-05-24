@@ -15254,6 +15254,7 @@ int main(int argc, char **argv) {
 	cout<<"check occu"<<endl;
 	check_vehicle_occupancy();
 
+	cout<<served_passengers<<endl;
 	double average_extra_travel_time = (double)extra_travel_time/served_passengers;
 	average_travel_time_ratio = (double)average_travel_time_ratio/served_passengers;
 	
