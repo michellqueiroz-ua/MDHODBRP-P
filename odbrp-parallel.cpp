@@ -7973,6 +7973,8 @@ void cheapest_insertion_randomized_parallel_NEW(int p, bool accept_infeasible_in
 			filter_vehicles_type_empty(-1, filtered_vehicles_p);
 		}
 
+		cout<<"size filter p "<<filtered_vehicles_p.size()<<endl;
+
 		for (int itv = 0; itv < filtered_vehicles_p.size(); itv++) {
 
 			v = filtered_vehicles_p[itv];
