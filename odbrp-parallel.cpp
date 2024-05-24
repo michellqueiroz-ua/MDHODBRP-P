@@ -14902,14 +14902,14 @@ int main(int argc, char **argv) {
 		
 		if ((current_time >= sort_passengers[k].time_stamp)) {
 		//if (algo_iterations < 1000) { //static
-			
+
 			//comment static
 			
 			if (passengers_to_be_inserted.size() > 0) {
 				passengers_to_be_inserted.clear();
 			}
 
-			
+			cout<<sort_passengers[k].time_stamp<<" "<<k<<" "endl;
 			while((current_time >= sort_passengers[k].time_stamp) && (k < total_requests)) { 
 				passengers_to_be_inserted.push_back(sort_passengers[k].k);
 				k++;
@@ -14957,7 +14957,7 @@ int main(int argc, char **argv) {
 			}*/
 
 			while (passengers_to_be_inserted.size() > 0) {
-				cout<<passengers_to_be_inserted.size()<<endl;	
+
 				//for (int itx = 0; itx<num_threads_for; itx++) {
 
 					//each passengers will be inserted in one processor
