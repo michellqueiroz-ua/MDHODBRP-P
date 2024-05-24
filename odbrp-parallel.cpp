@@ -7011,6 +7011,7 @@ void cheapest_insertion_randomized_parallel_NEW(int p, bool accept_infeasible_in
 	//running with non-empty vehicle
 	for(int ci=0; ci <= 1;ci++) {
 		if (vehicle_assigned[p] == -1) {
+			v = -1;
 			if ((no_feasible_insertion_empty) or (v == -1)) {
 
 				//if (not emptyfirst) {
