@@ -14902,7 +14902,7 @@ int main(int argc, char **argv) {
 		
 		if ((current_time >= sort_passengers[k].time_stamp)) {
 		//if (algo_iterations < 1000) { //static
-			cout<<current_time<<endl;	
+			
 			//comment static
 			
 			if (passengers_to_be_inserted.size() > 0) {
@@ -14957,7 +14957,7 @@ int main(int argc, char **argv) {
 			}*/
 
 			while (passengers_to_be_inserted.size() > 0) {
-
+				cout<<passengers_to_be_inserted.size()<<endl;	
 				//for (int itx = 0; itx<num_threads_for; itx++) {
 
 					//each passengers will be inserted in one processor
