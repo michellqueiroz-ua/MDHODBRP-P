@@ -14892,9 +14892,9 @@ int main(int argc, char **argv) {
 	//while((k < total_requests) or (current_time < 32400)) {
 	//while(algo_iterations < 1000) { //static
 		algo_iterations++;
-	cout<<current_time<<endl;
+
 	while(current_time < 28800) {
-		
+		cout<<current_time<<endl;	
 		check_last_position_route();
 		//<<"hier3.1"<<endl;
 		//if (k > num_iterations_to_start_reassign)
