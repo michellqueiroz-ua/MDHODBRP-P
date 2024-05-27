@@ -6926,10 +6926,14 @@ void decide_capacity_vehicle_uneven(int p, int &type){
 
 		double y = (double)rand() / (double)RAND_MAX;
 
-		if (y <= 0.5) {
-			type = 1;
+		if (number_vehicles[2] > 0) {
+			if (y <= 0.5) {
+				type = 1;
+			} else {
+				type = 2;
+			}
 		} else {
-			type = 2;
+			type = 1;
 		}
 	}
 
@@ -6943,15 +6947,56 @@ void decide_capacity_vehicle_uneven(int p, int &type){
 		//RANDOM
 		double y = (double)rand() / (double)RAND_MAX;
 
-		if (y <= 0.33) {
-			type = 0;
-		} else {
-			if (y <= 0.66) {
-				type = 1;
+		if (number_vehicles[2] > 0) {
+			if (y <= 0.33) {
+				type = 0;
 			} else {
-				type = 2;
+				if (y <= 0.66) {
+					type = 1;
+				} else {
+					type = 2;
+				}
+			} 
+		} else {
+			if (y <= 0.5) {
+				type = 0;
+			} else {
+				type = 1;
 			}
-		} 
+		}
+	}
+
+
+	//call filtered vehicles with the type then
+
+
+}
+
+void decide_capacity_vehicle_uneven_RANDOM(int p, int &type){
+
+	int which_type_demand = -1;
+
+	if (which_type_demand == -1) {
+		//RANDOM
+		double y = (double)rand() / (double)RAND_MAX;
+
+		if (number_vehicles[2] > 0) {
+			if (y <= 0.33) {
+				type = 0;
+			} else {
+				if (y <= 0.66) {
+					type = 1;
+				} else {
+					type = 2;
+				}
+			} 
+		} else {
+			if (y <= 0.5) {
+				type = 0;
+			} else {
+				type = 1;
+			}
+		}
 	}
 
 
@@ -7004,7 +7049,7 @@ void cheapest_insertion_randomized_parallel_NEW(int p, bool accept_infeasible_in
 	
 	//check for highest capacitated vehicle from partition that is empty
 
-	cout<<"pass: "<<p<<endl;
+	//cout<<"pass: "<<p<<endl;
 
 
 	//running with non-empty vehicle
