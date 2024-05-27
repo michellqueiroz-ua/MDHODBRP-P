@@ -14710,11 +14710,11 @@ int main(int argc, char **argv) {
 
 
 
-	if ((total_requests >= 600) && (total_requests <= 2100)) {
+	/*if ((total_requests >= 600) && (total_requests <= 2100)) {
 		for (int k=0;k<total_requests;k++){
 			latest_arrival[k] = latest_arrival[k] + 3600;
 		}
-	}
+	}*/
 
 	served_requests_so_far = 0;
 	rejected_requests_so_far = 0;
@@ -15009,7 +15009,7 @@ int main(int argc, char **argv) {
 									}
 								}*/
 
-								cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, avl_cluster[px]);
+								cheapest_insertion_randomized_parallel_NEW(nxt_p, accept_infeasible_insertion, avl_cluster[px]);
 								
 								//cout<<"af_inser1 "<<avl_cluster[px]<<endl;
 
