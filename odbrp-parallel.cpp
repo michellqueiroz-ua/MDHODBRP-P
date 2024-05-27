@@ -6936,7 +6936,6 @@ void decide_capacity_vehicle_uneven(int p, int &type){
 
 	if (which_type_demand == 1) {
 		//means small capacity
-
 		type = 0;
 	}
 
@@ -11313,7 +11312,7 @@ void re_insertion(int p, bool &accept_relocate_trip, double &temperature, int &t
 		restriced_assignment = false;
 	}
 
-	//restriced_assignment = false;
+	restriced_assignment = false;
 
 	if (restriced_assignment) {
 
@@ -15010,7 +15009,7 @@ int main(int argc, char **argv) {
 									}
 								}*/
 
-								cheapest_insertion_randomized_parallel_NEW(nxt_p, accept_infeasible_insertion, avl_cluster[px]);
+								cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, avl_cluster[px]);
 								
 								//cout<<"af_inser1 "<<avl_cluster[px]<<endl;
 

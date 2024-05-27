@@ -969,6 +969,33 @@ void MDHODBRPFR_MODEL(){
 			}
 		}
 
+		for (int r = 0; r < total_requests; r++){
+
+			GRBLinExpr sum = 0;
+			for (int b = 0; b < total_number_vehicles; b++) {
+				for (int i = 0; i < number_stops_destination[r]; i++) {
+						int nodei = stops_destination[r][i];
+						sum += T[b][nodei];
+					
+					}
+			}
+
+			GRBLinExpr sum2 = 0;
+			for (int b = 0; b < total_number_vehicles; b++) {
+				for (int i = 0; i < number_stops_origin[r]; i++) {
+					int nodei = stops_origin[r][i];
+					sum2 += T[b][nodei];
+					
+				}
+			}
+
+			model.addConstr(sum > sum2);
+
+
+		}
+
+		//ensure that a passenger destination is served before its origin
+
 
 		//for every request, the departure station is served afterwards
 		/*for (int r = 0; r < total_requests; r++){
