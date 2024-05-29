@@ -738,7 +738,7 @@ void MDHODBRPFR_MODEL(){
 
 		//(7)
 		//picked up and dropped by the same vehicle
-		/*for (int r = 0; r < total_requests; r++){
+		for (int r = 0; r < total_requests; r++){
 			for (int b = 0; b < total_number_vehicles; b++) {
 
 				//IloExpr sum(env);
@@ -765,7 +765,7 @@ void MDHODBRPFR_MODEL(){
 				//sum2.end();
 
 			}
-		}*/
+		}
 
 		//(8)
 		for (int b = 0; b < total_number_vehicles; b++) {
@@ -780,7 +780,7 @@ void MDHODBRPFR_MODEL(){
 		}
 
 		//(9)
-		/*for (int b = 0; b < total_number_vehicles; b++) {
+		for (int b = 0; b < total_number_vehicles; b++) {
 			for (int r = 0; r < total_requests; r++){
 				for (int i = 0; i < number_stops_origin[r]; i++) {
 
@@ -830,7 +830,7 @@ void MDHODBRPFR_MODEL(){
 			model.addConstr(sum == 1);
 			//sum.end();
 
-		}*/
+		}
 
 		//(11) *review*
 		/*for (int b = 0; b < total_number_vehicles; b++) {
