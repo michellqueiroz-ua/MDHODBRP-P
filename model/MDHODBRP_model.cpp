@@ -934,20 +934,20 @@ void MDHODBRPFR_MODEL(){
 			}
 		}*/
 
-		/*for (int b = 0; b < total_number_vehicles; b++) {
+		for (int b = 0; b < total_number_vehicles; b++) {
 			for (int i=0;i < number_nodes;i++){
 				for (int j=0; j < number_nodes;j++){
 					M[b][i][j] = ts_max*2;
 					model.addConstr(T[b][j] >= T[b][i] + travel_time[nodes[i]][nodes[j]]*x[b][i][j] - M[b][i][j]*(1 - x[b][i][j]));
 				}
 			}
-		}*/
+		}
 
 
 
 		//(12)
 		//question here -> if the node isn't served. what T[b][i1] will be? 
-		for (int b = 0; b < total_number_vehicles; b++) {
+		/*for (int b = 0; b < total_number_vehicles; b++) {
 			for (int r = 0; r < total_requests; r++){
 				for (int i = 0; i < number_stops_origin[r]; i++) {
 					int i1 = stops_origin[r][i];
@@ -959,7 +959,7 @@ void MDHODBRPFR_MODEL(){
 					//sum.end();	
 				}
 			}
-		}
+		}*/
 
 		//*new constraints*
 		// try to force T[b][i1] to zero if node isn't served
