@@ -751,6 +751,19 @@ void MDHODBRPFR_MODEL(){
 			model.addConstr(sum <= 1);
 		}
 
+		for (int i = 0; i < number_nodes; i++) {
+
+			GRBLinExpr sum = 0;
+			for (int b = 0; b < total_number_vehicles; b++) {
+				for (int j = 0; j < number_nodes; j++) {
+					//cout<<travel_time[nodes[nodei]][nodes[j]]<<endl;
+					sum += x[b][i][j];
+				}
+			}
+
+			model.addConstr(sum <= 1);
+		}
+
 
 
 		//(7)
@@ -1290,19 +1303,46 @@ void MDHODBRPFR_MODEL(){
 		output_file << requests_filename << " " << model.get(GRB_DoubleAttr_ObjVal) << " " << elapsed << endl;
 
 		//printing solution
+		cout<<"SERVED ORIGINS"<<endl;
 		for (int b = 0; b < total_number_vehicles; b++) {
-			for (int i = 0; i < number_nodes; i++) {
-				for (int j = 0; j < number_nodes; j++) {
-					double bX = x[b][i][j].get(GRB_DoubleAttr_X);
-					if (bX == 1.0){
-						cout<<b<<" "<<nodes[i]<<" ("<<i<<") "<<nodes[j]<<" ("<<j<<") "<<travel_time[nodes[i]][nodes[j]]<<endl;
-						double bX2 = T[b][i].get(GRB_DoubleAttr_X);
-						double bX3 = T[b][j].get(GRB_DoubleAttr_X);
-						cout<<bX2<<" "<<bX3<<endl;
-					}
-				}
+			for (int i = 0; i < number_stops_origin[r]; i++) {
+				int i1 = stops_origin[r][i];
+				double bX2 = T[b][i1].get(GRB_DoubleAttr_X);
+				cout<<b<<" "<<nodes[i1]<<" T ";
+				cout<<bX2<<" "<<endl;
+				
 			}
 			cout<<endl;
+		}
+
+		cout<<"SERVED DESTINATIONS"<<endl;
+		for (int b = 0; b < total_number_vehicles; b++) {
+			for (int i = 0; i < number_stops_destination[r]; i++) {
+				int i1 = stops_destination[r][i];
+				double bX2 = T[b][i1].get(GRB_DoubleAttr_X);
+				cout<<b<<" "<<nodes[i1]<<" T ";
+				cout<<bX2<<" "<<endl;
+				
+			}
+			cout<<endl;
+		}
+
+		
+		for (int r = 0; r < total_requests; r++){
+			for (int b = 0; b < total_number_vehicles; b++) {
+				for (int i = 0; i < number_nodes; i++) {
+					for (int j = 0; j < number_nodes; j++) {
+						double bX = x[b][i][j].get(GRB_DoubleAttr_X);
+						if (bX == 1.0){
+							cout<<b<<" "<<nodes[i]<<" ("<<i<<") "<<nodes[j]<<" ("<<j<<") "<<travel_time[nodes[i]][nodes[j]]<<endl;
+							double bX2 = T[b][i].get(GRB_DoubleAttr_X);
+							double bX3 = T[b][j].get(GRB_DoubleAttr_X);
+							cout<<bX2<<" "<<bX3<<endl;
+						}
+					}
+				}
+				cout<<endl;
+			}
 		}
 		for (int b = 0; b < total_number_vehicles; b++) {
 			for (int i = 0; i < number_nodes; i++) {
