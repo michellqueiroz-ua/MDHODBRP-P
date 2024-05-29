@@ -705,14 +705,14 @@ void MDHODBRPFR_MODEL(){
 			}
 
 			objFunc += sum - sum2;
-		}*/
+		}
 
 
 
 
 		//model.add(IloMinimize(env, objFunc));
 		//objFunc.end(); 
-		model.setObjective(objFunc, GRB_MINIMIZE);
+		model.setObjective(objFunc, GRB_MINIMIZE);*/
 		
 
 		//(6)
