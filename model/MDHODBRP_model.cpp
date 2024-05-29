@@ -765,7 +765,7 @@ void MDHODBRPFR_MODEL(){
 		}
 
 		//(8)
-		/*for (int b = 0; b < total_number_vehicles; b++) {
+		for (int b = 0; b < total_number_vehicles; b++) {
 
 			GRBLinExpr sum = 0;
 			for (int j = 0; j < number_nodes; j++) {
@@ -774,10 +774,10 @@ void MDHODBRPFR_MODEL(){
 			model.addConstr(sum == 1);
 			//sum.end();
 
-		}*/
+		}
 
 		//(9)
-		for (int b = 0; b < total_number_vehicles; b++) {
+		/*for (int b = 0; b < total_number_vehicles; b++) {
 			for (int r = 0; r < total_requests; r++){
 				for (int i = 0; i < number_stops_origin[r]; i++) {
 
@@ -815,7 +815,7 @@ void MDHODBRPFR_MODEL(){
 
 			}
 
-		}
+		}*/
 
 		//(10)
 		for (int b = 0; b < total_number_vehicles; b++) {
