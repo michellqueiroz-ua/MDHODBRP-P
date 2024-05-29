@@ -79,6 +79,9 @@ listS q;
 matrixVSS M, W;
 
 
+listS used_nodes;
+
+
 string IntToString (int a)
 {
     ostringstream temp;
@@ -153,6 +156,8 @@ void input_requests(char *filename) {
 	string line, data, stop;
 	int p, s;
 
+
+	max_number_requests_read = 2;
 	number_nodes = 0;
 	if(file.is_open())
 	{
@@ -165,6 +170,10 @@ void input_requests(char *filename) {
 		{
 
 			total_requests++;
+
+			if (total_requests > max_number_requests_read) {
+				return;
+			}
 			stringstream str(line);
 			getline(str, data, ',');
 			p = stoi(data);
@@ -1382,7 +1391,7 @@ int main(int argc, char **argv) {
 
    	int k = 0;
    	number_nodes_depots = 0;
-   	total_requests = 3;
+   	//total_requests = 2;
 	total_number_vehicles = 3;
 	for (int i =0; i < total_requests; i++){
 		number_stops_origin[i] = 2;
