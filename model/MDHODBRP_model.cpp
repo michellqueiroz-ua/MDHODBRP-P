@@ -172,6 +172,7 @@ void input_requests(char *filename) {
 			total_requests++;
 
 			if (total_requests > max_number_requests_read) {
+				total_requests--;
 				return;
 			}
 			stringstream str(line);
@@ -935,14 +936,14 @@ void MDHODBRPFR_MODEL(){
 			}
 		}*/
 
-		/*for (int b = 0; b < total_number_vehicles; b++) {
+		for (int b = 0; b < total_number_vehicles; b++) {
 			for (int i=0;i < number_nodes;i++){
 				for (int j=0; j < number_nodes;j++){
 					M[b][i][j] = ts_max*2;
 					model.addConstr(T[b][j] >= T[b][i] + travel_time[nodes[i]][nodes[j]]*x[b][i][j] - M[b][i][j]*(1 - x[b][i][j]));
 				}
 			}
-		}*/
+		}
 
 
 
