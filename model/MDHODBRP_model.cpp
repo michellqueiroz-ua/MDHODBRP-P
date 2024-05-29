@@ -1385,10 +1385,10 @@ int main(int argc, char **argv) {
 	number_vehicles[0] = 2;
 	number_vehicles[1] = 0;
 	number_vehicles[2] = 0;
-	/*for (int i=0; i<total_requests; i++){
+	for (int i=0; i<total_requests; i++){
 		number_stops_origin[i] = 2;
 		number_stops_destination[i] = 2;
-	}*/
+	}
    	for (int j=0; j<number_type_vehicles; j++) {
 
 		for (int i=0; i<number_vehicles[j];i++) {
