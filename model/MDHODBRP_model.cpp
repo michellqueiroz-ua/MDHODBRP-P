@@ -989,7 +989,7 @@ void MDHODBRPFR_MODEL(){
 				}
 			}
 
-			model.addConstr(sum > sum2);
+			model.addConstr(sum - sum2 >= 0);
 
 
 		}
