@@ -225,6 +225,7 @@ void input_requests(char *filename) {
 			stops_origin[p][s] = number_nodes;
 			nodes[number_nodes] = stoi(data);
 			type_node[number_nodes] = 1;
+			q[number_nodes] = -1;
 			number_nodes++;
 			//<<stops_origin[p][s]<<" ";
 			//printf("%d ", stops_origin[p][s]);
@@ -242,6 +243,7 @@ void input_requests(char *filename) {
 					stops_origin[p][s] = number_nodes;
 					nodes[number_nodes] = stoi(data);
 					type_node[number_nodes] = 1;
+					q[number_nodes] = -1;
 					number_nodes++;
 					//<<stops_origin[p][s]<<" ";
 					//printf("%d ", stops_origin[p][s]);
@@ -321,6 +323,7 @@ void input_requests(char *filename) {
 			stops_destination[p][s] = number_nodes;
 			nodes[number_nodes] = stoi(data);
 			type_node[number_nodes] = 2;
+			q[number_nodes] = 1;
 			number_nodes++;
 			//<<stops_destination[p][s]<<" ";
 			//printf("%d ", stops_destination[p][s]);
@@ -338,6 +341,7 @@ void input_requests(char *filename) {
 					stops_destination[p][s] = number_nodes;
 					nodes[number_nodes] = stoi(data);
 					type_node[number_nodes] = 2;
+					q[number_nodes] = 1;
 					number_nodes++;
 					//<<stops_destination[p][s]<<" ";
 					//printf("%d ", stops_destination[p][s]);
@@ -1393,13 +1397,16 @@ int main(int argc, char **argv) {
 				all_depots[number_nodes_depots] = number_nodes;
 				vehicle_located_at_depot[k] = number_nodes; 
 				nodes[number_nodes] = depot[depot_i];
+				q[number_nodes] = 0;
 				number_nodes++;
 				number_nodes_depots++;
+
 
 				//repeat return node
 				all_depots[number_nodes_depots] = number_nodes;
 				vehicle_return_to_depot[k] = number_nodes; 
 				nodes[number_nodes] = depot[depot_i];
+				q[number_nodes] = 0;
 				number_nodes++;
 				number_nodes_depots++;
 			}
