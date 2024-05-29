@@ -670,7 +670,7 @@ void MDHODBRPFR_MODEL(){
 
 		//(1) Objective function *maybe wrong*
 		//minimize total user ride time
-		/*GRBLinExpr objFunc2 = 0;
+		GRBLinExpr objFunc2 = 0;
 		for (int b = 0; b < total_number_vehicles; b++) {
 			for (int i = 0; i < number_nodes; i++) {
 				for (int j = 0; j < number_nodes; j++) {
@@ -679,10 +679,11 @@ void MDHODBRPFR_MODEL(){
 			}
 			
 		}
-		model.setObjective(objFunc2, GRB_MINIMIZE);*/
+		model.setObjective(objFunc2, GRB_MINIMIZE);
+		
 		//(1) Objective function
 		//minimize total user ride time
-		GRBLinExpr objFunc = 0;
+		/*GRBLinExpr objFunc = 0;
 		for (int r = 0; r < total_requests; r++){
 
 			GRBLinExpr sum = 0;
@@ -704,7 +705,7 @@ void MDHODBRPFR_MODEL(){
 			}
 
 			objFunc += sum - sum2;
-		}
+		}*/
 
 
 
@@ -1131,7 +1132,7 @@ void MDHODBRPFR_MODEL(){
 
 		//---
 		//setting to 0 some variables
-		bool can_be_part_of_solution = false;
+		/*bool can_be_part_of_solution = false;
 		for (int i = 0; i < number_nodes; i++) {
 			can_be_part_of_solution = false;
 			for (int r = 0; r < total_requests; r++){
@@ -1173,7 +1174,7 @@ void MDHODBRPFR_MODEL(){
 					}
 				}
 			}
-		}
+		}*/
 
 		//it does not make sense to travel between the same physical nodes
 		/*for (int b = 0; b < total_number_vehicles; b++) {
