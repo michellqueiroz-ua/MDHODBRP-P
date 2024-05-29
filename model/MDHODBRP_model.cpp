@@ -722,10 +722,11 @@ void MDHODBRPFR_MODEL(){
 			GRBLinExpr sum = 0;
 			for (int b = 0; b < total_number_vehicles; b++) {
 				for (int i = 0; i < number_stops_origin[r]; i++) {
-					int nodei = stops_origin[r][i];
+				//for (int i = 0; i < number_nodes; i++) {
+					//int nodei = stops_origin[r][i];
 					for (int j = 0; j < number_nodes; j++) {
 						//cout<<travel_time[nodes[nodei]][nodes[j]]<<endl;
-						sum += x[b][nodei][j];
+						sum += x[b][i][j];
 					}
 				}
 			}
@@ -1130,7 +1131,7 @@ void MDHODBRPFR_MODEL(){
 
 		//---
 		//setting to 0 some variables
-		/*bool can_be_part_of_solution = false;
+		bool can_be_part_of_solution = false;
 		for (int i = 0; i < number_nodes; i++) {
 			can_be_part_of_solution = false;
 			for (int r = 0; r < total_requests; r++){
@@ -1172,7 +1173,7 @@ void MDHODBRPFR_MODEL(){
 					}
 				}
 			}
-		}*/
+		}
 
 		//it does not make sense to travel between the same physical nodes
 		/*for (int b = 0; b < total_number_vehicles; b++) {
