@@ -676,8 +676,6 @@ void MDHODBRPFR_MODEL(){
 			
 		}
 		model.setObjective(objFunc2, GRB_MINIMIZE);*/
-
-
 		//(1) Objective function
 		//minimize total user ride time
 		GRBLinExpr objFunc = 0;
