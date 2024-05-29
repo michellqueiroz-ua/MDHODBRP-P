@@ -978,7 +978,7 @@ void MDHODBRPFR_MODEL(){
 			}
 		}
 
-		for (int r = 0; r < total_requests; r++){
+		/*for (int r = 0; r < total_requests; r++){
 
 			GRBLinExpr sum = 0;
 			for (int b = 0; b < total_number_vehicles; b++) {
@@ -1001,7 +1001,7 @@ void MDHODBRPFR_MODEL(){
 			model.addConstr(sum - sum2 >= 0);
 
 
-		}
+		}*/
 
 		//ensure that a passenger destination is served before its origin
 
@@ -1141,7 +1141,7 @@ void MDHODBRPFR_MODEL(){
 
 		//---
 		//setting to 0 some variables
-		bool can_be_part_of_solution = false;
+		/*bool can_be_part_of_solution = false;
 		for (int i = 0; i < number_nodes; i++) {
 			can_be_part_of_solution = false;
 			for (int r = 0; r < total_requests; r++){
@@ -1183,7 +1183,7 @@ void MDHODBRPFR_MODEL(){
 					}
 				}
 			}
-		}
+		}*/
 
 		//it does not make sense to travel between the same physical nodes
 		/*for (int b = 0; b < total_number_vehicles; b++) {
