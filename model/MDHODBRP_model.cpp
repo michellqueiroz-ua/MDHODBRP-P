@@ -1186,7 +1186,7 @@ void MDHODBRPFR_MODEL(){
 		}
 
 		//it does not make sense to travel between the same physical nodes
-		for (int b = 0; b < total_number_vehicles; b++) {
+		/*for (int b = 0; b < total_number_vehicles; b++) {
 			for (int i = 0; i < number_nodes; i++) {
 				for (int j = 0; j < number_nodes; j++) {
 					if (nodes[i] == nodes[j]){
@@ -1195,7 +1195,7 @@ void MDHODBRPFR_MODEL(){
        		 		}
 				}
 			}
-		}
+		}*/
 
 		
 		
