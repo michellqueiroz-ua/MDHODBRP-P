@@ -713,7 +713,7 @@ void MDHODBRPFR_MODEL(){
 		//(6)
 		//every request is served once
 
-		for (int r = 0; r < total_requests; r++){
+		/*for (int r = 0; r < total_requests; r++){
 
 			GRBLinExpr sum = 0;
 			for (int b = 0; b < total_number_vehicles; b++) {
@@ -826,7 +826,7 @@ void MDHODBRPFR_MODEL(){
 			model.addConstr(sum == 1);
 			//sum.end();
 
-		}
+		}*/
 
 		//(11) *review*
 		/*for (int b = 0; b < total_number_vehicles; b++) {
@@ -976,19 +976,7 @@ void MDHODBRPFR_MODEL(){
 				}
 			}
 		}
-		/*for (int b = 0; b < total_number_vehicles; b++) {
-			for (int r = 0; r < total_requests; r++){
-				for (int i = 0; i < number_nodes; i++) {
-					//int i1 = stops_origin[r][i];
-					GRBLinExpr sum = 0;
-					for (int j = 0; j < number_nodes; j++) {
-						sum += x[b][j][i];
-					}
-					model.addConstr(T[b][i] <= max_time - max_time*(1-sum));
-					//sum.end();	
-				}
-			}
-		}*/
+		
 
 		for (int r = 0; r < total_requests; r++){
 
@@ -1018,6 +1006,7 @@ void MDHODBRPFR_MODEL(){
 		//ensure that a passenger destination is served before its origin
 
 
+		//old
 		//for every request, the departure station is served afterwards
 		/*for (int r = 0; r < total_requests; r++){
 
@@ -1073,13 +1062,9 @@ void MDHODBRPFR_MODEL(){
 			//model.addConstr(sum - sum2, GRB_GREATER, 0);
 			model.addConstr(sum - sum2, GRB_GREATER_EQUAL, travel_time[]);
 		}*/
+		//old
 
 
-		//*new constraints*
-
-
-		// try to force T[b][i1] to zero if node isn't served
-		/**/
 
 		//(13)
 		for (int b = 0; b < total_number_vehicles; b++) {
@@ -1097,7 +1082,7 @@ void MDHODBRPFR_MODEL(){
 		}
 
 		//(14)
-		/*for (int b = 0; b < total_number_vehicles; b++) {
+		for (int b = 0; b < total_number_vehicles; b++) {
 			for (int i = 0; i < number_nodes; i++) {
 				for (int j = 0; j < number_nodes; j++) {
 
@@ -1136,7 +1121,7 @@ void MDHODBRPFR_MODEL(){
 				//sum.end();
 
 			}
-		}*/
+		}
 
 
 		//---
