@@ -713,7 +713,7 @@ void MDHODBRPFR_MODEL(){
 		//(6)
 		//every request is served once
 
-		/*for (int r = 0; r < total_requests; r++){
+		for (int r = 0; r < total_requests; r++){
 
 			GRBLinExpr sum = 0;
 			for (int b = 0; b < total_number_vehicles; b++) {
@@ -734,7 +734,7 @@ void MDHODBRPFR_MODEL(){
 
 		//(7)
 		//picked up and dropped by the same vehicle
-		for (int r = 0; r < total_requests; r++){
+		/*for (int r = 0; r < total_requests; r++){
 			for (int b = 0; b < total_number_vehicles; b++) {
 
 				//IloExpr sum(env);
