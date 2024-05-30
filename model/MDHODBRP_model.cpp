@@ -241,7 +241,7 @@ void input_requests(char *filename) {
 					data.erase(remove(data.begin(), data.end(), ']'), data.end());
 					//stops_origin[p][s] = stoi(stop);
 					stops_origin[p][s] = number_nodes;
-					nodes[number_nodes] = stoi(data);
+					nodes[number_nodes] = stoi(stop);
 					type_node[number_nodes] = 1;
 					q[number_nodes] = -1;
 					number_nodes++;
@@ -339,7 +339,7 @@ void input_requests(char *filename) {
 					data.erase(remove(data.begin(), data.end(), ']'), data.end());
 					//stops_destination[p][s] = stoi(stop);
 					stops_destination[p][s] = number_nodes;
-					nodes[number_nodes] = stoi(data);
+					nodes[number_nodes] = stoi(stop);
 					type_node[number_nodes] = 2;
 					q[number_nodes] = 1;
 					number_nodes++;
@@ -670,7 +670,7 @@ void MDHODBRPFR_MODEL(){
 
 		//(1) Objective function *maybe wrong*
 		//minimize total user ride time
-		/*GRBLinExpr objFunc2 = 0;
+		GRBLinExpr objFunc2 = 0;
 		for (int b = 0; b < total_number_vehicles; b++) {
 			for (int i = 0; i < number_nodes; i++) {
 				for (int j = 0; j < number_nodes; j++) {
@@ -679,7 +679,7 @@ void MDHODBRPFR_MODEL(){
 			}
 			
 		}
-		model.setObjective(objFunc2, GRB_MINIMIZE);*/
+		model.setObjectiveN(objFunc2, GRB_MINIMIZE, 0);
 		
 		//(1) Objective function
 		//minimize total user ride time
@@ -712,7 +712,7 @@ void MDHODBRPFR_MODEL(){
 
 		//model.add(IloMinimize(env, objFunc));
 		//objFunc.end(); 
-		model.setObjective(objFunc, GRB_MINIMIZE);
+		model.setObjectiveN(objFunc, GRB_MINIMIZE, 1);
 		
 
 		//(6)
@@ -1502,9 +1502,9 @@ int main(int argc, char **argv) {
 	MDHODBRPFR_MODEL();
 	for (int i =0; i < total_requests; i++){
 		for (int j =0; j < number_stops_origin[i]; j++){
-			cout<<stops_origin[i][j]<<" ";
+			cout<<stops_origin[i][j]<<" "<<nodes[stops_origin[i][j]]<<" ";
 			for (int k =0; k < number_stops_destination[i]; k++){
-				cout<<stops_destination[i][k]<<" ";
+				cout<<stops_destination[i][k]<<" "<<nodes[stops_destination[i][k]];
 				cout<<travel_time[nodes[stops_origin[i][j]]][nodes[stops_destination[i][k]]]<<endl;
 			}
 			cout<<endl;
