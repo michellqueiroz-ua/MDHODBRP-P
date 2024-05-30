@@ -7041,7 +7041,7 @@ void cheapest_insertion_randomized_parallel_NEW(int p, bool accept_infeasible_in
 	bool no_feasible_insertion_empty = false;
 
 	int typev;
-	decide_capacity_vehicle_uneven(p, typev);
+	decide_capacity_vehicle_uneven_RANDOM(p, typev);
 	
 	//check for highest capacitated vehicle from partition that is empty
 
