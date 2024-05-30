@@ -6968,8 +6968,6 @@ void decide_capacity_vehicle_uneven(int p, int &type){
 
 
 	//call filtered vehicles with the type then
-
-
 }
 
 void decide_capacity_vehicle_uneven_RANDOM(int p, int &type){
@@ -7001,8 +6999,6 @@ void decide_capacity_vehicle_uneven_RANDOM(int p, int &type){
 
 
 	//call filtered vehicles with the type then
-
-
 }
 
 //in this version, we try to insert in a moving vehicle first

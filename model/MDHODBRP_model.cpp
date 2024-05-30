@@ -689,8 +689,8 @@ void MDHODBRPFR_MODEL(){
 			GRBLinExpr sum = 0;
 			for (int b = 0; b < total_number_vehicles; b++) {
 				for (int i = 0; i < number_stops_destination[r]; i++) {
-						int nodei = stops_destination[r][i];
-						sum += T[b][nodei];
+					int nodei = stops_destination[r][i];
+					sum += T[b][nodei];
 					
 					}
 			}
