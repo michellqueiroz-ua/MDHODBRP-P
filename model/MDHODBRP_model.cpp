@@ -1252,6 +1252,7 @@ void MDHODBRPFR_MODEL(){
         // Enable IIS computation
         //env.set(GRB_IntParam_IISMethod, 1);
 
+        cout<<"here 10"<<endl;
         model.optimize();
 
         /*cout<<"SEE WHICH INFEASIBLE"<<endl;
