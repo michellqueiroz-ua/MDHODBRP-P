@@ -620,7 +620,7 @@ void MDHODBRPFR_MODEL(){
 	double elapsed3;
 	
 	int max_time = 86400;
-	
+	cout<<"here -1"<<endl;
 	GRBEnv env = GRBEnv();
 
 	std::string varName;
