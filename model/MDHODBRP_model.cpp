@@ -622,8 +622,14 @@ void MDHODBRPFR_MODEL(){
 	int max_time = 86400;
 	cout<<"here -1"<<endl;
 	GRBEnv env = GRBEnv();
+	try {
+	    GRBEnv env = GRBEnv();
+	} catch (GRBException& e) {
+	    std::cerr << "Error code: " << e.getErrorCode() << std::endl;
+	    std::cerr << "Error message: " << e.getMessage() << std::endl;
+	}
 	cout<<"here -0.5"<<endl;
-	env.set(GRB_StringParam_TokenServer, "licsrv-gurobi.uantwerpen.be");
+	
 
 	std::string varName;
 
