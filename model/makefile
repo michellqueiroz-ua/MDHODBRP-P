@@ -1,4 +1,3 @@
-export GRB_LICENSE_FILE=TokenServer=licsrv-gurobi.uantwerpen.be
 # Define Gurobi directory
 GUROBI_HOME := $(shell echo $$GUROBI_HOME)
 # Include directory for Gurobi
