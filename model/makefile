@@ -5,8 +5,8 @@ GUROBI_INCLUDE := $(GUROBI_HOME)/include
 
 
 # Library directory for Gurobi
-#GUROBI_LIB := -L$(GUROBI_HOME)/lib -lgurobi_c++ -lgurobi110
-GUROBI_LIB := -L$(GUROBI_HOME)/lib -lgurobi110 -lgurobi_c++
+#GUROBI_LIB := -L$(GUROBI_HOME)/lib -lgurobi_c++ -lgurobi120
+GUROBI_LIB := -L$(GUROBI_HOME)/lib -lgurobi120 -lgurobi_c++
 # Compiler
 CXX = g++
 
