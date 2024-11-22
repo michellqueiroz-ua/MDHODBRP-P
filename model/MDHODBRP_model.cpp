@@ -1365,6 +1365,8 @@ void MDHODBRPFR_MODEL(){
 			}
 			cout<<endl;
 		}
+
+		cout<<"teste "<<travel_time[3][13]<<endl;
 		
 		for (int b = 0; b < total_number_vehicles; b++) {
 			for (int i = 0; i < number_nodes; i++) {
