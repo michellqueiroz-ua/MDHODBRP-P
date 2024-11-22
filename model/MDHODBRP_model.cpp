@@ -1327,7 +1327,7 @@ void MDHODBRPFR_MODEL(){
 				for (int i = 0; i < number_stops_origin[r]; i++) {
 					int i1 = stops_origin[r][i];
 					double bX2 = T[b][i1].get(GRB_DoubleAttr_X);
-					cout<<b<<" "<<i1<<" "<<<<nodes[i1]<<" T ";
+					cout<<b<<" "<<i1<<" "<<nodes[i1]<<" T ";
 					cout<<bX2<<" "<<endl;
 					
 				}
