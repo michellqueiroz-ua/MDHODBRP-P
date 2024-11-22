@@ -620,7 +620,7 @@ void MDHODBRPFR_MODEL(){
 	double elapsed3;
 	
 	int max_time = 86400;
-	cout<<"here -1"<<endl;
+	//cout<<"here -1"<<endl;
 	GRBEnv env = GRBEnv();
 	try {
 	    GRBEnv env = GRBEnv();
@@ -628,15 +628,15 @@ void MDHODBRPFR_MODEL(){
 	    std::cerr << "Error code: " << e.getErrorCode() << std::endl;
 	    std::cerr << "Error message: " << e.getMessage() << std::endl;
 	}
-	cout<<"here -0.5"<<endl;
+	//cout<<"here -0.5"<<endl;
 	
 
 	std::string varName;
 
-	cout<<"here 0"<<endl;
+	//cout<<"here 0"<<endl;
 	try{
 
-		cout<<"here 1"<<endl;
+		//cout<<"here 1"<<endl;
 		GRBModel model = GRBModel(env);
 
 		typedef std::vector<std::vector<GRBVar>> IntVarMatrix;
@@ -690,7 +690,7 @@ void MDHODBRPFR_MODEL(){
 			
 		}
 		model.setObjective(objFunc2, GRB_MINIMIZE, 0);*/
-		cout<<"here 2"<<endl;
+		//cout<<"here 2"<<endl;
 		//(1) Objective function
 		//minimize total user ride time
 		GRBLinExpr objFunc = 0;
@@ -724,7 +724,7 @@ void MDHODBRPFR_MODEL(){
 		//objFunc.end(); 
 		model.setObjective(objFunc, GRB_MINIMIZE);
 		
-		cout<<"here 3"<<endl;
+		//cout<<"here 3"<<endl;
 		//(6)
 		//every request is served once
 
@@ -761,7 +761,7 @@ void MDHODBRPFR_MODEL(){
 			model.addConstr(sum <= 1);
 		}
 
-		cout<<"here 5"<<endl;
+		//cout<<"here 5"<<endl;
 		for (int i = 0; i < number_nodes; i++) {
 
 			GRBLinExpr sum = 0;
@@ -776,7 +776,7 @@ void MDHODBRPFR_MODEL(){
 		}
 
 
-		cout<<"here 7"<<endl;
+		//cout<<"here 7"<<endl;
 		//(7)
 		//picked up and dropped by the same vehicle
 		for (int r = 0; r < total_requests; r++){
@@ -820,7 +820,7 @@ void MDHODBRPFR_MODEL(){
 
 		}
 
-		cout<<"here 9"<<endl;
+		//cout<<"here 9"<<endl;
 		//(9)
 		for (int b = 0; b < total_number_vehicles; b++) {
 			for (int r = 0; r < total_requests; r++){
@@ -875,7 +875,7 @@ void MDHODBRPFR_MODEL(){
 		}
 
 
-		cout<<"here 9.5"<<endl;
+		//cout<<"here 9.5"<<endl;
 		//(11) *review*
 		/*for (int b = 0; b < total_number_vehicles; b++) {
 			for (int r1 = 0; r1 < total_requests; r1++){
@@ -1010,7 +1010,7 @@ void MDHODBRPFR_MODEL(){
 		}
 
 
-		cout<<"here 9.9"<<endl;
+		//cout<<"here 9.9"<<endl;
 		//*new constraints*
 		// try to force T[b][i1] to zero if node isn't served
 		for (int b = 0; b < total_number_vehicles; b++) {
@@ -1116,7 +1116,7 @@ void MDHODBRPFR_MODEL(){
 
 
 
-		cout<<"here 9.99"<<endl;
+		//cout<<"here 9.99"<<endl;
 		//(13)
 		for (int b = 0; b < total_number_vehicles; b++) {
 			for (int r = 0; r < total_requests; r++){
@@ -1269,7 +1269,7 @@ void MDHODBRPFR_MODEL(){
         // Enable IIS computation
         //env.set(GRB_IntParam_IISMethod, 1);
 
-        cout<<"here 10"<<endl;
+        //cout<<"here 10"<<endl;
         model.optimize();
 
         /*cout<<"SEE WHICH INFEASIBLE"<<endl;
@@ -1327,7 +1327,7 @@ void MDHODBRPFR_MODEL(){
 				for (int i = 0; i < number_stops_origin[r]; i++) {
 					int i1 = stops_origin[r][i];
 					double bX2 = T[b][i1].get(GRB_DoubleAttr_X);
-					cout<<b<<" "<<nodes[i1]<<" T ";
+					cout<<b<<" "<<i1<<" "<<<<nodes[i1]<<" T ";
 					cout<<bX2<<" "<<endl;
 					
 				}
@@ -1341,7 +1341,7 @@ void MDHODBRPFR_MODEL(){
 				for (int i = 0; i < number_stops_destination[r]; i++) {
 					int i1 = stops_destination[r][i];
 					double bX2 = T[b][i1].get(GRB_DoubleAttr_X);
-					cout<<b<<" "<<nodes[i1]<<" T ";
+					cout<<b<<" "<<i1<<" "<<nodes[i1]<<" T ";
 					cout<<bX2<<" "<<endl;
 					
 				}
