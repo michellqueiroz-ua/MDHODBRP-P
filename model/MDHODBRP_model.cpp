@@ -1459,7 +1459,7 @@ int main(int argc, char **argv) {
 
    	int k = 0;
    	number_nodes_depots = 0;
-   	total_requests = 2;
+   	total_requests = 1;
 	total_number_vehicles = 1;
 	number_vehicles[0] = 2;
 	number_vehicles[1] = 0;
