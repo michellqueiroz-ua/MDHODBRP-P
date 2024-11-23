@@ -1302,14 +1302,14 @@ void MDHODBRPFR_MODEL(){
         //cout<<"here 10"<<endl;
         model.optimize();
 
-        /*cout<<"SEE WHICH INFEASIBLE"<<endl;
+        cout<<"SEE WHICH INFEASIBLE"<<endl;
         if (model.get(GRB_IntAttr_Status) == GRB_INFEASIBLE) {
             // Compute the IIS
             model.computeIIS();
             model.write("iismodel.ilp");
 
         }
-        cout<<"SEE WHICH INFEASIBLE"<<endl;*/
+        cout<<"SEE WHICH INFEASIBLE"<<endl;
 
         /*if (model.get(GRB_IntAttr_Status) == GRB_INFEASIBLE) {
             // Compute the IIS
@@ -1571,7 +1571,7 @@ int main(int argc, char **argv) {
 		for (int j =0; j < number_stops_origin[i]; j++){
 			cout<<"o "<<stops_origin[i][j]<<" "<<nodes[stops_origin[i][j]]<<" ";
 			for (int k =0; k < number_stops_destination[i]; k++){
-				cout<<stops_destination[i][k]<<" "<<nodes[stops_destination[i][k]];
+				cout<<stops_destination[i][k]<<" "<<nodes[stops_destination[i][k]]<<" ";
 				cout<<travel_time[stops_origin[i][j]][stops_destination[i][k]]<<endl;
 			}
 			cout<<endl;
