@@ -1554,8 +1554,12 @@ int main(int argc, char **argv) {
 		min_travel_time[r] = INT_MAX;
 		for (int i = 0; i < number_stops_destination[r]; i++) {
 			for (int j = 0; j < number_stops_origin[r]; j++) {
-				if (travel_time[stops_origin[r][j]][stops_destination[r][i]] < min_travel_time[r])
+				if (travel_time[stops_origin[r][j]][stops_destination[r][i]] < min_travel_time[r]) {
+					if (travel_time[stops_origin[r][j]][stops_destination[r][i]] <= 0) {
+						travel_time[stops_origin[r][j]][stops_destination[r][i]] = 1;
+					}
 					min_travel_time[r] = travel_time[stops_origin[r][j]][stops_destination[r][i]];
+				}
 			}
 		}
 
