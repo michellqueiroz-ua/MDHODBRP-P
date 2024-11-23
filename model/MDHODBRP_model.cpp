@@ -68,7 +68,7 @@ matrixSS travel_time;
 string output_filename;
 string requests_filename;
 
-listP time_stamp, earliest_departure, latest_departure, earliest_arrival, latest_arrival, direct_travel_time;
+listP time_stamp, earliest_departure, latest_departure, earliest_arrival, latest_arrival, direct_travel_time, min_travel_time;
 
 matrixPS stops_origin, stops_destination;
 matrixPS walking_time_stops_origin, walking_time_stops_destination;
@@ -157,7 +157,7 @@ void input_requests(char *filename) {
 	int p, s;
 
 
-	int max_number_requests_read = 2;
+	int max_number_requests_read = 1;
 	number_nodes = 0;
 	if(file.is_open())
 	{
@@ -723,6 +723,33 @@ void MDHODBRPFR_MODEL(){
 		//model.add(IloMinimize(env, objFunc));
 		//objFunc.end(); 
 		model.setObjective(objFunc, GRB_MINIMIZE);
+
+		//add constraint that travel time between origin and destination of a request equals to min travel time between those nodes
+		for (int r = 0; r < total_requests; r++){
+
+			GRBLinExpr sum = 0;
+			for (int b = 0; b < total_number_vehicles; b++) {
+				for (int i = 0; i < number_stops_destination[r]; i++) {
+					int nodei = stops_destination[r][i];
+					sum += T[b][nodei];
+					
+					}
+			}
+
+			GRBLinExpr sum2 = 0;
+			for (int b = 0; b < total_number_vehicles; b++) {
+				for (int i = 0; i < number_stops_origin[r]; i++) {
+					int nodei = stops_origin[r][i];
+					sum2 += T[b][nodei];
+					
+				}
+			}
+
+
+			model.addConstr(sum - sum2 >= min_travel_time[r]);
+
+		}
+
 		
 		//cout<<"here 3"<<endl;
 		//(6)
@@ -1519,6 +1546,19 @@ int main(int argc, char **argv) {
 
 	cout<<"success"<<endl;
 	cout<<"HIER "<<total_number_vehicles<<" "<<number_stops_origin[0]<<" "<<number_nodes<<endl;
+	for (int r = 0; r < total_requests; r++){
+		
+		min_travel_time[r] = INT_MAX;
+		for (int i = 0; i < number_stops_destination[r]; i++) {
+			for (int j = 0; j < number_stops_origin[r]; j++) {
+				if (travel_time[stops_origin[r][j]][stops_destination[r][i]] < min_travel_time[r])
+					min_travel_time[r] = travel_time[stops_origin[r][j]][stops_destination[r][i]];
+			}
+		}
+
+		cout<<"min_travel_time "<<r<<" "<<min_travel_time[r]<<endl;
+
+	}
 	MDHODBRPFR_MODEL();
 	for (int i =0; i < total_requests; i++){
 		for (int j =0; j < number_stops_origin[i]; j++){
