@@ -1565,10 +1565,10 @@ int main(int argc, char **argv) {
 	MDHODBRPFR_MODEL();
 	for (int i =0; i < total_requests; i++){
 		for (int j =0; j < number_stops_origin[i]; j++){
-			cout<<stops_origin[i][j]<<" "<<nodes[stops_origin[i][j]]<<" ";
+			cout<<"o "<<stops_origin[i][j]<<" "<<nodes[stops_origin[i][j]]<<" ";
 			for (int k =0; k < number_stops_destination[i]; k++){
 				cout<<stops_destination[i][k]<<" "<<nodes[stops_destination[i][k]];
-				cout<<travel_time[nodes[stops_origin[i][j]]][nodes[stops_destination[i][k]]]<<endl;
+				cout<<travel_time[stops_origin[i][j]][stops_destination[i][k]]<<endl;
 			}
 			cout<<endl;
 		}
