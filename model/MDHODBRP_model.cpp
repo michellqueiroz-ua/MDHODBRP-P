@@ -665,6 +665,8 @@ void MDHODBRPFR_MODEL(){
 		for (int n = 0; n < total_number_vehicles; n++) {
 			for (int j = 0; j < number_nodes; j++) {
 				Q[n][j] = model.addVar(0.0, maxtotalcapacity, 0.0, GRB_INTEGER);
+				varName = "Q("+IntToString(n) +","+IntToString(j)+")";
+				Q[n][j].set(GRB_StringAttr_VarName, varName);
 			}
 		}
 
@@ -674,6 +676,8 @@ void MDHODBRPFR_MODEL(){
 		for (int n = 0; n < total_number_vehicles; n++) {
 			for (int j = 0; j < number_nodes; j++) {
 				T[n][j] = model.addVar(0.0, max_time, 0.0, GRB_INTEGER);
+				varName = "T("+IntToString(n) +","+IntToString(j)+")";
+				T[n][j].set(GRB_StringAttr_VarName, varName);
 			}
 		}
 
@@ -751,7 +755,7 @@ void MDHODBRPFR_MODEL(){
 
 		}
 
-		//x[b][i][j] can only take value 1 if i or j are
+		//x[b][i][j] can only take value 1 if i or j are an action - picking up or dropping off a passenger
 
 		
 		//cout<<"here 3"<<endl;
@@ -807,7 +811,7 @@ void MDHODBRPFR_MODEL(){
 
 
 		//cout<<"here 7"<<endl;
-		//(7)
+		//(7) - cause infeasibility
 		//picked up and dropped by the same vehicle
 		for (int r = 0; r < total_requests; r++){
 			for (int b = 0; b < total_number_vehicles; b++) {
