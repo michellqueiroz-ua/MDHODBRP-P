@@ -1199,19 +1199,20 @@ void MDHODBRPFR_MODEL(){
 		}
 
 		//(16)
-		/*for (int b = 0; b < total_number_vehicles; b++) {
+		for (int b = 0; b < total_number_vehicles; b++) {
 			for (int i = 0; i < number_nodes; i++) {
 
 				GRBLinExpr sum = 0;
 				for (int j = 0; j < number_nodes; j++) {
 					sum += x[b][i][j];
+					sum += x[b][j][i];
 				}
 				//int min1 = std::min(maxcapacity[vehicle_type[b]], maxcapacity[vehicle_type[b]]+q[i]);
 				model.addConstr(Q[b][i] <= std::min(maxcapacity[vehicle_type[b]], maxcapacity[vehicle_type[b]]+q[i])*sum);
 				//sum.end();
 
 			}
-		}*/
+		}
 
 
 		//---
@@ -1434,7 +1435,7 @@ void MDHODBRPFR_MODEL(){
 			cout<<endl;
 		}
 
-		cout<<"teste "<<travel_time[nodes[3]][nodes[13]]<<endl;
+		//cout<<"teste "<<travel_time[nodes[3]][nodes[13]]<<endl;
 		
 		for (int b = 0; b < total_number_vehicles; b++) {
 			for (int i = 0; i < number_nodes; i++) {
@@ -1605,7 +1606,7 @@ int main(int argc, char **argv) {
 
 	}
 	MDHODBRPFR_MODEL();
-	for (int i =0; i < total_requests; i++){
+	/*for (int i =0; i < total_requests; i++){
 		for (int j =0; j < number_stops_origin[i]; j++){
 			cout<<"o "<<stops_origin[i][j]<<" "<<nodes[stops_origin[i][j]]<<" ";
 			for (int k =0; k < number_stops_destination[i]; k++){
@@ -1616,7 +1617,7 @@ int main(int argc, char **argv) {
 		}
 		//cout<<endl;
 		//cout<<endl;
-	}
+	}*/
 	cout<<"FINAL success2"<<endl;
 	
 	return 0;
