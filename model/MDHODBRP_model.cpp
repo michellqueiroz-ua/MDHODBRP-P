@@ -697,8 +697,9 @@ void MDHODBRPFR_MODEL(){
 			}
 			
 		}
+
 		model.setObjective(objFunc2, GRB_MINIMIZE, 0);*/
-		//cout<<"here 2"<<endl;
+		
 		//(1) Objective function
 		//minimize total user ride time
 		GRBLinExpr objFunc = 0;
@@ -774,7 +775,6 @@ void MDHODBRPFR_MODEL(){
 				//for (int i = 0; i < number_nodes; i++) {
 					int nodei = stops_origin[r][i];
 					for (int j = 0; j < number_nodes; j++) {
-						//cout<<travel_time[nodes[nodei]][nodes[j]]<<endl;
 						sum += x[b][nodei][j];
 					}
 				}
@@ -1260,8 +1260,37 @@ void MDHODBRPFR_MODEL(){
 			}
 		}*/
 
+		//it doesnt make sense to travel between two origins
+		for (int b = 0; b < total_number_vehicles; b++) {
+			for (int r = 0; r < total_requests; r++){
+				for (int i = 0; i < number_stops_origin[r]; i++) {
+					int nodei = stops_origin[r][i];
+					for (int j = 0; j < number_stops_origin[r]; j++) {
+						int nodej = stops_origin[r][j];
+						x[b][nodei][nodej].set(GRB_DoubleAttr_LB, 0.0); // Lower bound
+	       		 		x[b][nodei][nodej].set(GRB_DoubleAttr_UB, 0.0); // Upper bound
+					}
+				}
+			}
+		}
+
+		//it doesnt make sense to travel between two destinations
+		for (int b = 0; b < total_number_vehicles; b++) {
+			for (int r = 0; r < total_requests; r++){
+				for (int i = 0; i < number_stops_destination[r]; i++) {
+					int nodei = stops_destination[r][i];
+					for (int j = 0; j < number_stops_destination[r]; j++) {
+						int nodej = stops_destination[r][j];
+						x[b][nodei][nodej].set(GRB_DoubleAttr_LB, 0.0); // Lower bound
+	       		 		x[b][nodei][nodej].set(GRB_DoubleAttr_UB, 0.0); // Upper bound
+					}
+				}
+			}
+		}
+
+
 		//it does not make sense to travel between the same physical nodes
-		/*for (int b = 0; b < total_number_vehicles; b++) {
+		for (int b = 0; b < total_number_vehicles; b++) {
 			for (int i = 0; i < number_nodes; i++) {
 				for (int j = 0; j < number_nodes; j++) {
 					if (nodes[i] == nodes[j]){
@@ -1270,7 +1299,7 @@ void MDHODBRPFR_MODEL(){
        		 		}
 				}
 			}
-		}*/
+		}
 
 		
 		
