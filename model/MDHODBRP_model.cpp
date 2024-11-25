@@ -1190,6 +1190,7 @@ void MDHODBRPFR_MODEL(){
 				GRBLinExpr sum = 0;
 				for (int j = 0; j < number_nodes; j++) {
 					sum += x[b][i][j];
+					sum += x[b][j][i];
 				}
 				//int max1 = std::max(0, q[i]);
 				model.addConstr(Q[b][i] >= std::max(0, q[i])*sum);
