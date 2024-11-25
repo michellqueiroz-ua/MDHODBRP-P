@@ -240,14 +240,16 @@ void input_requests(char *filename) {
 					data.erase(remove(data.begin(), data.end(), '"'), data.end());
 					data.erase(remove(data.begin(), data.end(), ']'), data.end());
 					//stops_origin[p][s] = stoi(stop);
-					stops_origin[p][s] = number_nodes;
-					nodes[number_nodes] = stoi(stop);
-					type_node[number_nodes] = 1;
-					q[number_nodes] = -1;
-					number_nodes++;
-					//<<stops_origin[p][s]<<" ";
-					//printf("%d ", stops_origin[p][s]);
-					s = s + 1;
+					if (s < 2) {
+						stops_origin[p][s] = number_nodes;
+						nodes[number_nodes] = stoi(stop);
+						type_node[number_nodes] = 1;
+						q[number_nodes] = -1;
+						number_nodes++;
+						//<<stops_origin[p][s]<<" ";
+						//printf("%d ", stops_origin[p][s]);
+						s = s + 1;
+					}
 					if (leave_loop)
 						break;
 				}
@@ -338,14 +340,16 @@ void input_requests(char *filename) {
 					data.erase(remove(data.begin(), data.end(), '"'), data.end());
 					data.erase(remove(data.begin(), data.end(), ']'), data.end());
 					//stops_destination[p][s] = stoi(stop);
-					stops_destination[p][s] = number_nodes;
-					nodes[number_nodes] = stoi(stop);
-					type_node[number_nodes] = 2;
-					q[number_nodes] = 1;
-					number_nodes++;
-					//<<stops_destination[p][s]<<" ";
-					//printf("%d ", stops_destination[p][s]);
-					s = s + 1;
+					if (s < 2) {
+						stops_destination[p][s] = number_nodes;
+						nodes[number_nodes] = stoi(stop);
+						type_node[number_nodes] = 2;
+						q[number_nodes] = 1;
+						number_nodes++;
+						//<<stops_destination[p][s]<<" ";
+						//printf("%d ", stops_destination[p][s]);
+						s = s + 1;
+					}
 					if (leave_loop)
 						break;
 				}
