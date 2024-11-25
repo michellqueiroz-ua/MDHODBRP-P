@@ -14638,7 +14638,7 @@ int main(int argc, char **argv) {
 	//initialize route of vehicles at the depot
 	//<<"staart "<<number_type_vehicles<<" "<<endl;
 	
-
+	//remove this
 	total_requests = 1;
 	total_number_vehicles = 1;
 	for (int i=0; i<total_requests; i++){
