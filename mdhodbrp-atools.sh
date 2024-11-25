@@ -1,7 +1,6 @@
 #!/bin/bash
 
 module load atools
-module load GCC
 
 run_file=parallelheur.csv
 
