@@ -1175,7 +1175,8 @@ void MDHODBRPFR_MODEL(){
 			for (int i = 0; i < number_nodes; i++) {
 				for (int j = 0; j < number_nodes; j++) {
 
-					W[b][i][j] = std::min(maxcapacity[vehicle_type[b]], maxcapacity[vehicle_type[b]] + q[i]);
+					//W[b][i][j] = std::min(maxcapacity[vehicle_type[b]], maxcapacity[vehicle_type[b]] + q[i]);
+					W[b][i][j] = 100;
 					model.addConstr(Q[b][j] >= Q[b][i] + q[i]*x[b][i][j] - W[b][i][j]*(1 - x[b][i][j]));
 
 				}
