@@ -14637,6 +14637,14 @@ int main(int argc, char **argv) {
 
 	//initialize route of vehicles at the depot
 	//<<"staart "<<number_type_vehicles<<" "<<endl;
+	
+
+	total_requests = 1;
+	total_number_vehicles = 1;
+	for (int i=0; i<total_requests; i++){
+		number_stops_origin[i] = 2;
+		number_stops_destination[i] = 2;
+	}
 	for (int j=0; j<number_type_vehicles; j++) {
 		next_depot = 0;
 		for (int i=0; i<number_vehicles[j];i++) {
