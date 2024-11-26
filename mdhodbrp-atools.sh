@@ -1,6 +1,7 @@
 #!/bin/bash
 
 module load atools
+module load calcua/2024a GCCcore/13.3.0
 
 run_file=parallelheur.csv
 
