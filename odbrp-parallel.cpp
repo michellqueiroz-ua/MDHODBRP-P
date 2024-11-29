@@ -14751,10 +14751,7 @@ int main(int argc, char **argv) {
 
 	max_flex_delay = 0;
 
-	//ensure feasibility
-	for (int k=0;k<total_requests;k++){
-		latest_arrival[k] = latest_arrival[k] + 3600;
-	}
+	
 
 	//int number_clusters = 4;
 
@@ -14959,6 +14956,11 @@ int main(int argc, char **argv) {
 
 		cout<<"min_travel_time "<<r<<" "<<min_travel_time[r]<<endl;
 
+	}
+
+	//ensure feasibility
+	for (int k=0;k<total_requests;k++){
+		latest_arrival[k] = latest_arrival[k] + min_travel_time[k];
 	}
 
 	//while((k < total_requests) or (current_time < 32400)) {

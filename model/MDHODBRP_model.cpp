@@ -157,7 +157,7 @@ void input_requests(char *filename) {
 	int p, s;
 
 
-	int max_number_requests_read = 2;
+	//int max_number_requests_read = 2;
 	number_nodes = 0;
 	if(file.is_open())
 	{
@@ -171,10 +171,10 @@ void input_requests(char *filename) {
 
 			total_requests++;
 
-			if (total_requests > max_number_requests_read) {
+			/*if (total_requests > max_number_requests_read) {
 				total_requests--;
 				return;
-			}
+			}*/
 			stringstream str(line);
 			getline(str, data, ',');
 			p = stoi(data);
@@ -1582,10 +1582,7 @@ int main(int argc, char **argv) {
 	
 
 	
-	//ensure feasibility
-	for (int k=0;k<total_requests;k++){
-		latest_arrival[k] = latest_arrival[k] + 3600;
-	}
+	
 
 	cout<<"success"<<endl;
 	cout<<"HIER "<<total_number_vehicles<<" "<<number_stops_origin[0]<<" "<<number_nodes<<endl;
@@ -1595,19 +1592,24 @@ int main(int argc, char **argv) {
 		cout<<"#O #D "<<number_stops_origin[r]<<" "<<number_stops_destination[r]<<endl;
 		for (int i = 0; i < number_stops_destination[r]; i++) {
 			for (int j = 0; j < number_stops_origin[r]; j++) {
-				cout<<stops_origin[r][j]<<" "<<stops_destination[r][i]<<endl;
-				cout<<travel_time[stops_origin[r][j]][stops_destination[r][i]]<<endl;
-				if (travel_time[stops_origin[r][j]][stops_destination[r][i]] < min_travel_time[r]) {
-					if (travel_time[stops_origin[r][j]][stops_destination[r][i]] <= 0) {
-						travel_time[stops_origin[r][j]][stops_destination[r][i]] = 1;
+				cout<<nodes[stops_origin[r][j]]<<" "<<nodes[stops_destination[r][i]]<<endl;
+				cout<<travel_time[nodes[stops_origin[r][j]]][nodes[stops_destination[r][i]]]<<endl;
+				if (travel_time[nodes[stops_origin[r][j]]][nodes[stops_destination[r][i]]] < min_travel_time[r]) {
+					if (travel_time[nodes[stops_origin[r][j]]][nodes[stops_destination[r][i]]] <= 0) {
+						travel_time[nodes[stops_origin[r][j]]][nodes[stops_destination[r][i]]] = 1;
 					}
-					min_travel_time[r] = travel_time[stops_origin[r][j]][stops_destination[r][i]];
+					min_travel_time[r] = travel_time[nodes[stops_origin[r][j]]][nodes[stops_destination[r][i]]];
 				}
 			}
 		}
 
 		cout<<"min_travel_time "<<r<<" "<<min_travel_time[r]<<endl;
 
+	}
+
+	//ensure feasibility
+	for (int k=0;k<total_requests;k++){
+		latest_arrival[k] = latest_arrival[k] + min_travel_time[k];
 	}
 	MDHODBRPFR_MODEL();
 	/*for (int i =0; i < total_requests; i++){
