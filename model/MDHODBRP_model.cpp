@@ -1595,6 +1595,7 @@ int main(int argc, char **argv) {
 		cout<<"#O #D "<<number_stops_origin[r]<<" "<<number_stops_destination[r]<<endl;
 		for (int i = 0; i < number_stops_destination[r]; i++) {
 			for (int j = 0; j < number_stops_origin[r]; j++) {
+				cout<<stops_origin[r][j]<<" "<<stops_destination[r][i]<<endl;
 				cout<<travel_time[stops_origin[r][j]][stops_destination[r][i]]<<endl;
 				if (travel_time[stops_origin[r][j]][stops_destination[r][i]] < min_travel_time[r]) {
 					if (travel_time[stops_origin[r][j]][stops_destination[r][i]] <= 0) {
