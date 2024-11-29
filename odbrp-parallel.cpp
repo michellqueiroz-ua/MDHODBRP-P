@@ -5994,7 +5994,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 						see_if_arrival_departure_dont_match(v);
 						//<<"heereBB"<<endl;
 						//<<v<<endl;
-						//<<"insidere here"<<endl;
+						cout<<"insidere here"<<endl;
 						if (curr_number_insertions_p < 44995)
 							cheapest_origin2_p(p, v, min_increase_length, sel_origin, pos_origin, repeated_station, flexibilize_lat_departure_time, insertions_p, curr_number_insertions_p);
 						
@@ -11439,6 +11439,7 @@ void re_insertion(int p, bool &accept_relocate_trip, double &temperature, int &t
 					flexibilize_lat_departure_time = false;
 				
 				see_if_arrival_departure_dont_match(v);
+				cout<<"HEEEERE "<<endl;
 				if (curr_number_insertions_p < 44955)
 					cheapest_origin2_p(p, v, min_increase_length, sel_origin, pos_origin, repeated_station, flexibilize_lat_departure_time, insertions_p, curr_number_insertions_p);
 				
@@ -12311,7 +12312,7 @@ void re_insertion_nn(int p, bool &accept_relocate_trip, double &temperature, int
 					flexibilize_lat_departure_time = false;
 				//<<"here2.2"<<endl;
 				see_if_arrival_departure_dont_match(v);
-				//<<"here2.3"<<endl;
+				cout<<"here2.3"<<endl;
 				if (curr_number_insertions_p < 44955)
 					cheapest_origin2_p(p, v, min_increase_length, sel_origin, pos_origin, repeated_station, flexibilize_lat_departure_time, insertions_p, curr_number_insertions_p);
 				//<<"here2.4"<<endl;		
