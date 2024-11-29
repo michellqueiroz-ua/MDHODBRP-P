@@ -2250,7 +2250,7 @@ void cheapest_destination2(int p, int v, int pos_origin, int &min_increase_lengt
 
 				delay[p] = delay_trip;
 			} else {
-				cout<<"cd: "<<" "<<increase<<" "<<min_increase_length<<" slack time "<<new_slack_time<<" do time "<<drop_off_time<<" la time "<<latest_arrival_passenger<<" "<<new_capacity<<latest_arrival[p]<<endl;
+				cout<<"cd: "<<" "<<increase<<" "<<min_increase_length<<" slack time "<<new_slack_time<<" do time "<<drop_off_time<<" la time "<<latest_arrival_passenger<<" "<<new_capacity<<" "<<latest_arrival[p]<<endl;
 				if (not feasible_insertion_found) {
 
 					infeasible_insertion = true;
@@ -7047,7 +7047,7 @@ void cheapest_insertion_randomized_parallel_NEW(int p, bool accept_infeasible_in
 
 	//cout<<"pass: "<<p<<endl;
 
-
+	cout<<"passenger "<<p<<endl;
 	//running with non-empty vehicle
 	for(int ci=0; ci <= 1;ci++) {
 		if (vehicle_assigned[p] == -1) {
@@ -7456,6 +7456,8 @@ void cheapest_insertion_randomized_parallel_NEW(int p, bool accept_infeasible_in
 								flexibilize_arrival_time = true;
 							else
 								flexibilize_arrival_time = false;
+
+							flexibilize_arrival_time = false;
 
 							//<<"15.872"<<endl;
 							cheapest_destination2(p, best_v, best_pos_origin, min_increase_length, sel_destination, pos_destination, repeated_station, flexibilize_arrival_time, infeasible_insertion);
