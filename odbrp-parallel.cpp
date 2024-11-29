@@ -15252,7 +15252,7 @@ int main(int argc, char **argv) {
 
 		
 		//cout<<"hier7sa"<<endl;
-		if (k > total_number_vehicles + 10) {
+		if (k > total_number_vehicles + 1) {
 		
 			
 			//omp_set_num_threads(2);	

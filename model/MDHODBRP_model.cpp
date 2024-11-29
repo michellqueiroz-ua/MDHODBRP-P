@@ -1389,7 +1389,7 @@ void MDHODBRPFR_MODEL(){
         std::ofstream output_file;
 		output_file.open(output_filename, std::ios::app);
 		double average_user_ride_time = (double)(model.get(GRB_DoubleAttr_ObjVal)/total_requests);
-		output_file << requests_filename << " " << model.get(GRB_DoubleAttr_ObjVal) << " " << elapsed << endl;
+		output_file << requests_filename << " " << average_user_ride_time << " " << elapsed << endl;
 
 		//printing solution
 		cout<<"SERVED ORIGINS"<<endl;
@@ -1587,6 +1587,7 @@ int main(int argc, char **argv) {
 
 	cout<<"success"<<endl;
 	cout<<"HIER "<<total_number_vehicles<<" "<<number_stops_origin[0]<<" "<<number_nodes<<endl;
+	double upper_bound_average_urt = 0;
 	for (int r = 0; r < total_requests; r++){
 		
 		min_travel_time[r] = INT_MAX;
@@ -1605,8 +1606,12 @@ int main(int argc, char **argv) {
 		}
 
 		cout<<"min_travel_time "<<r<<" "<<min_travel_time[r]<<endl;
+		upper_bound_average_urt += min_travel_time[r];
 
 	}
+
+	upper_bound_average_urt = (double)(upper_bound_average_urt/total_requests);
+	cout<<"UB SOL "<<upper_bound_average_urt<<endl;
 
 	//ensure feasibility
 	for (int k=0;k<total_requests;k++){
