@@ -14751,19 +14751,20 @@ int main(int argc, char **argv) {
 
 	max_flex_delay = 0;
 
-	/*for (int k=0;k<total_requests;k++){
-		latest_arrival[k] = latest_arrival[k] + 1800;
-	}*/
+	//ensure feasibility
+	for (int k=0;k<total_requests;k++){
+		latest_arrival[k] = latest_arrival[k] + 3600;
+	}
 
 	//int number_clusters = 4;
 
 
 
-	if ((total_requests >= 600) && (total_requests <= 2100)) {
+	/*if ((total_requests >= 600) && (total_requests <= 2100)) {
 		for (int k=0;k<total_requests;k++){
 			latest_arrival[k] = latest_arrival[k] + 3600;
 		}
-	}
+	}*/
 
 	served_requests_so_far = 0;
 	rejected_requests_so_far = 0;

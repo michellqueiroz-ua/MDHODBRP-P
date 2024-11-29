@@ -1582,10 +1582,10 @@ int main(int argc, char **argv) {
 	
 
 	
-
-	/*for (int k=0;k<total_requests;k++){
-		latest_arrival[k] = latest_arrival[k] + 1800;
-	}*/
+	//ensure feasibility
+	for (int k=0;k<total_requests;k++){
+		latest_arrival[k] = latest_arrival[k] + 3600;
+	}
 
 	cout<<"success"<<endl;
 	cout<<"HIER "<<total_number_vehicles<<" "<<number_stops_origin[0]<<" "<<number_nodes<<endl;
