@@ -7139,7 +7139,7 @@ void cheapest_insertion_randomized_parallel_NEW(int p, bool accept_infeasible_in
 							see_if_arrival_departure_dont_match(v);
 							//<<"heereBB"<<endl;
 							//<<v<<endl;
-							//<<"insidere here"<<endl;
+							cout<<"insidere here CONSTRUCTIVEEE"<<endl;
 							if (curr_number_insertions_p < 44995)
 								cheapest_origin2_p(p, v, min_increase_length, sel_origin, pos_origin, repeated_station, flexibilize_lat_departure_time, insertions_p, curr_number_insertions_p);
 							
@@ -15271,7 +15271,7 @@ int main(int argc, char **argv) {
 
 		
 		//cout<<"hier7sa"<<endl;
-		if (k > total_number_vehicles + 10) {
+		if (k > total_number_vehicles + 1) {
 		
 			
 			//omp_set_num_threads(2);	
