@@ -14640,7 +14640,7 @@ int main(int argc, char **argv) {
 	
 	//remove this
 	total_requests = 2;
-	total_number_vehicles = 1;
+	total_number_vehicles = 2;
 	for (int i=0; i<total_requests; i++){
 		number_stops_origin[i] = 2;
 		number_stops_destination[i] = 2;
