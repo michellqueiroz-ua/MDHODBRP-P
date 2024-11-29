@@ -8279,10 +8279,10 @@ void cheapest_insertion_randomized_parallel_NEW(int p, bool accept_infeasible_in
 								}
 							}*/
 
-							if (user_ride_time[p] < best_found_user_ride_time) {
+							/*if (user_ride_time[p] < best_found_user_ride_time) {
 								best_found_user_ride_time = user_ride_time[p];
 								save_vehicle_p(v);
-							}
+							}*/
 
 							
 							
@@ -15271,7 +15271,7 @@ int main(int argc, char **argv) {
 
 		
 		//cout<<"hier7sa"<<endl;
-		if (k > total_number_vehicles + 1) {
+		if (k > total_number_vehicles + 10) {
 		
 			
 			//omp_set_num_threads(2);	
