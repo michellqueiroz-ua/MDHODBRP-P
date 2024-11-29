@@ -14639,7 +14639,7 @@ int main(int argc, char **argv) {
 	//<<"staart "<<number_type_vehicles<<" "<<endl;
 	
 	//remove this
-	total_requests = 1;
+	total_requests = 2;
 	total_number_vehicles = 1;
 	for (int i=0; i<total_requests; i++){
 		number_stops_origin[i] = 2;
