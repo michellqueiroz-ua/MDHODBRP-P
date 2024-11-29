@@ -8028,6 +8028,7 @@ void cheapest_insertion_randomized_parallel_NEW(int p, bool accept_infeasible_in
 
 			//cout<<"size filter p "<<filtered_vehicles_p.size()<<endl;
 
+			int best_found_user_ride_time = INT_MAX;
 			for (int itv = 0; itv < filtered_vehicles_p.size(); itv++) {
 
 				v = filtered_vehicles_p[itv];
@@ -8236,6 +8237,7 @@ void cheapest_insertion_randomized_parallel_NEW(int p, bool accept_infeasible_in
 							//updates user ride time
 							//<<"heere1"<<endl;
 							user_ride_time[p] = travel_time[sel_origin][sel_destination];
+
 							//total_user_ride_time += user_ride_time[p];
 							//<<"total_user_ride_time1: "<<total_user_ride_time<<endl;
 
@@ -8276,6 +8278,11 @@ void cheapest_insertion_randomized_parallel_NEW(int p, bool accept_infeasible_in
 									break;
 								}
 							}*/
+
+							if (user_ride_time[p] < best_found_user_ride_time) {
+								best_found_user_ride_time = user_ride_time[p];
+								save_vehicle_p(v);
+							}
 
 							
 							
@@ -14909,7 +14916,8 @@ int main(int argc, char **argv) {
 	sort(sort_passengers, sort_passengers+total_requests, comparator3);
 
 	k = 0;
-	current_time = sort_passengers[k].time_stamp;
+	current_time = sort_passengers[k].time_stamp - 2000;
+
 	//current_time = 0;
 
 	//<<"hier3"<<endl;'
@@ -15263,7 +15271,7 @@ int main(int argc, char **argv) {
 
 		
 		//cout<<"hier7sa"<<endl;
-		if (k > total_number_vehicles + 100) {
+		if (k > total_number_vehicles + 1) {
 		
 			
 			//omp_set_num_threads(2);	
