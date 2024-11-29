@@ -1843,7 +1843,7 @@ void cheapest_origin2_p(int p, int v, int &min_increase_length, int &sel_origin,
 					//<<"app: true"<<endl;
 					//<<"repeated: "<<repeated_station<<endl;
 				} else {
-					cout<<"co: "<<new_slack_time<<" "<<pick_up_time<<" "<<latest_departure_passenger<<" "<<new_capacity<<" "<<departure_time_from_home<<" "<<current_time<<endl;
+					//cout<<"co: "<<new_slack_time<<" "<<pick_up_time<<" "<<latest_departure_passenger<<" "<<new_capacity<<" "<<departure_time_from_home<<" "<<current_time<<endl;
 				}
 			}
 		}
@@ -13911,7 +13911,7 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 
 			if (y <= 1.0) {
 				//SWITCH
-				//cout<<passengers_in_cluster.size()<<endl;
+				cout<<"PIC: "<<passengers_in_cluster.size()<<endl;
 				if (passengers_in_cluster.size() > 0) {
 					relocate_p = passengers_in_cluster[rand() % passengers_in_cluster.size()];
 					//<<"rel p: "<<relocate_p<<endl;
