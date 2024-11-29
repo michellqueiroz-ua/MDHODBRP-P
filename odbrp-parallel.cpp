@@ -2226,7 +2226,7 @@ void cheapest_destination2(int p, int v, int pos_origin, int &min_increase_lengt
 			}
 			//<<"dpt: "<<drop_off_time<<" "<<latest_arrival_passenger<<endl;
 			//<<new_slack_time<<endl;
-			cout<<"cd: "<<" "<<increase<<" "<<min_increase_length<<" "<<new_slack_time<<" "<<drop_off_time<<" "<<latest_arrival_passenger<<" "<<new_capacity<<latest_arrival[p]<<endl;
+			
 			if ((increase < min_increase_length) && (new_slack_time >= 0) && (drop_off_time <= latest_arrival_passenger) && (new_capacity >= 0)) {
 				feasible_insertion_found = true;
 				infeasible_insertion = false;
@@ -2250,7 +2250,7 @@ void cheapest_destination2(int p, int v, int pos_origin, int &min_increase_lengt
 
 				delay[p] = delay_trip;
 			} else {
-
+				cout<<"cd: "<<" "<<increase<<" "<<min_increase_length<<" slack time "<<new_slack_time<<" do time "<<drop_off_time<<" la time "<<latest_arrival_passenger<<" "<<new_capacity<<latest_arrival[p]<<endl;
 				if (not feasible_insertion_found) {
 
 					infeasible_insertion = true;
@@ -14935,7 +14935,7 @@ int main(int argc, char **argv) {
 	}
 	//uncomment static
 
-
+	cout<<requests_filename<<endl;
 	listP min_travel_time;
 	for (int r = 0; r < total_requests; r++){
 		
@@ -15252,7 +15252,7 @@ int main(int argc, char **argv) {
 
 		
 		//cout<<"hier7sa"<<endl;
-		if (k > total_number_vehicles + 1) {
+		if (k > total_number_vehicles + 100) {
 		
 			
 			//omp_set_num_threads(2);	
