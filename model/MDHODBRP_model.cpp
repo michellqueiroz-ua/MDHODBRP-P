@@ -157,7 +157,7 @@ void input_requests(char *filename) {
 	int p, s;
 
 
-	int max_number_requests_read = 2;
+	int max_number_requests_read = 5;
 	number_nodes = 0;
 	if(file.is_open())
 	{
@@ -1388,6 +1388,7 @@ void MDHODBRPFR_MODEL(){
 
         std::ofstream output_file;
 		output_file.open(output_filename, std::ios::app);
+		double average_user_ride_time = (double)(model.get(GRB_DoubleAttr_ObjVal)/total_requests);
 		output_file << requests_filename << " " << model.get(GRB_DoubleAttr_ObjVal) << " " << elapsed << endl;
 
 		//printing solution
@@ -1531,8 +1532,8 @@ int main(int argc, char **argv) {
 
    	int k = 0;
    	number_nodes_depots = 0;
-   	total_requests = 2;
-	total_number_vehicles = 2;
+   	total_requests = 5;
+	total_number_vehicles = 3;
 	number_vehicles[0] = 2;
 	number_vehicles[1] = 0;
 	number_vehicles[2] = 0;

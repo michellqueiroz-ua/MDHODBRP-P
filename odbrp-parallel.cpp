@@ -14639,8 +14639,8 @@ int main(int argc, char **argv) {
 	//<<"staart "<<number_type_vehicles<<" "<<endl;
 	
 	//remove this
-	total_requests = 2;
-	total_number_vehicles = 2;
+	total_requests = 5;
+	total_number_vehicles = 3;
 	for (int i=0; i<total_requests; i++){
 		number_stops_origin[i] = 2;
 		number_stops_destination[i] = 2;
