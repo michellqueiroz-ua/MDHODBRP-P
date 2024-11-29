@@ -157,7 +157,7 @@ void input_requests(char *filename) {
 	int p, s;
 
 
-	//int max_number_requests_read = 2;
+	int max_number_requests_read = 2;
 	number_nodes = 0;
 	if(file.is_open())
 	{
@@ -171,10 +171,10 @@ void input_requests(char *filename) {
 
 			total_requests++;
 
-			/*if (total_requests > max_number_requests_read) {
+			if (total_requests > max_number_requests_read) {
 				total_requests--;
 				return;
-			}*/
+			}
 			stringstream str(line);
 			getline(str, data, ',');
 			p = stoi(data);
