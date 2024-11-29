@@ -7121,6 +7121,8 @@ void cheapest_insertion_randomized_parallel_NEW(int p, bool accept_infeasible_in
 								flexibilize_lat_departure_time = true;
 							else
 								flexibilize_lat_departure_time = false;
+
+							flexibilize_lat_departure_time = false;
 							
 							/*cheapest_origin(p, v, min_increase_length, sel_origin, pos_origin, repeated_station, flexibilize_lat_departure_time);
 
