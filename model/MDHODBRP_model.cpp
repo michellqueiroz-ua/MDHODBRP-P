@@ -1592,7 +1592,7 @@ int main(int argc, char **argv) {
 	for (int r = 0; r < total_requests; r++){
 		
 		min_travel_time[r] = INT_MAX;
-		cout<<"#O #D "<<number_stops_origin[r]<<" "<<number_stops_destination[r]<endl;
+		cout<<"#O #D "<<number_stops_origin[r]<<" "<<number_stops_destination[r]<<endl;
 		for (int i = 0; i < number_stops_destination[r]; i++) {
 			for (int j = 0; j < number_stops_origin[r]; j++) {
 				if (travel_time[stops_origin[r][j]][stops_destination[r][i]] < min_travel_time[r]) {
