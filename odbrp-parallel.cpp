@@ -14010,7 +14010,9 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 			
 			if (++count > 25) {
 				//elapsed = get_wall_time() - start_time;
+
 				elapsed = (double)(std::clock() - start_time)/(double)(CLOCKS_PER_SEC);
+				cout<<"ELAPSEED "<<elapsed<<endl;
 				//<<"ELAPSED TIME "<<elapsed<<endl;
 				if (elapsed > comp_time) {
 					return;
