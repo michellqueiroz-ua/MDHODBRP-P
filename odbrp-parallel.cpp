@@ -14927,12 +14927,12 @@ int main(int argc, char **argv) {
 	int algo_iterations = 0;
 
 	//uncomment static
-	/*while(k < total_requests) { 
+	while(k < total_requests) { 
 		passengers_to_be_inserted.push_back(sort_passengers[k].k);
 		//cout<<"p and ts: "<<sort_passengers[k].k<<" "<<sort_passengers[k].time_stamp<<endl;
 		//cout<<"k: "<<k<<endl;
 		k++;
-	}*/
+	}
 	//uncomment static
 
 
@@ -14964,10 +14964,10 @@ int main(int argc, char **argv) {
 	}
 
 	//while((k < total_requests) or (current_time < 32400)) {
-	//while(algo_iterations < 1000) { //static
+	while(algo_iterations < 1000) { //static
 		algo_iterations++;
 
-	while(current_time < 28800) {
+	//while(current_time < 28800) {
 		
 		check_last_position_route();
 		//<<"hier3.1"<<endl;
@@ -14979,7 +14979,7 @@ int main(int argc, char **argv) {
 
 			//comment static
 			
-			if (passengers_to_be_inserted.size() > 0) {
+			/*if (passengers_to_be_inserted.size() > 0) {
 				passengers_to_be_inserted.clear();
 			}
 
@@ -14987,7 +14987,7 @@ int main(int argc, char **argv) {
 			while((current_time >= sort_passengers[k].time_stamp) && (k < total_requests)) { 
 				passengers_to_be_inserted.push_back(sort_passengers[k].k);
 				k++;
-			}
+			}*/
 			//coment static
 
 			for (int ol=0;ol<passengers_to_be_insertedOLD.size();ol++){
@@ -15109,8 +15109,8 @@ int main(int argc, char **argv) {
 												
 												int response_time = current_time - time_stamp[nxt_p];
 												
-												//if (att_inser[nxt_p] < 100) { //static
-												if (response_time < 500) {
+												if (att_inser[nxt_p] < 100) { //static
+												//if (response_time < 500) {
 													passengers_to_be_insertedOLD.push_back(nxt_p);
 												}
 												
@@ -15199,11 +15199,11 @@ int main(int argc, char **argv) {
 		//l_elapsed_algo_time = (double)(std::clock() - start_algorithm_time)/(double)(CLOCKS_PER_SEC);
 
 		difference_updated = current_time - p_updated_cluster;
-		//difference_updateds = algo_iterations - it_updated_cluster; //static
+		difference_updateds = algo_iterations - it_updated_cluster; //static
 
 		//comment this static. no need to change partitions
 		//if (difference_updated > 50) {
-		if (number_clusters > 1) {
+		/*if (number_clusters > 1) {
 			if (difference_updateds > 50) {
 				//p_updated_cluster = current_time;
 
@@ -15246,7 +15246,7 @@ int main(int argc, char **argv) {
 
 				}		
 			}
-		}
+		}*/
 		//decide new centroids
 		//comment this static. no need to change partitions
 
@@ -15276,7 +15276,7 @@ int main(int argc, char **argv) {
 
 		//comment this static case
 		
-		l_elapsed_algo_time = (double)(std::clock() - start_algorithm_time)/(double)(CLOCKS_PER_SEC);
+		/*l_elapsed_algo_time = (double)(std::clock() - start_algorithm_time)/(double)(CLOCKS_PER_SEC);
 		
 		difference_elapsed = l_elapsed_algo_time - p_elapsed_algo_time;
 		
@@ -15288,7 +15288,7 @@ int main(int argc, char **argv) {
 
 		p_elapsed_algo_time = l_elapsed_algo_time;
 		
-		update_current_position();
+		update_current_position();*/
 		
 		//comment this static case
 
