@@ -13869,7 +13869,7 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 	temperature = init_temperature;
 	no_improvement = 0; 
 	count = 0;
-	//start_time = get_wall_time();
+	double start_time2 = get_wall_time();
 	start_time = std::clock();
 	
 	//vector<int> vehicles_still_depot;
@@ -14010,7 +14010,7 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 			
 			if (++count > 25) {
 				double elapsed2;
-				elapsed2 = get_wall_time() - start_time;
+				elapsed2 = get_wall_time() - start_time2;
 
 				elapsed = (double)(std::clock() - start_time)/(double)(CLOCKS_PER_SEC);
 				cout<<"ELAPSEED "<<elapsed<<" "<<elapsed2<<endl;
