@@ -2226,7 +2226,7 @@ void cheapest_destination2(int p, int v, int pos_origin, int &min_increase_lengt
 			}
 			//<<"dpt: "<<drop_off_time<<" "<<latest_arrival_passenger<<endl;
 			//<<new_slack_time<<endl;
-			//cout<<"cd: "<<" "<<increase<<" "<<min_increase_length<<" "<<new_slack_time<<" "<<drop_off_time<<" "<<latest_arrival_passenger<<" "<<new_capacity<<latest_arrival[p]<<endl;
+			cout<<"cd: "<<" "<<increase<<" "<<min_increase_length<<" "<<new_slack_time<<" "<<drop_off_time<<" "<<latest_arrival_passenger<<" "<<new_capacity<<latest_arrival[p]<<endl;
 			if ((increase < min_increase_length) && (new_slack_time >= 0) && (drop_off_time <= latest_arrival_passenger) && (new_capacity >= 0)) {
 				feasible_insertion_found = true;
 				infeasible_insertion = false;
@@ -14974,8 +14974,8 @@ int main(int argc, char **argv) {
 		//if (k > num_iterations_to_start_reassign)
 		//	reassign_vehicles_to_another_depot();
 		
-		if ((current_time >= sort_passengers[k].time_stamp)) {
-		//if (algo_iterations < 1000) { //static
+		//if ((current_time >= sort_passengers[k].time_stamp)) {
+		if (algo_iterations < 1000) { //static
 
 			//comment static
 			
@@ -15348,7 +15348,7 @@ int main(int argc, char **argv) {
 		best_total_user_ride_time += user_ride_time[p];
 	}
 
-	double average_user_ride_time = (double)(best_total_user_ride_time/served_passengers);
+	double average_user_ride_time = (double)best_total_user_ride_time/(double)served_passengers;
 	
 	//<<total_user_ride_time<<" "<<best_total_user_ride_time<<endl;
 	//<<served_passengers<<"  "<<total_user_ride_time<<endl;
