@@ -1842,6 +1842,8 @@ void cheapest_origin2_p(int p, int v, int &min_increase_length, int &sel_origin,
 
 					//<<"app: true"<<endl;
 					//<<"repeated: "<<repeated_station<<endl;
+				} else {
+					cout<<"co: "<<new_slack_time<<" "<<pick_up_time<<" "<<latest_departure_passenger<<" "<<new_capacity<<" "<<departure_time_from_home<<" "<<current_time<<endl;
 				}
 			}
 		}
@@ -7122,7 +7124,7 @@ void cheapest_insertion_randomized_parallel_NEW(int p, bool accept_infeasible_in
 							else
 								flexibilize_lat_departure_time = false;
 
-							flexibilize_lat_departure_time = false;
+							//flexibilize_lat_departure_time = false;
 							
 							/*cheapest_origin(p, v, min_increase_length, sel_origin, pos_origin, repeated_station, flexibilize_lat_departure_time);
 
