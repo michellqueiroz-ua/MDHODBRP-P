@@ -7081,6 +7081,7 @@ void cheapest_insertion_randomized_parallel_NEW(int p, bool accept_infeasible_in
 				}*/
 				//<<"hier 5.7"<<endl;
 				std::shuffle(filtered_vehicles_p2.begin(), filtered_vehicles_p2.end(), default_random_engine(current_time));
+				cout<<"FILTERED VEHICLE SIZE: "<<filtered_vehicles_p2.size()<<endl;
 				while ((not_feasible_insertion) && (iterations < filtered_vehicles_p2.size())) {
 					
 					int best_pos_origin, best_pos_destination;
@@ -7952,6 +7953,7 @@ void cheapest_insertion_randomized_parallel_NEW(int p, bool accept_infeasible_in
 					///<<"heereFF";
 					if (no_feasible_insertion2) {
 
+						cout<<"NO FEASIBLE INSERTION FOR "<<p<<" "<<vehicle_assigned[p]<<endl;
 						//iterations++;
 						iterations = filtered_vehicles_p2.size()+1;
 					}
