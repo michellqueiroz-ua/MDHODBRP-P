@@ -3710,6 +3710,7 @@ void re_insertion_to_repair(int p, bool &accept_relocate_trip, int cluster_id){
 					flexibilize_lat_departure_time = false;
 				
 				see_if_arrival_departure_dont_match(v);
+				cout<<"HERE SA"<<endl;
 				if (curr_number_insertions_p < 44955)
 					cheapest_origin2_p(p, v, min_increase_length, sel_origin, pos_origin, repeated_station, flexibilize_lat_departure_time, insertions_p, curr_number_insertions_p);
 				
