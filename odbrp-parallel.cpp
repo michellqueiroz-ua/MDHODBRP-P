@@ -14648,7 +14648,7 @@ int main(int argc, char **argv) {
 	
 	//remove this
 	total_requests = 5;
-	total_number_vehicles = 3;
+	total_number_vehicles = 4;
 	for (int i=0; i<total_requests; i++){
 		number_stops_origin[i] = 2;
 		number_stops_destination[i] = 2;
@@ -14969,9 +14969,9 @@ int main(int argc, char **argv) {
 	//ensure feasibility
 	for (int k=0;k<total_requests;k++){
 		latest_arrival[k] = latest_arrival[k] + min_travel_time[k];
-		if (min_travel_time[k] < 1000) {
+		/*if (min_travel_time[k] < 1000) {
 			latest_arrival[k] += 1800;
-		}
+		}*/
 	}
 
 	//while((k < total_requests) or (current_time < 32400)) {
