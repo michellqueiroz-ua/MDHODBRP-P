@@ -6,7 +6,7 @@ module load Gurobi
 run_file=parallelheur18.csv
 
 echo "input_file; seed1" > $run_file
-for input_file in `find ../../../instances/EXP_MODEL -type f -name "*.csv"` ; do
+for input_file in `find ../../../instances/EXP_MODEL/size5 -type f -name "*.csv"` ; do
     counterx=6
     for iter in 1
     do
