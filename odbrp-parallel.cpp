@@ -13873,6 +13873,7 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 	start_time = std::clock();
 	auto start_time3 = std::chrono::high_resolution_clock::now();
 	double elapsed3;
+	double prev_elapsed;
 	
 	
 	//vector<int> vehicles_still_depot;
@@ -14019,11 +14020,18 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 
 				auto end_time3 = std::chrono::high_resolution_clock::now();
 				elapsed3 = std::chrono::duration<double>(end_time3 - start_time3).count();
-				cout<<"ELAPSEED "<<elapsed<<" "<<elapsed2<<" "<<elapsed3<<endl;
+				
+				
+				
 				//<<"ELAPSED TIME "<<elapsed<<endl;
+				
+				if (elapsed3 - prev_elapsed > 3) {
+					cout<<"ELAPSEED "<<elapsed<<" "<<elapsed2<<" "<<elapsed3<<endl;
+				}
 				if (elapsed3 > comp_time) {
 					return;
 				}
+				prev_elapsed = elapsed3;
 				count = 0;
 			}
 
@@ -14935,10 +14943,11 @@ int main(int argc, char **argv) {
 	//41400
 	//k = total_requests+1;
 	//<<k<<" "<<total_requests<<" "<<current_time<<endl;
-	clock_t start_algorithm_time;
-	start_algorithm_time = std::clock();
+	//clock_t start_algorithm_time;
+	//start_algorithm_time = std::clock();
+	auto start_algorithm_time = std::chrono::high_resolution_clock::now();
 	auto start_time_chrono = std::chrono::high_resolution_clock::now();
-	double p_elapsed_algo_time, l_elapsed_algo_time, difference_elapsed, difference_updated, p_updated_cluster;
+	double p_elapsed_algo_time, difference_elapsed, difference_updated, p_updated_cluster;
 	p_elapsed_algo_time = 0;
 	p_updated_cluster = current_time;
 	int it_updated_cluster = 0;
@@ -14994,7 +15003,7 @@ int main(int argc, char **argv) {
 	}
 
 	//while((k < total_requests) or (current_time < 32400)) {
-	while(algo_iterations < 1000) { //static
+	while(algo_iterations < 10) { //static
 		algo_iterations++;
 
 	//while(current_time < 28800) {
@@ -15306,19 +15315,22 @@ int main(int argc, char **argv) {
 
 		//comment this static case
 		
-		/*l_elapsed_algo_time = (double)(std::clock() - start_algorithm_time)/(double)(CLOCKS_PER_SEC);
+		auto this_time = std::chrono::high_resolution_clock::now();
+		//l_elapsed_algo_time = (double)(std::clock() - start_algorithm_time)/(double)(CLOCKS_PER_SEC);
+		double l_elapsed_algo_time = std::chrono::duration<double>(this_time - start_algorithm_time).count();
 		
+		cout<<"ALGO elapsed: "<<l_elapsed_algo_time<<endl;
 		difference_elapsed = l_elapsed_algo_time - p_elapsed_algo_time;
 		
 		difference_elapsed = difference_elapsed*2;
-		if (difference_elapsed < 1)
+		/*if (difference_elapsed < 1)
 			current_time += 1;
 		else
-			current_time += difference_elapsed;
+			current_time += difference_elapsed;*/
 
 		p_elapsed_algo_time = l_elapsed_algo_time;
 		
-		update_current_position();*/
+		//update_current_position();
 		
 		//comment this static case
 
@@ -15398,6 +15410,10 @@ int main(int argc, char **argv) {
 	//elapsed = get_wall_time() - begin_time;
 	auto end_time_chrono = std::chrono::high_resolution_clock::now();
 	auto duration = std::chrono::duration_cast<std::chrono::seconds>(end_time_chrono - start_time_chrono);
-	elapsedf = (double)(std::clock() - start_algorithm_time)/(double)(CLOCKS_PER_SEC);		 
+
+	auto this_time2 = std::chrono::high_resolution_clock::now();
+	//l_elapsed_algo_time = (double)(std::clock() - start_algorithm_time)/(double)(CLOCKS_PER_SEC);
+	
+	elapsedf = std::chrono::duration<double>(this_time2 - start_algorithm_time).count();	 
 	output_file << elapsedf << " " << duration.count() << endl;
 }
