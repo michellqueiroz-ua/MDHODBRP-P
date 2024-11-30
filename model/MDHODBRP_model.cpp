@@ -75,6 +75,8 @@ matrixPS walking_time_stops_origin, walking_time_stops_destination;
 listP number_stops_origin, number_stops_destination;
 int number_stations;
 
+std::vector<int> depots_nodes;
+
 listS q;
 matrixVSS M, W;
 
@@ -824,6 +826,21 @@ void MDHODBRPFR_MODEL(){
 			}
 		}*/
 
+		*NEW 2024*
+		//ensuring that vehicles cannot visit depots that are not their own
+		for (int b = 0; b < total_number_vehicles; b++) {
+			for (int j = 0; j < depots_nodes.size(); j++) {
+				int node_depot = depot_nodes[j];
+				if ((node_depot != vehicle_located_at_depot[b]) && (node_depot != vehicle_return_to_depot[b])) {
+					for (int i = 0; i < number_nodes; i++) {
+						model.addConstr(x[b][node_depot][i] == 0);
+						model.addConstr(x[b][i][node_depot] == 0);
+					}
+				}
+			}
+			
+		}
+
 
 
 		//cout<<"here 5"<<endl;
@@ -874,6 +891,7 @@ void MDHODBRPFR_MODEL(){
 		}
 
 		//(6) *UPDATED*
+		//starts at the depot
 		for (int b = 0; b < total_number_vehicles; b++) {
 
 			GRBLinExpr sum = 0;
@@ -1588,6 +1606,7 @@ int main(int argc, char **argv) {
 			if (k < total_number_vehicles) {
 				all_depots[number_nodes_depots] = number_nodes;
 				vehicle_located_at_depot[k] = number_nodes; 
+				depots_nodes.push_back(number_nodes);
 				nodes[number_nodes] = depot[depot_i];
 				q[number_nodes] = 0;
 				number_nodes++;
@@ -1596,7 +1615,8 @@ int main(int argc, char **argv) {
 
 				//repeat return node
 				all_depots[number_nodes_depots] = number_nodes;
-				vehicle_return_to_depot[k] = number_nodes; 
+				vehicle_return_to_depot[k] = number_nodes;
+				depots_nodes.push_back(number_nodes); 
 				nodes[number_nodes] = depot[depot_i];
 				q[number_nodes] = 0;
 				number_nodes++;
