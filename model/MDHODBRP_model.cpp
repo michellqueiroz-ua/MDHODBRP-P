@@ -786,7 +786,7 @@ void MDHODBRPFR_MODEL(){
 		}
 
 		//*new constraint* every node is served at most once
-		for (int i = 0; i < number_nodes; i++) {
+		/*for (int i = 0; i < number_nodes; i++) {
 
 			GRBLinExpr sum = 0;
 			for (int b = 0; b < total_number_vehicles; b++) {
@@ -797,11 +797,11 @@ void MDHODBRPFR_MODEL(){
 			}
 
 			model.addConstr(sum <= 1);
-		}
+		}*/
 
 		//*new constraint*
 		//pick-up nodes need a predecessor
-		for (int r = 0; r < total_requests; r++){
+		/*for (int r = 0; r < total_requests; r++){
 			for (int i = 0; i < number_stops_origin[r]; i++) {
 				int nodei = stops_origin[r][i];
 
@@ -822,7 +822,7 @@ void MDHODBRPFR_MODEL(){
 				model.addConstr(sum <= sum2);
 
 			}
-		}
+		}*/
 
 
 
