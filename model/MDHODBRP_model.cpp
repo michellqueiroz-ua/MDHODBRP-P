@@ -74,6 +74,7 @@ matrixPS stops_origin, stops_destination;
 matrixPS walking_time_stops_origin, walking_time_stops_destination;
 listP number_stops_origin, number_stops_destination;
 int number_stations;
+double upper_bound_average_urt;
 
 std::vector<int> depots_nodes;
 
@@ -1434,7 +1435,8 @@ void MDHODBRPFR_MODEL(){
         std::ofstream output_file;
 		output_file.open(output_filename, std::ios::app);
 		double average_user_ride_time = (double)(model.get(GRB_DoubleAttr_ObjVal)/total_requests);
-		output_file << requests_filename << " " << average_user_ride_time << " " << elapsed << endl;
+		double diff_sol_best = average_user_ride_time - upper_bound_average_urt;
+		output_file << requests_filename << " " << average_user_ride_time << " " << upper_bound_average_urt << " " << diff_sol_best << " " << elapsed << endl;
 
 		//printing solution
 		cout<<"SERVED ORIGINS"<<endl;
@@ -1644,7 +1646,7 @@ int main(int argc, char **argv) {
 
 	cout<<"success"<<endl;
 	cout<<"HIER "<<total_number_vehicles<<" "<<number_stops_origin[0]<<" "<<number_nodes<<endl;
-	double upper_bound_average_urt = 0;
+	upper_bound_average_urt = 0;
 	for (int r = 0; r < total_requests; r++){
 		
 		min_travel_time[r] = INT_MAX;
