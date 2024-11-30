@@ -14502,7 +14502,7 @@ int main(int argc, char **argv) {
 
 	string output_filename;
 	string requests_filename;
-	comp_time = 0.50;
+	comp_time = 0.25;
 	//start_time = std::clock();
 	begin_time = get_wall_time();
 	total_number_vehicles = 0;
@@ -14935,7 +14935,7 @@ int main(int argc, char **argv) {
 	sort(sort_passengers, sort_passengers+total_requests, comparator3);
 
 	k = 0;
-	current_time = sort_passengers[k].time_stamp - 2000;
+	current_time = sort_passengers[k].time_stamp - 5000;
 
 	//current_time = 0;
 
@@ -15014,7 +15014,7 @@ int main(int argc, char **argv) {
 		//	reassign_vehicles_to_another_depot();
 		
 		//if ((current_time >= sort_passengers[k].time_stamp)) {
-		if (algo_iterations < 1000) { //static
+		if (algo_iterations < 100) { //static
 
 			//comment static
 			
