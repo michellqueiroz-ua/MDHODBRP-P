@@ -815,7 +815,7 @@ void MDHODBRPFR_MODEL(){
 
 
 		//cout<<"here 7"<<endl;
-		//(7) - cause infeasibility
+		//(7)
 		//picked up and dropped by the same vehicle
 		for (int r = 0; r < total_requests; r++){
 			for (int b = 0; b < total_number_vehicles; b++) {
@@ -1544,7 +1544,7 @@ int main(int argc, char **argv) {
    	number_nodes_depots = 0;
    	total_requests = 5;
 	total_number_vehicles = 3;
-	number_vehicles[0] = 2;
+	number_vehicles[0] = 3;
 	number_vehicles[1] = 0;
 	number_vehicles[2] = 0;
 	/*for (int i=0; i<total_requests; i++){
