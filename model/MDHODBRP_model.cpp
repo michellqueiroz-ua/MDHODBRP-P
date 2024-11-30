@@ -830,7 +830,7 @@ void MDHODBRPFR_MODEL(){
 		//ensuring that vehicles cannot visit depots that are not their own
 		for (int b = 0; b < total_number_vehicles; b++) {
 			for (int j = 0; j < depots_nodes.size(); j++) {
-				int node_depot = depot_nodes[j];
+				int node_depot = depots_nodes[j];
 				if ((node_depot != vehicle_located_at_depot[b]) && (node_depot != vehicle_return_to_depot[b])) {
 					for (int i = 0; i < number_nodes; i++) {
 						model.addConstr(x[b][node_depot][i] == 0);
