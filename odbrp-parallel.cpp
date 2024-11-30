@@ -11439,7 +11439,7 @@ void re_insertion(int p, bool &accept_relocate_trip, double &temperature, int &t
 					flexibilize_lat_departure_time = false;
 				
 				see_if_arrival_departure_dont_match(v);
-				cout<<"HEEEERE "<<endl;
+				//cout<<"HEEEERE "<<endl;
 				if (curr_number_insertions_p < 44955)
 					cheapest_origin2_p(p, v, min_increase_length, sel_origin, pos_origin, repeated_station, flexibilize_lat_departure_time, insertions_p, curr_number_insertions_p);
 				
@@ -13911,7 +13911,7 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 
 			if (y <= 1.0) {
 				//SWITCH
-				cout<<"PIC: "<<passengers_in_cluster.size()<<endl;
+				//cout<<"PIC: "<<passengers_in_cluster.size()<<endl;
 				if (passengers_in_cluster.size() > 0) {
 					relocate_p = passengers_in_cluster[rand() % passengers_in_cluster.size()];
 					//<<"rel p: "<<relocate_p<<endl;
