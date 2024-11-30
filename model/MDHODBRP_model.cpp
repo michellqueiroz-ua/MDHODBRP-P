@@ -1421,18 +1421,28 @@ void MDHODBRPFR_MODEL(){
 		}
 
 		
-		
+		//printing tour
 		for (int b = 0; b < total_number_vehicles; b++) {
-			for (int i = 0; i < number_nodes; i++) {
+			int current_node_i = vehicle_located_at_depot[b];
+			bool reached_end_tour = false;
+			
+			while (!reached_end_tour) {
 				for (int j = 0; j < number_nodes; j++) {
-					double bX = x[b][i][j].get(GRB_DoubleAttr_X);
+					double bX = x[b][current_node_i][j].get(GRB_DoubleAttr_X);
 					if (bX == 1.0){
-						cout<<b<<" "<<nodes[i]<<" ("<<i<<") "<<nodes[j]<<" ("<<j<<") "<<travel_time[nodes[i]][nodes[j]]<<endl;
-						double bX2 = T[b][i].get(GRB_DoubleAttr_X);
+						cout<<b<<" "<<nodes[current_node_i]<<" ("<<current_node_i<<") "<<nodes[j]<<" ("<<j<<") "<<travel_time[nodes[current_node_i]][nodes[j]]<<endl;
+						double bX2 = T[b][current_node_i].get(GRB_DoubleAttr_X);
 						double bX3 = T[b][j].get(GRB_DoubleAttr_X);
 						cout<<bX2<<" "<<bX3<<endl;
+						current_node_i = j;
 					}
+				
 				}
+
+				if (current_node_i == vehicle_return_to_depot[b]) {
+					reached_end_tour = true;
+				}
+
 			}
 			cout<<endl;
 		}

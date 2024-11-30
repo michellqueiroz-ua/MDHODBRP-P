@@ -15356,7 +15356,7 @@ int main(int argc, char **argv) {
 		cout<<endl;
 	}*/
 
-	//print_all_vehicles();
+	print_all_vehicles();
 
 
 	for (int k=0;k<total_requests;k++){
