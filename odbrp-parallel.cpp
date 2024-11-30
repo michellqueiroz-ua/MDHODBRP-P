@@ -13871,6 +13871,9 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 	count = 0;
 	double start_time2 = get_wall_time();
 	start_time = std::clock();
+	auto start_time3 = std::chrono::high_resolution_clock::now();
+	double elapsed3;
+	auto end_time3;
 	
 	//vector<int> vehicles_still_depot;
 
@@ -14013,9 +14016,12 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 				elapsed2 = get_wall_time() - start_time2;
 
 				elapsed = (double)(std::clock() - start_time)/(double)(CLOCKS_PER_SEC);
-				cout<<"ELAPSEED "<<elapsed<<" "<<elapsed2<<endl;
+
+				end_time3 = std::chrono::high_resolution_clock::now();
+				elapsed3 = std::chrono::duration<double>(end_time - start_time).count();
+				cout<<"ELAPSEED "<<elapsed<<" "<<elapsed2<<" "<<elapsed3<<endl;
 				//<<"ELAPSED TIME "<<elapsed<<endl;
-				if (elapsed > comp_time) {
+				if (elapsed3 > comp_time) {
 					return;
 				}
 				count = 0;
