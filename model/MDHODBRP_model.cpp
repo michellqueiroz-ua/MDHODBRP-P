@@ -799,6 +799,33 @@ void MDHODBRPFR_MODEL(){
 			model.addConstr(sum <= 1);
 		}
 
+		//*new constraint*
+		//pick-up nodes need a predecessor
+		for (int r = 0; r < total_requests; r++){
+			for (int i = 0; i < number_stops_origin[r]; i++) {
+				int nodei = stops_origin[r][i];
+
+				GRBLinExpr sum = 0;
+				for (int b = 0; b < total_number_vehicles; b++) {
+					for (int j = 0; j < number_nodes; j++) {
+						sum += x[b][nodei][j];
+					}
+				}
+
+				GRBLinExpr sum2 = 0;
+				for (int b = 0; b < total_number_vehicles; b++) {
+					for (int j = 0; j < number_nodes; j++) {
+						sum2 += x[b][j][nodei];
+					}
+				}
+
+				model.addConstr(sum <= sum2);
+
+			}
+		}
+
+
+
 		//cout<<"here 5"<<endl;
 		/*for (int i = 0; i < number_nodes; i++) {
 
@@ -815,7 +842,7 @@ void MDHODBRPFR_MODEL(){
 
 
 		//cout<<"here 7"<<endl;
-		//(7)
+		//(5) *UPDATED*
 		//picked up and dropped by the same vehicle
 		for (int r = 0; r < total_requests; r++){
 			for (int b = 0; b < total_number_vehicles; b++) {
@@ -846,7 +873,7 @@ void MDHODBRPFR_MODEL(){
 			}
 		}
 
-		//(8)
+		//(6) *UPDATED*
 		for (int b = 0; b < total_number_vehicles; b++) {
 
 			GRBLinExpr sum = 0;
@@ -859,7 +886,7 @@ void MDHODBRPFR_MODEL(){
 		}
 
 		//cout<<"here 9"<<endl;
-		//(9)
+		//(7) *UPDATED*
 		for (int b = 0; b < total_number_vehicles; b++) {
 			for (int r = 0; r < total_requests; r++){
 				for (int i = 0; i < number_stops_origin[r]; i++) {
@@ -900,7 +927,7 @@ void MDHODBRPFR_MODEL(){
 
 		}
 
-		//(10)
+		//(8) *UPDATED*
 		for (int b = 0; b < total_number_vehicles; b++) {
 
 			GRBLinExpr sum = 0;
