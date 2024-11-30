@@ -14018,7 +14018,7 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 				elapsed = (double)(std::clock() - start_time)/(double)(CLOCKS_PER_SEC);
 
 				end_time3 = std::chrono::high_resolution_clock::now();
-				elapsed3 = std::chrono::duration<double>(end_time - start_time).count();
+				elapsed3 = std::chrono::duration<double>(end_time3 - start_time3).count();
 				cout<<"ELAPSEED "<<elapsed<<" "<<elapsed2<<" "<<elapsed3<<endl;
 				//<<"ELAPSED TIME "<<elapsed<<endl;
 				if (elapsed3 > comp_time) {
