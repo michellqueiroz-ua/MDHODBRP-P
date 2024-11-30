@@ -826,7 +826,7 @@ void MDHODBRPFR_MODEL(){
 			}
 		}*/
 
-		*NEW 2024*
+		//*NEW 2024*
 		//ensuring that vehicles cannot visit depots that are not their own
 		for (int b = 0; b < total_number_vehicles; b++) {
 			for (int j = 0; j < depots_nodes.size(); j++) {
