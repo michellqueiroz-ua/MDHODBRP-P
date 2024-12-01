@@ -160,7 +160,7 @@ void input_requests(char *filename) {
 	int p, s;
 
 
-	int max_number_requests_read = 5;
+	int max_number_requests_read = 10;
 	number_nodes = 0;
 	if(file.is_open())
 	{
@@ -1373,7 +1373,7 @@ void MDHODBRPFR_MODEL(){
 		model.write("model.lp");
 
 		model.set(GRB_DoubleParam_TimeLimit, 3600); // Time limit
-        model.set(GRB_DoubleParam_MIPGapAbs, 0.9); // Absolute gap
+        model.set(GRB_DoubleParam_MIPGapAbs, 0.0); // Absolute gap
 
         //time_t start3 = time(NULL);
         std::time_t start = std::time(nullptr);
@@ -1601,7 +1601,7 @@ int main(int argc, char **argv) {
 
    	int k = 0;
    	number_nodes_depots = 0;
-   	total_requests = 5;
+   	total_requests = 10;
 	total_number_vehicles = 3;
 	number_vehicles[0] = 3;
 	number_vehicles[1] = 0;
