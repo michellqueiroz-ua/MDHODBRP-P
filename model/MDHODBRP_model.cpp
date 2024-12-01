@@ -1386,6 +1386,14 @@ void MDHODBRPFR_MODEL(){
         //env.set(GRB_IntParam_IISMethod, 1);
 
         //cout<<"here 10"<<endl;
+
+        int default_threads = model.get(GRB_IntParam_Threads);
+		std::cout << "Default threads: " << default_threads << std::endl;
+
+		// Set a custom number of threads
+		model.set(GRB_IntParam_Threads, 4);
+		std::cout << "Threads set to: 4" << std::endl;
+
         model.optimize();
 
         cout<<"SEE WHICH INFEASIBLE"<<endl;
