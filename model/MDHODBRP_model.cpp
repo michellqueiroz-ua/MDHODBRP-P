@@ -1413,17 +1413,28 @@ void MDHODBRPFR_MODEL(){
 			}
         }*/
 
-        if (model.get(GRB_IntAttr_Status) != GRB_OPTIMAL) {
+        /*if (model.get(GRB_IntAttr_Status) != GRB_OPTIMAL) {
             std::cerr << "Failed to optimize LP." << std::endl;
             throw(-1);
-        }
+        }*/
 
         std::cout << "Solution status = " << model.get(GRB_IntAttr_Status) << endl;
         std::cout << "Solution value = " << model.get(GRB_DoubleAttr_ObjVal) << endl;
         std::cout << "Best upper bound = " << model.get(GRB_DoubleAttr_ObjBound) << endl;
 
         //double gap = 100*((cplex2.getBestObjValue() - cplex2.getObjValue())/cplex2.getObjValue());
-        double gap = (model.get(GRB_DoubleAttr_ObjBound) - model.get(GRB_DoubleAttr_ObjVal)) / model.get(GRB_DoubleAttr_ObjVal) * 100;
+        //double gap = (model.get(GRB_DoubleAttr_ObjBound) - model.get(GRB_DoubleAttr_ObjVal)) / model.get(GRB_DoubleAttr_ObjVal) * 100;
+
+        double objVal = model.get(GRB_DoubleAttr_ObjVal);
+		double objBound = model.get(GRB_DoubleAttr_ObjBound);
+
+		double gap;
+		if (objVal == 0.0) {
+		    // If ObjVal is 0, use ObjBound as a reference or handle the edge case
+		    gap = (objBound == 0.0) ? 0.0 : GRB_INFINITY;
+		} else {
+		    gap = std::abs((objBound - objVal) / std::abs(objVal)) * 100;
+		}
 
         //time_t end3 = time(NULL);
         //elapsed3 = difftime(end3,start3);
@@ -1436,7 +1447,8 @@ void MDHODBRPFR_MODEL(){
 		output_file.open(output_filename, std::ios::app);
 		double average_user_ride_time = (double)(model.get(GRB_DoubleAttr_ObjVal)/total_requests);
 		double diff_sol_best = average_user_ride_time - upper_bound_average_urt;
-		output_file << requests_filename << " " << average_user_ride_time << " " << upper_bound_average_urt << " " << diff_sol_best << " " << elapsed << endl;
+		double mipGap = model.get(GRB_DoubleAttr_MIPGap);
+		output_file << requests_filename << " " << average_user_ride_time << " " << upper_bound_average_urt << " " << diff_sol_best << " " << elapsed << " " << gap << " " << mipGap << endl;
 
 		//printing solution
 		cout<<"SERVED ORIGINS"<<endl;

@@ -14937,7 +14937,8 @@ int main(int argc, char **argv) {
 	sort(sort_passengers, sort_passengers+total_requests, comparator3);
 
 	k = 0;
-	current_time = sort_passengers[k].time_stamp - 5000;
+	//current_time = sort_passengers[k].time_stamp - 5000;
+	current_time = 0;
 
 	//current_time = 0;
 
