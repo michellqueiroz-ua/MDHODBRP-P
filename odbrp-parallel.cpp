@@ -14999,7 +14999,7 @@ int main(int argc, char **argv) {
 
 	//ensure feasibility
 	for (int k=0;k<total_requests;k++){
-		latest_arrival[k] = latest_arrival[k] + min_travel_time[k];
+		latest_arrival[k] = latest_arrival[k] + min_travel_time[k] + 1800;
 		/*if (min_travel_time[k] < 1000) {
 			latest_arrival[k] += 1800;
 		}*/
