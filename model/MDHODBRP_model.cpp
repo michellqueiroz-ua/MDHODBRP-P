@@ -1391,8 +1391,8 @@ void MDHODBRPFR_MODEL(){
 		std::cout << "Default threads: " << default_threads << std::endl;
 
 		// Set a custom number of threads
-		model.set(GRB_IntParam_Threads, 4);
-		std::cout << "Threads set to: 4" << std::endl;
+		model.set(GRB_IntParam_Threads, 12);
+		std::cout << "Threads set to: 12" << std::endl;
 
         model.optimize();
 
@@ -1450,6 +1450,9 @@ void MDHODBRPFR_MODEL(){
         double elapsed = std::difftime(end, start);
 
         std::cout << "Solution time = " <<  elapsed << endl;
+
+        int threads_used = model.get(GRB_IntParam_Threads);
+		std::cout << "Threads used during optimization: " << threads_used << std::endl;
 
         std::ofstream output_file;
 		output_file.open(output_filename, std::ios::app);
