@@ -1372,7 +1372,7 @@ void MDHODBRPFR_MODEL(){
 		//cplex2.exportModel("model.lp");
 		model.write("model.lp");
 
-		model.set(GRB_DoubleParam_TimeLimit, 7200); // Time limit
+		model.set(GRB_DoubleParam_TimeLimit, 43200); // Time limit
         model.set(GRB_DoubleParam_MIPGapAbs, 0.0); // Absolute gap
 
         //time_t start3 = time(NULL);
