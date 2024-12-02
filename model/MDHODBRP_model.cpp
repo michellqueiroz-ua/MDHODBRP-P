@@ -1391,8 +1391,8 @@ void MDHODBRPFR_MODEL(){
 		std::cout << "Default threads: " << default_threads << std::endl;
 
 		// Set a custom number of threads
-		model.set(GRB_IntParam_Threads, 12);
-		std::cout << "Threads set to: 12" << std::endl;
+		model.set(GRB_IntParam_Threads, 24);
+		std::cout << "Threads set to: 24" << std::endl;
 
         model.optimize();
 
