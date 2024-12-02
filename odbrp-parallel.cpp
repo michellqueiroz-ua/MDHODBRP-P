@@ -15017,7 +15017,7 @@ int main(int argc, char **argv) {
 		//	reassign_vehicles_to_another_depot();
 		
 		//if ((current_time >= sort_passengers[k].time_stamp)) {
-		if (algo_iterations < 100) { //static
+		if (algo_iterations < 1000) { //static
 
 			//comment static
 			
