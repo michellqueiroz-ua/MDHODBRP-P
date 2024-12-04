@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #SBATCH --job-name=CreateNetwork
-#SBATCH --ntasks=1 --cpus-per-task=24
+#SBATCH --ntasks=1 --cpus-per-task=48
 #SBATCH --time=13:00:00
 #SBATCH --partition=zen2
 
