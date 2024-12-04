@@ -2,7 +2,7 @@
 
 #SBATCH --job-name=CreateNetwork
 #SBATCH --ntasks=1 --cpus-per-task=64
-#SBATCH --time=13:00:00
+#SBATCH --time=24:00:00
 #SBATCH --partition=zen2
 
 module load atools

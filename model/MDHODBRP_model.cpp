@@ -160,7 +160,7 @@ void input_requests(char *filename) {
 	int p, s;
 
 
-	int max_number_requests_read = 20;
+	int max_number_requests_read = 25;
 	number_nodes = 0;
 	if(file.is_open())
 	{
@@ -1372,7 +1372,7 @@ void MDHODBRPFR_MODEL(){
 		//cplex2.exportModel("model.lp");
 		model.write("model.lp");
 
-		model.set(GRB_DoubleParam_TimeLimit, 43200); // Time limit
+		model.set(GRB_DoubleParam_TimeLimit, 86400); // Time limit
         model.set(GRB_DoubleParam_MIPGapAbs, 0.0); // Absolute gap
 
         //time_t start3 = time(NULL);
@@ -1612,9 +1612,9 @@ int main(int argc, char **argv) {
 
    	int k = 0;
    	number_nodes_depots = 0;
-   	total_requests = 20;
-	total_number_vehicles = 7;
-	number_vehicles[0] = 7;
+   	total_requests = 25;
+	total_number_vehicles = 8;
+	number_vehicles[0] = 8;
 	number_vehicles[1] = 0;
 	number_vehicles[2] = 0;
 	/*for (int i=0; i<total_requests; i++){
