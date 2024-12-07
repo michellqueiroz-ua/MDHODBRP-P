@@ -14937,8 +14937,8 @@ int main(int argc, char **argv) {
 	sort(sort_passengers, sort_passengers+total_requests, comparator3);
 
 	k = 0;
-	//current_time = sort_passengers[k].time_stamp - 5000;
-	current_time = 0;
+	//current_time = sort_passengers[k].time_stamp;
+	current_time = 0; //static
 
 	//current_time = 0;
 
@@ -15000,9 +15000,6 @@ int main(int argc, char **argv) {
 	//ensure feasibility
 	for (int k=0;k<total_requests;k++){
 		latest_arrival[k] = latest_arrival[k] + min_travel_time[k] + 1800;
-		/*if (min_travel_time[k] < 1000) {
-			latest_arrival[k] += 1800;
-		}*/
 	}
 
 	//while((k < total_requests) or (current_time < 32400)) {
