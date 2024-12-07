@@ -1612,8 +1612,8 @@ int main(int argc, char **argv) {
 
    	int k = 0;
    	number_nodes_depots = 0;
-   	total_requests = 20;
-	total_number_vehicles = 7;
+   	total_requests = 25;
+	total_number_vehicles = 8;
 	number_vehicles[0] = 8;
 	number_vehicles[1] = 0;
 	number_vehicles[2] = 0;
