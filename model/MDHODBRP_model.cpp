@@ -160,7 +160,7 @@ void input_requests(char *filename) {
 	int p, s;
 
 
-	int max_number_requests_read = 25;
+	int max_number_requests_read = 15;
 	number_nodes = 0;
 	if(file.is_open())
 	{
@@ -1612,7 +1612,7 @@ int main(int argc, char **argv) {
 
    	int k = 0;
    	number_nodes_depots = 0;
-   	total_requests = 25;
+   	total_requests = 15;
 	total_number_vehicles = 8;
 	number_vehicles[0] = 8;
 	number_vehicles[1] = 0;
@@ -1697,7 +1697,7 @@ int main(int argc, char **argv) {
 
 	//ensure feasibility
 	for (int k=0;k<total_requests;k++){
-		latest_arrival[k] = latest_arrival[k] + min_travel_time[k] + 1800;
+		latest_arrival[k] = latest_arrival[k] + 3600;
 	}
 	MDHODBRPFR_MODEL();
 	/*for (int i =0; i < total_requests; i++){
