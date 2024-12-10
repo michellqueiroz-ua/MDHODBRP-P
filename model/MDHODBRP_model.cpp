@@ -160,7 +160,7 @@ void input_requests(char *filename) {
 	int p, s;
 
 
-	int max_number_requests_read = 20;
+	int max_number_requests_read = 25;
 	number_nodes = 0;
 	if(file.is_open())
 	{
