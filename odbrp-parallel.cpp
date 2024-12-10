@@ -14999,7 +14999,7 @@ int main(int argc, char **argv) {
 
 	//ensure feasibility
 	for (int k=0;k<total_requests;k++){
-		latest_arrival[k] = latest_arrival[k] + 1800;
+		latest_arrival[k] = latest_arrival[k] + 2400;
 	}
 
 	//while((k < total_requests) or (current_time < 32400)) {
