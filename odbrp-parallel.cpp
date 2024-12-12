@@ -14674,7 +14674,7 @@ int main(int argc, char **argv) {
 	
 	//remove this
 	total_requests = 17;
-	total_number_vehicles = 6;
+	total_number_vehicles = 7;
 	for (int i=0; i<total_requests; i++){
 		if (number_stops_origin[i] > 3)
 			number_stops_origin[i] = 3;
