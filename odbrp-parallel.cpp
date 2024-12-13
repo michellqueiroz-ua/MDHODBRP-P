@@ -14673,8 +14673,8 @@ int main(int argc, char **argv) {
 	//<<"staart "<<number_type_vehicles<<" "<<endl;
 	
 	//remove this
-	total_requests = 12;
-	total_number_vehicles = 5;
+	total_requests = 18;
+	total_number_vehicles = 8;
 	for (int i=0; i<total_requests; i++){
 		if (number_stops_origin[i] > 3)
 			number_stops_origin[i] = 3;
