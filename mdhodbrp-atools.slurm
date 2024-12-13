@@ -3,7 +3,7 @@
 #SBATCH --job-name=CreateNetwork
 #SBATCH --ntasks=1 --cpus-per-task=1
 #SBATCH --time=4:00:00
-#SBATCH --partition=skylake
+#SBATCH --partition=zen2
 
 module load atools
 module load calcua/2024a GCCcore/13.3.0
