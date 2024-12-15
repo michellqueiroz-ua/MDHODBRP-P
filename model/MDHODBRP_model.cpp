@@ -160,7 +160,7 @@ void input_requests(char *filename) {
 	int p, s;
 
 
-	int max_number_requests_read = 7;
+	int max_number_requests_read = 8;
 	number_nodes = 0;
 	if(file.is_open())
 	{
@@ -1612,7 +1612,7 @@ int main(int argc, char **argv) {
 
    	int k = 0;
    	number_nodes_depots = 0;
-   	total_requests = 7;
+   	total_requests = 8;
 	total_number_vehicles = 4;
 	number_vehicles[0] = 4;
 	number_vehicles[1] = 0;
