@@ -11,7 +11,7 @@ for input_file in `find ../../instances/EXP_MODEL/size5 -type f -name "*.csv"` ;
     for iter in 1
     do
         counterx=$((counterx+1))
-        seed1=0
+        seed1=12
         seed1=$(($seed1 + $counterx))
         file_name=$(basename "$input_file")
         echo "$input_file; $seed1" >> $run_file
