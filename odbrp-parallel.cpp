@@ -14035,7 +14035,7 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 					cout<<"ELAPSEED "<<elapsed<<" "<<elapsed2<<" "<<elapsed3<<endl;
 				}
 				//change this static / dyanmic
-				if (count_static_it > 100) {
+				if (count_static_it > 1000) {
 					return;
 				}
 				/*if (elapsed3 > comp_time) {
