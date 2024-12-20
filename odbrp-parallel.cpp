@@ -165,7 +165,7 @@ listP number_stops_uneven;
 
 static int extra_travel_time;
 static double passengers_per_kilometer, average_travel_time_ratio;
-static int total_deadheading_times, total_shared_times;
+static int total_deadheading_times, total_shared_times, total_per_vehicle_travel_time;
 
 static int current_time;
 static clock_t start_time;
@@ -13765,6 +13765,7 @@ void compute_passengers_per_kilometers(){
 void compute_deadheading_times(){
 
 	total_deadheading_times = 0;
+	total_per_vehicle_travel_time = 0;
 	total_shared_times = 0;
 
 	for (int v=0; v<total_number_vehicles; v++){
@@ -13773,8 +13774,12 @@ void compute_deadheading_times(){
 		total_deadheading_times += arrival_time_stop[v][1] - departure_time_stop[v][0]; //first stop the vehicle always runs empty
 		int vtype = vehicle_type[v];
 		
+		total_per_vehicle_travel_time += arrival_time_stop[v][1] - departure_time_stop[v][0];
+
 		for (int i=1; i<number_stops[v]; i++){
 			
+			total_per_vehicle_travel_time += arrival_time_stop[v][i+1] - departure_time_stop[v][i];
+
 			if (free_capacity[v][i] == maxcapacity[vtype]) {
 				//this means the vehicle is gonna run empty to the next stop
 				total_deadheading_times += arrival_time_stop[v][i+1] - departure_time_stop[v][i];
@@ -13874,7 +13879,7 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 	auto start_time3 = std::chrono::high_resolution_clock::now();
 	double elapsed3;
 	double prev_elapsed;
-	
+	int count_static_it = 0;
 	
 	//vector<int> vehicles_still_depot;
 
@@ -13914,6 +13919,7 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 			double y = (double)rand() / (double)RAND_MAX;
 
 			if (y <= 1.0) {
+				count_static_it++;
 				//SWITCH
 				//cout<<"PIC: "<<passengers_in_cluster.size()<<endl;
 				if (passengers_in_cluster.size() > 0) {
@@ -14028,9 +14034,13 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 				if (elapsed3 - prev_elapsed > 3) {
 					cout<<"ELAPSEED "<<elapsed<<" "<<elapsed2<<" "<<elapsed3<<endl;
 				}
-				if (elapsed3 > comp_time) {
+				//change this static / dyanmic
+				if (count_static_it > 100) {
 					return;
 				}
+				/*if (elapsed3 > comp_time) {
+					return;
+				}*/
 				prev_elapsed = elapsed3;
 				count = 0;
 			}
@@ -14673,8 +14683,8 @@ int main(int argc, char **argv) {
 	//<<"staart "<<number_type_vehicles<<" "<<endl;
 	
 	//remove this
-	total_requests = 5;
-	total_number_vehicles = 3;
+	total_requests = 10;
+	total_number_vehicles = 4;
 	for (int i=0; i<total_requests; i++){
 		if (number_stops_origin[i] > 3)
 			number_stops_origin[i] = 3;
@@ -15381,6 +15391,8 @@ int main(int argc, char **argv) {
 	
 	total_served_passengers = served_passengers + served_passengers_3party;
 
+	double avg_per_vehicle_travel_time = (double)total_per_vehicle_travel_time/total_number_vehicles;
+
 	for (int c=0;c<number_clusters;c++){
 		total_user_ride_time += best_tot_cluster_ride_time[c];
 	}
@@ -15397,7 +15409,7 @@ int main(int argc, char **argv) {
 	//<<total_user_ride_time<<endl;
 	std::ofstream output_file;
 	output_file.open(output_filename, std::ios::app);
-	output_file << requests_filename << " " << served_passengers << " " << served_passengers_3party << " " << total_served_passengers << " " << passengers_per_kilometer << " " << average_extra_travel_time << " " << average_travel_time_ratio << " " << total_deadheading_times << " " << total_shared_times << " " << total_user_ride_time << " " << best_total_user_ride_time << " avgurt: " << average_user_ride_time << " " << seed << " " << total_number_vehicles << " " << overall_occupancy << " " << overall_occupancy4 << " " << overall_occupancy8 << " " << overall_occupancy12 << " " << overall_max_capacity << " " << overall_max_capacity4 << " " << overall_max_capacity8 << " " << overall_max_capacity12;
+	output_file << requests_filename << " " << served_passengers << " " << served_passengers_3party << " " << total_served_passengers << " " << passengers_per_kilometer << " " << average_extra_travel_time << " " << average_travel_time_ratio << " " << total_deadheading_times << " " << total_shared_times << " " << total_user_ride_time << " " << best_total_user_ride_time << " avgurt: " << average_user_ride_time << " " << avg_per_vehicle_travel_time << " " << seed << " " << total_number_vehicles << " " << overall_occupancy << " " << overall_occupancy4 << " " << overall_occupancy8 << " " << overall_occupancy12 << " " << overall_max_capacity << " " << overall_max_capacity4 << " " << overall_max_capacity8 << " " << overall_max_capacity12;
 	output_file<<" ";
 	//previously already commented
 	/*cout << "served passengers ODB " << served_passengers << endl;
