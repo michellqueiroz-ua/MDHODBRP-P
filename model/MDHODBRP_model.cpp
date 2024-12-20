@@ -160,7 +160,7 @@ void input_requests(char *filename) {
 	int p, s;
 
 
-	int max_number_requests_read = 15;
+	int max_number_requests_read = 5;
 	number_nodes = 0;
 	if(file.is_open())
 	{
@@ -691,7 +691,7 @@ void MDHODBRPFR_MODEL(){
 
 		//(1) Objective function *maybe wrong*
 		//minimize total user ride time
-		/*GRBLinExpr objFunc2 = 0;
+		GRBLinExpr objFunc2 = 0;
 		for (int b = 0; b < total_number_vehicles; b++) {
 			for (int i = 0; i < number_nodes; i++) {
 				for (int j = 0; j < number_nodes; j++) {
@@ -701,11 +701,11 @@ void MDHODBRPFR_MODEL(){
 			
 		}
 
-		model.setObjective(objFunc2, GRB_MINIMIZE, 0);*/
+		model.setObjective(objFunc2, GRB_MINIMIZE, 0);
 		
-		//(1) Objective function
+		//(1) Objective function (REAL)
 		//minimize total user ride time
-		GRBLinExpr objFunc = 0;
+		/*GRBLinExpr objFunc = 0;
 		for (int r = 0; r < total_requests; r++){
 
 			GRBLinExpr sum = 0;
@@ -734,7 +734,7 @@ void MDHODBRPFR_MODEL(){
 
 		//model.add(IloMinimize(env, objFunc));
 		//objFunc.end(); 
-		model.setObjective(objFunc, GRB_MINIMIZE);
+		model.setObjective(objFunc, GRB_MINIMIZE);*/
 
 		//new constraints november 2024
 		//add constraint that travel time between origin and destination of a request equals to min travel time between those nodes
@@ -1612,9 +1612,9 @@ int main(int argc, char **argv) {
 
    	int k = 0;
    	number_nodes_depots = 0;
-   	total_requests = 15;
-	total_number_vehicles = 7;
-	number_vehicles[0] = 6;
+   	total_requests = 5;
+	total_number_vehicles = 3;
+	number_vehicles[0] = 3;
 	number_vehicles[1] = 0;
 	number_vehicles[2] = 0;
 	/*for (int i=0; i<total_requests; i++){

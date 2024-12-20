@@ -14035,7 +14035,7 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 					cout<<"ELAPSEED "<<elapsed<<" "<<elapsed2<<" "<<elapsed3<<endl;
 				}
 				//change this static / dyanmic
-				if (count_static_it > 1000) {
+				if (count_static_it > 100) {
 					return;
 				}
 				/*if (elapsed3 > comp_time) {
@@ -14683,8 +14683,8 @@ int main(int argc, char **argv) {
 	//<<"staart "<<number_type_vehicles<<" "<<endl;
 	
 	//remove this
-	total_requests = 100;
-	total_number_vehicles = 25;
+	total_requests = 5;
+	total_number_vehicles = 3;
 	for (int i=0; i<total_requests; i++){
 		if (number_stops_origin[i] > 3)
 			number_stops_origin[i] = 3;
