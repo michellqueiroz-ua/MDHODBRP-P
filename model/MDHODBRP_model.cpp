@@ -1457,9 +1457,11 @@ void MDHODBRPFR_MODEL(){
         std::ofstream output_file;
 		output_file.open(output_filename, std::ios::app);
 		double average_user_ride_time = (double)(model.get(GRB_DoubleAttr_ObjVal)/total_requests);
+		double average_user_trave_time = (double)(model.get(GRB_DoubleAttr_ObjVal)/total_number_vehicles);
+		
 		double diff_sol_best = average_user_ride_time - upper_bound_average_urt;
 		double mipGap = model.get(GRB_DoubleAttr_MIPGap);
-		output_file << requests_filename << " " << average_user_ride_time << " " << upper_bound_average_urt << " " << diff_sol_best << " " << elapsed << " " << gap << " " << mipGap << endl;
+		output_file << requests_filename << " " << average_user_ride_time << " " << average_user_trave_time << " " << upper_bound_average_urt << " " << diff_sol_best << " " << elapsed << " " << gap << " " << mipGap << endl;
 
 		//printing solution
 		cout<<"SERVED ORIGINS"<<endl;
@@ -1612,7 +1614,7 @@ int main(int argc, char **argv) {
 
    	int k = 0;
    	number_nodes_depots = 0;
-   	total_requests = 5;
+   	total_requests = 6;
 	total_number_vehicles = 3;
 	number_vehicles[0] = 3;
 	number_vehicles[1] = 0;
