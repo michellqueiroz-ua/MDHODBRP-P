@@ -10777,7 +10777,7 @@ void times_validation(int v) {
 						x = (double)rand() / (double)RAND_MAX;
 
 						delta = DELTA - cost_trip[p];
-						if (x < exp(delta / (temperature))) {
+						if (x < exp(-delta / (temperature))) {
 							//non improving move is accepted according to SA
 							accept_relocate_trip = true;
 						} else {
@@ -11873,7 +11873,7 @@ void re_insertion(int p, bool &accept_relocate_trip, double &temperature, int &t
 						x = (double)rand() / (double)RAND_MAX;
 
 						delta = DELTA;
-						if (x < exp(delta / (temperature))) {
+						if (x < exp(-delta / (temperature))) {
 							//non improving move is accepted according to SA
 							accept_relocate_trip = true;
 						} else {
@@ -13179,7 +13179,7 @@ void empty_vehicle(int v, bool& megaerror, double &temperature, int &type_move, 
 			//int delta = oldy_urt-total_user_ride_time;
 			int delta = prev_URT-new_URT;
 
-			if (x < exp(delta / (temperature))) {
+			if (x < exp(-delta / (temperature))) {
 				//non improving move is accepted according to SA
 				accept_relocate_trip = true;
 			} else {
