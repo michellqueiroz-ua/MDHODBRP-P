@@ -13096,6 +13096,7 @@ int compute_cluster_URT(int cluster_id){
 
 void empty_vehicle(int v, bool& megaerror, double &temperature, int &type_move, int cluster_id){
 
+	std::random_device rd;
 	std::mt19937 g(rd());
 
 	if (new_insertions_v.size() > 0)
