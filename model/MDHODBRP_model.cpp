@@ -691,7 +691,7 @@ void MDHODBRPFR_MODEL(){
 
 		//(1) Objective function *maybe wrong*
 		//minimize total user ride time
-		GRBLinExpr objFunc2 = 0;
+		/*GRBLinExpr objFunc2 = 0;
 		for (int b = 0; b < total_number_vehicles; b++) {
 			for (int i = 0; i < number_nodes; i++) {
 				for (int j = 0; j < number_nodes; j++) {
@@ -701,11 +701,11 @@ void MDHODBRPFR_MODEL(){
 			
 		}
 
-		model.setObjective(objFunc2, GRB_MINIMIZE);
+		model.setObjective(objFunc2, GRB_MINIMIZE);*/
 		
 		//(1) Objective function (REAL)
 		//minimize total user ride time
-		/*GRBLinExpr objFunc = 0;
+		GRBLinExpr objFunc = 0;
 		for (int r = 0; r < total_requests; r++){
 
 			GRBLinExpr sum = 0;
@@ -734,7 +734,7 @@ void MDHODBRPFR_MODEL(){
 
 		//model.add(IloMinimize(env, objFunc));
 		//objFunc.end(); 
-		model.setObjective(objFunc, GRB_MINIMIZE);*/
+		model.setObjective(objFunc, GRB_MINIMIZE);
 
 		//new constraints november 2024
 		//add constraint that travel time between origin and destination of a request equals to min travel time between those nodes
@@ -767,7 +767,7 @@ void MDHODBRPFR_MODEL(){
 
 		
 		//cout<<"here 3"<<endl;
-		//(6)
+		//(3)
 		//every request is served once
 
 		for (int r = 0; r < total_requests; r++){
@@ -860,7 +860,7 @@ void MDHODBRPFR_MODEL(){
 
 
 		//cout<<"here 7"<<endl;
-		//(5) *UPDATED*
+		//(4) *UPDATED*
 		//picked up and dropped by the same vehicle
 		for (int r = 0; r < total_requests; r++){
 			for (int b = 0; b < total_number_vehicles; b++) {
@@ -891,7 +891,7 @@ void MDHODBRPFR_MODEL(){
 			}
 		}
 
-		//(6) *UPDATED*
+		//(5) *UPDATED*
 		//starts at the depot
 		for (int b = 0; b < total_number_vehicles; b++) {
 
@@ -905,7 +905,7 @@ void MDHODBRPFR_MODEL(){
 		}
 
 		//cout<<"here 9"<<endl;
-		//(7) *UPDATED*
+		//(6) *UPDATED*
 		for (int b = 0; b < total_number_vehicles; b++) {
 			for (int r = 0; r < total_requests; r++){
 				for (int i = 0; i < number_stops_origin[r]; i++) {
@@ -946,7 +946,7 @@ void MDHODBRPFR_MODEL(){
 
 		}
 
-		//(8) *UPDATED*
+		//(7) *UPDATED*
 		for (int b = 0; b < total_number_vehicles; b++) {
 
 			GRBLinExpr sum = 0;
@@ -960,7 +960,7 @@ void MDHODBRPFR_MODEL(){
 
 
 		//cout<<"here 9.5"<<endl;
-		//(11) *review*
+		//(8) *review*
 		/*for (int b = 0; b < total_number_vehicles; b++) {
 			for (int r1 = 0; r1 < total_requests; r1++){
 
@@ -1066,6 +1066,7 @@ void MDHODBRPFR_MODEL(){
 			}
 		}*/
 
+		(8)
 		for (int b = 0; b < total_number_vehicles; b++) {
 			for (int i=0;i < number_nodes;i++){
 				for (int j=0; j < number_nodes;j++){
@@ -1077,7 +1078,7 @@ void MDHODBRPFR_MODEL(){
 
 
 
-		//(12)
+		//(9)
 		//question here -> if the node isn't served. what T[b][i1] will be? 
 		for (int b = 0; b < total_number_vehicles; b++) {
 			for (int r = 0; r < total_requests; r++){
@@ -1096,6 +1097,7 @@ void MDHODBRPFR_MODEL(){
 
 		//cout<<"here 9.9"<<endl;
 		//*new constraints*
+		(11)
 		// try to force T[b][i1] to zero if node isn't served
 		for (int b = 0; b < total_number_vehicles; b++) {
 			for (int r = 0; r < total_requests; r++){
@@ -1112,6 +1114,7 @@ void MDHODBRPFR_MODEL(){
 		}
 		
 
+		(12)
 		for (int r = 0; r < total_requests; r++){
 
 			GRBLinExpr sum = 0;
@@ -1201,7 +1204,7 @@ void MDHODBRPFR_MODEL(){
 
 
 		//cout<<"here 9.99"<<endl;
-		//(13)
+		//(10)
 		for (int b = 0; b < total_number_vehicles; b++) {
 			for (int r = 0; r < total_requests; r++){
 				for (int i = 0; i < number_stops_destination[r]; i++) {
@@ -1216,7 +1219,7 @@ void MDHODBRPFR_MODEL(){
 			}
 		}
 
-		//(14)
+		//(13)
 		for (int b = 0; b < total_number_vehicles; b++) {
 			for (int i = 0; i < number_nodes; i++) {
 				for (int j = 0; j < number_nodes; j++) {
@@ -1229,7 +1232,7 @@ void MDHODBRPFR_MODEL(){
 			}
 		}
 
-		//(15)
+		//(14)
 		for (int b = 0; b < total_number_vehicles; b++) {
 			for (int i = 0; i < number_nodes; i++) {
 
@@ -1245,7 +1248,7 @@ void MDHODBRPFR_MODEL(){
 			}
 		}
 
-		//(16)
+		//(15)
 		for (int b = 0; b < total_number_vehicles; b++) {
 			for (int i = 0; i < number_nodes; i++) {
 

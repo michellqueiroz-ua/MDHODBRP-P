@@ -12235,7 +12235,7 @@ void re_insertion_nn(int p, bool &accept_relocate_trip, double &temperature, int
 		restriced_assignment = false;
 	}
 
-	//restriced_assignment = false;
+	restriced_assignment = false;
 
 	if (restriced_assignment) {
 
@@ -12525,26 +12525,26 @@ void re_insertion_nn(int p, bool &accept_relocate_trip, double &temperature, int
 					} 
 				}*/
 
-				int DELTA;
+				/*int DELTA;
 				int diff_remov_passenger = compute_difference_URT_by_fake_removing_passenger(p);
 				int diff_add_passenger = 0;
 				if ((sel_destination != -1) && (no_violation_capacity))
 					diff_add_passenger = compute_difference_URT_by_fake_adding_passenger(p, best_v, sel_destination, pos_destination, repeated_station);
-				DELTA = diff_remov_passenger + diff_add_passenger;
+				DELTA = diff_remov_passenger + diff_add_passenger;*/
 
 				//if (diff_remov_passenger < 0)
 				//	cout<<"NEGATIVE ERROR"<<endl;
 				//DELTA += diff_remov_passenger;
 				//accept_relocate_trip = false;
 				//if (DELTA > 0)
-					accept_relocate_trip = true; //first feasible is accepted?
+					accept_relocate_trip = true; //first feasible is accepted
 
 				//printf("DELTA:%d \n", DELTA);
 					//<<"here9"<<endl;
 				//totalcomputedDELTA += DELTA;
 				if ((sel_destination != -1) && (no_violation_capacity) && (accept_relocate_trip) && (not infeasible_insertion)) {
 
-					diffURT = DELTA;
+					//diffURT = DELTA;
 					new_insertions_v.push_back(best_v);
 					new_insertions_p.push_back(p);
 					passengers_departure_time_from_home[p] = insertions_p[iterations2].passengers_departure_time_from_home;
@@ -12865,7 +12865,7 @@ void relocate_all_passengers_vehicle_nn(int v, double &temperature, int &type_mo
 		//if (vehicle_assigned[p] != v)
 			//<<"ERROR HYER"<<endl;
 
-		blocked_vehicles[p][vehicle_assigned[p]] = 1;
+		blocked_vehicles[p][vehicle_assigned[p]] = 0;
 
 		accept_relocate_trip = false;
 		//<<"here3"<<endl;
@@ -12878,12 +12878,12 @@ void relocate_all_passengers_vehicle_nn(int v, double &temperature, int &type_mo
 
 		if (accept_relocate_trip) {
 			//<<"OUT2"<<endl;
-			counter++; //one passenger has been succesfully been removed
+			counter++; //one passenger has been succesfully been relocated
 			
 			count = 0;
 			//printf("remove heeeere\n");
 			//<<"number stops "<<number_stops[v]<<endl;
-			deltaURT += diffURT;
+			//deltaURT += diffURT;
 			//it means the passenger was relocated to a trip with a lower cost
 			/*for (int i=0; i<number_stops[v]; i++){
 				cout<<"waittty"<<number_passengers_action[v][i]<<endl;
@@ -13096,6 +13096,8 @@ int compute_cluster_URT(int cluster_id){
 
 void empty_vehicle(int v, bool& megaerror, double &temperature, int &type_move, int cluster_id){
 
+	std::mt19937 g(rd());
+
 	if (new_insertions_v.size() > 0)
 		new_insertions_v.clear();
 
@@ -13141,7 +13143,19 @@ void empty_vehicle(int v, bool& megaerror, double &temperature, int &type_move, 
 
 	//bool megaerror = false;
 
-	//<<"C"<<endl;
+	//emptying vehicle before trying to re-insert passengers again
+	for (int i = 0; i<passengers_at_vehicle[v].size();i++){
+		int p = passengers_at_vehicle[v][i];
+		//<<p<<endl;
+		remove_passenger_from_vehicle(v, p);
+		//update URT
+		update_URT(vehicle_assigned[p]);
+	}
+	see_if_arrival_departure_dont_match(v);
+	update_URT(v);
+
+	std::shuffle(passengers_at_vehicle.begin(), passengers_at_vehicle.end(), g);
+
 	relocate_all_passengers_vehicle_nn(v, init_temperature, type_move, counter, deltaURT, megaerror, cluster_id);
 	//<<"OUT3"<<endl;
 	//UPDATE USER RIDE TIMES TO SEE IF NOW I CAN COMPUTE DELTA CORRECTLY??????
@@ -13152,22 +13166,7 @@ void empty_vehicle(int v, bool& megaerror, double &temperature, int &type_move, 
 	bool accept_relocate_trip;
 	//<<passengers_at_vehicle[v].size()<<endl;
 	if (counter == passengers_at_vehicle[v].size()) {
-		//<<"OUT5"<<endl;
-		//improving move regarding URT
-		//necessary to remove the passengers from v
-
-		//<<"revert changes1"<<endl;
-		for (int i = 0; i<passengers_at_vehicle[v].size();i++){
-			int p = passengers_at_vehicle[v][i];
-			//<<p<<endl;
-			remove_passenger_from_vehicle(v, p);
-			//update URT
-			update_URT(vehicle_assigned[p]);
-		}
-		see_if_arrival_departure_dont_match(v);
-		update_URT(v);
-		//<<"OUT6"<<endl;
-		//<<"E"<<endl;
+		
 		int new_URT = compute_cluster_URT(cluster_id);
 		//<<"oldyxnew: "<<oldy_urt<<" "<<total_user_ride_time<<" "<<(oldy_urt-total_user_ride_time)<<endl; 
 		//if ((oldy_urt-total_user_ride_time) > 0){
@@ -14683,14 +14682,15 @@ int main(int argc, char **argv) {
 	//<<"staart "<<number_type_vehicles<<" "<<endl;
 	
 	//remove this
-	total_requests = 14;
+	//total_requests = 14;
 	total_number_vehicles = 6;
-	for (int i=0; i<total_requests; i++){
+	/*for (int i=0; i<total_requests; i++){
 		if (number_stops_origin[i] > 3)
 			number_stops_origin[i] = 3;
 		if (number_stops_destination[i] > 3)
 			number_stops_destination[i] = 3;
-	}
+	}*/
+
 	for (int j=0; j<number_type_vehicles; j++) {
 		next_depot = 0;
 		for (int i=0; i<number_vehicles[j];i++) {
@@ -15177,7 +15177,7 @@ int main(int argc, char **argv) {
 						}
 					}
 					//end parallelized for
-					//<<"hier6.8"<<endl;
+					
 					for (int c=0;c<number_clusters;c++) {
 						avl_cluster[c] = avl_cluster[c]+1;
 						avl_cluster[c] = avl_cluster[c]%number_clusters;
