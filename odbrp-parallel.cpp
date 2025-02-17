@@ -13220,7 +13220,7 @@ void empty_vehicle(int v, bool& megaerror, double &temperature, int &type_move, 
 	//<<"OUT_OUT"<<endl;
 }
 
-void relocate_passenger(int p, double &temperature, int &type_move, int cluster_id){
+void relocate_passenger(int p, double &temperature, int &type_move, int cluster_id, bool priority_empty_vehicle){
 
 	//<<"before relocated passenger: "<<p<<endl;
 
@@ -13265,13 +13265,13 @@ void relocate_passenger(int p, double &temperature, int &type_move, int cluster_
 
 	int addedAtV;
 	//<<"A"<<endl;
-	bool priority_empty_vehicle = true;
+	//bool priority_empty_vehicle = true;
 
 	re_insertion(p, accept_relocate_trip, temperature, type_move, cluster_id, addedAtV, v, priority_empty_vehicle);
-	if (!accept_relocate_trip) {
+	/*if (!accept_relocate_trip) {
 		priority_empty_vehicle = false;
 		re_insertion(p, accept_relocate_trip, temperature, type_move, cluster_id, addedAtV, v, priority_empty_vehicle);
-	}
+	}*/
 	//<<"B"<<endl;
 	int begin, end;
 	begin = 0;
@@ -13938,7 +13938,12 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 						if (passengers_departure_time_from_home[relocate_p] >= current_time) {
 							//<<"relocate passenger SA: "<<relocate_p<<endl;
 							//<<"hier11"<<endl;
-							relocate_passenger(relocate_p, temperature, type_move, cluster_id);
+							bool priority_empty_vehicle = true;
+							relocate_passenger(relocate_p, temperature, type_move, cluster_id, priority_empty_vehicle);
+							if (type_move == 3) {
+								priority_empty_vehicle = false;
+								relocate_passenger(relocate_p, temperature, type_move, cluster_id, priority_empty_vehicle);
+							}
 							//<<"hier12"<<endl;
 							if (relocate_p < 0){
 								//<<"MEGAERRORRRR1"<<endl;
