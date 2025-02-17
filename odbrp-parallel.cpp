@@ -11415,6 +11415,10 @@ void re_insertion(int p, bool &accept_relocate_trip, double &temperature, int &t
 
 	}
 
+	if (priority_empty_vehicle) {
+		cout<<"filtered vehicles size: "<<filtered_vehicles_p.size()<<endl;
+	}
+
 	//<<"filtered_vehicles SIZE "<<filtered_vehicles.size()<<endl;
 	while ((not_feasible_insertion) && (iterations < filtered_vehicles_p.size())) {
 		
@@ -11456,6 +11460,9 @@ void re_insertion(int p, bool &accept_relocate_trip, double &temperature, int &t
 		//if (best_v != -1) {
 		bool no_feasible_insertion2 = true;
 		int iterations2 = 0;
+		if (priority_empty_vehicle) {
+			cout<<"number insertios "<<curr_number_insertions_p<<endl;
+		}
 		if (curr_number_insertions_p > 0) {
 		
 			while ((no_feasible_insertion2) && (iterations2 < curr_number_insertions_p)) {
