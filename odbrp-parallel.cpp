@@ -95,6 +95,7 @@ static listP best_passengers_departure_time_from_home;
 static listP vehicle_assigned;
 static listP user_ride_time, assigned_to_3rd_party;
 
+bool priority_empty_vehicle = false;
 
 static int served_passengers;
 static int served_passengers_3party;
@@ -1803,7 +1804,9 @@ void cheapest_origin2_p(int p, int v, int &min_increase_length, int &sel_origin,
 			 	//<<"capacity: "<<new_capacity<<endl;
 			 	
 			 	//<<"testX "<<endl;
-			 	cout<<"co: "<<new_slack_time<<" "<<pick_up_time<<" "<<latest_departure_passenger<<" "<<new_capacity<<" "<<departure_time_from_home<<" "<<current_time<<endl;
+
+			 	if (priority_empty_vehicle)
+			 		cout<<"co: "<<new_slack_time<<" "<<pick_up_time<<" "<<latest_departure_passenger<<" "<<new_capacity<<" "<<departure_time_from_home<<" "<<current_time<<endl;
 			 	if ((new_slack_time >= 0) && (pick_up_time <= latest_departure_passenger) && (new_capacity >= 0) && (departure_time_from_home >= current_time)) {
 
 
@@ -11265,7 +11268,7 @@ void times_validation(int v) {
 	}
 }*/
 
-void re_insertion(int p, bool &accept_relocate_trip, double &temperature, int &type_move, int cluster_id, int &addedAtV, int vp, bool priority_empty_vehicle){
+void re_insertion(int p, bool &accept_relocate_trip, double &temperature, int &type_move, int cluster_id, int &addedAtV, int vp){
 
 	int odb_travel_time, odb_distance, v;
 	int pos_origin, pos_destination, sel_origin, sel_destination, min_increase_length, veh, ttcsd;
@@ -13227,7 +13230,7 @@ void empty_vehicle(int v, bool& megaerror, double &temperature, int &type_move, 
 	//<<"OUT_OUT"<<endl;
 }
 
-void relocate_passenger(int p, double &temperature, int &type_move, int cluster_id, bool priority_empty_vehicle){
+void relocate_passenger(int p, double &temperature, int &type_move, int cluster_id){
 
 	//<<"before relocated passenger: "<<p<<endl;
 
@@ -13274,10 +13277,10 @@ void relocate_passenger(int p, double &temperature, int &type_move, int cluster_
 	//<<"A"<<endl;
 	//bool priority_empty_vehicle = true;
 
-	re_insertion(p, accept_relocate_trip, temperature, type_move, cluster_id, addedAtV, v, priority_empty_vehicle);
+	re_insertion(p, accept_relocate_trip, temperature, type_move, cluster_id, addedAtV, v);
 	/*if (!accept_relocate_trip) {
 		priority_empty_vehicle = false;
-		re_insertion(p, accept_relocate_trip, temperature, type_move, cluster_id, addedAtV, v, priority_empty_vehicle);
+		re_insertion(p, accept_relocate_trip, temperature, type_move, cluster_id, addedAtV, v);
 	}*/
 	//<<"B"<<endl;
 	int begin, end;
@@ -13945,11 +13948,11 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 						if (passengers_departure_time_from_home[relocate_p] >= current_time) {
 							//<<"relocate passenger SA: "<<relocate_p<<endl;
 							//<<"hier11"<<endl;
-							bool priority_empty_vehicle = true;
-							relocate_passenger(relocate_p, temperature, type_move, cluster_id, priority_empty_vehicle);
+							priority_empty_vehicle = true;
+							relocate_passenger(relocate_p, temperature, type_move, cluster_id);
 							if (type_move == 3) {
 								priority_empty_vehicle = false;
-								relocate_passenger(relocate_p, temperature, type_move, cluster_id, priority_empty_vehicle);
+								relocate_passenger(relocate_p, temperature, type_move, cluster_id);
 							}
 							//<<"hier12"<<endl;
 							if (relocate_p < 0){
