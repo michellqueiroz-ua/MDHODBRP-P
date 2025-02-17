@@ -14990,11 +14990,11 @@ int main(int argc, char **argv) {
 	for (int r = 0; r < total_requests; r++){
 		
 		min_travel_time[r] = INT_MAX;
-		cout<<"#O #D "<<number_stops_origin[r]<<" "<<number_stops_destination[r]<<endl;
+		//cout<<"#O #D "<<number_stops_origin[r]<<" "<<number_stops_destination[r]<<endl;
 		for (int i = 0; i < number_stops_destination[r]; i++) {
 			for (int j = 0; j < number_stops_origin[r]; j++) {
-				cout<<stops_origin[r][j]<<" "<<stops_destination[r][i]<<endl;
-				cout<<travel_time[stops_origin[r][j]][stops_destination[r][i]]<<endl;
+				//cout<<stops_origin[r][j]<<" "<<stops_destination[r][i]<<endl;
+				//cout<<travel_time[stops_origin[r][j]][stops_destination[r][i]]<<endl;
 				if (travel_time[stops_origin[r][j]][stops_destination[r][i]] < min_travel_time[r]) {
 					if (travel_time[stops_origin[r][j]][stops_destination[r][i]] <= 0) {
 						travel_time[stops_origin[r][j]][stops_destination[r][i]] = 1;
@@ -15004,7 +15004,7 @@ int main(int argc, char **argv) {
 			}
 		}
 
-		cout<<"min_travel_time "<<r<<" "<<min_travel_time[r]<<endl;
+		//cout<<"min_travel_time "<<r<<" "<<min_travel_time[r]<<endl;
 
 	}
 
