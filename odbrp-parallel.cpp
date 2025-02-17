@@ -1805,8 +1805,8 @@ void cheapest_origin2_p(int p, int v, int &min_increase_length, int &sel_origin,
 			 	
 			 	//<<"testX "<<endl;
 
-			 	if (priority_empty_vehicle)
-			 		cout<<"co: "<<new_slack_time<<" "<<pick_up_time<<" "<<latest_departure_passenger<<" "<<new_capacity<<" "<<departure_time_from_home<<" "<<current_time<<endl;
+			 	//if (priority_empty_vehicle)
+			 	//	cout<<"co: "<<new_slack_time<<" "<<pick_up_time<<" "<<latest_departure_passenger<<" "<<new_capacity<<" "<<departure_time_from_home<<" "<<current_time<<endl;
 			 	if ((new_slack_time >= 0) && (pick_up_time <= latest_departure_passenger) && (new_capacity >= 0) && (departure_time_from_home >= current_time)) {
 
 
@@ -11418,9 +11418,9 @@ void re_insertion(int p, bool &accept_relocate_trip, double &temperature, int &t
 
 	}
 
-	if (priority_empty_vehicle) {
+	/*if (priority_empty_vehicle) {
 		cout<<"filtered vehicles size: "<<filtered_vehicles_p.size()<<endl;
-	}
+	}*/
 
 	//<<"filtered_vehicles SIZE "<<filtered_vehicles.size()<<endl;
 	while ((not_feasible_insertion) && (iterations < filtered_vehicles_p.size())) {
@@ -11463,9 +11463,9 @@ void re_insertion(int p, bool &accept_relocate_trip, double &temperature, int &t
 		//if (best_v != -1) {
 		bool no_feasible_insertion2 = true;
 		int iterations2 = 0;
-		if (priority_empty_vehicle) {
+		/*if (priority_empty_vehicle) {
 			cout<<"number insertios "<<curr_number_insertions_p<<endl;
-		}
+		}*/
 		if (curr_number_insertions_p > 0) {
 		
 			while ((no_feasible_insertion2) && (iterations2 < curr_number_insertions_p)) {
@@ -13288,7 +13288,7 @@ void relocate_passenger(int p, double &temperature, int &type_move, int cluster_
 	end = 0;
 	int total_faking_error = 0;
 	if (accept_relocate_trip) {
-		cout<<"accepted relocated / priority empty vehicle "<<priority_empty_vehicle<<endl;
+		//cout<<"accepted relocated / priority empty vehicle "<<priority_empty_vehicle<<endl;
 		//cout<<"removeee here SA"<<endl;
 		//printf("remove heeeere SA\n");
 		//<<"number stops "<<number_stops[v]<<endl;
