@@ -1803,7 +1803,7 @@ void cheapest_origin2_p(int p, int v, int &min_increase_length, int &sel_origin,
 			 	//<<"capacity: "<<new_capacity<<endl;
 			 	
 			 	//<<"testX "<<endl;
-			 	//cout<<"co: "<<new_slack_time<<" "<<pick_up_time<<" "<<latest_departure_passenger<<" "<<new_capacity<<" "<<departure_time_from_home<<" "<<current_time<<endl;
+			 	cout<<"co: "<<new_slack_time<<" "<<pick_up_time<<" "<<latest_departure_passenger<<" "<<new_capacity<<" "<<departure_time_from_home<<" "<<current_time<<endl;
 			 	if ((new_slack_time >= 0) && (pick_up_time <= latest_departure_passenger) && (new_capacity >= 0) && (departure_time_from_home >= current_time)) {
 
 
