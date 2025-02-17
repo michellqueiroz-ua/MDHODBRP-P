@@ -3183,7 +3183,7 @@ void see_if_departure_empty_vehicle_not_zero(int v) {
 
 	if (free_capacity[v].size() == 2) {
 		if (departure_time_stop[v][0] > 0) {
-			cout<<"problemss"<<endl;
+			//cout<<"problemss"<<endl;
 			departure_time_stop[v][0] = 0;
 		}
 	}
@@ -13314,7 +13314,7 @@ void relocate_passenger(int p, double &temperature, int &type_move, int cluster_
 	end = 0;
 	int total_faking_error = 0;
 	if (accept_relocate_trip) {
-		//cout<<"accepted relocated / priority empty vehicle "<<priority_empty_vehicle<<endl;
+		cout<<"accepted relocated / priority empty vehicle "<<priority_empty_vehicle<<endl;
 		//cout<<"removeee here SA"<<endl;
 		//printf("remove heeeere SA\n");
 		//<<"number stops "<<number_stops[v]<<endl;
@@ -13977,6 +13977,7 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 							priority_empty_vehicle = true;
 							relocate_passenger(relocate_p, temperature, type_move, cluster_id);
 							if (type_move == 3) {
+								count_static_it++;
 								priority_empty_vehicle = false;
 								relocate_passenger(relocate_p, temperature, type_move, cluster_id);
 							}
