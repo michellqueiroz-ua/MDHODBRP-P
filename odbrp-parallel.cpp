@@ -2252,7 +2252,7 @@ void cheapest_destination2(int p, int v, int pos_origin, int &min_increase_lengt
 
 				delay[p] = delay_trip;
 			} else {
-				cout<<"cd: "<<" "<<increase<<" "<<min_increase_length<<" slack time "<<new_slack_time<<" do time "<<drop_off_time<<" la time "<<latest_arrival_passenger<<" "<<new_capacity<<" "<<latest_arrival[p]<<endl;
+				//cout<<"cd: "<<" "<<increase<<" "<<min_increase_length<<" slack time "<<new_slack_time<<" do time "<<drop_off_time<<" la time "<<latest_arrival_passenger<<" "<<new_capacity<<" "<<latest_arrival[p]<<endl;
 				if (not feasible_insertion_found) {
 
 					infeasible_insertion = true;
@@ -7050,7 +7050,7 @@ void cheapest_insertion_randomized_parallel_NEW(int p, bool accept_infeasible_in
 
 	//cout<<"pass: "<<p<<endl;
 
-	cout<<"passenger "<<p<<endl;
+	//cout<<"passenger "<<p<<endl;
 	//running with non-empty vehicle
 	for(int ci=0; ci <= 1;ci++) {
 		if (vehicle_assigned[p] == -1) {
@@ -7073,7 +7073,7 @@ void cheapest_insertion_randomized_parallel_NEW(int p, bool accept_infeasible_in
 					filter_vehicles_type(-1, filtered_vehicles_p2);
 				}
 
-				cout<<"p2 size "<<filtered_vehicles_p2.size()<<endl;
+				//cout<<"p2 size "<<filtered_vehicles_p2.size()<<endl;
 
 				bool not_feasible_insertion = true;
 				int iterations = 0;
@@ -7084,7 +7084,7 @@ void cheapest_insertion_randomized_parallel_NEW(int p, bool accept_infeasible_in
 				}*/
 				//<<"hier 5.7"<<endl;
 				std::shuffle(filtered_vehicles_p2.begin(), filtered_vehicles_p2.end(), default_random_engine(current_time));
-				cout<<"FILTERED VEHICLE SIZE: "<<filtered_vehicles_p2.size()<<endl;
+				//cout<<"FILTERED VEHICLE SIZE: "<<filtered_vehicles_p2.size()<<endl;
 				while ((not_feasible_insertion) && (iterations < filtered_vehicles_p2.size())) {
 					
 					int best_pos_origin, best_pos_destination;
@@ -7140,7 +7140,7 @@ void cheapest_insertion_randomized_parallel_NEW(int p, bool accept_infeasible_in
 							see_if_arrival_departure_dont_match(v);
 							//<<"heereBB"<<endl;
 							//<<v<<endl;
-							cout<<"insidere here CONSTRUCTIVEEE"<<endl;
+							//cout<<"insidere here CONSTRUCTIVEEE"<<endl;
 							if (curr_number_insertions_p < 44995)
 								cheapest_origin2_p(p, v, min_increase_length, sel_origin, pos_origin, repeated_station, flexibilize_lat_departure_time, insertions_p, curr_number_insertions_p);
 							
@@ -7149,7 +7149,7 @@ void cheapest_insertion_randomized_parallel_NEW(int p, bool accept_infeasible_in
 					//<<endl;
 					//<<"hier num insers "<<curr_number_insertions_p<<endl;
 					//<<"heereCC";
-					cout<<"curr insert5: " << curr_number_insertions_p<<" "<<flexibilize_lat_departure_time<<endl;
+					//cout<<"curr insert5: " << curr_number_insertions_p<<" "<<flexibilize_lat_departure_time<<endl;
 					sort(insertions_p, insertions_p+curr_number_insertions_p, comparator);
 
 					//<<best_v<<endl;
@@ -7958,7 +7958,7 @@ void cheapest_insertion_randomized_parallel_NEW(int p, bool accept_infeasible_in
 					///<<"heereFF";
 					if (no_feasible_insertion2) {
 
-						cout<<"NO FEASIBLE INSERTION FOR "<<p<<" "<<vehicle_assigned[p]<<endl;
+						//cout<<"NO FEASIBLE INSERTION FOR "<<p<<" "<<vehicle_assigned[p]<<endl;
 						//iterations++;
 						iterations = filtered_vehicles_p2.size()+1;
 					}
@@ -15014,7 +15014,7 @@ int main(int argc, char **argv) {
 	}
 
 	//while((k < total_requests) or (current_time < 32400)) {
-	while(algo_iterations < 1000) { //static
+	while(algo_iterations < 10) { //static
 		algo_iterations++;
 
 	//while(current_time < 28800) {
