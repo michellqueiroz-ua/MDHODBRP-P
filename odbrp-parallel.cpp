@@ -15014,7 +15014,7 @@ int main(int argc, char **argv) {
 	}
 
 	//while((k < total_requests) or (current_time < 32400)) {
-	while(algo_iterations < 20) { //static
+	while(algo_iterations < 100) { //static
 		algo_iterations++;
 
 	//while(current_time < 28800) {
