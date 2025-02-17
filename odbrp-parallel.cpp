@@ -13955,7 +13955,7 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 
 			} else {
 
-				/*
+				
 				//REDUCE
 				//<<"heere"<<endl;
 				select_vehicles_havent_that_can_be_turned_empty(vehicles_still_depot, cluster_id);
@@ -13984,7 +13984,7 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 				}
 					//relocate_all_passengers_vehicle(v, init_temperature, type_move);
 				//}
-				*/
+				
 				
 
 			}
@@ -15014,7 +15014,7 @@ int main(int argc, char **argv) {
 	}
 
 	//while((k < total_requests) or (current_time < 32400)) {
-	while(algo_iterations < 10) { //static
+	while(algo_iterations < 20) { //static
 		algo_iterations++;
 
 	//while(current_time < 28800) {
@@ -15080,6 +15080,7 @@ int main(int argc, char **argv) {
 				}
 			}*/
 
+			cout<<"passengers to be inserted: "<<passengers_to_be_inserted.size()<<endl;
 			while (passengers_to_be_inserted.size() > 0) {
 
 				//for (int itx = 0; itx<num_threads_for; itx++) {
