@@ -12209,7 +12209,7 @@ void re_insertion(int p, bool &accept_relocate_trip, double &temperature, int &t
 
 	//if (priority_empty_vehicle) {
 	for (int i = 0; i < clusters[cluster_id].size(); i++) {
-		vv = clusters[cluster_id][i];
+		int vv = clusters[cluster_id][i];
 		see_if_departure_empty_vehicle_not_zero(vv);
 	}
 	//}
@@ -12844,7 +12844,7 @@ void re_insertion_nn(int p, bool &accept_relocate_trip, double &temperature, int
 	//<<"here16"<<endl;
 
 	for (int i = 0; i < clusters[cluster_id].size(); i++) {
-		vv = clusters[cluster_id][i];
+		int vv = clusters[cluster_id][i];
 		see_if_departure_empty_vehicle_not_zero(vv);
 	}
 }
