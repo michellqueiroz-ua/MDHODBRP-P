@@ -11265,7 +11265,7 @@ void times_validation(int v) {
 	}
 }*/
 
-void re_insertion(int p, bool &accept_relocate_trip, double &temperature, int &type_move, int cluster_id, int &addedAtV, int vp){
+void re_insertion(int p, bool &accept_relocate_trip, double &temperature, int &type_move, int cluster_id, int &addedAtV, int vp, bool priority_empty_vehicle){
 
 	int odb_travel_time, odb_distance, v;
 	int pos_origin, pos_destination, sel_origin, sel_destination, min_increase_length, veh, ttcsd;
@@ -11408,7 +11408,9 @@ void re_insertion(int p, bool &accept_relocate_trip, double &temperature, int &t
 
 		}
 
-		filter_vehicles2(p, cluster_id, filtered_vehicles_p);
+		//only attempts to insert in other vehicles if there is no priority to empty vehicles
+		if (!priority_empty_vehicle)
+			filter_vehicles2(p, cluster_id, filtered_vehicles_p);
 
 
 	}
@@ -13263,13 +13265,20 @@ void relocate_passenger(int p, double &temperature, int &type_move, int cluster_
 
 	int addedAtV;
 	//<<"A"<<endl;
-	re_insertion(p, accept_relocate_trip, temperature, type_move, cluster_id, addedAtV, v);
+	bool priority_empty_vehicle = true;
+
+	re_insertion(p, accept_relocate_trip, temperature, type_move, cluster_id, addedAtV, v, priority_empty_vehicle);
+	if (!accept_relocate_trip) {
+		priority_empty_vehicle = false;
+		re_insertion(p, accept_relocate_trip, temperature, type_move, cluster_id, addedAtV, v, priority_empty_vehicle);
+	}
 	//<<"B"<<endl;
 	int begin, end;
 	begin = 0;
 	end = 0;
 	int total_faking_error = 0;
 	if (accept_relocate_trip) {
+		cout<<"accepted relocated / priority empty vehicle "<<priority_empty_vehicle<<endl;
 		//cout<<"removeee here SA"<<endl;
 		//printf("remove heeeere SA\n");
 		//<<"number stops "<<number_stops[v]<<endl;
