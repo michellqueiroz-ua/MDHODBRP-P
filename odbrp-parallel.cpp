@@ -13881,7 +13881,7 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 	double prev_elapsed;
 	int count_static_it = 0;
 	
-	//vector<int> vehicles_still_depot;
+	vector<int> vehicles_still_depot;
 
 	//cout<<"cid: "<<cluster_id<<" "<<clusters[cluster_id].size()<<endl;
 	//<<"X"<<endl;
