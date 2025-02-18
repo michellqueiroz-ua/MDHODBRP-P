@@ -15284,17 +15284,17 @@ int main(int argc, char **argv) {
 			}
 
 				
-				/*cout<<"AFTER CONSTRUCTIVE"<<endl;
+				cout<<"AFTER CONSTRUCTIVE"<<endl;
 				for (int kk=0;kk<k;kk++){
 					if (vehicle_assigned[kk] != -1) {
 						solution_validation(kk, vehicle_assigned[kk]);
 					//served_passengers++;
 					}
-				}*/
+				}
 				//<<"hieer0"<<endl;
-				/*for (int vv=0;vv<total_number_vehicles;vv++){
+				for (int vv=0;vv<total_number_vehicles;vv++){
 					times_validation(vv);
-				}*/
+				}
 				
 			
 		} 
