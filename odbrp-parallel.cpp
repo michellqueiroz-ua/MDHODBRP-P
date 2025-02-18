@@ -13974,6 +13974,7 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 						if (passengers_departure_time_from_home[relocate_p] >= current_time) {
 							//<<"relocate passenger SA: "<<relocate_p<<endl;
 							//<<"hier11"<<endl;
+							type_move = 3;
 							priority_empty_vehicle = true;
 							relocate_passenger(relocate_p, temperature, type_move, cluster_id);
 							if (type_move == 3) {
@@ -14086,7 +14087,7 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 					cout<<"ELAPSEED "<<elapsed<<" "<<elapsed2<<" "<<elapsed3<<endl;
 				}
 				//change this static / dyanmic
-				if (count_static_it > 100) {
+				if (count_static_it > 200) {
 					return;
 				}
 				/*if (elapsed3 > comp_time) {
