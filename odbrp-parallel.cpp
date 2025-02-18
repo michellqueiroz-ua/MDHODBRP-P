@@ -11585,7 +11585,7 @@ void re_insertion(int p, bool &accept_relocate_trip, double &temperature, int &t
 				
 
 				//if (best_v == 24) {
-				/*cout<<"flex: "<<flexibilize_lat_departure_time<<endl;
+				cout<<"flex: "<<flexibilize_lat_departure_time<<endl;
 				for (int i=0; i<=number_stops[best_v];i++) {
 					cout<<stops[best_v][i]<<" ("<<number_passengers_action[best_v][i]<<") "<<" [";
 					for (int j=0; j<number_passengers_action[best_v][i];j++) 
@@ -11598,7 +11598,7 @@ void re_insertion(int p, bool &accept_relocate_trip, double &temperature, int &t
 					cout<<"*"<<free_capacity[best_v][i]<<"*"<<endl;
 				}
 				//}
-				cout<<endl;*/
+				cout<<endl;
 
 
 
@@ -13269,7 +13269,7 @@ void relocate_passenger(int p, double &temperature, int &type_move, int cluster_
 	int old_arrival_time;
 
 
-	/*cout<<vehicle_assigned[p]<<endl;
+	cout<<vehicle_assigned[p]<<endl;
 	cout<<"removing passenger y "<<p<<endl;
 	for (int l=0; l<=number_stops[v];l++) {
 		cout<<stops[v][l]<<" ("<<number_passengers_action[v][l]<<") "<<" [";
@@ -13282,7 +13282,7 @@ void relocate_passenger(int p, double &temperature, int &type_move, int cluster_
 		cout<<"|"<<slack_time[v][l]<<"|  ";
 		cout<<"*"<<free_capacity[v][l]<<"*"<<endl;
 	}
-	cout<<endl<<endl;*/
+	cout<<endl<<endl;
 
 	//this can be maybe speed up by keeping a variable of where in the vehicle the passenger is assigned
 	/*for (int i = 0; i < number_stops[v]; i++){
@@ -13995,7 +13995,7 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 				}
 
 				cout<<"AFTER_SIMPLE RELOCATE"<<endl;
-				for (int kk=0;kk<900;kk++){
+				for (int kk=0;kk<total_requests;kk++){
 					if (vehicle_assigned[kk] != -1) {
 						solution_validation(kk, vehicle_assigned[kk]);
 					//served_passengers++;
