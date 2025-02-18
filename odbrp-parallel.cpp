@@ -761,7 +761,7 @@ void input_travel_time(char *filename) {
 
 		//<<"xx: "<<travel_time[2950][214]<<" "<<travel_time[214][2716]<<" "<<travel_time[2950][2716]<<endl;
 
-		/*while (count2 > 0) {
+		while (count2 > 0) {
 		
 			count2 = 0;
 
@@ -784,13 +784,13 @@ void input_travel_time(char *filename) {
 		}
 
 
-		std::ofstream out("travel_time_updated3.csv");
+		std::ofstream out("travel_time_updated4.csv");
 
 		for(int i=0;i<stop1;i++) {
 		  for (int j=0;j<stop1;j++)
 		    out << travel_time[i][j] <<',';
 		  out << '\n';
-		}*/
+		}
 		//saveData("travel_time_matrix.csv", travel_time);
 		//<<"out"<<endl;
 
