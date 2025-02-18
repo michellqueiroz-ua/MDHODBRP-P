@@ -13314,7 +13314,7 @@ void relocate_passenger(int p, double &temperature, int &type_move, int cluster_
 	end = 0;
 	int total_faking_error = 0;
 	if (accept_relocate_trip) {
-		cout<<"accepted relocated / priority empty vehicle "<<priority_empty_vehicle<<endl;
+		//cout<<"accepted relocated / priority empty vehicle "<<priority_empty_vehicle<<endl;
 		//cout<<"removeee here SA"<<endl;
 		//printf("remove heeeere SA\n");
 		//<<"number stops "<<number_stops[v]<<endl;
@@ -13994,16 +13994,16 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 					return;
 				}
 
-				/*cout<<"AFTER_SIMPLE RELOCATE"<<endl;
+				cout<<"AFTER_SIMPLE RELOCATE"<<endl;
 				for (int kk=0;kk<900;kk++){
 					if (vehicle_assigned[kk] != -1) {
 						solution_validation(kk, vehicle_assigned[kk]);
 					//served_passengers++;
 					}
-				}*/
-				/*for (int vv=0;vv<total_number_vehicles;vv++){
+				}
+				for (int vv=0;vv<total_number_vehicles;vv++){
 					times_validation(vv);
-				}*/
+				}
 
 			} else {
 
