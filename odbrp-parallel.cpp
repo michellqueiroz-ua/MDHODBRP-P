@@ -728,7 +728,7 @@ void input_travel_time(char *filename) {
 			//count = 0;
 			int count = 0;
 			while(getline(str, data, ',')) {
-				//<<data<<" ";
+				cout<<data<<" ";
 				if (count > 0) {
 					travel_time[stop1][stop2] = stoi(data);
 					travel_time[stop2][stop1] = stoi(data);
@@ -736,7 +736,7 @@ void input_travel_time(char *filename) {
 				} 
 				count++;
 			}
-			//<<endl<<endl;
+			cout<<endl<<endl;
 			//break;
 			//<<stop1<<" "<<stop2<<endl;
 			stop1 = stop1 + 1;
@@ -761,6 +761,7 @@ void input_travel_time(char *filename) {
 
 		//<<"xx: "<<travel_time[2950][214]<<" "<<travel_time[214][2716]<<" "<<travel_time[2950][2716]<<endl;
 
+		cout<<endl;
 		while (count2 > 0) {
 		
 			count2 = 0;
