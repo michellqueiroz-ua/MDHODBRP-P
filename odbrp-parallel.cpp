@@ -9377,7 +9377,7 @@ void cheapest_insertion_randomized_parallel_NEW(int p, bool accept_infeasible_in
 					vehicle_assigned[p] = best_v;
 
 					//if (best_v == 24) {
-					/*cout<<"flex: "<<flexibilize_lat_departure_time<<endl;
+					cout<<"flex: "<<flexibilize_lat_departure_time<<endl;
 					for (int i=0; i<=number_stops[best_v];i++) {
 						cout<<stops[best_v][i]<<" ("<<number_passengers_action[best_v][i]<<") "<<" [";
 						for (int j=0; j<number_passengers_action[best_v][i];j++) 
@@ -9390,7 +9390,7 @@ void cheapest_insertion_randomized_parallel_NEW(int p, bool accept_infeasible_in
 						cout<<"*"<<free_capacity[best_v][i]<<"*"<<endl;
 					}
 					//}
-					cout<<endl;*/
+					cout<<endl;
 
 					best_min_increase_length = INT_MAX;
 					
@@ -11586,7 +11586,7 @@ void re_insertion(int p, bool &accept_relocate_trip, double &temperature, int &t
 				
 
 				//if (best_v == 24) {
-				cout<<"flex: "<<flexibilize_lat_departure_time<<endl;
+				/*cout<<"flex: "<<flexibilize_lat_departure_time<<endl;
 				for (int i=0; i<=number_stops[best_v];i++) {
 					cout<<stops[best_v][i]<<" ("<<number_passengers_action[best_v][i]<<") "<<" [";
 					for (int j=0; j<number_passengers_action[best_v][i];j++) 
@@ -11599,7 +11599,7 @@ void re_insertion(int p, bool &accept_relocate_trip, double &temperature, int &t
 					cout<<"*"<<free_capacity[best_v][i]<<"*"<<endl;
 				}
 				//}
-				cout<<endl;
+				cout<<endl;*/
 
 
 
