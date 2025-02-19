@@ -728,7 +728,7 @@ void input_travel_time(char *filename) {
 			//count = 0;
 			int count = 0;
 			while(getline(str, data, ',')) {
-				cout<<data<<" ";
+				//cout<<data<<" ";
 				if (count > 0) {
 					travel_time[stop1][stop2] = stoi(data);
 					travel_time[stop2][stop1] = stoi(data);
@@ -736,7 +736,7 @@ void input_travel_time(char *filename) {
 				} 
 				count++;
 			}
-			cout<<endl<<endl;
+			//cout<<endl<<endl;
 			//break;
 			//<<stop1<<" "<<stop2<<endl;
 			stop1 = stop1 + 1;
@@ -761,7 +761,7 @@ void input_travel_time(char *filename) {
 
 		//<<"xx: "<<travel_time[2950][214]<<" "<<travel_time[214][2716]<<" "<<travel_time[2950][2716]<<endl;
 
-		cout<<endl;
+		/*cout<<endl;
 		while (count2 > 0) {
 		
 			count2 = 0;
@@ -791,7 +791,7 @@ void input_travel_time(char *filename) {
 		  for (int j=0;j<stop1;j++)
 		    out << travel_time[i][j] <<',';
 		  out << '\n';
-		}
+		}*/
 		//saveData("travel_time_matrix.csv", travel_time);
 		//<<"out"<<endl;
 
