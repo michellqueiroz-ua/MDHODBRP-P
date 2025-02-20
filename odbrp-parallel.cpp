@@ -13224,7 +13224,7 @@ void empty_vehicle(int v, bool& megaerror, double &temperature, int &type_move, 
 		return;
 	}
 	bool accept_relocate_trip;
-	cout<<"counter pv: "counter<<" "<<passengers_at_vehicle[v].size()<<endl;
+	cout<<"counter pv: "<<counter<<" "<<passengers_at_vehicle[v].size()<<endl;
 	if (counter == passengers_at_vehicle[v].size()) {
 		
 		int new_URT = compute_cluster_URT(cluster_id);
