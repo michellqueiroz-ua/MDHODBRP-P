@@ -13964,7 +13964,7 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 
 			double y = (double)rand() / (double)RAND_MAX;
 
-			if (y <= 1.0) {
+			if (y <= 0.5) {
 				count_static_it++;
 				//SWITCH
 				//cout<<"PIC: "<<passengers_in_cluster.size()<<endl;
@@ -14008,7 +14008,7 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 
 			} else {
 
-				
+				count_static_it++;
 				//REDUCE
 				//<<"heere"<<endl;
 				select_vehicles_havent_that_can_be_turned_empty(vehicles_still_depot, cluster_id);
