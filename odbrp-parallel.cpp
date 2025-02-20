@@ -13194,13 +13194,16 @@ void empty_vehicle(int v, bool& megaerror, double &temperature, int &type_move, 
 	see_if_arrival_departure_dont_match(v);
 	update_URT(v);
 
+	//randomly shuffle passengers in the vector to insert them randomly
 	std::shuffle(passengers_at_vehicle.begin(), passengers_at_vehicle.end(), g);
 
+	megaerror = false;
 	relocate_all_passengers_vehicle_nn(v, init_temperature, type_move, counter, deltaURT, megaerror, cluster_id);
 	//<<"OUT3"<<endl;
 	//UPDATE USER RIDE TIMES TO SEE IF NOW I CAN COMPUTE DELTA CORRECTLY??????
 	
 	if (megaerror){
+		cout<<"mega error?"<<endl;
 		return;
 	}
 	bool accept_relocate_trip;
