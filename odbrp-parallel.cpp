@@ -13187,14 +13187,14 @@ void empty_vehicle(int v, bool& megaerror, double &temperature, int &type_move, 
 		cout<<"{"<<departure_time_stop[best_v][i]<<"} ";
 		cout<<"|"<<slack_time[best_v][i]<<"|  ";
 		cout<<"*"<<free_capacity[best_v][i]<<"*"<<endl;
-	}
+	}*/
 
 	cout<<"passengers to be removed: "<<endl;
 	for (int i = 0; i < passengers_at_vehicle[v].size(); i++){
 		cout<<passengers_at_vehicle[v][i]<<" ";
 	}
 	cout<<endl;
-	cout<<"number stops "<<number_stops[v]<<endl;*/
+	cout<<"number stops "<<number_stops[v]<<endl;
 
 	//bool megaerror = false;
 
@@ -13209,10 +13209,10 @@ void empty_vehicle(int v, bool& megaerror, double &temperature, int &type_move, 
 	see_if_arrival_departure_dont_match(v);
 	update_URT(v);
 	stay_times_consistency_empty_vehicle(v);
-
+	cout<<"counter pv1: "<<counter<<" "<<passengers_at_vehicle[v].size()<<endl;
 	//randomly shuffle passengers in the vector to insert them randomly
-	std::shuffle(passengers_at_vehicle.begin(), passengers_at_vehicle.end(), g);
-
+	std::shuffle(passengers_at_vehicle[v].begin(), passengers_at_vehicle[v].end(), g);
+	cout<<"counter pv2: "<<counter<<" "<<passengers_at_vehicle[v].size()<<endl;
 	megaerror = false;
 	counter = 0;
 	relocate_all_passengers_vehicle_nn(v, init_temperature, type_move, counter, deltaURT, megaerror, cluster_id);
@@ -13224,7 +13224,7 @@ void empty_vehicle(int v, bool& megaerror, double &temperature, int &type_move, 
 		return;
 	}
 	bool accept_relocate_trip;
-	cout<<"counter pv: "<<counter<<" "<<passengers_at_vehicle[v].size()<<endl;
+	cout<<"counter pv3: "<<counter<<" "<<passengers_at_vehicle[v].size()<<endl;
 	if (counter == passengers_at_vehicle[v].size()) {
 		
 		int new_URT = compute_cluster_URT(cluster_id);
