@@ -14037,6 +14037,17 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 				}
 					//relocate_all_passengers_vehicle(v, init_temperature, type_move);
 				//}
+
+				cout<<"AFTER_SIMPLE REDUCE"<<endl;
+				for (int kk=0;kk<total_requests;kk++){
+					if (vehicle_assigned[kk] != -1) {
+						solution_validation(kk, vehicle_assigned[kk]);
+					//served_passengers++;
+					}
+				}
+				for (int vv=0;vv<total_number_vehicles;vv++){
+					times_validation(vv);
+				}
 				
 				
 
