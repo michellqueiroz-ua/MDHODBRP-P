@@ -12347,7 +12347,7 @@ void re_insertion_nn(int p, bool &accept_relocate_trip, double &temperature, int
 					flexibilize_lat_departure_time = false;
 				//<<"here2.2"<<endl;
 				see_if_arrival_departure_dont_match(v);
-				cout<<"here2.3"<<endl;
+				//cout<<"here2.3"<<endl;
 				if (curr_number_insertions_p < 44955)
 					cheapest_origin2_p(p, v, min_increase_length, sel_origin, pos_origin, repeated_station, flexibilize_lat_departure_time, insertions_p, curr_number_insertions_p);
 				//<<"here2.4"<<endl;		
@@ -13135,6 +13135,19 @@ int compute_cluster_URT(int cluster_id){
 	return cluster_URT;
 }
 
+void stay_times_consistency_empty_vehicle(int v){
+
+	arrival_time_stop[v][0] = 0;
+	arrival_time_stop[v][1] = 86400;
+
+	departure_time_stop[v][0] = 0;
+	departure_time_stop[v][1] = 86400;
+
+	slack_time[v][0] = 86400;
+	slack_time[v][1] = 86400;
+
+}
+
 void empty_vehicle(int v, bool& megaerror, double &temperature, int &type_move, int cluster_id){
 
 	std::random_device rd;
@@ -13195,6 +13208,7 @@ void empty_vehicle(int v, bool& megaerror, double &temperature, int &type_move, 
 	}
 	see_if_arrival_departure_dont_match(v);
 	update_URT(v);
+	stay_times_consistency_empty_vehicle(v);
 
 	//randomly shuffle passengers in the vector to insert them randomly
 	std::shuffle(passengers_at_vehicle.begin(), passengers_at_vehicle.end(), g);
@@ -13210,7 +13224,7 @@ void empty_vehicle(int v, bool& megaerror, double &temperature, int &type_move, 
 		return;
 	}
 	bool accept_relocate_trip;
-	//<<passengers_at_vehicle[v].size()<<endl;
+	cout<<"counter pv: "counter<<" "<<passengers_at_vehicle[v].size()<<endl;
 	if (counter == passengers_at_vehicle[v].size()) {
 		
 		int new_URT = compute_cluster_URT(cluster_id);
