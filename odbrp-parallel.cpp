@@ -12468,7 +12468,7 @@ void re_insertion_nn(int p, bool &accept_relocate_trip, double &temperature, int
 				
 
 				//if (best_v == 24) {
-				/*cout<<"flex: "<<flexibilize_lat_departure_time<<endl;
+				cout<<"flex RRN: "<<flexibilize_lat_departure_time<<endl;
 				for (int i=0; i<=number_stops[best_v];i++) {
 					cout<<stops[best_v][i]<<" ("<<number_passengers_action[best_v][i]<<") "<<" [";
 					for (int j=0; j<number_passengers_action[best_v][i];j++) 
@@ -12479,7 +12479,7 @@ void re_insertion_nn(int p, bool &accept_relocate_trip, double &temperature, int
 					cout<<"{"<<departure_time_stop[best_v][i]<<"} ";
 					cout<<"|"<<slack_time[best_v][i]<<"|  ";
 					cout<<"*"<<free_capacity[best_v][i]<<"*"<<endl;
-				}*/
+				}
 				//}
 				//<<endl;
 
