@@ -12227,6 +12227,7 @@ std::vector<int> new_insertions_p;
 
 void re_insertion_nn(int p, bool &accept_relocate_trip, double &temperature, int &type_move, int &diffURT, int cluster_id, int vp){
 
+	accept_relocate_trip = false; 
 	int odb_travel_time, odb_distance, v;
 	int pos_origin, pos_destination, sel_origin, sel_destination, min_increase_length, veh, ttcsd;
 	bool repeated_station, no_violation_capacity, flexibilize_arrival_time, flexibilize_lat_departure_time, accept_delay_trip;
@@ -12584,6 +12585,7 @@ void re_insertion_nn(int p, bool &accept_relocate_trip, double &temperature, int
 					passengers_departure_time_from_home[p] = insertions_p[iterations2].passengers_departure_time_from_home;
 					type_move = 1;
 					vehicle_assigned[p] = best_v;
+					cout<<"accepted new trip "<<p<<" "<<best_v<<endl;
 
 					//<<"feasible and reduce fare2"<<endl;
 					no_feasible_insertion2 = false;
@@ -12863,7 +12865,7 @@ void relocate_all_passengers_vehicle_nn(int v, double &temperature, int &type_mo
 	int diffURT;
 	
 
-	/*cout<<"NEW RELOCATE TO EMPTY A VEHICLE"<<endl;
+	cout<<"NEW RELOCATE TO EMPTY A VEHICLE"<<endl;
 	for (int l=0; l<=number_stops[v];l++) {
 		cout<<stops[v][l]<<" ("<<number_passengers_action[v][l]<<") "<<" [";
 		for (int m=0; m<number_passengers_action[v][l];m++) 
@@ -12875,7 +12877,7 @@ void relocate_all_passengers_vehicle_nn(int v, double &temperature, int &type_mo
 		cout<<"|"<<slack_time[v][l]<<"|  ";
 		cout<<"*"<<free_capacity[v][l]<<"*"<<endl;
 	}
-	cout<<endl;*/
+	cout<<endl;
 
 	//<<"here1"<<endl;
 	for (int kk=0; kk<passengers_at_vehicle[v].size();kk++){
@@ -13198,6 +13200,7 @@ void empty_vehicle(int v, bool& megaerror, double &temperature, int &type_move, 
 	std::shuffle(passengers_at_vehicle.begin(), passengers_at_vehicle.end(), g);
 
 	megaerror = false;
+	counter = 0;
 	relocate_all_passengers_vehicle_nn(v, init_temperature, type_move, counter, deltaURT, megaerror, cluster_id);
 	//<<"OUT3"<<endl;
 	//UPDATE USER RIDE TIMES TO SEE IF NOW I CAN COMPUTE DELTA CORRECTLY??????
