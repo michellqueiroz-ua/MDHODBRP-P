@@ -14010,7 +14010,7 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 
 			double y = (double)rand() / (double)RAND_MAX;
 
-			if (y <= 0.5) {
+			if (y <= 1.0) {
 				count_static_it++;
 				//SWITCH
 				//cout<<"PIC: "<<passengers_in_cluster.size()<<endl;
