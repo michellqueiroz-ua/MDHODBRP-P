@@ -12378,7 +12378,7 @@ void re_insertion_nn(int p, bool &accept_relocate_trip, double &temperature, int
 				best_repeated_station = insertions_p[iterations2].repeated_station;
 				
 
-				cout<<"flex TTSWWDTII: "<<flexibilize_lat_departure_time<<endl;
+				/*cout<<"flex TTSWWDTII: "<<flexibilize_lat_departure_time<<endl;
 				for (int i=0; i<=number_stops[best_v];i++) {
 					cout<<stops[best_v][i]<<" ("<<number_passengers_action[best_v][i]<<") "<<" [";
 					for (int j=0; j<number_passengers_action[best_v][i];j++) 
@@ -12389,7 +12389,7 @@ void re_insertion_nn(int p, bool &accept_relocate_trip, double &temperature, int
 					cout<<"{"<<departure_time_stop[best_v][i]<<"} ";
 					cout<<"|"<<slack_time[best_v][i]<<"|  ";
 					cout<<"*"<<free_capacity[best_v][i]<<"*"<<endl;
-				}
+				}*/
 				//<<"here5"<<endl;
 				if (not best_repeated_station) {
 					stops[best_v].insert(stops[best_v].begin() + best_pos_origin, best_sel_origin);
@@ -12785,6 +12785,8 @@ void re_insertion_nn(int p, bool &accept_relocate_trip, double &temperature, int
 
 
 						free_capacity[best_v].erase(free_capacity[best_v].begin() + best_pos_origin);
+
+
 					} else {
 
 						//<<"heere"<<endl;
@@ -12804,6 +12806,16 @@ void re_insertion_nn(int p, bool &accept_relocate_trip, double &temperature, int
 							slack_time[best_v][i] = saved_slack_time[best_v][i];
 							//<<saved_arrival_time[i]<<" "<<saved_departure_time[i]<<" "<<saved_slack_time[i]<<endl;
 						}
+					}
+
+					if (best_pos_origin == 1) {
+						int new_dpt_time = arrival_time_stop[best_v][1]-travel_time[stops[best_v][0]][stops[best_v][1]];
+						if (new_dpt_time < current_time){
+							new_dpt_time = current_time;
+						}
+
+					
+						departure_time_stop[best_v][0] = new_dpt_time;
 					}
 				}
 				//<<"here12"<<endl;
