@@ -14291,6 +14291,7 @@ void swap_sequence(int v1, int v2, bool& megaerror, double &temperature, int &ty
 		for (int j=0; j<number_passengers_action[v1][starting_point_sequence1+i];j++) {
 			p1 = action_passengers[v1][starting_point_sequence1+i][j];
 			if (removed_passenger[p1][v1] == 0) {
+				cout<<"hier"<<p1<<endl;
 				remove_passenger_from_vehicle(v1, p1);
 				passengers_at_vehicle[v1].push_back(p1);
 				//update URT
