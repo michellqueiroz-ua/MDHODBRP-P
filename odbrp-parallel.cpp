@@ -15233,7 +15233,7 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 				int v1, v2;
 				v1 = -1;
 				v2 = -1;
-				if (vehicles_still_depot.size() > 0) {
+				//if (vehicles_still_depot.size() > 0) {
 					while (v1 == v2) {
 						int b1 = rand() % clusters[cluster_id].size();
 						v1 = clusters[cluster_id][b1];
@@ -15245,7 +15245,7 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 					if ((free_capacity[v1].size() > 2) && (free_capacity[v2].size() > 2)) {
 						swap_sequence(v1, v2, megaerror, temperature, type_move, cluster_id);
 					}
-				}
+				//}
 				//<<"heere1"<<endl;
 				
 				//<<"no idea1"<<endl;
@@ -15257,7 +15257,7 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 					//relocate_all_passengers_vehicle(v, init_temperature, type_move);
 				//}
 
-				/*cout<<"AFTER_SIMPLE SWAP"<<endl;
+				cout<<"AFTER_SIMPLE SWAP"<<endl;
 				for (int kk=0;kk<total_requests;kk++){
 					if (vehicle_assigned[kk] != -1) {
 						solution_validation(kk, vehicle_assigned[kk]);
@@ -15266,7 +15266,7 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 				}
 				for (int vv=0;vv<total_number_vehicles;vv++){
 					times_validation(vv);
-				}*/
+				}
 				
 			}
 
