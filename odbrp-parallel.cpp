@@ -14255,8 +14255,8 @@ void swap_sequence(int v1, int v2, bool& megaerror, double &temperature, int &ty
 	save_intm_solution(cluster_id);
 	//vector<int> edited_vehicles;
 
-	//int best_v = v;
-	/*cout<<"STARTING EMPTYING HEEEERE "<<current_time<<" "<<v<<endl;
+	int best_v = v1;
+	cout<<"STARTING EMPTYING HEEEERE "<<current_time<<" "<<v1<<endl;
 	
 	for (int i=0; i<=number_stops[best_v];i++) {
 		cout<<stops[best_v][i]<<" ("<<number_passengers_action[best_v][i]<<") "<<" [";
@@ -14268,7 +14268,7 @@ void swap_sequence(int v1, int v2, bool& megaerror, double &temperature, int &ty
 		cout<<"{"<<departure_time_stop[best_v][i]<<"} ";
 		cout<<"|"<<slack_time[best_v][i]<<"|  ";
 		cout<<"*"<<free_capacity[best_v][i]<<"*"<<endl;
-	}*/
+	}
 
 	/*cout<<"passengers to be removed: "<<endl;
 	for (int i = 0; i < passengers_at_vehicle[v].size(); i++){
@@ -14298,6 +14298,20 @@ void swap_sequence(int v1, int v2, bool& megaerror, double &temperature, int &ty
 				removed_passenger[p1][v1] = 1;
 			}
 		}
+	}
+
+	cout<<"AFTER REMOVAL SEQUENCE HEEEERE "<<endl;
+	cout<<starting_point_sequence1<<" "<<length_sequence1<<endl;
+	for (int i=0; i<=number_stops[best_v];i++) {
+		cout<<stops[best_v][i]<<" ("<<number_passengers_action[best_v][i]<<") "<<" [";
+		for (int j=0; j<number_passengers_action[best_v][i];j++) 
+			cout<<action_passengers[best_v][i][j]<<" ";
+		cout<<"]  ";
+
+		cout<<"{"<<arrival_time_stop[best_v][i]<<"} ";
+		cout<<"{"<<departure_time_stop[best_v][i]<<"} ";
+		cout<<"|"<<slack_time[best_v][i]<<"|  ";
+		cout<<"*"<<free_capacity[best_v][i]<<"*"<<endl;
 	}
 
 
@@ -14330,7 +14344,7 @@ void swap_sequence(int v1, int v2, bool& megaerror, double &temperature, int &ty
 	update_URT(v2);
 	stay_times_consistency_empty_vehicle(v2);
 
-	//cout<<"counter pv1: "<<counter<<" "<<passengers_at_vehicle[v].size()<<endl;
+	
 	//randomly shuffle passengers in the vector to insert them randomly
 	std::shuffle(passengers_at_vehicle[v1].begin(), passengers_at_vehicle[v1].end(), g);
 	//randomly shuffle passengers in the vector to insert them randomly
@@ -14341,8 +14355,10 @@ void swap_sequence(int v1, int v2, bool& megaerror, double &temperature, int &ty
 	megaerror = false;
 	counter1 = 0;
 	relocate_all_passengers_vehicle_swap(v1, init_temperature, type_move, counter1, deltaURT, megaerror, cluster_id, v2);
+	cout<<"counter pv1: "<<counter1<<" "<<passengers_at_vehicle[v1].size()<<endl;
 	counter2 = 0;
 	relocate_all_passengers_vehicle_swap(v2, init_temperature, type_move, counter2, deltaURT, megaerror, cluster_id, v1);	
+	cout<<"counter pv1: "<<counter2<<" "<<passengers_at_vehicle[v2].size()<<endl;
 	//UPDATE USER RIDE TIMES TO SEE IF NOW I CAN COMPUTE DELTA CORRECTLY??????
 	
 	if (megaerror){
@@ -15241,7 +15257,7 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 					//relocate_all_passengers_vehicle(v, init_temperature, type_move);
 				//}
 
-				cout<<"AFTER_SIMPLE SWAP"<<endl;
+				/*cout<<"AFTER_SIMPLE SWAP"<<endl;
 				for (int kk=0;kk<total_requests;kk++){
 					if (vehicle_assigned[kk] != -1) {
 						solution_validation(kk, vehicle_assigned[kk]);
@@ -15250,7 +15266,7 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 				}
 				for (int vv=0;vv<total_number_vehicles;vv++){
 					times_validation(vv);
-				}
+				}*/
 				
 			}
 
