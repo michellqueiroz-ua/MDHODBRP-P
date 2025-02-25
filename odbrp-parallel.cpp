@@ -14332,7 +14332,7 @@ void swap_sequence(int v1, int v2, bool& megaerror, double &temperature, int &ty
 
 	int p2;
 	for (int i=0; i<length_sequence2;i++) {
-		for (int j=0; j<number_passengers_action[v1][starting_point_sequence2+i];j++) {
+		for (int j=0; j<number_passengers_action[v2][starting_point_sequence2+i];j++) {
 			p2 = action_passengers[v2][starting_point_sequence2+i][j];
 			if (removed_passenger[p2][v2] == 0) {
 				//remove_passenger_from_vehicle(v2, p2);
