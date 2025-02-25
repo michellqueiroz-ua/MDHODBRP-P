@@ -14293,13 +14293,19 @@ void swap_sequence(int v1, int v2, bool& megaerror, double &temperature, int &ty
 			cout<<"hier"<<p1<<endl;
 			if (removed_passenger[p1][v1] == 0) {
 
-				remove_passenger_from_vehicle(v1, p1);
+				//remove_passenger_from_vehicle(v1, p1);
 				passengers_at_vehicle[v1].push_back(p1);
 				//update URT
-				update_URT(vehicle_assigned[p1]);
+				//update_URT(vehicle_assigned[p1]);
 				removed_passenger[p1][v1] = 1;
 			}
 		}
+	}
+
+	for (int i=0;i<passengers_at_vehicle[v1].size();i++){
+		p1 = passengers_at_vehicle[v1][i];
+		remove_passenger_from_vehicle(v1, p1);
+		update_URT(v1);
 	}
 
 	cout<<"AFTER REMOVAL SEQUENCE HEEEERE "<<endl;
@@ -14329,13 +14335,19 @@ void swap_sequence(int v1, int v2, bool& megaerror, double &temperature, int &ty
 		for (int j=0; j<number_passengers_action[v1][starting_point_sequence2+i];j++) {
 			p2 = action_passengers[v2][starting_point_sequence2+i][j];
 			if (removed_passenger[p2][v2] == 0) {
-				remove_passenger_from_vehicle(v2, p2);
+				//remove_passenger_from_vehicle(v2, p2);
 				passengers_at_vehicle[v2].push_back(p2);
 				//update URT
-				update_URT(vehicle_assigned[p2]);
+				//update_URT(vehicle_assigned[p2]);
 				removed_passenger[p2][v2] = 1;
 			}
 		}
+	}
+
+	for (int i=0;i<passengers_at_vehicle[v2].size();i++){
+		p2 = passengers_at_vehicle[v2][i];
+		remove_passenger_from_vehicle(v2, p2);
+		update_URT(v2);
 	}
 
 	see_if_arrival_departure_dont_match(v1);
