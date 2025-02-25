@@ -14281,15 +14281,15 @@ void swap_sequence(int v1, int v2, bool& megaerror, double &temperature, int &ty
 
 	//randomly decide the start point (sequence 1)
 	std::uniform_int_distribution<int> dist1s(1, number_stops[v1]-1);
-	int starting_point_sequence1 = dist1s(gen);
+	int starting_point_sequence1 = dist1s(g);
 	//randomly decide the length (sequence 1)
 	std::uniform_int_distribution<int> dist1l(1, number_stops[v1]-starting_point_sequence1);
-	int length_sequence1 = dist1l(gen);
+	int length_sequence1 = dist1l(g);
 
 	int p1;
 	for (int i=0; i<length_sequence1;i++) {
 		for (int j=0; j<number_passengers_action[v1][starting_point_sequence1+i];j++) {
-			p1 = action_passengers[best_v][starting_point_sequence1+i][j];
+			p1 = action_passengers[v1][starting_point_sequence1+i][j];
 			if (removed_passenger[p1][v1] == 0) {
 				remove_passenger_from_vehicle(v1, p1);
 				passengers_at_vehicle[v1].push_back(p1);
@@ -14311,7 +14311,7 @@ void swap_sequence(int v1, int v2, bool& megaerror, double &temperature, int &ty
 	int p2;
 	for (int i=0; i<length_sequence2;i++) {
 		for (int j=0; j<number_passengers_action[v1][starting_point_sequence2+i];j++) {
-			p2 = action_passengers[best_v][starting_point_sequence2+i][j];
+			p2 = action_passengers[v2][starting_point_sequence2+i][j];
 			if (removed_passenger[p2][v2] == 0) {
 				remove_passenger_from_vehicle(v2, p2);
 				passengers_at_vehicle[v2].push_back(p2);
