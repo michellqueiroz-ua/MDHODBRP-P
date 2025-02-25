@@ -14303,10 +14303,10 @@ void swap_sequence(int v1, int v2, bool& megaerror, double &temperature, int &ty
 
 	//randomly decide the start point (sequence 2)
 	std::uniform_int_distribution<int> dist2s(1, number_stops[v2]-1);
-	int starting_point_sequence2 = dist2s(gen);
+	int starting_point_sequence2 = dist2s(g);
 	//randomly decide the length (sequence 2)
 	std::uniform_int_distribution<int> dist2l(1, number_stops[v2]-starting_point_sequence2);
-	int length_sequence2 = dist2l(gen);
+	int length_sequence2 = dist2l(g);
 
 	int p2;
 	for (int i=0; i<length_sequence2;i++) {
