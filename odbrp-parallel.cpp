@@ -15183,7 +15183,7 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 					return;
 				}
 
-				/*cout<<"AFTER_SIMPLE RELOCATE"<<endl;
+				cout<<"AFTER_SIMPLE RELOCATE"<<endl;
 				for (int kk=0;kk<total_requests;kk++){
 					if (vehicle_assigned[kk] != -1) {
 						solution_validation(kk, vehicle_assigned[kk]);
@@ -15192,7 +15192,7 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 				}
 				for (int vv=0;vv<total_number_vehicles;vv++){
 					times_validation(vv);
-				}*/
+				}
 			}
 
 			
@@ -15259,11 +15259,15 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 
 						int b2 = rand() % clusters[cluster_id].size();
 						v2 = clusters[cluster_id][b2];
+
+						if ((free_capacity[v1].size() > 2) && (free_capacity[v2].size() > 2)) {
+							swap_sequence(v1, v2, megaerror, temperature, type_move, cluster_id);
+						} else {
+							v1 = v2;
+						}
 					}
 
-					if ((free_capacity[v1].size() > 2) && (free_capacity[v2].size() > 2)) {
-						swap_sequence(v1, v2, megaerror, temperature, type_move, cluster_id);
-					}
+					
 				//}
 				//<<"heere1"<<endl;
 				
