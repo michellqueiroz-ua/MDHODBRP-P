@@ -11438,7 +11438,7 @@ void re_insertion(int p, bool &accept_relocate_trip, double &temperature, int &t
 	}*/
 
 	//<<"filtered_vehicles SIZE "<<filtered_vehicles.size()<<endl;
-	while ((not_feasible_insertion) && (iterations < filtered_vehicles_p.size())) {
+	while ((not_feasible_insertion) && (iterations <= filtered_vehicles_p.size())) {
 		
 		int best_pos_origin, best_pos_destination;
 		int best_min_increase_length;
@@ -12317,7 +12317,7 @@ void re_insertion_nn(int p, bool &accept_relocate_trip, double &temperature, int
 	//<<"here1"<<endl;
 	//<<filtered_vehicles_p.size()<<endl;
 	//<<"filtered_vehicles SIZE "<<filtered_vehicles.size()<<endl;
-	while ((not_feasible_insertion) && (iterations < filtered_vehicles_p.size())) {
+	while ((not_feasible_insertion) && (iterations <= filtered_vehicles_p.size())) {
 		
 		int best_pos_origin, best_pos_destination;
 		int best_min_increase_length;
@@ -13236,7 +13236,7 @@ void re_insertion_swap(int p, bool &accept_relocate_trip, double &temperature, i
 	//<<"here1"<<endl;
 	//<<filtered_vehicles_p.size()<<endl;
 	//<<"filtered_vehicles SIZE "<<filtered_vehicles.size()<<endl;
-	while ((not_feasible_insertion) && (iterations < filtered_vehicles_p.size())) {
+	while ((not_feasible_insertion) && (iterations <= filtered_vehicles_p.size())) {
 		
 		int best_pos_origin, best_pos_destination;
 		int best_min_increase_length;
@@ -13852,7 +13852,7 @@ void relocate_all_passengers_vehicle_swap(int v, double &temperature, int &type_
 			//<<"ERROR HYER"<<endl;
 
 		blocked_vehicles[p][vehicle_assigned[p]] = 0;
-
+		blocked_vehicles[p][vs] = 0;
 		accept_relocate_trip = false;
 		//<<"here3"<<endl;
 		re_insertion_swap(p, accept_relocate_trip, temperature, type_move, diffURT, cluster_id, v, vs);
