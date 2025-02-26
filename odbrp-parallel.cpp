@@ -13275,7 +13275,7 @@ void re_insertion_swap(int p, bool &accept_relocate_trip, double &temperature, i
 		}
 		//<<endl;
 
-		cout<<"curr insert3: " << curr_number_insertions_p<<endl;
+		//cout<<"curr insert3: " << curr_number_insertions_p<<endl;
 		//<<"here3"<<endl;
 		sort(insertions_p, insertions_p+curr_number_insertions_p, comparator);
 
@@ -13401,7 +13401,7 @@ void re_insertion_swap(int p, bool &accept_relocate_trip, double &temperature, i
 				
 
 				//if (best_v == 24) {
-				/*cout<<"flex RRN: "<<flexibilize_lat_departure_time<<endl;
+				cout<<"INSERTING ORIGIN SWAP: "<<flexibilize_lat_departure_time<<endl;
 				for (int i=0; i<=number_stops[best_v];i++) {
 					cout<<stops[best_v][i]<<" ("<<number_passengers_action[best_v][i]<<") "<<" [";
 					for (int j=0; j<number_passengers_action[best_v][i];j++) 
@@ -13412,7 +13412,7 @@ void re_insertion_swap(int p, bool &accept_relocate_trip, double &temperature, i
 					cout<<"{"<<departure_time_stop[best_v][i]<<"} ";
 					cout<<"|"<<slack_time[best_v][i]<<"|  ";
 					cout<<"*"<<free_capacity[best_v][i]<<"*"<<endl;
-				}*/
+				}
 				//}
 				//<<endl;
 
@@ -14255,7 +14255,7 @@ void swap_sequence(int v1, int v2, bool& megaerror, double &temperature, int &ty
 	save_intm_solution(cluster_id);
 	//vector<int> edited_vehicles;
 
-	int best_v = v1;
+	int best_v = v2;
 	cout<<"STARTING EMPTYING HEEEERE "<<current_time<<" "<<v1<<endl;
 	
 	for (int i=0; i<=number_stops[best_v];i++) {
@@ -14308,19 +14308,7 @@ void swap_sequence(int v1, int v2, bool& megaerror, double &temperature, int &ty
 		update_URT(v1);
 	}
 
-	cout<<"AFTER REMOVAL SEQUENCE HEEEERE "<<endl;
-	cout<<starting_point_sequence1<<" "<<length_sequence1<<endl;
-	for (int i=0; i<=number_stops[best_v];i++) {
-		cout<<stops[best_v][i]<<" ("<<number_passengers_action[best_v][i]<<") "<<" [";
-		for (int j=0; j<number_passengers_action[best_v][i];j++) 
-			cout<<action_passengers[best_v][i][j]<<" ";
-		cout<<"]  ";
-
-		cout<<"{"<<arrival_time_stop[best_v][i]<<"} ";
-		cout<<"{"<<departure_time_stop[best_v][i]<<"} ";
-		cout<<"|"<<slack_time[best_v][i]<<"|  ";
-		cout<<"*"<<free_capacity[best_v][i]<<"*"<<endl;
-	}
+	
 
 
 	//randomly decide the start point (sequence 2)
@@ -14350,6 +14338,20 @@ void swap_sequence(int v1, int v2, bool& megaerror, double &temperature, int &ty
 		update_URT(v2);
 	}
 
+	cout<<"AFTER REMOVAL SEQUENCE HEEEERE "<<endl;
+	cout<<starting_point_sequence1<<" "<<length_sequence1<<endl;
+	for (int i=0; i<=number_stops[best_v];i++) {
+		cout<<stops[best_v][i]<<" ("<<number_passengers_action[best_v][i]<<") "<<" [";
+		for (int j=0; j<number_passengers_action[best_v][i];j++) 
+			cout<<action_passengers[best_v][i][j]<<" ";
+		cout<<"]  ";
+
+		cout<<"{"<<arrival_time_stop[best_v][i]<<"} ";
+		cout<<"{"<<departure_time_stop[best_v][i]<<"} ";
+		cout<<"|"<<slack_time[best_v][i]<<"|  ";
+		cout<<"*"<<free_capacity[best_v][i]<<"*"<<endl;
+	}
+
 	see_if_arrival_departure_dont_match(v1);
 	update_URT(v1);
 	stay_times_consistency_empty_vehicle(v1);
@@ -14369,10 +14371,11 @@ void swap_sequence(int v1, int v2, bool& megaerror, double &temperature, int &ty
 	megaerror = false;
 	counter1 = 0;
 	relocate_all_passengers_vehicle_swap(v1, init_temperature, type_move, counter1, deltaURT, megaerror, cluster_id, v2);
-	cout<<"counter pv1: "<<counter1<<" "<<passengers_at_vehicle[v1].size()<<endl;
+	//cout<<"counter pv1: "<<counter1<<" "<<passengers_at_vehicle[v1].size()<<endl;
 	counter2 = 0;
+	deltaURT = 0;
 	relocate_all_passengers_vehicle_swap(v2, init_temperature, type_move, counter2, deltaURT, megaerror, cluster_id, v1);	
-	cout<<"counter pv1: "<<counter2<<" "<<passengers_at_vehicle[v2].size()<<endl;
+	//cout<<"counter pv1: "<<counter2<<" "<<passengers_at_vehicle[v2].size()<<endl;
 	//UPDATE USER RIDE TIMES TO SEE IF NOW I CAN COMPUTE DELTA CORRECTLY??????
 	
 	if (megaerror){
@@ -14389,6 +14392,8 @@ void swap_sequence(int v1, int v2, bool& megaerror, double &temperature, int &ty
 		if ((prev_URT-new_URT) > 0){
 			//<<"REMOVEALLPOSITIVE"<<endl;
 			type_move = 1;
+			cout<<"counter pv1: "<<counter1<<" "<<passengers_at_vehicle[v1].size()<<endl;
+			cout<<"counter pv2: "<<counter2<<" "<<passengers_at_vehicle[v2].size()<<endl;
 		} else {
 			int x = (double)rand() / (double)RAND_MAX;
 			//int delta = oldy_urt-total_user_ride_time;
