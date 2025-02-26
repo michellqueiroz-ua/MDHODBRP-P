@@ -13275,7 +13275,7 @@ void re_insertion_swap(int p, bool &accept_relocate_trip, double &temperature, i
 		}
 		//<<endl;
 
-		//<<"curr insert3: " << curr_number_insertions<<endl;
+		cout<<"curr insert3: " << curr_number_insertions_p<<endl;
 		//<<"here3"<<endl;
 		sort(insertions_p, insertions_p+curr_number_insertions_p, comparator);
 
