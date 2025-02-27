@@ -13233,7 +13233,7 @@ void re_insertion_swap(int p, bool &accept_relocate_trip, double &temperature, i
 
 
 	}
-	//<<"here1"<<endl;
+	cout<<"herecpcpcp "<<vs<<endl;
 	//<<filtered_vehicles_p.size()<<endl;
 	//<<"filtered_vehicles SIZE "<<filtered_vehicles.size()<<endl;
 	while ((not_feasible_insertion) && (iterations <= filtered_vehicles_p.size())) {
@@ -13275,7 +13275,7 @@ void re_insertion_swap(int p, bool &accept_relocate_trip, double &temperature, i
 		}
 		//<<endl;
 
-		//cout<<"curr insert3: " << curr_number_insertions_p<<endl;
+		cout<<"curr insert3: " << curr_number_insertions_p<<endl;
 		//<<"here3"<<endl;
 		sort(insertions_p, insertions_p+curr_number_insertions_p, comparator);
 
@@ -13287,7 +13287,7 @@ void re_insertion_swap(int p, bool &accept_relocate_trip, double &temperature, i
 			//<<"here4"<<endl;
 			while ((no_feasible_insertion2) && (iterations2 < curr_number_insertions_p)) {
 
-				cout<<"CHANGING HERE "<<p<<" "<<best_v<<"\n";
+				
 				int prv_arr_time_at_origin, prv_dpt_time_at_origin;
 
 				best_min_increase_length = insertions_p[iterations2].increase_length;
@@ -13295,7 +13295,7 @@ void re_insertion_swap(int p, bool &accept_relocate_trip, double &temperature, i
 				best_pos_origin = insertions_p[iterations2].pos_station;
 				best_v = insertions_p[iterations2].v;
 				best_repeated_station = insertions_p[iterations2].repeated_station;
-				
+				cout<<"CHANGING HERE "<<p<<" "<<best_v<<"\n";
 
 				/*cout<<"flex TTSWWDTII: "<<flexibilize_lat_departure_time<<endl;
 				for (int i=0; i<=number_stops[best_v];i++) {
