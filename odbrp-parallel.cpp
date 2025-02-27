@@ -13303,7 +13303,7 @@ void re_insertion_swap(int p, bool &accept_relocate_trip, double &temperature, i
 				best_repeated_station = insertions_p[iterations2].repeated_station;
 				cout<<"CHANGING HERE "<<p<<" "<<best_v<<"\n";
 
-				cout<<"flex TTSWWDTII: "<<flexibilize_lat_departure_time<<endl;
+				/*cout<<"flex TTSWWDTII: "<<flexibilize_lat_departure_time<<endl;
 				for (int i=0; i<=number_stops[best_v];i++) {
 					cout<<stops[best_v][i]<<" ("<<number_passengers_action[best_v][i]<<") "<<" [";
 					for (int j=0; j<number_passengers_action[best_v][i];j++) 
@@ -13314,7 +13314,7 @@ void re_insertion_swap(int p, bool &accept_relocate_trip, double &temperature, i
 					cout<<"{"<<departure_time_stop[best_v][i]<<"} ";
 					cout<<"|"<<slack_time[best_v][i]<<"|  ";
 					cout<<"*"<<free_capacity[best_v][i]<<"*"<<endl;
-				}
+				}*/
 				//<<"here5"<<endl;
 				if (not best_repeated_station) {
 					stops[best_v].insert(stops[best_v].begin() + best_pos_origin, best_sel_origin);
@@ -14360,11 +14360,11 @@ void swap_sequence(int v1, int v2, bool& megaerror, double &temperature, int &ty
 
 	see_if_arrival_departure_dont_match(v1);
 	update_URT(v1);
-	stay_times_consistency_empty_vehicle(v1);
+	//stay_times_consistency_empty_vehicle(v1);
 
 	see_if_arrival_departure_dont_match(v2);
 	update_URT(v2);
-	stay_times_consistency_empty_vehicle(v2);
+	//stay_times_consistency_empty_vehicle(v2);
 
 	
 	//randomly shuffle passengers in the vector to insert them randomly
