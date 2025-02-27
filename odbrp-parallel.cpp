@@ -1717,8 +1717,9 @@ void cheapest_origin2_p(int p, int v, int &min_increase_length, int &sel_origin,
 
 			//means that a detour can only be made if the bus has not departure yet from the stop
 			//only future actions can be modified
-			//if (departure_time_stop[v][i] > 0)
-			if (i > 0)
+			
+			//if (i > 0)
+			if (departure_time_stop[v][i] > 0)
 				curr_dpt_time = departure_time_stop[v][i];
 			else {
 				curr_dpt_time = earliest_departure[p]-travel_time[stops[v][i]][s_origin];
