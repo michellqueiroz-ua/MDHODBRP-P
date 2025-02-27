@@ -1717,7 +1717,8 @@ void cheapest_origin2_p(int p, int v, int &min_increase_length, int &sel_origin,
 
 			//means that a detour can only be made if the bus has not departure yet from the stop
 			//only future actions can be modified
-			if (departure_time_stop[v][i] > 0)
+			//if (departure_time_stop[v][i] > 0)
+			if (i > 0)
 				curr_dpt_time = departure_time_stop[v][i];
 			else {
 				curr_dpt_time = earliest_departure[p]-travel_time[stops[v][i]][s_origin];
@@ -1808,10 +1809,11 @@ void cheapest_origin2_p(int p, int v, int &min_increase_length, int &sel_origin,
 			 	
 			 	//<<"testX "<<endl;
 
-			 	if (swap_vehicle)
-			 		cout<<"co: "<<new_slack_time<<" "<<pick_up_time<<" "<<latest_departure_passenger<<" "<<new_capacity<<" "<<departure_time_from_home<<" "<<current_time<<endl;
+			 	
 			 	if ((new_slack_time >= 0) && (pick_up_time <= latest_departure_passenger) && (new_capacity >= 0) && (departure_time_from_home >= current_time)) {
 
+			 		//if (swap_vehicle)
+			 		//	cout<<"co: "<<new_slack_time<<" "<<pick_up_time<<" "<<latest_departure_passenger<<" "<<new_capacity<<" "<<departure_time_from_home<<" "<<current_time<<endl;
 
 			 		insertions_p[curr_number_insertions_p].passengers_departure_time_from_home = departure_time_from_home;
 					insertions_p[curr_number_insertions_p].increase_length = increase;
