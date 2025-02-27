@@ -14317,7 +14317,7 @@ void swap_sequence(int v1, int v2, bool& megaerror, double &temperature, int &ty
 	}
 	best_v = v1;
 	cout<<"AFTER REMOVAL SEQUENCE HEEEERE "<<endl;
-	cout<<starting_point_sequence2<<" "<<length_sequence2<<endl;
+	cout<<starting_point_sequence1<<" "<<length_sequence1<<endl;
 	for (int i=0; i<=number_stops[best_v];i++) {
 		cout<<stops[best_v][i]<<" ("<<number_passengers_action[best_v][i]<<") "<<" [";
 		for (int j=0; j<number_passengers_action[best_v][i];j++) 
