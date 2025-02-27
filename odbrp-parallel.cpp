@@ -1794,7 +1794,8 @@ void cheapest_origin2_p(int p, int v, int &min_increase_length, int &sel_origin,
 					old_arrival_nxt_stop = 0;
 				new_slack_time = old_slack_time - (new_arrival_nxt_stop - old_arrival_nxt_stop);
 				
-			 	//<<old_slack_time<<endl<<new_arrival_nxt_stop<<endl<<old_arrival_nxt_stop<<endl;
+				if (swap_vehicle)
+			 		cout<<"INSERTING IIN"<<i<<" "<<old_slack_time<<endl<<new_arrival_nxt_stop<<endl<<old_arrival_nxt_stop<<endl;
 			 	//<<"herexxx"<<endl<<endl;
 
 
