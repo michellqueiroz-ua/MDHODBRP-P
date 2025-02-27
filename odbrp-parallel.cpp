@@ -13287,7 +13287,7 @@ void re_insertion_swap(int p, bool &accept_relocate_trip, double &temperature, i
 			//<<"here4"<<endl;
 			while ((no_feasible_insertion2) && (iterations2 < curr_number_insertions_p)) {
 
-				//<<best_v<<"\n";
+				cout<<"CHANGING HERE "<<p<<" "<<best_v<<"\n";
 				int prv_arr_time_at_origin, prv_dpt_time_at_origin;
 
 				best_min_increase_length = insertions_p[iterations2].increase_length;
