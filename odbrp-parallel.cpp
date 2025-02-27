@@ -14461,6 +14461,12 @@ void swap_sequence(int v1, int v2, bool& megaerror, double &temperature, int &ty
 	}
 	//<<"OUT_OUT"<<endl;
 
+	if (passengers_at_vehicle[v1].size()>0)
+		passengers_at_vehicle[v1].clear();
+
+	if (passengers_at_vehicle[v2].size()>0)
+		passengers_at_vehicle[v2].clear();
+
 	for (int i=0;i<total_requests;i++){
 		for (int j=0;j<maxvehicles;j++){
 			//blocked_vehicles[i][j] = 0;
