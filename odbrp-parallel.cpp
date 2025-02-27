@@ -199,6 +199,8 @@ int overall_max_capacity, overall_max_capacity4, overall_max_capacity8, overall_
 double overall_occupancy, overall_occupancy4, overall_occupancy8, overall_occupancy12;
 listV running_max_capacity;
 
+bool swap_vehicle;
+
 struct Insertions {
 
 	int increase_length;
@@ -1806,8 +1808,8 @@ void cheapest_origin2_p(int p, int v, int &min_increase_length, int &sel_origin,
 			 	
 			 	//<<"testX "<<endl;
 
-			 	//if (priority_empty_vehicle)
-			 	//	cout<<"co: "<<new_slack_time<<" "<<pick_up_time<<" "<<latest_departure_passenger<<" "<<new_capacity<<" "<<departure_time_from_home<<" "<<current_time<<endl;
+			 	if (swap_vehicle)
+			 		cout<<"co: "<<new_slack_time<<" "<<pick_up_time<<" "<<latest_departure_passenger<<" "<<new_capacity<<" "<<departure_time_from_home<<" "<<current_time<<endl;
 			 	if ((new_slack_time >= 0) && (pick_up_time <= latest_departure_passenger) && (new_capacity >= 0) && (departure_time_from_home >= current_time)) {
 
 
@@ -15151,7 +15153,7 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 
 
 			double y = (double)rand() / (double)RAND_MAX;
-
+			swap_vehicle = false;
 			if (y <= 0.5) {
 				count_static_it++;
 				//SWITCH
@@ -15246,7 +15248,7 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 				count_static_it++;
 				//SWAP
 				
-				
+				swap_vehicle = true;
 
 				bool megaerror = false;
 				int v1, v2;
