@@ -1794,8 +1794,8 @@ void cheapest_origin2_p(int p, int v, int &min_increase_length, int &sel_origin,
 					old_arrival_nxt_stop = 0;
 				new_slack_time = old_slack_time - (new_arrival_nxt_stop - old_arrival_nxt_stop);
 				
-				if (swap_vehicle)
-			 		cout<<"INSERTING IIN"<<i<<" "<<old_slack_time<<endl<<new_arrival_nxt_stop<<endl<<old_arrival_nxt_stop<<endl;
+				//if (swap_vehicle)
+			 		//cout<<"INSERTING IIN"<<i<<" "<<old_slack_time<<endl<<new_arrival_nxt_stop<<endl<<old_arrival_nxt_stop<<endl;
 			 	//<<"herexxx"<<endl<<endl;
 
 
@@ -13407,7 +13407,7 @@ void re_insertion_swap(int p, bool &accept_relocate_trip, double &temperature, i
 				
 
 				//if (best_v == 24) {
-				cout<<"INSERTING ORIGIN SWAP: "<<flexibilize_lat_departure_time<<endl;
+				/*cout<<"INSERTING ORIGIN SWAP: "<<flexibilize_lat_departure_time<<endl;
 				for (int i=0; i<=number_stops[best_v];i++) {
 					cout<<stops[best_v][i]<<" ("<<number_passengers_action[best_v][i]<<") "<<" [";
 					for (int j=0; j<number_passengers_action[best_v][i];j++) 
@@ -13418,7 +13418,7 @@ void re_insertion_swap(int p, bool &accept_relocate_trip, double &temperature, i
 					cout<<"{"<<departure_time_stop[best_v][i]<<"} ";
 					cout<<"|"<<slack_time[best_v][i]<<"|  ";
 					cout<<"*"<<free_capacity[best_v][i]<<"*"<<endl;
-				}
+				}*/
 				//}
 				//<<endl;
 
