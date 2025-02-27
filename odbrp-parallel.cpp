@@ -14308,13 +14308,15 @@ void swap_sequence(int v1, int v2, bool& megaerror, double &temperature, int &ty
 		}
 	}
 
+	cout<<"testing seg fault1"<<endl;
+
 	for (int i=0;i<passengers_at_vehicle[v1].size();i++){
 		p1 = passengers_at_vehicle[v1][i];
 		remove_passenger_from_vehicle(v1, p1);
 		update_URT(v1);
 	}
 
-	
+	cout<<"testing seg fault2"<<endl;
 
 
 	//randomly decide the start point (sequence 2)
@@ -14323,7 +14325,7 @@ void swap_sequence(int v1, int v2, bool& megaerror, double &temperature, int &ty
 	//randomly decide the length (sequence 2)
 	std::uniform_int_distribution<int> dist2l(1, number_stops[v2]-starting_point_sequence2);
 	int length_sequence2 = dist2l(g);
-
+	cout<<"testing seg fault3"<<endl;
 	int p2;
 	for (int i=0; i<length_sequence2;i++) {
 		for (int j=0; j<number_passengers_action[v2][starting_point_sequence2+i];j++) {
@@ -14337,12 +14339,14 @@ void swap_sequence(int v1, int v2, bool& megaerror, double &temperature, int &ty
 			}
 		}
 	}
+	cout<<"testing seg fault4"<<endl;
 
 	for (int i=0;i<passengers_at_vehicle[v2].size();i++){
 		p2 = passengers_at_vehicle[v2][i];
 		remove_passenger_from_vehicle(v2, p2);
 		update_URT(v2);
 	}
+	cout<<"testing seg fault5"<<endl;
 
 	cout<<"AFTER REMOVAL SEQUENCE HEEEERE "<<endl;
 	cout<<starting_point_sequence2<<" "<<length_sequence2<<endl;
