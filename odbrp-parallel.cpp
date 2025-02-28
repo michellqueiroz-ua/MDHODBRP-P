@@ -14308,7 +14308,7 @@ void swap_sequence(int v1, int v2, bool& megaerror, double &temperature, int &ty
 		}
 	}
 
-	cout<<"testing seg fault1"<<endl;
+	//cout<<"testing seg fault1"<<endl;
 
 	for (int i=0;i<passengers_at_vehicle[v1].size();i++){
 		p1 = passengers_at_vehicle[v1][i];
@@ -14329,7 +14329,7 @@ void swap_sequence(int v1, int v2, bool& megaerror, double &temperature, int &ty
 		cout<<"|"<<slack_time[best_v][i]<<"|  ";
 		cout<<"*"<<free_capacity[best_v][i]<<"*"<<endl;
 	}
-	cout<<"testing seg fault2"<<endl;
+	//cout<<"testing seg fault2"<<endl;
 
 
 	//randomly decide the start point (sequence 2)
@@ -14340,7 +14340,7 @@ void swap_sequence(int v1, int v2, bool& megaerror, double &temperature, int &ty
 	std::uniform_int_distribution<int> dist2l(1, number_stops[v2]-starting_point_sequence2);
 	cout<<number_stops[v2]-starting_point_sequence2<<endl;
 	int length_sequence2 = dist2l(g);
-	cout<<"testing seg fault3"<<endl;
+	//cout<<"testing seg fault3"<<endl;
 	int p2;
 	for (int i=0; i<length_sequence2;i++) {
 		for (int j=0; j<number_passengers_action[v2][starting_point_sequence2+i];j++) {
@@ -14354,18 +14354,18 @@ void swap_sequence(int v1, int v2, bool& megaerror, double &temperature, int &ty
 			}
 		}
 	}
-	cout<<"testing seg fault4"<<endl;
+	//cout<<"testing seg fault4"<<endl;
 	cout<<starting_point_sequence2<<" "<<length_sequence2<<endl;
 	for (int i=0;i<passengers_at_vehicle[v2].size();i++){
 		
 		p2 = passengers_at_vehicle[v2][i];
-		cout<<p2<<endl;
+		//cout<<p2<<endl;
 		remove_passenger_from_vehicle(v2, p2);
-		cout<<"pos rem"<<endl;
+		//cout<<"pos rem"<<endl;
 		update_URT(v2);
-		cout<<"pos urt"<<endl;
+		//cout<<"pos urt"<<endl;
 	}
-	cout<<"testing seg fault5"<<endl;
+	//cout<<"testing seg fault5"<<endl;
 	best_v = v2;
 	cout<<"AFTER REMOVAL SEQUENCE HEEEERE "<<endl;
 	
@@ -15295,7 +15295,7 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 						int b2 = rand() % clusters[cluster_id].size();
 						v2 = clusters[cluster_id][b2];
 
-						if ((free_capacity[v1].size() > 2) && (free_capacity[v2].size() > 2)) {
+						if ((v1 != v2) && (free_capacity[v1].size() > 2) && (free_capacity[v2].size() > 2)) {
 							swap_sequence(v1, v2, megaerror, temperature, type_move, cluster_id);
 						} else {
 							v1 = v2;
