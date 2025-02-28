@@ -14355,17 +14355,20 @@ void swap_sequence(int v1, int v2, bool& megaerror, double &temperature, int &ty
 		}
 	}
 	cout<<"testing seg fault4"<<endl;
-
+	cout<<starting_point_sequence2<<" "<<length_sequence2<<endl;
 	for (int i=0;i<passengers_at_vehicle[v2].size();i++){
-		cout<<p2<<endl;
+		
 		p2 = passengers_at_vehicle[v2][i];
+		cout<<p2<<endl;
 		remove_passenger_from_vehicle(v2, p2);
+		cout<<"pos rem"<<endl;
 		update_URT(v2);
+		cout<<"pos urt"<<endl;
 	}
 	cout<<"testing seg fault5"<<endl;
 	best_v = v2;
 	cout<<"AFTER REMOVAL SEQUENCE HEEEERE "<<endl;
-	cout<<starting_point_sequence2<<" "<<length_sequence2<<endl;
+	
 	for (int i=0; i<=number_stops[best_v];i++) {
 		cout<<stops[best_v][i]<<" ("<<number_passengers_action[best_v][i]<<") "<<" [";
 		for (int j=0; j<number_passengers_action[best_v][i];j++) 
