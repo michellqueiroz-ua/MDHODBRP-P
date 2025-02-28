@@ -13239,7 +13239,7 @@ void re_insertion_swap(int p, bool &accept_relocate_trip, double &temperature, i
 
 
 	}
-	cout<<"herecpcpcp "<<vs<<endl;
+	//cout<<"herecpcpcp "<<vs<<endl;
 	//<<filtered_vehicles_p.size()<<endl;
 	//<<"filtered_vehicles SIZE "<<filtered_vehicles.size()<<endl;
 	while ((not_feasible_insertion) && (iterations <= filtered_vehicles_p.size())) {
@@ -13281,7 +13281,7 @@ void re_insertion_swap(int p, bool &accept_relocate_trip, double &temperature, i
 		}
 		//<<endl;
 
-		cout<<"curr insert3: " << curr_number_insertions_p<<endl;
+		//cout<<"curr insert3: " << curr_number_insertions_p<<endl;
 		//<<"here3"<<endl;
 		sort(insertions_p, insertions_p+curr_number_insertions_p, comparator);
 
@@ -13301,7 +13301,7 @@ void re_insertion_swap(int p, bool &accept_relocate_trip, double &temperature, i
 				best_pos_origin = insertions_p[iterations2].pos_station;
 				best_v = insertions_p[iterations2].v;
 				best_repeated_station = insertions_p[iterations2].repeated_station;
-				cout<<"CHANGING HERE "<<p<<" "<<best_v<<"\n";
+				//cout<<"CHANGING HERE "<<p<<" "<<best_v<<"\n";
 
 				/*cout<<"flex TTSWWDTII: "<<flexibilize_lat_departure_time<<endl;
 				for (int i=0; i<=number_stops[best_v];i++) {
@@ -14262,7 +14262,7 @@ void swap_sequence(int v1, int v2, bool& megaerror, double &temperature, int &ty
 	//vector<int> edited_vehicles;
 
 	int best_v = v2;
-	cout<<"STARTING EMPTYING HEEEERE "<<current_time<<" "<<v1<<endl;
+	/*cout<<"STARTING EMPTYING HEEEERE "<<current_time<<" "<<v1<<endl;
 	
 	for (int i=0; i<=number_stops[best_v];i++) {
 		cout<<stops[best_v][i]<<" ("<<number_passengers_action[best_v][i]<<") "<<" [";
@@ -14274,7 +14274,7 @@ void swap_sequence(int v1, int v2, bool& megaerror, double &temperature, int &ty
 		cout<<"{"<<departure_time_stop[best_v][i]<<"} ";
 		cout<<"|"<<slack_time[best_v][i]<<"|  ";
 		cout<<"*"<<free_capacity[best_v][i]<<"*"<<endl;
-	}
+	}*/
 
 	/*cout<<"passengers to be removed: "<<endl;
 	for (int i = 0; i < passengers_at_vehicle[v].size(); i++){
@@ -14296,7 +14296,7 @@ void swap_sequence(int v1, int v2, bool& megaerror, double &temperature, int &ty
 	for (int i=0; i<length_sequence1;i++) {
 		for (int j=0; j<number_passengers_action[v1][starting_point_sequence1+i];j++) {
 			p1 = action_passengers[v1][starting_point_sequence1+i][j];
-			cout<<"hier"<<p1<<endl;
+			//cout<<"hier"<<p1<<endl;
 			if (removed_passenger[p1][v1] == 0) {
 
 				//remove_passenger_from_vehicle(v1, p1);
@@ -14316,7 +14316,7 @@ void swap_sequence(int v1, int v2, bool& megaerror, double &temperature, int &ty
 		update_URT(v1);
 	}
 	best_v = v1;
-	cout<<"AFTER REMOVAL SEQUENCE HEEEERE "<<endl;
+	/*cout<<"AFTER REMOVAL SEQUENCE HEEEERE "<<endl;
 	cout<<starting_point_sequence1<<" "<<length_sequence1<<endl;
 	for (int i=0; i<=number_stops[best_v];i++) {
 		cout<<stops[best_v][i]<<" ("<<number_passengers_action[best_v][i]<<") "<<" [";
@@ -14328,17 +14328,17 @@ void swap_sequence(int v1, int v2, bool& megaerror, double &temperature, int &ty
 		cout<<"{"<<departure_time_stop[best_v][i]<<"} ";
 		cout<<"|"<<slack_time[best_v][i]<<"|  ";
 		cout<<"*"<<free_capacity[best_v][i]<<"*"<<endl;
-	}
+	}*/
 	//cout<<"testing seg fault2"<<endl;
 
 
 	//randomly decide the start point (sequence 2)
 	std::uniform_int_distribution<int> dist2s(1, number_stops[v2]-1);
-	cout<<number_stops[v2]-1<<endl;
+	//cout<<number_stops[v2]-1<<endl;
 	int starting_point_sequence2 = dist2s(g);
 	//randomly decide the length (sequence 2)
 	std::uniform_int_distribution<int> dist2l(1, number_stops[v2]-starting_point_sequence2);
-	cout<<number_stops[v2]-starting_point_sequence2<<endl;
+	//cout<<number_stops[v2]-starting_point_sequence2<<endl;
 	int length_sequence2 = dist2l(g);
 	//cout<<"testing seg fault3"<<endl;
 	int p2;
@@ -14367,7 +14367,7 @@ void swap_sequence(int v1, int v2, bool& megaerror, double &temperature, int &ty
 	}
 	//cout<<"testing seg fault5"<<endl;
 	best_v = v2;
-	cout<<"AFTER REMOVAL SEQUENCE HEEEERE "<<endl;
+	/*cout<<"AFTER REMOVAL SEQUENCE HEEEERE "<<endl;
 	
 	for (int i=0; i<=number_stops[best_v];i++) {
 		cout<<stops[best_v][i]<<" ("<<number_passengers_action[best_v][i]<<") "<<" [";
@@ -14379,15 +14379,17 @@ void swap_sequence(int v1, int v2, bool& megaerror, double &temperature, int &ty
 		cout<<"{"<<departure_time_stop[best_v][i]<<"} ";
 		cout<<"|"<<slack_time[best_v][i]<<"|  ";
 		cout<<"*"<<free_capacity[best_v][i]<<"*"<<endl;
-	}
+	}*/
 
 	see_if_arrival_departure_dont_match(v1);
 	update_URT(v1);
-	//stay_times_consistency_empty_vehicle(v1);
+	if (free_capacity[v1].size() == 2)
+		stay_times_consistency_empty_vehicle(v1);
 
 	see_if_arrival_departure_dont_match(v2);
 	update_URT(v2);
-	//stay_times_consistency_empty_vehicle(v2);
+	if (free_capacity[v2].size() == 2)
+		stay_times_consistency_empty_vehicle(v2);
 
 	
 	//randomly shuffle passengers in the vector to insert them randomly
