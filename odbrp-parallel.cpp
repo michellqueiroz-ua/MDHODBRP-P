@@ -15189,6 +15189,7 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 
 			double y = (double)rand() / (double)RAND_MAX;
 			swap_vehicle = false;
+			
 			if (y <= 1) {
 				count_static_it++;
 				//SWITCH
