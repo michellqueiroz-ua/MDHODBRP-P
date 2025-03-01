@@ -14355,7 +14355,7 @@ void swap_sequence(int v1, int v2, bool& megaerror, double &temperature, int &ty
 		}
 	}
 	//cout<<"testing seg fault4"<<endl;
-	cout<<starting_point_sequence2<<" "<<length_sequence2<<endl;
+	//cout<<starting_point_sequence2<<" "<<length_sequence2<<endl;
 	for (int i=0;i<passengers_at_vehicle[v2].size();i++){
 		
 		p2 = passengers_at_vehicle[v2][i];
@@ -15189,7 +15189,7 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 
 			double y = (double)rand() / (double)RAND_MAX;
 			swap_vehicle = false;
-			if (y <= 0.5) {
+			if (y <= 1) {
 				count_static_it++;
 				//SWITCH
 				//cout<<"PIC: "<<passengers_in_cluster.size()<<endl;
@@ -15220,7 +15220,7 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 					return;
 				}
 
-				cout<<"AFTER_SIMPLE RELOCATE"<<endl;
+				/*cout<<"AFTER_SIMPLE RELOCATE"<<endl;
 				for (int kk=0;kk<total_requests;kk++){
 					if (vehicle_assigned[kk] != -1) {
 						solution_validation(kk, vehicle_assigned[kk]);
@@ -15229,7 +15229,7 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 				}
 				for (int vv=0;vv<total_number_vehicles;vv++){
 					times_validation(vv);
-				}
+				}*/
 			}
 
 			
@@ -15279,7 +15279,7 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 			}
 
 			//SWAP HERE
-			if (y > 0.5) {
+			if (y > 10) {
 				count_static_it++;
 				//SWAP
 				
@@ -15317,7 +15317,7 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 					//relocate_all_passengers_vehicle(v, init_temperature, type_move);
 				//}
 
-				cout<<"AFTER_SIMPLE SWAP"<<endl;
+				/*cout<<"AFTER_SIMPLE SWAP"<<endl;
 				for (int kk=0;kk<total_requests;kk++){
 					if (vehicle_assigned[kk] != -1) {
 						solution_validation(kk, vehicle_assigned[kk]);
@@ -15326,7 +15326,7 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 				}
 				for (int vv=0;vv<total_number_vehicles;vv++){
 					times_validation(vv);
-				}
+				}*/
 				
 			}
 
