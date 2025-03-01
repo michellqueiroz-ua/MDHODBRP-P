@@ -15140,6 +15140,8 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 	//type_move 1 - accepeted and improving
 	//type_move 2 - accepted and non improving
 	//type_move 3 - rejected or not feasible move
+	std::random_device rd;
+	std::mt19937 g(rd());
 
 	//<<"hier8"<<endl;
 	temperature = init_temperature;
@@ -15189,8 +15191,13 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 
 			double y = (double)rand() / (double)RAND_MAX;
 			swap_vehicle = false;
+
+			//randomly decide the neighborhood
+			std::uniform_int_distribution<int> neigh1(1, 3);
+			int neighborhood_chosen = neigh1(g);
+			cout<<neighborhood_chosen<<endl;
 			
-			if (y <= 1) {
+			if (neighborhood_chosen == 1) {
 				count_static_it++;
 				//SWITCH
 				//cout<<"PIC: "<<passengers_in_cluster.size()<<endl;
@@ -15234,7 +15241,7 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 			}
 
 			
-			if (y > 10) {
+			if (neighborhood_chosen == 2) {
 				count_static_it++;
 				//REDUCE
 				
@@ -15280,7 +15287,7 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 			}
 
 			//SWAP HERE
-			if (y > 10) {
+			if (neighborhood_chosen == 3) {
 				count_static_it++;
 				//SWAP
 				
