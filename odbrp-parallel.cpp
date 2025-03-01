@@ -15197,6 +15197,7 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 			int neighborhood_chosen = neigh1(g);
 			//cout<<neighborhood_chosen<<endl;
 			
+			//RELOCATE
 			if (neighborhood_chosen == 1) {
 				count_static_it++;
 				//SWITCH
@@ -15240,8 +15241,8 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 				}*/
 			}
 
-			
-			if (neighborhood_chosen == 2) {
+			//DESTROY REPAIR
+			if (neighborhood_chosen == 3) {
 				count_static_it++;
 				//REDUCE
 				
@@ -15287,7 +15288,7 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 			}
 
 			//SWAP HERE
-			if (neighborhood_chosen == 3) {
+			if (neighborhood_chosen == 2) {
 				count_static_it++;
 				//SWAP
 				
