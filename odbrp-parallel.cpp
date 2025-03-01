@@ -15193,9 +15193,9 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 			swap_vehicle = false;
 
 			//randomly decide the neighborhood
-			std::uniform_int_distribution<int> neigh1(1, 3);
+			std::uniform_int_distribution<int> neigh1(1, 2);
 			int neighborhood_chosen = neigh1(g);
-			cout<<neighborhood_chosen<<endl;
+			//cout<<neighborhood_chosen<<endl;
 			
 			if (neighborhood_chosen == 1) {
 				count_static_it++;
