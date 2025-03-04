@@ -15193,7 +15193,7 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 			swap_vehicle = false;
 
 			//randomly decide the neighborhood
-			std::uniform_int_distribution<int> neigh1(1, 2);
+			std::uniform_int_distribution<int> neigh1(1, 1);
 			int neighborhood_chosen = neigh1(g);
 			//cout<<neighborhood_chosen<<endl;
 			
