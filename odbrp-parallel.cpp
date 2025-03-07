@@ -15193,7 +15193,7 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 			swap_vehicle = false;
 
 			//randomly decide the neighborhood
-			std::uniform_int_distribution<int> neigh1(1, 1);
+			std::uniform_int_distribution<int> neigh1(1, 3);
 			int neighborhood_chosen = neigh1(g);
 			//cout<<neighborhood_chosen<<endl;
 			
@@ -15242,7 +15242,7 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 			}
 
 			//DESTROY REPAIR
-			if (neighborhood_chosen == 3) {
+			if (neighborhood_chosen == 2) {
 				count_static_it++;
 				//REDUCE
 				
@@ -15288,7 +15288,7 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 			}
 
 			//SWAP HERE
-			if (neighborhood_chosen == 2) {
+			if (neighborhood_chosen == 3) {
 				count_static_it++;
 				//SWAP
 				
