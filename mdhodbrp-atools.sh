@@ -6,7 +6,7 @@ module load calcua/2024a GCCcore/13.3.0
 run_file=parallelheur.csv
 
 echo "input_file; seed1" > $run_file
-for input_file in `find ../../instances/EXP_NN/2700_NN -type f -name "*.csv"` ; do
+for input_file in `find ../../instances/EXP_NN/3000_NN -type f -name "*.csv"` ; do
     counterx=6
     for iter in {1..10}
     do
