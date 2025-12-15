@@ -129,7 +129,7 @@ vector<int> passengers_on_hold;
 
 static matrixVC arrival_time_stop_temp, departure_time_stop_temp;
 static listP user_ride_time_temp, user_ride_time_start, affected_passengers;
-static listP response_time_request;
+static std::vector<std::chrono::high_resolution_clock::time_point> response_time_request;
 
 static listV vehicle_type;
 static listV current_position;
@@ -169,7 +169,8 @@ listP number_stops_uneven;
 static int extra_travel_time;
 static double passengers_per_kilometer, average_travel_time_ratio;
 static int total_deadheading_times, total_shared_times, total_per_vehicle_travel_time;
-static int average_response_time_new_requests, average_waiting_time;
+static auto average_response_time_new_requests
+static int average_waiting_time;
 
 static int current_time;
 static clock_t start_time;
