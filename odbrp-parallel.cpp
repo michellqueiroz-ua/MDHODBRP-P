@@ -169,7 +169,7 @@ listP number_stops_uneven;
 static int extra_travel_time;
 static double passengers_per_kilometer, average_travel_time_ratio;
 static int total_deadheading_times, total_shared_times, total_per_vehicle_travel_time;
-static auto average_response_time_new_requests;
+static double average_response_time_new_requests;
 static int average_waiting_time;
 
 static int current_time;
