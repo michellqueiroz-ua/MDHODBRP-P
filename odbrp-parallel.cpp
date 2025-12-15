@@ -169,7 +169,7 @@ listP number_stops_uneven;
 static int extra_travel_time;
 static double passengers_per_kilometer, average_travel_time_ratio;
 static int total_deadheading_times, total_shared_times, total_per_vehicle_travel_time;
-static auto average_response_time_new_requests
+static auto average_response_time_new_requests;
 static int average_waiting_time;
 
 static int current_time;
@@ -15931,8 +15931,8 @@ int main(int argc, char **argv) {
 	//start_time = std::clock();
 	begin_time = get_wall_time();
 	total_number_vehicles = 0;
-	average_response_time_new_requests = 0;
-	average_waiting_time;
+	average_response_time_new_requests = 0.0;
+	average_waiting_time = 0;
 	for (int i=1; i<argc; i++)
   	{
 		if (strcmp(argv[i], "--filename_requests") == 0) {
@@ -16566,7 +16566,10 @@ int main(int argc, char **argv) {
 									del_passenger[px] = 1;
 									served_requests_so_far++;
 									response_time_request[nxt_p] = std::chrono::high_resolution_clock::now();
-									average_response_time_new_requests += response_time_request[nxt_p] - time_stamp[nxt_p];
+									//average_response_time_new_requests += response_time_request[nxt_p] - time_stamp[nxt_p];
+									auto response_duration = std::chrono::duration<double>(response_time_request[nxt_p].time_since_epoch()).count();
+									double response_time_in_seconds = response_duration - static_cast<double>(time_stamp[nxt_p]);
+									average_response_time_new_requests += response_time_in_seconds;
 								}
 								//<<"hier6"<<endl;
 								//<<"3nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<" cid: "<<sort_clusters[nxt_p][it_cl_inser[nxt_p]].idx_cluster<<endl;
