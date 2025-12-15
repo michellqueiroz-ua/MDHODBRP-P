@@ -129,6 +129,7 @@ vector<int> passengers_on_hold;
 
 static matrixVC arrival_time_stop_temp, departure_time_stop_temp;
 static listP user_ride_time_temp, user_ride_time_start, affected_passengers;
+static listP response_time_request;
 
 static listV vehicle_type;
 static listV current_position;
@@ -153,6 +154,7 @@ static listS stations_ids;
 
 //information about the requests
 static listP time_stamp, earliest_departure, latest_departure, latest_arrival, direct_travel_time;
+static listP waiting_time;
 static listP delay;
 static listP passengers_departure_time_from_home;
 static matrixPS stops_origin, stops_destination;
@@ -167,6 +169,7 @@ listP number_stops_uneven;
 static int extra_travel_time;
 static double passengers_per_kilometer, average_travel_time_ratio;
 static int total_deadheading_times, total_shared_times, total_per_vehicle_travel_time;
+static int average_response_time_new_requests, average_waiting_time;
 
 static int current_time;
 static clock_t start_time;
@@ -14834,7 +14837,66 @@ void relocate_passenger(int p, double &temperature, int &type_move, int cluster_
 	//<<"H"<<endl;
 }
 
+void update_direct_travel_times() {
+    // For each passenger, compute the minimum travel time between their available stops
+    for (int p = 0; p < total_requests; p++) {
+        int min_travel_time = INT_MAX;
+        
+        // Iterate over all combinations of pickup and delivery stops
+        for (int i = 0; i < number_stops_origin[p]; i++) {
+            for (int j = 0; j < number_stops_destination[p]; j++) {
+                int pickup_stop = stops_origin[p][i];
+                int delivery_stop = stops_destination[p][j];
+                
+                // Compute travel time from this pickup to this delivery
+                int travel_time_p_d = travel_time[pickup_stop][delivery_stop];
+                
+                // Track the minimum travel time across all stop combinations
+                if (travel_time_p_d < min_travel_time) {
+                    min_travel_time = travel_time_p_d;
+                }
+            }
+        }
+        
+        // Store the minimum direct travel time for this passenger
+        direct_travel_time[p] = min_travel_time;
+    }
+}
 
+void compute_waiting_times() {
+	
+	//compute waiting times for each passenger
+	for (int p=0; p<total_requests; p++) {
+		int waiting_time_p = 0;
+
+		int v = vehicle_assigned[p];
+        if (v != -1) {
+            // find first stop index on vehicle v where passenger p appears (pickup)
+            int pickup_idx = -1;
+            for (int i = 0; i <= number_stops[v]; i++) {
+                for (int j = 0; j < number_passengers_action[v][i]; j++) {
+                    if (action_passengers[v][i][j] == p) {
+                        pickup_idx = i;
+                        break;
+                    }
+                }
+                if (pickup_idx != -1) break;
+            }
+
+            if (pickup_idx != -1) {
+                int pickup_time = departure_time_stop[v][pickup_idx];
+                waiting_time_p = pickup_time - earliest_departure[p];
+                if (waiting_time_p < 0) waiting_time_p = 0;
+            }
+        }
+
+        // store per-passenger waiting time (assumes waiting_time[] exists globally)
+        waiting_time[p] = waiting_time_p;
+		average_waiting_time += waiting_time_p;
+		
+
+	}
+}
 
 void check_valid_user_ride_times() {
 	extra_travel_time = 0;
@@ -15868,6 +15930,8 @@ int main(int argc, char **argv) {
 	//start_time = std::clock();
 	begin_time = get_wall_time();
 	total_number_vehicles = 0;
+	average_response_time_new_requests = 0;
+	average_waiting_time;
 	for (int i=1; i<argc; i++)
   	{
 		if (strcmp(argv[i], "--filename_requests") == 0) {
@@ -16500,6 +16564,8 @@ int main(int argc, char **argv) {
 									//<<px<<" "<<del_passenger.size()<<endl;
 									del_passenger[px] = 1;
 									served_requests_so_far++;
+									response_time_request[nxt_p] = std::chrono::high_resolution_clock::now();
+									average_response_time_new_requests += response_time_request[nxt_p] - time_stamp[nxt_p];
 								}
 								//<<"hier6"<<endl;
 								//<<"3nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<" cid: "<<sort_clusters[nxt_p][it_cl_inser[nxt_p]].idx_cluster<<endl;
@@ -16706,7 +16772,7 @@ int main(int argc, char **argv) {
 
 	//cout<<"END"<<endl;
 	update_arrival_time_depot();
-
+	update_direct_travel_times();
 	check_valid_user_ride_times();
 	
 	/*for (int i =0; i < total_requests; i++){
@@ -16748,6 +16814,9 @@ int main(int argc, char **argv) {
 
 	double avg_per_vehicle_travel_time = (double)total_per_vehicle_travel_time/total_number_vehicles;
 
+	average_response_time_new_requests = (double)average_response_time_new_requests/served_passengers;
+	average_waiting_time = (double)average_waiting_time/served_passengers;
+
 	for (int c=0;c<number_clusters;c++){
 		total_user_ride_time += best_tot_cluster_ride_time[c];
 	}
@@ -16764,7 +16833,7 @@ int main(int argc, char **argv) {
 	//<<total_user_ride_time<<endl;
 	std::ofstream output_file;
 	output_file.open(output_filename, std::ios::app);
-	output_file << requests_filename << " " << served_passengers << " " << served_passengers_3party << " " << total_served_passengers << " " << passengers_per_kilometer << " " << average_extra_travel_time << " " << average_travel_time_ratio << " " << total_deadheading_times << " " << total_shared_times << " " << total_user_ride_time << " " << best_total_user_ride_time << " avgurt: " << average_user_ride_time << " " << avg_per_vehicle_travel_time << " " << seed << " " << total_number_vehicles << " " << overall_occupancy << " " << overall_occupancy4 << " " << overall_occupancy8 << " " << overall_occupancy12 << " " << overall_max_capacity << " " << overall_max_capacity4 << " " << overall_max_capacity8 << " " << overall_max_capacity12;
+	output_file << requests_filename << " " << served_passengers << " " << served_passengers_3party << " " << total_served_passengers << " " << passengers_per_kilometer << " " << average_extra_travel_time << " " << average_travel_time_ratio << " " << total_deadheading_times << " " << total_shared_times << " " << total_user_ride_time << " " << best_total_user_ride_time << " avgurt: " << average_user_ride_time << " " << avg_per_vehicle_travel_time << " " << seed << " " << total_number_vehicles << " " << overall_occupancy << " " << overall_occupancy4 << " " << overall_occupancy8 << " " << overall_occupancy12 << " " << overall_max_capacity << " " << overall_max_capacity4 << " " << overall_max_capacity8 << " " << overall_max_capacity12 << " " << average_waiting_time << " " << average_response_time_new_requests;
 	output_file<<" ";
 	//previously already commented
 	/*cout << "served passengers ODB " << served_passengers << endl;
