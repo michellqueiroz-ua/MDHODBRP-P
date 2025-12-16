@@ -16367,6 +16367,8 @@ int main(int argc, char **argv) {
 
 	sort(sort_passengers, sort_passengers+total_requests, comparator3);
 
+	// initialize response_time_request
+	response_time_request.resize(total_requests);
 	k = 0;
 	//current_time = sort_passengers[k].time_stamp;
 	current_time = 0; //static
@@ -16559,10 +16561,10 @@ int main(int argc, char **argv) {
 								if (vehicle_assigned[nxt_p] == -1) {
 									//if (not (entered_here))
 									//	cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, avl_cluster[px]);
-									//<<"1nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
+									cout<<"1nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 									it_cl_inser[nxt_p]++;
 								} else {
-									//<<"2nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
+									cout<<"2nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 									continue_this_passenger = false;
 									//<<px<<" "<<del_passenger.size()<<endl;
 									del_passenger[px] = 1;
@@ -16574,7 +16576,7 @@ int main(int argc, char **argv) {
 									average_response_time_new_requests += response_time_in_seconds;
 								}
 								//<<"hier6"<<endl;
-								//<<"3nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<" cid: "<<sort_clusters[nxt_p][it_cl_inser[nxt_p]].idx_cluster<<endl;
+								cout<<"3nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<" cid: "<<sort_clusters[nxt_p][it_cl_inser[nxt_p]].idx_cluster<<endl;
 								//<<"continue: "<<vehicle_assigned[nxt_p]<<endl;
 								if (continue_this_passenger) {
 									//if (it_cl_inser[nxt_p] >= number_clusters) {
