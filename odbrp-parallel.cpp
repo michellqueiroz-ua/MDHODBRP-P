@@ -16526,8 +16526,8 @@ int main(int argc, char **argv) {
 							while (continue_this_passenger) {
 								//<<"hier5"<<endl;
 								//#pragma omp parallel for num_threads(num_threads_for)
-								//<<"0nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
-								//<<"cluster av: "<<avl_cluster[px]<<endl;
+								cout<<"0nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
+								cout<<"cluster av: "<<avl_cluster[px]<<endl;
 								
 								//cout<<"bf_inser1 "<<avl_cluster[px]<<endl;
 								/*bool entered_here = false;
@@ -16553,7 +16553,7 @@ int main(int argc, char **argv) {
 
 								cheapest_insertion_randomized_parallel_NEW(nxt_p, accept_infeasible_insertion, avl_cluster[px]);
 								
-								//cout<<"af_inser1 "<<avl_cluster[px]<<endl;
+								cout<<"af_inser1 "<<avl_cluster[px]<<endl;
 
 								//<<"hier5.9"<<endl;
 								if (vehicle_assigned[nxt_p] == -1) {
