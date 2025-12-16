@@ -131,8 +131,8 @@ static matrixVC arrival_time_stop_temp, departure_time_stop_temp;
 static listP user_ride_time_temp, user_ride_time_start, affected_passengers;
 static std::vector<std::chrono::high_resolution_clock::time_point> response_time_request;
 // At top with other declarations:
-std::vector<std::chrono::high_resolution_clock::time_point> request_time_stamp(900);
-std::vector<bool> request_timestamp_captured(25000, false); // Track if already captured
+static std::vector<std::chrono::high_resolution_clock::time_point> request_time_stamp;
+static std::vector<bool> request_timestamp_captured;
 
 static listV vehicle_type;
 static listV current_position;
@@ -16079,9 +16079,8 @@ int main(int argc, char **argv) {
    		number_vehicles_at_depot[i] = 0;
    	}
 
-	for (int p = 0; p < total_requests; p++) {
-		request_timestamp_captured[p] = false;
-	}
+	request_time_stamp.resize(total_requests + 1);
+	request_timestamp_captured.resize(total_requests + 1, false);
 
    	//<<"x2 "<<total_requests<<" ";
    	
