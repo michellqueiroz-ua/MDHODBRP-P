@@ -130,6 +130,9 @@ vector<int> passengers_on_hold;
 static matrixVC arrival_time_stop_temp, departure_time_stop_temp;
 static listP user_ride_time_temp, user_ride_time_start, affected_passengers;
 static std::vector<std::chrono::high_resolution_clock::time_point> response_time_request;
+// At top with other declarations:
+std::vector<std::chrono::high_resolution_clock::time_point> request_time_stamp(900);
+std::vector<bool> request_timestamp_captured(25000, false); // Track if already captured
 
 static listV vehicle_type;
 static listV current_position;
@@ -16076,6 +16079,10 @@ int main(int argc, char **argv) {
    		number_vehicles_at_depot[i] = 0;
    	}
 
+	for (int p = 0; p < total_requests; p++) {
+		request_timestamp_captured[p] = false;
+	}
+
    	//<<"x2 "<<total_requests<<" ";
    	
 	current_time = time_stamp[0]; //time stamp of the first passenger is the current time on the system
@@ -16436,7 +16443,7 @@ int main(int argc, char **argv) {
 	}
 
 	//while((k < total_requests) or (current_time < 32400)) {
-	while(algo_iterations < 100) { //static
+	while(algo_iterations < 1000) { //static
 		algo_iterations++;
 
 	//while(current_time < 28800) {
@@ -16516,7 +16523,11 @@ int main(int argc, char **argv) {
 							//<<"12size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 							int nxt_p = passengers_to_be_inserted[px];
 							//cout<<"nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
-							
+							// Capture timestamp only on first entry for this passenger
+							if (!request_timestamp_captured[nxt_p]) {
+								request_time_stamp[nxt_p] = std::chrono::high_resolution_clock::now();
+								request_timestamp_captured[nxt_p] = true;
+							}
 							//<<"nxp: "<<nxt_p<<endl;
 							it_cl_inser[nxt_p] = 0;
 							//<<"13size: "<<passengers_to_be_inserted.size()<<" "<<nxt_p<<"ends"<<endl;
@@ -16570,9 +16581,9 @@ int main(int argc, char **argv) {
 									del_passenger[px] = 1;
 									served_requests_so_far++;
 									response_time_request[nxt_p] = std::chrono::high_resolution_clock::now();
-									//average_response_time_new_requests += response_time_request[nxt_p] - time_stamp[nxt_p];
-									auto response_duration = std::chrono::duration<double>(response_time_request[nxt_p].time_since_epoch()).count();
-									double response_time_in_seconds = response_duration - static_cast<double>(time_stamp[nxt_p]);
+									auto response_time_duration = std::chrono::duration<double>(response_time_request[nxt_p] - request_time_stamp[nxt_p]);
+									double response_time_in_seconds = response_time_duration.count();
+									if (response_time_in_seconds < 0) response_time_in_seconds = 0;
 									average_response_time_new_requests += response_time_in_seconds;
 								}
 								//<<"hier6"<<endl;
