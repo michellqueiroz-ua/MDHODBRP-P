@@ -15953,6 +15953,7 @@ int main(int argc, char **argv) {
 		  		}
 		  	}
 		  }*/
+			cout<<"leave ttm"<<endl;
 		   // <<endl;
 		} else if (strcmp(argv[i], "--filename_uneven") == 0) {
 			//cout<<"ttm"<<endl;
@@ -15962,7 +15963,7 @@ int main(int argc, char **argv) {
 			//<<"ttm"<<endl;
 			//input_travel_time(argv[i+1]);
 			output_filename = argv[i+1];
-			//<<"leave ttm"<<endl;
+			
 		} else if (strcmp(argv[i], "--depot") == 0) {
 			for (int j = 0; j < number_depots; j++) {
 				i++;
@@ -16596,7 +16597,7 @@ int main(int argc, char **argv) {
 										//}
 									//}
 								}
-								//<<"4nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
+								cout<<"4nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 								
 							}
 
