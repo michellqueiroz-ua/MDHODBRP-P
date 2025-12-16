@@ -15929,6 +15929,7 @@ int main(int argc, char **argv) {
 	string requests_filename;
 	comp_time = 0.25;
 	//start_time = std::clock();
+	//cout<<re
 	begin_time = get_wall_time();
 	total_number_vehicles = 0;
 	average_response_time_new_requests = 0.0;
@@ -15936,9 +15937,9 @@ int main(int argc, char **argv) {
 	for (int i=1; i<argc; i++)
   	{
 		if (strcmp(argv[i], "--filename_requests") == 0) {
-			//input_requests_festival(argv[i+1]);
+			input_requests_festival(argv[i+1]);
 			//input_requests_commuting(argv[i+1]);
-			input_requests(argv[i+1]); //concert & nightlife
+			//input_requests(argv[i+1]); //concert & nightlife
 			requests_filename = argv[i+1];
 			cout<<"x"<<total_requests<<" ";
 		} else if (strcmp(argv[i], "--filename_travel_time") == 0) {
