@@ -173,7 +173,7 @@ static int extra_travel_time;
 static double passengers_per_kilometer, average_travel_time_ratio;
 static int total_deadheading_times, total_shared_times, total_per_vehicle_travel_time;
 static double average_response_time_new_requests;
-static int average_waiting_time;
+static double average_waiting_time;
 
 static int current_time;
 static clock_t start_time;
@@ -16791,7 +16791,7 @@ int main(int argc, char **argv) {
 	//cout<<"END"<<endl;
 	update_arrival_time_depot();
 	update_direct_travel_times();
-	compute_waiting_times();
+	
 	check_valid_user_ride_times();
 	
 	/*for (int i =0; i < total_requests; i++){
@@ -16821,6 +16821,7 @@ int main(int argc, char **argv) {
 	compute_passengers_per_kilometers();
 
 	compute_deadheading_times();
+	compute_waiting_times();
 
 	cout<<"check occu"<<endl;
 	check_vehicle_occupancy();
