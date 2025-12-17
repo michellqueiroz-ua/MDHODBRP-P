@@ -16791,6 +16791,7 @@ int main(int argc, char **argv) {
 	//cout<<"END"<<endl;
 	update_arrival_time_depot();
 	update_direct_travel_times();
+	compute_waiting_times();
 	check_valid_user_ride_times();
 	
 	/*for (int i =0; i < total_requests; i++){
