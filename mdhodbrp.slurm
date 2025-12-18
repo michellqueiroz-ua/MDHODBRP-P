@@ -10,9 +10,11 @@
 #SBATCH -e stderr.file
 #SBATCH --partition=skylake
 
+module load calcua/2024a GCCcore/13.3.0
+
 for input_file in `find ../../large-instances/festival -type f -name "*.csv"` ; do
     counterx=0
-    for iter in 1
+    for iter in 1 2 3 4 5
     do
         counterx=$((counterx+1))
         seed1=0
