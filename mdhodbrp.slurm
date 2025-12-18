@@ -2,7 +2,7 @@
 #
 
 #SBATCH --job-name=CreateNetwork
-#SBATCH --nodes=5
+#SBATCH --nodes=1
 #SBATCH --ntasks=7
 #SBATCH --cpus-per-task=2
 #SBATCH --time=24:00:00
