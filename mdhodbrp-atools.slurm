@@ -1,11 +1,10 @@
 #!/bin/bash
 
+#SBATCH --job-name=CreateNetwork
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=2
 #SBATCH --time=24:00:00
-#SBATCH -o stdout.file
-#SBATCH -e stderr.file
 #SBATCH --partition=skylake
 
 module load atools
