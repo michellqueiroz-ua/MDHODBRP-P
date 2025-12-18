@@ -16485,11 +16485,11 @@ int main(int argc, char **argv) {
 
 			
 
-			/*#pragma omp parallel for num_threads(num_threads_for)
+			#pragma omp parallel for num_threads(num_threads_for)
 			for (int itx = 0; itx<num_threads_for; itx++) {
 				int nxt_p = passengers_to_be_inserted[itx];
 				compute_mean_distances_request_partitions(nxt_p);
-			}*/
+			}
 			
 
 			//maybe sort passengers_to_be_inserted in a way to avoid collision between clusters???
@@ -16532,7 +16532,7 @@ int main(int argc, char **argv) {
 							it_cl_inser[nxt_p] = 0;
 							//<<"13size: "<<passengers_to_be_inserted.size()<<" "<<nxt_p<<"ends"<<endl;
 							
-							//compute_mean_distances_request_partitions(nxt_p);
+							compute_mean_distances_request_partitions(nxt_p);
 							
 							bool continue_this_passenger = true;
 							bool accept_infeasible_insertion = false;
@@ -16547,18 +16547,18 @@ int main(int argc, char **argv) {
 								bool entered_there = false;
 								if (avl_cluster[px] == sort_clusters[nxt_p][0].idx_cluster){
 									entered_here = true;
-									cheapest_insertion_randomized_parallel_NEW(nxt_p, accept_infeasible_insertion, avl_cluster[px]);
+									cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, avl_cluster[px]);
 								} else {
 									if (number_clusters > 1) {
 										if (avl_cluster[px] == sort_clusters[nxt_p][1].idx_cluster){
 											entered_here = true;
-											cheapest_insertion_randomized_parallel_NEW(nxt_p, accept_infeasible_insertion, avl_cluster[px]);
+											cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, avl_cluster[px]);
 										} else {
 											double y = (double)rand() / (double)RAND_MAX;
 											if (y <= 0.5) {
 												entered_there = true;
 												//entered_here = true;
-												cheapest_insertion_randomized_parallel_NEW(nxt_p, accept_infeasible_insertion, avl_cluster[px]);
+												cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, avl_cluster[px]);
 											}
 										}
 									}
