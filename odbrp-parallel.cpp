@@ -16023,6 +16023,7 @@ int main(int argc, char **argv) {
 		}
 
 	}
+	cout << "Number of threads available: " << omp_get_max_threads() << endl;
 	//<<"x1"<<total_requests<<" ";
 	/*cout<<"AFTER"<<endl;
 	for(int i=0;i<5828;i++) {
