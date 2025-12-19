@@ -15964,9 +15964,9 @@ int main(int argc, char **argv) {
 	for (int i=1; i<argc; i++)
   	{
 		if (strcmp(argv[i], "--filename_requests") == 0) {
-			input_requests_festival(argv[i+1]);
+			//input_requests_festival(argv[i+1]);
 			//input_requests_commuting(argv[i+1]);
-			//input_requests(argv[i+1]); //concert & nightlife
+			input_requests(argv[i+1]); //concert & nightlife
 			requests_filename = argv[i+1];
 			cout<<"x"<<total_requests<<" ";
 		} else if (strcmp(argv[i], "--filename_travel_time") == 0) {
@@ -16571,18 +16571,18 @@ int main(int argc, char **argv) {
 								bool entered_there = false;
 								if (avl_cluster[px] == sort_clusters[nxt_p][0].idx_cluster){
 									entered_here = true;
-									cheapest_insertion_randomized_parallel_NEW(nxt_p, accept_infeasible_insertion, avl_cluster[px]);
+									cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, avl_cluster[px]);
 								} else {
 									if (number_clusters > 1) {
 										if (avl_cluster[px] == sort_clusters[nxt_p][1].idx_cluster){
 											entered_here = true;
-											cheapest_insertion_randomized_parallel_NEW(nxt_p, accept_infeasible_insertion, avl_cluster[px]);
+											cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, avl_cluster[px]);
 										} else {
 											double y = (double)rand() / (double)RAND_MAX;
 											if (y <= 0.5) {
 												entered_there = true;
 												//entered_here = true;
-												cheapest_insertion_randomized_parallel_NEW(nxt_p, accept_infeasible_insertion, avl_cluster[px]);
+												cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, avl_cluster[px]);
 											}
 										}
 									}
