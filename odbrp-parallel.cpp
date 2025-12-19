@@ -29,7 +29,7 @@ using namespace std;
 #define maxtotalcapacity 40
 #define maxtypevehicles 40
 #define maxnumberdepots 10
-#define number_clusters 2
+#define number_clusters 4
 
 typedef int listP[21000 + 1];
 //typedef int matrixVP[maxvehicles + 1][maxpassengers + 1];
@@ -3741,7 +3741,7 @@ void re_insertion_to_repair(int p, bool &accept_relocate_trip, int cluster_id){
 					flexibilize_lat_departure_time = false;
 				
 				see_if_arrival_departure_dont_match(v);
-				cout<<"HERE SA"<<endl;
+				//cout<<"HERE SA"<<endl;
 				if (curr_number_insertions_p < 44955)
 					cheapest_origin2_p(p, v, min_increase_length, sel_origin, pos_origin, repeated_station, flexibilize_lat_departure_time, insertions_p, curr_number_insertions_p);
 				
@@ -5018,7 +5018,7 @@ bool repair_solution(int v, int p, int cluster_id){
 
 void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insertion, int cluster_id){
 
-	// Basic runtime guards to help catch out-of-range accesses causing segfaults.
+	/*// Basic runtime guards to help catch out-of-range accesses causing segfaults.
 	if (p < 0) {
 		cerr << "DEBUG: cheapest_insertion_randomized_parallel called with negative p=" << p << endl;
 		return;
@@ -5039,7 +5039,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 	// If clusters[cluster_id] is unexpectedly empty, emit a message (may indicate earlier logic bug)
 	if (clusters[cluster_id].empty()) {
 		cerr << "DEBUG: cheapest_insertion_randomized_parallel: cluster " << cluster_id << " is empty (p=" << p << ")" << endl;
-	}
+	}*/
 
 	/*if (p == 5) {
 		cout<<p<<"GOT HERE"<<endl;
@@ -6048,7 +6048,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 						see_if_arrival_departure_dont_match(v);
 						//<<"heereBB"<<endl;
 						//<<v<<endl;
-						cout<<"insidere here"<<endl;
+						//cout<<"insidere here"<<endl;
 						if (curr_number_insertions_p < 44995)
 							cheapest_origin2_p(p, v, min_increase_length, sel_origin, pos_origin, repeated_station, flexibilize_lat_departure_time, insertions_p, curr_number_insertions_p);
 						
@@ -15964,8 +15964,8 @@ int main(int argc, char **argv) {
 	for (int i=1; i<argc; i++)
   	{
 		if (strcmp(argv[i], "--filename_requests") == 0) {
-			//input_requests_festival(argv[i+1]);
-			input_requests_commuting(argv[i+1]);
+			input_requests_festival(argv[i+1]);
+			//input_requests_commuting(argv[i+1]);
 			//input_requests(argv[i+1]); //concert & nightlife
 			requests_filename = argv[i+1];
 			cout<<"x"<<total_requests<<" ";
@@ -16563,26 +16563,26 @@ int main(int argc, char **argv) {
 							while (continue_this_passenger) {
 								//<<"hier5"<<endl;
 								//#pragma omp parallel for num_threads(num_threads_for)
-								cout<<"0nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
-								cout<<"cluster av: "<<avl_cluster[px]<<endl;
+								//cout<<"0nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
+								//cout<<"cluster av: "<<avl_cluster[px]<<endl;
 								
 								//cout<<"bf_inser1 "<<avl_cluster[px]<<endl;
 								bool entered_here = false;
 								bool entered_there = false;
 								if (avl_cluster[px] == sort_clusters[nxt_p][0].idx_cluster){
 									entered_here = true;
-									cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, avl_cluster[px]);
+									cheapest_insertion_randomized_parallel_NEW(nxt_p, accept_infeasible_insertion, avl_cluster[px]);
 								} else {
 									if (number_clusters > 1) {
 										if (avl_cluster[px] == sort_clusters[nxt_p][1].idx_cluster){
 											entered_here = true;
-											cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, avl_cluster[px]);
+											cheapest_insertion_randomized_parallel_NEW(nxt_p, accept_infeasible_insertion, avl_cluster[px]);
 										} else {
 											double y = (double)rand() / (double)RAND_MAX;
 											if (y <= 0.5) {
 												entered_there = true;
 												//entered_here = true;
-												cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, avl_cluster[px]);
+												cheapest_insertion_randomized_parallel_NEW(nxt_p, accept_infeasible_insertion, avl_cluster[px]);
 											}
 										}
 									}
@@ -16590,16 +16590,16 @@ int main(int argc, char **argv) {
 
 								//cheapest_insertion_randomized_parallel_NEW(nxt_p, accept_infeasible_insertion, avl_cluster[px]);
 								
-								cout<<"af_inser1 "<<avl_cluster[px]<<endl;
+								//cout<<"af_inser1 "<<avl_cluster[px]<<endl;
 
 								//<<"hier5.9"<<endl;
 								if (vehicle_assigned[nxt_p] == -1) {
 									//if (not (entered_here))
 									//	cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, avl_cluster[px]);
-									cout<<"1nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
+									//cout<<"1nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 									it_cl_inser[nxt_p]++;
 								} else {
-									cout<<"2nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
+									//cout<<"2nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 									continue_this_passenger = false;
 									//<<px<<" "<<del_passenger.size()<<endl;
 									del_passenger[px] = 1;
@@ -16611,7 +16611,7 @@ int main(int argc, char **argv) {
 									average_response_time_new_requests += response_time_in_seconds;
 								}
 								//<<"hier6"<<endl;
-								cout<<"3nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<" cid: "<<sort_clusters[nxt_p][it_cl_inser[nxt_p]].idx_cluster<<endl;
+								//cout<<"3nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<" cid: "<<sort_clusters[nxt_p][it_cl_inser[nxt_p]].idx_cluster<<endl;
 								//<<"continue: "<<vehicle_assigned[nxt_p]<<endl;
 								if (continue_this_passenger) {
 									//if (it_cl_inser[nxt_p] >= number_clusters) {
@@ -16634,7 +16634,7 @@ int main(int argc, char **argv) {
 										//}
 									//}
 								}
-								cout<<"4nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
+								//cout<<"4nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 								
 							}
 
