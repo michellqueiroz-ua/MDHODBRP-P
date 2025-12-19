@@ -5018,6 +5018,29 @@ bool repair_solution(int v, int p, int cluster_id){
 
 void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insertion, int cluster_id){
 
+	// Basic runtime guards to help catch out-of-range accesses causing segfaults.
+	if (p < 0) {
+		cerr << "DEBUG: cheapest_insertion_randomized_parallel called with negative p=" << p << endl;
+		return;
+	}
+	if (cluster_id < 0) {
+		cerr << "DEBUG: cheapest_insertion_randomized_parallel called with negative cluster_id=" << cluster_id << " p=" << p << endl;
+		return;
+	}
+	if (cluster_id >= number_clusters) {
+		cerr << "DEBUG: cheapest_insertion_randomized_parallel: cluster_id out of range: " << cluster_id << " >= " << number_clusters << " p=" << p << endl;
+		return;
+	}
+	if (p >= total_requests) {
+		cerr << "DEBUG: cheapest_insertion_randomized_parallel: p out of range: " << p << " >= total_requests(" << total_requests << ")" << endl;
+		return;
+	}
+
+	// If clusters[cluster_id] is unexpectedly empty, emit a message (may indicate earlier logic bug)
+	if (clusters[cluster_id].empty()) {
+		cerr << "DEBUG: cheapest_insertion_randomized_parallel: cluster " << cluster_id << " is empty (p=" << p << ")" << endl;
+	}
+
 	/*if (p == 5) {
 		cout<<p<<"GOT HERE"<<endl;
 		return;
@@ -15262,6 +15285,7 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 			std::uniform_int_distribution<int> neigh1(1, 2);
 			int neighborhood_chosen = neigh1(g);
 			//cout<<neighborhood_chosen<<endl;
+			neighborhood_chosen = 1;
 			
 			//RELOCATE
 			if (neighborhood_chosen == 1) {
