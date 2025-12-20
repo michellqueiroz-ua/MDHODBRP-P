@@ -15282,8 +15282,8 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 			swap_vehicle = false;
 
 			//randomly decide the neighborhood
-			std::uniform_int_distribution<int> neigh1(1, 2);
-			int neighborhood_chosen = neigh1(g);
+			//std::uniform_int_distribution<int> neigh1(1, 2);
+			//int neighborhood_chosen = neigh1(g);
 			//cout<<neighborhood_chosen<<endl;
 			neighborhood_chosen = 1;
 			
@@ -15781,6 +15781,25 @@ void build_clusters(){
 		clusters[id_centroid].push_back(i);
 
 	}
+
+	// DEBUG: Print clusters and check for overlaps
+    std::set<int> all_vehicles_seen;
+    for (int c = 0; c < number_clusters; c++) {
+        cout << "Cluster " << c << ": ";
+        for (int v : clusters[c]) {
+            cout << v << " ";
+            // Check if vehicle already appeared in another cluster
+            if (all_vehicles_seen.count(v) > 0) {
+                cerr << "ERROR: Vehicle " << v << " appears in multiple clusters!" << endl;
+            }
+            all_vehicles_seen.insert(v);
+        }
+        cout << endl;
+    }
+    cout << "Total vehicles in clusters: " << all_vehicles_seen.size() << " (expected: " << total_number_vehicles << ")" << endl;
+	if (all_vehicles_seen.size() != total_number_vehicles) {
+        cerr << "ERROR: Not all vehicles assigned to clusters or vehicles assigned multiple times!" << endl;
+    }
 }
 
 void compute_mean_distances_request_partitions(int p){
@@ -16689,8 +16708,8 @@ int main(int argc, char **argv) {
 				//}
 
 				//shuffle passengers to add some variety
-				//if (passengers_to_be_inserted.size() > 1)
-				//	std::shuffle(passengers_to_be_inserted.begin(), passengers_to_be_inserted.end(), default_random_engine(current_time));
+				if (passengers_to_be_inserted.size() > 1)
+					std::shuffle(passengers_to_be_inserted.begin(), passengers_to_be_inserted.end(), default_random_engine(current_time));
 			}
 
 				
