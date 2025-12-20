@@ -5019,6 +5019,21 @@ bool repair_solution(int v, int p, int cluster_id){
 
 void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insertion, int cluster_id){
 
+	if (cluster_id < 0 || cluster_id >= number_clusters) {
+        cerr << "ERROR: Invalid cluster_id " << cluster_id << " (max: " << number_clusters-1 << ")" << endl;
+        return;
+    }
+    
+    if (p < 0 || p >= total_requests) {
+        cerr << "ERROR: Invalid passenger " << p << " (max: " << total_requests-1 << ")" << endl;
+        return;
+    }
+    
+    if (clusters[cluster_id].empty()) {
+        cerr << "WARNING: Cluster " << cluster_id << " is empty for passenger " << p << endl;
+        serve_passenger_third_party_vehicle(p);
+        return;
+    }
 	/*// Basic runtime guards to help catch out-of-range accesses causing segfaults.
 	if (p < 0) {
 		cerr << "DEBUG: cheapest_insertion_randomized_parallel called with negative p=" << p << endl;
@@ -5172,6 +5187,13 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
 
 	}
 
+	 for (int i = 0; i < clusters[cluster_id].size(); i++) {
+        int vv = clusters[cluster_id][i];
+        if (vv < 0 || vv >= total_number_vehicles) {
+            cerr << "CRITICAL: Invalid vehicle index " << vv << " from cluster " << cluster_id << endl;
+            continue;
+        }
+    }
 
 
 	//<<"hieerx2xempt"<<" "<<best_empty_vehicle<<" "<<number_stops[best_empty_vehicle]<<endl;
@@ -15223,6 +15245,43 @@ void check_last_position_route() {
  	}
 }
 
+// Add before simulated annealing/main SA loops:
+void validate_solution_state(int cluster_id) {
+    cout << "\n=== VALIDATING CLUSTER " << cluster_id << " ===" << endl;
+    
+    // Check 1: Every passenger in cluster has valid vehicle
+    for (int p = 0; p < total_requests; p++) {
+        if (vehicle_assigned[p] != -1) {
+            int v = vehicle_assigned[p];
+            bool v_in_cluster = false;
+            for (int cv : clusters[cluster_id]) {
+                if (cv == v) {
+                    v_in_cluster = true;
+                    break;
+                }
+            }
+            if (!v_in_cluster) {
+                cerr << "WARNING: Passenger " << p << " assigned to vehicle " << v 
+                     << " NOT in cluster " << cluster_id << endl;
+            }
+        }
+    }
+    
+    // Check 2: Vehicle data structure sizes match
+    for (int v : clusters[cluster_id]) {
+        if (number_stops[v] > 0) {
+            int expected_size = number_stops[v] + 1;
+            if (stops[v].size() != expected_size || 
+                arrival_time_stop[v].size() != expected_size ||
+                free_capacity[v].size() != expected_size) {
+                cerr << "ERROR: Vehicle " << v << " data mismatch! stops:" 
+                     << stops[v].size() << " arrival:" << arrival_time_stop[v].size() 
+                     << " capacity:" << free_capacity[v].size() << " (expected:" << expected_size << ")" << endl;
+            }
+        }
+    }
+}
+
 void simulated_annealing(int n_allocated, int cluster_id) {
 
 	double temperature, elapsed;
@@ -16500,6 +16559,25 @@ int main(int argc, char **argv) {
 		//if ((current_time >= sort_passengers[k].time_stamp)) {
 		if (algo_iterations < 1000) { //static
 
+			// DEBUG: Track per-cluster passenger assignments
+			for (int c = 0; c < number_clusters; c++) {
+				int passengers_in_c = 0;
+				for (int p = 0; p < total_requests; p++) {
+					if (vehicle_assigned[p] != -1) {
+						int v = vehicle_assigned[p];
+						// Find which cluster v belongs to
+						bool found = false;
+						for (int cv : clusters[c]) {
+							if (cv == v) {
+								passengers_in_c++;
+								found = true;
+								break;
+							}
+						}
+					}
+				}
+				cout << "Cluster " << c << ": " << passengers_in_c << " passengers assigned" << endl;
+			}
 			//comment static
 			
 			/*if (passengers_to_be_inserted.size() > 0) {
@@ -16589,6 +16667,11 @@ int main(int argc, char **argv) {
 								//cout<<"bf_inser1 "<<avl_cluster[px]<<endl;
 								bool entered_here = false;
 								bool entered_there = false;
+								int best_cluster = sort_clusters[p][0].idx_cluster;
+            
+								if (best_cluster < 0 || best_cluster >= number_clusters) {
+									cerr << "ERROR: Invalid cluster assignment " << best_cluster << " for passenger " << p << endl;
+								}
 								if (avl_cluster[px] == sort_clusters[nxt_p][0].idx_cluster){
 									entered_here = true;
 									cheapest_insertion_randomized_parallel(nxt_p, accept_infeasible_insertion, avl_cluster[px]);
@@ -16794,6 +16877,10 @@ int main(int argc, char **argv) {
 				//<<k<<endl;
 				//<<"passenger: p"<<k<<endl;
 				//cout<<"cluster c"<<c<<endl;
+				// Before each simulated_annealing call
+				for (int c = 0; c < number_clusters; c++) {
+					validate_solution_state(c);
+				}
 				simulated_annealing(k, c);
 				//check_valid_user_ride_times();
 				//<<"passenger: p"<<k<<endl;
