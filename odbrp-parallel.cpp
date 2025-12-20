@@ -17,6 +17,7 @@
 #include <iostream>
 #include <random>
 #include <omp.h>
+#include <set>
 #include <sys/resource.h>
 #include <chrono>
 //#include<Eigen/Dense>
@@ -15285,7 +15286,7 @@ void simulated_annealing(int n_allocated, int cluster_id) {
 			//std::uniform_int_distribution<int> neigh1(1, 2);
 			//int neighborhood_chosen = neigh1(g);
 			//cout<<neighborhood_chosen<<endl;
-			neighborhood_chosen = 1;
+			int neighborhood_chosen = 1;
 			
 			//RELOCATE
 			if (neighborhood_chosen == 1) {
