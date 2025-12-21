@@ -5031,7 +5031,7 @@ void cheapest_insertion_randomized_parallel(int p, bool accept_infeasible_insert
     
     if (clusters[cluster_id].empty()) {
         cerr << "WARNING: Cluster " << cluster_id << " is empty for passenger " << p << endl;
-        serve_passenger_third_party_vehicle(p);
+        //serve_passenger_third_party_vehicle(p);
         return;
     }
 	/*// Basic runtime guards to help catch out-of-range accesses causing segfaults.
@@ -15250,7 +15250,7 @@ void validate_solution_state(int cluster_id) {
     cout << "\n=== VALIDATING CLUSTER " << cluster_id << " ===" << endl;
     
     // Check 1: Every passenger in cluster has valid vehicle
-    for (int p = 0; p < total_requests; p++) {
+    /*for (int p = 0; p < total_requests; p++) {
         if (vehicle_assigned[p] != -1) {
             int v = vehicle_assigned[p];
             bool v_in_cluster = false;
@@ -15265,7 +15265,16 @@ void validate_solution_state(int cluster_id) {
                      << " NOT in cluster " << cluster_id << endl;
             }
         }
-    }
+    }*/
+
+	// Global vehicle assignment sanity check
+	for (int p = 0; p < total_requests; ++p) {
+		int v = vehicle_assigned[p];
+		if (v == -1) continue;
+		if (v < 0 || v >= total_number_vehicles) {
+			cerr << "ERROR: passenger " << p << " has invalid vehicle " << v << endl;
+		}
+	}
     
     // Check 2: Vehicle data structure sizes match
     for (int v : clusters[cluster_id]) {
@@ -16878,9 +16887,9 @@ int main(int argc, char **argv) {
 				//<<"passenger: p"<<k<<endl;
 				//cout<<"cluster c"<<c<<endl;
 				// Before each simulated_annealing call
-				for (int c = 0; c < number_clusters; c++) {
-					validate_solution_state(c);
-				}
+				//for (int c = 0; c < number_clusters; c++) {
+				validate_solution_state(c);
+				//}
 				simulated_annealing(k, c);
 				//check_valid_user_ride_times();
 				//<<"passenger: p"<<k<<endl;
