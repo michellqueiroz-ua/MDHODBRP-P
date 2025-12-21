@@ -16670,7 +16670,7 @@ int main(int argc, char **argv) {
 								int best_cluster = sort_clusters[nxt_p][0].idx_cluster;
             
 								if (best_cluster < 0 || best_cluster >= number_clusters) {
-									cerr << "ERROR: Invalid cluster assignment " << best_cluster << " for passenger " << p << endl;
+									cerr << "ERROR: Invalid cluster assignment " << best_cluster << " for passenger " << nxt_p << endl;
 								}
 								if (avl_cluster[px] == sort_clusters[nxt_p][0].idx_cluster){
 									entered_here = true;
