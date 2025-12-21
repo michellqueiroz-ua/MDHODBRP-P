@@ -16667,7 +16667,7 @@ int main(int argc, char **argv) {
 								//cout<<"bf_inser1 "<<avl_cluster[px]<<endl;
 								bool entered_here = false;
 								bool entered_there = false;
-								int best_cluster = sort_clusters[p][0].idx_cluster;
+								int best_cluster = sort_clusters[nxt_p][0].idx_cluster;
             
 								if (best_cluster < 0 || best_cluster >= number_clusters) {
 									cerr << "ERROR: Invalid cluster assignment " << best_cluster << " for passenger " << p << endl;
