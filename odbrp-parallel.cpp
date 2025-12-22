@@ -16777,7 +16777,10 @@ int main(int argc, char **argv) {
 												
 												if (att_inser[nxt_p] < 100) { //static
 												//if (response_time < 500) {
-													passengers_to_be_insertedOLD.push_back(nxt_p);
+													#pragma omp critical(ptbi_old_push)
+													{
+														passengers_to_be_insertedOLD.push_back(nxt_p);
+													}
 												}
 												
 											}
