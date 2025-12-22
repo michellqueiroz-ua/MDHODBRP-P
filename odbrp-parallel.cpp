@@ -15871,13 +15871,13 @@ void build_clusters(){
         }
 
         id_centroid = it->second;
-        CHECK_INDEX(id_centroid, number_clusters, "id_centroid");
+        //CHECK_INDEX(id_centroid, number_clusters, "id_centroid");
 		clusters[id_centroid].push_back(i);
 
 	}
 
 	// DEBUG: Print clusters and check for overlaps
-    std::set<int> all_vehicles_seen;
+    /*std::set<int> all_vehicles_seen;
     for (int c = 0; c < number_clusters; c++) {
         cout << "Cluster " << c << ": ";
         for (int v : clusters[c]) {
@@ -15893,12 +15893,12 @@ void build_clusters(){
     cout << "Total vehicles in clusters: " << all_vehicles_seen.size() << " (expected: " << total_number_vehicles << ")" << endl;
 	if (all_vehicles_seen.size() != total_number_vehicles) {
         cerr << "ERROR: Not all vehicles assigned to clusters or vehicles assigned multiple times!" << endl;
-    }
+    }*/
 }
 
 void compute_mean_distances_request_partitions(int p){
 
-	CHECK_INDEX(p, total_requests, "p in compute_mean_distances_request_partitions");
+	//CHECK_INDEX(p, total_requests, "p in compute_mean_distances_request_partitions");
 
 	//<<"p:"<<p<<endl;
 	int expected_position, k;
@@ -16596,7 +16596,7 @@ int main(int argc, char **argv) {
 		if (algo_iterations < 1000) { //static
 
 			// DEBUG: Track per-cluster passenger assignments
-			for (int c = 0; c < number_clusters; c++) {
+			/*for (int c = 0; c < number_clusters; c++) {
 				int passengers_in_c = 0;
 				for (int p = 0; p < total_requests; p++) {
 					if (vehicle_assigned[p] != -1) {
@@ -16613,7 +16613,7 @@ int main(int argc, char **argv) {
 					}
 				}
 				cout << "Cluster " << c << ": " << passengers_in_c << " passengers assigned" << endl;
-			}
+			}*/
 			//comment static
 			
 			/*if (passengers_to_be_inserted.size() > 0) {
@@ -16667,17 +16667,17 @@ int main(int argc, char **argv) {
 				}
 			}*/
 
-			cout<<"passengers to be inserted: "<<passengers_to_be_inserted.size()<<endl;
+			//cout<<"passengers to be inserted: "<<passengers_to_be_inserted.size()<<endl;
 			while (passengers_to_be_inserted.size() > 0) {
 
 				// Optional: detect vector corruption early
 				// (size() itself is safe, but corrupted heap can explode anywhere)
-				if (passengers_to_be_inserted.size() > (size_t)total_requests) {
+				/*if (passengers_to_be_inserted.size() > (size_t)total_requests) {
 					std::cerr << "CORRUPTION? passengers_to_be_inserted.size()="
 							<< passengers_to_be_inserted.size()
 							<< " > total_requests=" << total_requests << std::endl;
 					std::abort();
-				}
+				}*/
 
 				//for (int itx = 0; itx<num_threads_for; itx++) {
 
@@ -16693,7 +16693,7 @@ int main(int argc, char **argv) {
 							
 							//<<"12size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 							int nxt_p = passengers_to_be_inserted[px];
-							CHECK_INDEX(nxt_p, total_requests, "nxt_p (passenger id)");
+							//CHECK_INDEX(nxt_p, total_requests, "nxt_p (passenger id)");
 							//cout<<"nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 							// Capture timestamp only on first entry for this passenger
 							if (!request_timestamp_captured[nxt_p]) {
@@ -16932,7 +16932,7 @@ int main(int argc, char **argv) {
 				//cout<<"cluster c"<<c<<endl;
 				// Before each simulated_annealing call
 				//for (int c = 0; c < number_clusters; c++) {
-				validate_solution_state(c);
+				//validate_solution_state(c);
 				//}
 				simulated_annealing(k, c);
 				//check_valid_user_ride_times();
@@ -16953,7 +16953,7 @@ int main(int argc, char **argv) {
 		//l_elapsed_algo_time = (double)(std::clock() - start_algorithm_time)/(double)(CLOCKS_PER_SEC);
 		double l_elapsed_algo_time = std::chrono::duration<double>(this_time - start_algorithm_time).count();
 		
-		cout<<"ALGO elapsed: "<<l_elapsed_algo_time<<endl;
+		//cout<<"ALGO elapsed: "<<l_elapsed_algo_time<<endl;
 		difference_elapsed = l_elapsed_algo_time - p_elapsed_algo_time;
 		
 		difference_elapsed = difference_elapsed*2;
