@@ -16690,9 +16690,10 @@ int main(int argc, char **argv) {
 
 							// IMPORTANT: whatever code sets nxt_p must be above.
 							// Immediately validate nxt_p before using it:
-							CHECK_INDEX(nxt_p, total_requests, "nxt_p (passenger id)");
+							
 							//<<"12size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 							int nxt_p = passengers_to_be_inserted[px];
+							CHECK_INDEX(nxt_p, total_requests, "nxt_p (passenger id)");
 							//cout<<"nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 							// Capture timestamp only on first entry for this passenger
 							if (!request_timestamp_captured[nxt_p]) {
