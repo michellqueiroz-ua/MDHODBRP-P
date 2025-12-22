@@ -20,6 +20,7 @@
 #include <set>
 #include <sys/resource.h>
 #include <chrono>
+#include <cassert>
 //#include<Eigen/Dense>
 //using namespace Eigen;
 using namespace std;
@@ -244,6 +245,16 @@ static SortPassengers sort_passengers[21000 + 1];
 static SortClusters sort_clusters[21000 + 1][number_clusters + 1];
 static int it_cl_inser[22000];
 static int att_inser[22000];
+
+// Fail-fast bounds checks (keeps the crash close to the real bug)
+static inline void CHECK_IDX(long long idx, long long size, const char* what, const char* file, int line) {
+    if (idx < 0 || idx >= size) {
+        std::cerr << "OOB: " << what << " idx=" << idx << " size=" << size
+                  << " at " << file << ":" << line << std::endl;
+        std::abort();
+    }
+}
+#define CHECK_INDEX(idx, size, what) CHECK_IDX((idx), (size), (what), __FILE__, __LINE__)
 
 bool comparator( Insertions a, Insertions b){
 	if(a.increase_length < b.increase_length)
@@ -15846,7 +15857,21 @@ void build_clusters(){
 	int id_centroid;
 	for (int i=0; i<total_number_vehicles;i++){
 
-		id_centroid = centroids_keys[cluster[i]];
+		//id_centroid = centroids_keys[cluster[i]];
+		// cluster[i] must be a centroid id, otherwise centroids_keys[...] is wrong
+        if (cluster[i] < 0) {
+            std::cerr << "ERROR: cluster[" << i << "] is " << cluster[i] << " (unassigned)\n";
+            std::abort();
+        }
+        auto it = centroids_keys.find(cluster[i]);
+        if (it == centroids_keys.end()) {
+            std::cerr << "ERROR: cluster[" << i << "]=" << cluster[i]
+                      << " not found in centroids_keys (bad clustering)\n";
+            std::abort();
+        }
+
+        id_centroid = it->second;
+        CHECK_INDEX(id_centroid, number_clusters, "id_centroid");
 		clusters[id_centroid].push_back(i);
 
 	}
@@ -15872,6 +15897,8 @@ void build_clusters(){
 }
 
 void compute_mean_distances_request_partitions(int p){
+
+	CHECK_INDEX(p, total_requests, "p in compute_mean_distances_request_partitions");
 
 	//<<"p:"<<p<<endl;
 	int expected_position, k;
@@ -16643,6 +16670,15 @@ int main(int argc, char **argv) {
 			cout<<"passengers to be inserted: "<<passengers_to_be_inserted.size()<<endl;
 			while (passengers_to_be_inserted.size() > 0) {
 
+				// Optional: detect vector corruption early
+				// (size() itself is safe, but corrupted heap can explode anywhere)
+				if (passengers_to_be_inserted.size() > (size_t)total_requests) {
+					std::cerr << "CORRUPTION? passengers_to_be_inserted.size()="
+							<< passengers_to_be_inserted.size()
+							<< " > total_requests=" << total_requests << std::endl;
+					std::abort();
+				}
+
 				//for (int itx = 0; itx<num_threads_for; itx++) {
 
 					//each passengers will be inserted in one processor
@@ -16651,6 +16687,10 @@ int main(int argc, char **argv) {
 					for (int px = 0; px<num_threads_for; px++) {
 
 						if (px < passengers_to_be_inserted.size()) {
+
+							// IMPORTANT: whatever code sets nxt_p must be above.
+							// Immediately validate nxt_p before using it:
+							CHECK_INDEX(nxt_p, total_requests, "nxt_p (passenger id)");
 							//<<"12size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 							int nxt_p = passengers_to_be_inserted[px];
 							//cout<<"nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
