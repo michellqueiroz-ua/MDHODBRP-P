@@ -16477,7 +16477,9 @@ int main(int argc, char **argv) {
 		test_total_distance += travel_time[loc_centroid][loc_vehicle];
 	}
 	cout<<"total dist: "<<test_total_distance<<endl;
-
+	for (int p=0; p<min(10,total_requests); p++) {
+    	cout<<"  p="<<p<<" #origin="<<number_stops_origin[p]<<" #dest="<<number_stops_destination[p]<<endl;
+	}
 	vector<int> passengers_to_be_inserted;
 	vector<int> passengers_to_be_insertedOLD;
 
@@ -16562,10 +16564,16 @@ int main(int argc, char **argv) {
 	//uncomment static
 
 	cout<<requests_filename<<endl;
+	
 	listP min_travel_time;
 	for (int r = 0; r < total_requests; r++){
 		
 		min_travel_time[r] = INT_MAX;
+		if (number_stops_origin[r] < 1 || number_stops_destination[r] < 1) {
+			cerr<<"ERROR: request "<<r<<" has empty stops list: "
+				<<number_stops_origin[r]<<" "<<number_stops_destination[r]<<endl;
+			abort();
+		}
 		//cout<<"#O #D "<<number_stops_origin[r]<<" "<<number_stops_destination[r]<<endl;
 		for (int i = 0; i < number_stops_destination[r]; i++) {
 			for (int j = 0; j < number_stops_origin[r]; j++) {
