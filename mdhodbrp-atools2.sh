@@ -11,7 +11,7 @@ for input_file in `find ../../large-instances/commuting -type f -name "*.csv"` ;
     for iter in {1..10}
     do
         counterx=$((counterx+1))
-        seed1=111
+        seed1=171
         seed1=$(($seed1 + $counterx))
         file_name=$(basename "$input_file")
         echo "$input_file; $seed1" >> $run_file
