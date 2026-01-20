@@ -16079,8 +16079,8 @@ int main(int argc, char **argv) {
 	for (int i=1; i<argc; i++)
   	{
 		if (strcmp(argv[i], "--filename_requests") == 0) {
-			input_requests_festival(argv[i+1]);
-			//input_requests_commuting(argv[i+1]);
+			//input_requests_festival(argv[i+1]);
+			input_requests_commuting(argv[i+1]);
 			//input_requests(argv[i+1]); //concert & nightlife
 			requests_filename = argv[i+1];
 			cout<<"x"<<total_requests<<" ";
@@ -16696,9 +16696,14 @@ int main(int argc, char **argv) {
 							//CHECK_INDEX(nxt_p, total_requests, "nxt_p (passenger id)");
 							//cout<<"nxt p: "<<nxt_p<<"p: "<<px<<"x"<<"size: "<<passengers_to_be_inserted.size()<<"ends"<<endl;
 							// Capture timestamp only on first entry for this passenger
-							if (!request_timestamp_captured[nxt_p]) {
-								request_time_stamp[nxt_p] = std::chrono::high_resolution_clock::now();
-								request_timestamp_captured[nxt_p] = true;
+							// timestamp capture still must be protected because vector<bool)
+							#pragma omp critical(ts_capture)
+							{
+								if (!request_timestamp_captured[nxt_p]) {
+									request_time_stamp[nxt_p] = std::chrono::high_resolution_clock::now();
+									request_timestamp_captured[nxt_p] = true;
+								}
+
 							}
 							//<<"nxp: "<<nxt_p<<endl;
 							it_cl_inser[nxt_p] = 0;
