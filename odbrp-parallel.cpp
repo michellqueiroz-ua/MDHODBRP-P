@@ -1061,6 +1061,10 @@ void input_requests_commuting(char *filename) {
 			stringstream str(line);
 			getline(str, data, ',');
 			p = stoi(data);
+			if (p < 0 || p > 21000) {
+				cerr << "ERROR: passenger id out of range: " << p << endl;
+				abort();
+			}
 			//<<p<<" ";
 			
 			getline(str, data, ',');
@@ -1133,6 +1137,10 @@ void input_requests_commuting(char *filename) {
 					//<<stops_origin[p][s]<<" ";
 					//printf("%d ", stops_origin[p][s]);
 					s = s + 1;
+					if (s >= maxstations) {
+						cerr << "ERROR: too many origin stops for p="<<p<<" (s="<<s<<")"<<endl;
+						abort();
+					}
 					if (leave_loop)
 						break;
 				}
