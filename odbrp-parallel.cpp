@@ -16095,7 +16095,7 @@ int main(int argc, char **argv) {
 	for (int i=1; i<argc; i++)
   	{
 		if (strcmp(argv[i], "--filename_requests") == 0) {
-			int type_instance = atoi(argv[i+1]);
+			int type_instance = stoi(argv[i+1]);
 			if (type_instance == 1)
 				input_requests_festival(argv[i+2]);
 			else if (type_instance == 1) {
