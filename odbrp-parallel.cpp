@@ -16087,10 +16087,15 @@ int main(int argc, char **argv) {
 	for (int i=1; i<argc; i++)
   	{
 		if (strcmp(argv[i], "--filename_requests") == 0) {
-			//input_requests_festival(argv[i+1]);
-			//input_requests_commuting(argv[i+1]);
-			input_requests(argv[i+1]); // nightlife and concert
-			requests_filename = argv[i+1];
+			int type_instance = atoi(argv[i+1]);
+			if (type_instance == 1)
+				input_requests_festival(argv[i+2]);
+			else if (type_instance == 1) {
+				input_requests_commuting(argv[i+2]);
+			} else {
+				input_requests(argv[i+2]); // nightlife and concert
+			}
+			requests_filename = argv[i+2];
 			cout<<"x"<<total_requests<<" ";
 		} else if (strcmp(argv[i], "--filename_travel_time") == 0) {
 			//<<"HIER"<<endl;
