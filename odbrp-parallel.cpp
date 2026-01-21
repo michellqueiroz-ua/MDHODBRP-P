@@ -14915,6 +14915,33 @@ void relocate_passenger(int p, double &temperature, int &type_move, int cluster_
 }
 
 void update_direct_travel_times() {
+    for (int p = 0; p < total_requests; p++) {
+        if (vehicle_assigned[p] != -1) {
+            // Find which actual stops were used in the solution
+            int v = vehicle_assigned[p];
+            int actual_pickup = -1, actual_dropoff = -1;
+            
+            for (int i = 0; i <= number_stops[v]; i++) {
+                for (int j = 0; j < number_passengers_action[v][i]; j++) {
+                    if (action_passengers[v][i][j] == p) {
+                        if (actual_pickup == -1) {
+                            actual_pickup = stops[v][i];
+                        } else {
+                            actual_dropoff = stops[v][i];
+                            break;
+                        }
+                    }
+                }
+                if (actual_dropoff != -1) break;
+            }
+            
+            // Direct time for the ACTUAL route chosen
+            direct_travel_time[p] = travel_time[actual_pickup][actual_dropoff];
+        }
+    }
+}
+
+void update_direct_travel_times2() {
     // For each passenger, compute the minimum travel time between their available stops
     for (int p = 0; p < total_requests; p++) {
         int min_travel_time = INT_MAX;
@@ -17018,6 +17045,22 @@ int main(int argc, char **argv) {
 	update_direct_travel_times();
 	
 	check_valid_user_ride_times();
+
+	int negative_count = 0;
+	for (int p = 0; p < total_requests; p++) {
+		if (vehicle_assigned[p] != -1 && assigned_to_3rd_party[p] == 0) {
+			int extra = user_ride_time[p] - direct_travel_time[p];
+			if (extra < 0) {
+				negative_count++;
+				cerr << "ERROR: Passenger " << p << " has negative extra time: " 
+					<< extra << " (URT=" << user_ride_time[p] 
+					<< " Direct=" << direct_travel_time[p] << ")" << endl;
+			}
+		}
+	}
+	if (negative_count > 0) {
+		cerr << "WARNING: " << negative_count << " passengers have negative extra travel!" << endl;
+	}
 	
 	/*for (int i =0; i < total_requests; i++){
 		for (int j =0; j < number_stops_origin[i]; j++){
