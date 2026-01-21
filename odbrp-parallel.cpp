@@ -31,7 +31,7 @@ using namespace std;
 #define maxtotalcapacity 40
 #define maxtypevehicles 40
 #define maxnumberdepots 10
-#define number_clusters 4
+#define number_clusters 1
 
 typedef int listP[21000 + 1];
 //typedef int matrixVP[maxvehicles + 1][maxpassengers + 1];
@@ -102,9 +102,9 @@ bool priority_empty_vehicle = false;
 static int served_passengers;
 static int served_passengers_3party;
 static int total_served_passengers;
-static int total_user_ride_time;
+static long long total_user_ride_time;
 //int oldy_urt;
-static int best_total_user_ride_time;
+static long long best_total_user_ride_time;
 
 static matrixPV blocked_vehicles, removed_passenger;
 
@@ -171,7 +171,7 @@ static int number_stations;
 matrixPS stops_uneven;
 listP number_stops_uneven;
 
-static int extra_travel_time;
+static long long extra_travel_time;
 static double passengers_per_kilometer, average_travel_time_ratio;
 static int total_deadheading_times, total_shared_times, total_per_vehicle_travel_time;
 static double average_response_time_new_requests;
@@ -301,6 +301,14 @@ void update_URT(int v){
 						current_user_ride_time = arrival_time_stop[v][k] - departure_time_stop[v][i];
 						if (current_user_ride_time != user_ride_time[save_p]) {
 							difference = current_user_ride_time -  user_ride_time[save_p];
+							
+							// Sanity check
+							if (abs(difference) > 86400) { // 24 hours in seconds
+								cerr << "WARNING: Suspicious URT difference=" << difference 
+									<< " for p=" << save_p << " (old=" << user_ride_time[save_p] 
+									<< " new=" << current_user_ride_time << ")" << endl;
+								continue; // Skip this corrupt update
+							}
 							//<<"difference: "<<difference<<endl;
 							//total_user_ride_time += difference;
 							//<<"total_user_ride_time: "<<total_user_ride_time<<endl;
@@ -16238,6 +16246,10 @@ int main(int argc, char **argv) {
    	//<<"x2 "<<total_requests<<" ";
    	
 	current_time = time_stamp[0]; //time stamp of the first passenger is the current time on the system
+	total_user_ride_time = 0;
+	best_total_user_ride_time = 0;
+	extra_travel_time = 0;
+	average_travel_time_ratio = 0.0;
 	int current_passenger;
 	//empty_vehicle = 0;
 
@@ -16248,6 +16260,7 @@ int main(int argc, char **argv) {
 		delay[i] = 0;
 		assigned_to_3rd_party[i] = 0;
 		att_inser[i] = 0;
+		user_ride_time[i] = 0;
 		//already_opened_vehicle_for_it[i] = 0;
 	}
 
@@ -17059,6 +17072,23 @@ int main(int argc, char **argv) {
 
 	double average_user_ride_time = (double)best_total_user_ride_time/(double)served_passengers;
 	
+	// At end of main(), before printing:
+	int recomputed_urt = 0;
+	for (int p = 0; p < total_requests; p++) {
+		if (vehicle_assigned[p] != -1 && assigned_to_3rd_party[p] == 0) {
+			recomputed_urt += user_ride_time[p];
+			if (user_ride_time[p] < 0 || user_ride_time[p] > 86400) {
+				cerr << "ERROR: p=" << p << " has URT=" << user_ride_time[p] << endl;
+			}
+		}
+	}
+	cout << "Recomputed URT: " << recomputed_urt << " (printed: " << best_total_user_ride_time << ")" << endl;
+	
+	for (int p = 0; p < total_requests; p++) {
+    if (user_ride_time[p] < 0) {
+			cerr << "NEGATIVE URT: p=" << p << " urt=" << user_ride_time[p] << endl;
+		}
+	}
 	//<<total_user_ride_time<<" "<<best_total_user_ride_time<<endl;
 	//<<served_passengers<<"  "<<total_user_ride_time<<endl;
 	//<<total_user_ride_time<<endl;
