@@ -16099,7 +16099,7 @@ int main(int argc, char **argv) {
 			int type_instance = stoi(argv[i+1]);
 			if (type_instance == 1)
 				input_requests_festival(argv[i+2]);
-			else if (type_instance == 2) {
+			else if (type_instance == 1) {
 				input_requests_commuting(argv[i+2]);
 			} else {
 				input_requests(argv[i+2]); // nightlife and concert
